@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15702" systemVersion="19D76" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="MyStage" representedClassName="MyStage" syncable="YES">
+        <attribute name="stage" optional="YES" attributeType="String" defaultValueString="SL2"/>
+    </entity>
+    <entity name="ResultRelax" representedClassName=".ResultRelax" syncable="YES">
+        <attribute name="avgHeartRate" optional="YES" attributeType="String"/>
+        <attribute name="relaxType" optional="YES" attributeType="String"/>
+        <attribute name="todayDate" optional="YES" attributeType="String"/>
+        <attribute name="todayRelaxCount" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="totalRelaxTime" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="ResultWorkOut" representedClassName=".ResultWorkOut" syncable="YES">
+        <attribute name="avgHeartRate" attributeType="String"/>
+        <attribute name="avgSpeedHour" attributeType="String"/>
+        <attribute name="todayDate" attributeType="String"/>
+        <attribute name="todayWorkOutCount" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="totalcalBurn" attributeType="String"/>
+        <attribute name="totalScore" attributeType="String"/>
+        <attribute name="totalWorkOutTime" attributeType="String"/>
+    </entity>
+    <elements>
+        <element name="MyStage" positionX="-63" positionY="-18" width="128" height="60"/>
+        <element name="ResultRelax" positionX="-153" positionY="36" width="128" height="120"/>
+        <element name="ResultWorkOut" positionX="-236.16796875" positionY="-8.12109375" width="128" height="150"/>
+    </elements>
+</model>
