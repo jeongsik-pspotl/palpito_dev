@@ -12,12 +12,12 @@ import HealthKitUI
 import CoreData
 import WatchConnectivity
 import Firebase
-import FirebaseDatabase
+import FirebaseFirestoreSwift
 
 class MyPageViewController: UIViewController, WCSessionDelegate {
     
     let healthKitShared = HealthKitSharedFunction.sharedInstance
-    var ref: DatabaseReference!
+    var db: Firestore!
     
     var toDate = Date()
 
@@ -65,7 +65,7 @@ class MyPageViewController: UIViewController, WCSessionDelegate {
         }
         sleep(UInt32(1.2))
         
-        ref = Database.database().reference()
+        db = Firestore.firestore()
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy.MM.dd"
@@ -132,17 +132,19 @@ class MyPageViewController: UIViewController, WCSessionDelegate {
         
         let userKey =  Auth.auth().currentUser?.uid
         //print(userKey as Any)
-        //self.ref.child("user_info")
-        self.ref.child("user_info").child(userKey!).observeSingleEvent(of: .value, with: { (snapshot) in
-          // Get user value
-          let value = snapshot.value as? NSDictionary
-          let nick_name = value?["nick_name"] as? String ?? ""
-          self.userNickName.text = nick_name
-          
-          }) { (error) in
-            //print(error.localizedDescription)
-        }
-//        //print("setting start stageLevel : \(myStage!)")
+        db.collection("user_info").whereField("user_info_key",isEqualTo: userKey!).getDocuments(completion: { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                print("user_info start")
+                for document in querySnapshot!.documents {
+                    let oneDocument = document.data()
+                    let nick_name = oneDocument["nick_name"] as? String
+                    self.userNickName.text = nick_name
+                }
+                                
+            }
+        })
         
         if self.stageLevel != myStage {
             self.stageLevel = myStage!
@@ -152,9 +154,6 @@ class MyPageViewController: UIViewController, WCSessionDelegate {
             stageLevelSendMsg = ["MyStageLvl":myStage] as! [String : String]
         }
         
-//        do {
-//            try session!.updateApplicationContext(stageLevelSendMsg)
-//        } catch { }
         
     }
     

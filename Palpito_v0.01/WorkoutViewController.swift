@@ -14,6 +14,7 @@ import AVFoundation
 import CoreData
 import Firebase
 import FirebaseDatabase
+import FirebaseFirestoreSwift
 
 class WorkoutViewController: UIViewController, WCSessionDelegate {
     
@@ -64,6 +65,7 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
     var palpiActiveAnimationZone5: [UIImage] = []
     
     var ref : DatabaseReference! = Database.database().reference().child("user_exercise")
+    var db : Firestore!
 
     @IBOutlet weak var heartRateText: UILabel!
     @IBOutlet weak var currentTimeText: UILabel!
@@ -101,6 +103,8 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
         dateFormatter.dateFormat = "yyyy.MM.dd"
         
         self.resultSendToday = dateFormatter.string(from: today)
+        
+        db = Firestore.firestore()
 
         if WCSession.isSupported() {
             wcSession = WCSession.default
@@ -508,7 +512,7 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
                         "avg_heart_rate" : self.resultHeartRate!,
                         "user_level" : self.stageLevel,
                         "total_cal_burn" : self.resultTotalCal!,
-                        "result_total_score" : self.resultTotalScore!,
+                        "result_total_score" : Int(self.resultTotalScore!) as Any,
                         "exercise_date" : self.resultSendToday,
                         "today_workout_count" : self.resultWorkoutArray.count + 1,
                         "result_total_time" : self.resultTotalTime!,
@@ -517,24 +521,34 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
 
                 ]
 
-                self.ref.child(user_exercise_key).setValue(data, withCompletionBlock: {(error, ref) in
-                    if let err = error {
-                        //print(err.localizedDescription)
-                    }
-
-                    self.ref.observe(.value, with: {(snapshot) in
-                        guard snapshot.exists() else {
-                            return
-                        }
-                        // 소스 코드 수정하기
-                        self.performSegue(withIdentifier: "resultWorkoutSegue", sender: self)
-//                        let storyboard = UIStoryboard(name: "StartApp", bundle: nil).instantiateViewController(withIdentifier: "ResultWorkoutViewController") as! ResultWorkoutViewController
-//                        storyboard.modalPresentationStyle = .fullScreen
+//                self.ref.child(user_exercise_key).setValue(data, withCompletionBlock: {(error, ref) in
+//                    if let err = error {
+//                        //print(err.localizedDescription)
+//                    }
 //
-//                        self.present(storyboard, animated: true, completion: nil)
-                        //self.dismiss(animated: true, completion: nil)
-                    })
-                })
+//                    self.ref.observe(.value, with: {(snapshot) in
+//                        guard snapshot.exists() else {
+//                            return
+//                        }
+//                        // 소스 코드 수정하기
+//                        self.performSegue(withIdentifier: "resultWorkoutSegue", sender: self)
+////                        let storyboard = UIStoryboard(name: "StartApp", bundle: nil).instantiateViewController(withIdentifier: "ResultWorkoutViewController") as! ResultWorkoutViewController
+////                        storyboard.modalPresentationStyle = .fullScreen
+////
+////                        self.present(storyboard, animated: true, completion: nil)
+//                        //self.dismiss(animated: true, completion: nil)
+//                    })
+//                })
+                
+                self.db.collection("user_exercise").document(user_exercise_key).setData(data) { err in
+                    if let err = err {
+                        print("Error writing document: \(err)")
+                    } else {
+                        print("Document successfully written!")
+                        self.performSegue(withIdentifier: "resultWorkoutSegue", sender: self)
+                    }
+                }
+
 
                 self.zoneMusicPlay?.stop()
                 self.zoneSoundPlay?.stop()
@@ -896,9 +910,11 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
                 
                 PersistenceService.saveContext()
 
+                let user_exercise_key:String = self.ref.childByAutoId().key as Any as! String
+                
                 let data : [String : Any] = [
                         "uid" : Auth.auth().currentUser!.uid,
-                        "user_exercise_key" : self.ref.childByAutoId().key as Any,
+                        "user_exercise_key" : user_exercise_key,
                         "avg_heart_rate" : self.resultHeartRate!,
                         "user_level" : self.stageLevel,
                         "total_cal_burn" : self.resultTotalCal!,
@@ -911,25 +927,34 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
 
                 ]
 
-                self.ref.child("\(self.ref.childByAutoId().key as Any)").setValue(data, withCompletionBlock: {(error, ref) in
-                    if let err = error {
-                        //print(err.localizedDescription)
-                    }
-
-                    self.ref.observe(.value, with: {(snapshot) in
-                        guard snapshot.exists() else {
-                            return
-                        }
-                        // 소스 코드 수정하기
+//                self.ref.child(user_exercise_key).setValue(data, withCompletionBlock: {(error, ref) in
+//                    if let err = error {
+//                        //print(err.localizedDescription)
+//                    }
+//
+//                    self.ref.observe(.value, with: {(snapshot) in
+//                        guard snapshot.exists() else {
+//                            return
+//                        }
+//                        // 소스 코드 수정하기
+//                        self.performSegue(withIdentifier: "resultWorkoutSegue", sender: self)
+////                        let storyboard = UIStoryboard(name: "StartApp", bundle: nil).instantiateViewController(withIdentifier: "ResultWorkoutViewController") as! ResultWorkoutViewController
+////                        storyboard.modalPresentationStyle = .fullScreen
+//
+//                        // 변경..
+//                        // self.navigationController!.pushViewController(storyboard, animated: true)
+////                        self.present(storyboard, animated: true, completion: nil)
+//                    })
+//                })
+                
+                self.db.collection("user_exercise").document(user_exercise_key).setData(data) { err in
+                    if let err = err {
+                        print("Error writing document: \(err)")
+                    } else {
+                        print("Document successfully written!")
                         self.performSegue(withIdentifier: "resultWorkoutSegue", sender: self)
-//                        let storyboard = UIStoryboard(name: "StartApp", bundle: nil).instantiateViewController(withIdentifier: "ResultWorkoutViewController") as! ResultWorkoutViewController
-//                        storyboard.modalPresentationStyle = .fullScreen
-                        
-                        // 변경..
-                        // self.navigationController!.pushViewController(storyboard, animated: true)
-//                        self.present(storyboard, animated: true, completion: nil)
-                    })
-                })
+                    }
+                }
                 
                 self.zoneMusicPlay?.stop()
                 self.zoneSoundPlay?.stop()

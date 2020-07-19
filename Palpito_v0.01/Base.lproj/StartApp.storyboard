@@ -16,7 +16,7 @@
         <!--랭킹 탭-->
         <scene sceneID="ZOt-dI-lYE">
             <objects>
-                <tableViewController modalPresentationStyle="fullScreen" id="BRw-rl-e4V" customClass="RangKingViewController" customModule="Palpito" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController modalPresentationStyle="fullScreen" id="BRw-rl-e4V" customClass="RankingViewController" customModule="Palpito" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="mf7-xf-fov">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

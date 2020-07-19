@@ -87,7 +87,7 @@
 		F6EBA2DE2213D06200CCA005 /* StartApp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F6EBA2E02213D06200CCA005 /* StartApp.storyboard */; };
 		F6EBA2E12213D07900CCA005 /* SignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F6EBA2E32213D07900CCA005 /* SignUp.storyboard */; };
 		F6EF57D72483BC8200C4A5C1 /* RangKingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EF57D62483BC8200C4A5C1 /* RangKingCell.swift */; };
-		F6EF57D92483BD9700C4A5C1 /* RangKingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EF57D82483BD9700C4A5C1 /* RangKingViewController.swift */; };
+		F6EF57D92483BD9700C4A5C1 /* RankingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EF57D82483BD9700C4A5C1 /* RankingViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -237,7 +237,7 @@
 		F6EBA2DF2213D06200CCA005 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/StartApp.storyboard; sourceTree = "<group>"; };
 		F6EBA2E22213D07900CCA005 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/SignUp.storyboard; sourceTree = "<group>"; };
 		F6EF57D62483BC8200C4A5C1 /* RangKingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangKingCell.swift; sourceTree = "<group>"; };
-		F6EF57D82483BD9700C4A5C1 /* RangKingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangKingViewController.swift; sourceTree = "<group>"; };
+		F6EF57D82483BD9700C4A5C1 /* RankingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingViewController.swift; sourceTree = "<group>"; };
 		F6F2A3A5221144DF001FEDBC /* Palpito_watchOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Palpito_watchOS.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -446,7 +446,7 @@
 				F60183BB2296390700380C47 /* RelaxViewController.swift */,
 				F69F502522963AA800581B49 /* ResultRelaxViewController.swift */,
 				F6D84B3F247904B700EC56A0 /* SettingViewController.swift */,
-				F6EF57D82483BD9700C4A5C1 /* RangKingViewController.swift */,
+				F6EF57D82483BD9700C4A5C1 /* RankingViewController.swift */,
 			);
 			path = Palpito_v0.01;
 			sourceTree = "<group>";
@@ -779,7 +779,7 @@
 				F68A78832161E87900A1C2A6 /* PopUpViewController.swift in Sources */,
 				F60228E6221BE2940012BF46 /* DaliyWorkoutViewController.swift in Sources */,
 				F65F87D6215DA7EB00E03BFE /* EmailAddViewController.swift in Sources */,
-				F6EF57D92483BD9700C4A5C1 /* RangKingViewController.swift in Sources */,
+				F6EF57D92483BD9700C4A5C1 /* RankingViewController.swift in Sources */,
 				F67B2066215DB1CC0092077F /* AgeAddViewController.swift in Sources */,
 				F62788462201921D003B3540 /* MyStage+CoreDataClass.swift in Sources */,
 				F610219821FF0493006D821E /* ResultWorkoutViewController.swift in Sources */,
@@ -877,7 +877,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Palpito_watchOS Extension/Palpito_watchOS Extension.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = 54B55B6766;
 				INFOPLIST_FILE = "Palpito_watchOS Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -906,7 +906,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Palpito_watchOS Extension/Palpito_watchOS Extension.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = 54B55B6766;
 				INFOPLIST_FILE = "Palpito_watchOS Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -935,7 +935,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = WatchAppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = 54B55B6766;
 				IBSC_MODULE = Palpito_watchOS_Extension;
 				INFOPLIST_FILE = Palpito_watchOS/Info.plist;
@@ -959,7 +959,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = WatchAppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = 54B55B6766;
 				IBSC_MODULE = Palpito_watchOS_Extension;
 				INFOPLIST_FILE = Palpito_watchOS/Info.plist;
@@ -1101,7 +1101,7 @@
 				CODE_SIGN_ENTITLEMENTS = Palpito.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = 54B55B6766;
 				INFOPLIST_FILE = Palpito_v0.01/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
@@ -1130,7 +1130,7 @@
 				CODE_SIGN_ENTITLEMENTS = Palpito.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = 54B55B6766;
 				INFOPLIST_FILE = Palpito_v0.01/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;

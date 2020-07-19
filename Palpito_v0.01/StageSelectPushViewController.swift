@@ -9,14 +9,14 @@
 import UIKit
 import WatchConnectivity
 import Firebase
-import FirebaseDatabase
+import FirebaseFirestoreSwift
 
 class StageSelectPushViewController: UIViewController, WCSessionDelegate {
 
     weak var wcSession:WCSession?
     var stageLevel: String = ""
     
-    var ref: DatabaseReference!
+    var db: Firestore!
     
     @IBOutlet weak var stageLevel1Btn: DLRadioButton!
     @IBOutlet weak var stageLevel2Btn: DLRadioButton!
@@ -25,7 +25,7 @@ class StageSelectPushViewController: UIViewController, WCSessionDelegate {
     @IBOutlet weak var stageSettingView: UIView!
     
     deinit {
-        ////print("deinit StageSelect View.... ")
+        //print("deinit StageSelect View.... ")
     }
     
     override func viewDidLoad() {
@@ -35,7 +35,9 @@ class StageSelectPushViewController: UIViewController, WCSessionDelegate {
         
         stageSettingView.transform = CGAffineTransform(scaleX: scale, y: scale)
         
-        ref = Database.database().reference()
+        //ref = Database.database().reference()
+        
+        db = Firestore.firestore()
         
         if WCSession.isSupported() {
             wcSession = WCSession.default
@@ -68,18 +70,22 @@ class StageSelectPushViewController: UIViewController, WCSessionDelegate {
         
         let userKey =  Auth.auth().currentUser?.uid
         //print(userKey as Any)
-               
-        self.ref.child("user_info").child(userKey!).observeSingleEvent(of: .value, with: { (snapshot) in
-                 // Get user value
-                 let value = snapshot.value as? NSDictionary
-                 let nick_name = value?["nick_name"] as? String ?? ""
-                 self.userNickName.text = nick_name
-                 
-            }) { (error) in
-                //print(error.localizedDescription)
-        }
         
-        ////print("viewDidLoad??")
+        db.collection("user_info").whereField("user_info_key",isEqualTo: userKey!).getDocuments(completion: { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                print("user_info start")
+                for document in querySnapshot!.documents {
+                    let oneDocument = document.data()
+                    let nick_name = oneDocument["nick_name"] as? String
+                    self.userNickName.text = nick_name
+                }
+                                
+            }
+        })
+        
+        //print("viewDidLoad??")
         // Do any additional setup after loading the view.
     }
     

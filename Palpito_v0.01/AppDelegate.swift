@@ -11,6 +11,7 @@ import WatchConnectivity
 import CoreData
 import Firebase
 import FirebaseAuth
+import FirebaseFirestore
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -50,7 +51,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             //print("WatchConnectivity is not supported on this device")
         }
         FirebaseApp.configure()
-        
         
         
         return true
