@@ -9,7 +9,7 @@
 import UIKit
 import FirebaseAuth
 
-class ViewController: UIViewController {
+class ViewController: ExtensionVC {
 
     var uid = ""
     var pwd = ""
@@ -48,6 +48,8 @@ class ViewController: UIViewController {
                 autoLoginCheck.isSelected = true
             }else if self.loginCheckYn == "notSelected" {
                 autoLoginCheck.isSelected = false
+            }else {
+                autoLoginCheck.isSelected = false
             }
             
         }
@@ -60,6 +62,8 @@ class ViewController: UIViewController {
             self.pwd = userPwd
             
             if autoLoginCheck.isSelected == true {
+                let sv = UIViewController.displaySpinner(onView: self.view)
+
                 Auth.auth().signIn(withEmail: self.uid, password: self.pwd) { (user, error) in
                     
                     if error != nil {
@@ -79,6 +83,7 @@ class ViewController: UIViewController {
                         let storyboard = UIStoryboard(name: "StartApp", bundle: nil).instantiateViewController(withIdentifier: "UITabBarVC") as! MainTabBarViewController
                         storyboard.modalPresentationStyle = .fullScreen
                         //self.modalPresentationStyle = .fullScreen
+                        sv.removeFromSuperview()
                         self.present(storyboard, animated: true, completion: nil)
                     }
                 }

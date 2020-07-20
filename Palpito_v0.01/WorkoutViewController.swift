@@ -493,6 +493,9 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
                 let ResultWorkOut = NSEntityDescription.entity(forEntityName: "ResultWorkOut", in: PersistenceService.context)
                 let newEntity = NSManagedObject(entity: ResultWorkOut!, insertInto: PersistenceService.context)
 
+                if self.resultTotalScore == nil {
+                    self.resultTotalScore = "0"
+                }
                 // 운동 강도 데이터 저장 기능추가 해야함
                 newEntity.setValue(self.resultHeartRate, forKey: "avgHeartRate")
                 newEntity.setValue(self.resultTotalTime, forKey: "totalWorkOutTime")
@@ -512,7 +515,7 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
                         "avg_heart_rate" : self.resultHeartRate!,
                         "user_level" : self.stageLevel,
                         "total_cal_burn" : self.resultTotalCal!,
-                        "result_total_score" : Int(self.resultTotalScore!) as Any,
+                        "result_total_score" : Int(self.resultTotalScore!) as Any ,
                         "exercise_date" : self.resultSendToday,
                         "today_workout_count" : self.resultWorkoutArray.count + 1,
                         "result_total_time" : self.resultTotalTime!,

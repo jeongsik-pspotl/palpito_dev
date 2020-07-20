@@ -59,6 +59,7 @@
 		F69F50242296399100581B49 /* RelaxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60183BB2296390700380C47 /* RelaxViewController.swift */; };
 		F69F502622963AA800581B49 /* ResultRelaxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69F502522963AA800581B49 /* ResultRelaxViewController.swift */; };
 		F6BBA05421C0D81D00C19C27 /* WorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6BBA05321C0D81D00C19C27 /* WorkoutViewController.swift */; };
+		F6BC90AF24C5C5FF00E2283C /* ExtensionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6BC90AE24C5C5FF00E2283C /* ExtensionVC.swift */; };
 		F6BD8503225E1B77009CEE3B /* ResultWorkOut+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6BD8501225E1B77009CEE3B /* ResultWorkOut+CoreDataClass.swift */; };
 		F6BD8504225E1B77009CEE3B /* ResultWorkOut+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6BD8502225E1B77009CEE3B /* ResultWorkOut+CoreDataProperties.swift */; };
 		F6C704DB21B4F9A900CC35A4 /* UserPasswordResetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C704DA21B4F9A900CC35A4 /* UserPasswordResetViewController.swift */; };
@@ -207,6 +208,7 @@
 		F69BE38922018BCE00B9C1CC /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		F69F502522963AA800581B49 /* ResultRelaxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultRelaxViewController.swift; sourceTree = "<group>"; };
 		F6BBA05321C0D81D00C19C27 /* WorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutViewController.swift; sourceTree = "<group>"; };
+		F6BC90AE24C5C5FF00E2283C /* ExtensionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionVC.swift; sourceTree = "<group>"; };
 		F6BD8501225E1B77009CEE3B /* ResultWorkOut+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ResultWorkOut+CoreDataClass.swift"; sourceTree = "<group>"; };
 		F6BD8502225E1B77009CEE3B /* ResultWorkOut+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ResultWorkOut+CoreDataProperties.swift"; path = "../ResultWorkOut+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F6BF90C121C1408D000AF396 /* Palpito.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Palpito.entitlements; sourceTree = "<group>"; };
@@ -447,6 +449,7 @@
 				F69F502522963AA800581B49 /* ResultRelaxViewController.swift */,
 				F6D84B3F247904B700EC56A0 /* SettingViewController.swift */,
 				F6EF57D82483BD9700C4A5C1 /* RankingViewController.swift */,
+				F6BC90AE24C5C5FF00E2283C /* ExtensionVC.swift */,
 			);
 			path = Palpito_v0.01;
 			sourceTree = "<group>";
@@ -793,6 +796,7 @@
 				F6339C02248360ED00EACAEE /* BpmInfoController.swift in Sources */,
 				F67B90762227712700B7042D /* ReadyWorkoutViewController.swift in Sources */,
 				F642D7FA21C7D7ED00DA533D /* HeartRateCollectionViewCell.swift in Sources */,
+				F6BC90AF24C5C5FF00E2283C /* ExtensionVC.swift in Sources */,
 				F650C0A0221151AE001823F7 /* PersistenceService.swift in Sources */,
 				F692BFC6217719E400915E33 /* MainMenuViewController.swift in Sources */,
 				F695C31A215C9F8B00F4DDEB /* AppDelegate.swift in Sources */,
