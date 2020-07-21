@@ -103,10 +103,6 @@
                                             <action selector="autoLoginSetValue:" destination="TJC-zx-DLA" eventType="touchUpInside" id="m5i-8I-qcJ"/>
                                         </connections>
                                     </button>
-                                    <activityIndicatorView opaque="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="bEK-yw-e7k">
-                                        <rect key="frame" x="175" y="225.00000000000006" width="20" height="20"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </activityIndicatorView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.99980741740000001" green="0.99634987119999996" blue="0.98039048910000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>

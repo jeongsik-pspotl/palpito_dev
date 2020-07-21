@@ -16,6 +16,8 @@ class ViewController: ExtensionVC {
     var myStage = ""
     var loginCheckYn = "notSelected"
     
+    var sv:UIView = UIView.init()
+    
     @IBOutlet weak var emailCheck: UITextField!
     @IBOutlet weak var passwordCheck: UITextField!
     @IBOutlet weak var alreadyAccount: UIButton!
@@ -30,7 +32,8 @@ class ViewController: ExtensionVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
+        //sv = UIViewController.displaySpinner(onView: self.view)
+        //sv.removeFromSuperview()
         let scale = view.bounds.width / startView.bounds.width
         
         startView.transform = CGAffineTransform(scaleX: scale, y: scale)
@@ -62,8 +65,7 @@ class ViewController: ExtensionVC {
             self.pwd = userPwd
             
             if autoLoginCheck.isSelected == true {
-                let sv = UIViewController.displaySpinner(onView: self.view)
-
+                self.sv = UIViewController.displaySpinner(onView: self.view)
                 Auth.auth().signIn(withEmail: self.uid, password: self.pwd) { (user, error) in
                     
                     if error != nil {
@@ -83,7 +85,7 @@ class ViewController: ExtensionVC {
                         let storyboard = UIStoryboard(name: "StartApp", bundle: nil).instantiateViewController(withIdentifier: "UITabBarVC") as! MainTabBarViewController
                         storyboard.modalPresentationStyle = .fullScreen
                         //self.modalPresentationStyle = .fullScreen
-                        sv.removeFromSuperview()
+                        self.sv.removeFromSuperview()
                         self.present(storyboard, animated: true, completion: nil)
                     }
                 }
@@ -140,7 +142,7 @@ class ViewController: ExtensionVC {
     @IBAction func actionMainButton(_ sender: Any) {
         //print("userLogin check..")
         // 로그인시 유효성 검사
-        
+        self.sv = UIViewController.displaySpinner(onView: self.view)
         guard let email = emailCheck.text, let password = passwordCheck.text else { return }
         let emailCheck = isValidEmailAddress(email: email)
         let passwordCheck = validatePassword(password: password)
@@ -150,7 +152,8 @@ class ViewController: ExtensionVC {
             let alert = UIAlertController(title: "로그인 실패", message: "이메일을 확인해주세요.", preferredStyle: UIAlertController.Style.alert)
             let defaultAction = UIAlertAction(title: "OK", style: .destructive, handler : nil)
             alert.addAction(defaultAction)
-
+            
+            self.sv.removeFromSuperview()
             present(alert, animated: false, completion: nil)
             
             return
@@ -161,7 +164,7 @@ class ViewController: ExtensionVC {
             let alert = UIAlertController(title: "로그인 실패", message: "비밀번호를 확인해주세요.", preferredStyle: UIAlertController.Style.alert)
             let defaultAction = UIAlertAction(title: "OK", style: .destructive, handler : nil)
             alert.addAction(defaultAction)
-
+            self.sv.removeFromSuperview()
             present(alert, animated: false, completion: nil)
             return
         }
@@ -186,6 +189,7 @@ class ViewController: ExtensionVC {
                 // 모달 방식 에서 네비게이션 방식으로 수정하기
                 let storyboard = UIStoryboard(name: "StartApp", bundle: nil).instantiateViewController(withIdentifier: "UITabBarVC") as! MainTabBarViewController
                 storyboard.modalPresentationStyle = .fullScreen
+                self.sv.removeFromSuperview()
                 //self.modalPresentationStyle = .fullScreen
                 self.present(storyboard, animated: true, completion: nil)
             }
