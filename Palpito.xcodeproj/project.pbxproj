@@ -50,6 +50,7 @@
 		F68A78812161DEC400A1C2A6 /* DLRadioButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F68A78802161DEC400A1C2A6 /* DLRadioButton.m */; };
 		F68A78832161E87900A1C2A6 /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68A78822161E87900A1C2A6 /* PopUpViewController.swift */; };
 		F692BFC6217719E400915E33 /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F692BFC5217719E400915E33 /* MainMenuViewController.swift */; };
+		F69413AB24C8798D0008531D /* MovieVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69413AA24C8798D0008531D /* MovieVO.swift */; };
 		F695C31A215C9F8B00F4DDEB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F695C319215C9F8B00F4DDEB /* AppDelegate.swift */; };
 		F695C31C215C9F8B00F4DDEB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F695C31B215C9F8B00F4DDEB /* ViewController.swift */; };
 		F695C31F215C9F8B00F4DDEB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F695C31D215C9F8B00F4DDEB /* Main.storyboard */; };
@@ -198,6 +199,7 @@
 		F68A78802161DEC400A1C2A6 /* DLRadioButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLRadioButton.m; sourceTree = "<group>"; };
 		F68A78822161E87900A1C2A6 /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
 		F692BFC5217719E400915E33 /* MainMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
+		F69413AA24C8798D0008531D /* MovieVO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieVO.swift; sourceTree = "<group>"; };
 		F695C316215C9F8B00F4DDEB /* Palpito.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Palpito.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F695C319215C9F8B00F4DDEB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F695C31B215C9F8B00F4DDEB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -460,6 +462,7 @@
 				F6D84B4224790B1C00EC56A0 /* ConfigCell.swift */,
 				F6D84B4424790E3C00EC56A0 /* ConfigCell.xib */,
 				F6EF57D62483BC8200C4A5C1 /* RangKingCell.swift */,
+				F69413AA24C8798D0008531D /* MovieVO.swift */,
 			);
 			path = cell;
 			sourceTree = "<group>";
@@ -800,6 +803,7 @@
 				F650C0A0221151AE001823F7 /* PersistenceService.swift in Sources */,
 				F692BFC6217719E400915E33 /* MainMenuViewController.swift in Sources */,
 				F695C31A215C9F8B00F4DDEB /* AppDelegate.swift in Sources */,
+				F69413AB24C8798D0008531D /* MovieVO.swift in Sources */,
 				F69F502622963AA800581B49 /* ResultRelaxViewController.swift in Sources */,
 				F62788472201921D003B3540 /* MyStage+CoreDataProperties.swift in Sources */,
 				F6EF57D72483BC8200C4A5C1 /* RangKingCell.swift in Sources */,
