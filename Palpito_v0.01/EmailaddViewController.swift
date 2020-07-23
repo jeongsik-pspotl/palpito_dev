@@ -9,12 +9,13 @@
 import UIKit
 import Firebase
 import FirebaseAuth
+import FirebaseFirestoreSwift
 
 class EmailAddViewController: UIViewController, UITextFieldDelegate {
     
     var mUserCreate = UserCreate()
     var nextdata = UserInfo()
-    weak var ref:DatabaseReference!
+    var db: Firestore!
     var genderVal:String?
     
     
@@ -32,7 +33,7 @@ class EmailAddViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        ref = Database.database().reference()
+        db = Firestore.firestore()
         
         let datePickerView = UIDatePicker()
         
@@ -85,16 +86,27 @@ class EmailAddViewController: UIViewController, UITextFieldDelegate {
             if error == nil {
                 //print("user create ok!!")
                 let userID = user.uid
-                self!.ref.child("user_info/\(userID)/nick_name").setValue(nickName)
-                self!.ref.child("user_info/\(userID)/birth_date").setValue(birthText)
-                self!.ref.child("user_info/\(userID)/gender").setValue(gender)
-                self!.ref.child("user_info/\(userID)/user_info_key").setValue(userID) // test 필요...
                 
-                // 여기서 다음 화면으로 넘어아기
-                let storyboard = UIStoryboard(name: "SignUp", bundle: nil).instantiateViewController(withIdentifier: "sbPopUpID") as! PopUpViewController
-                storyboard.modalPresentationStyle = .fullScreen
-                //self.modalPresentationStyle = .fullScreen
-                self!.present(storyboard, animated: true, completion: nil)
+                let data : [String : Any] = [
+                        "nick_name" :nickName,
+                        "birth_date" : birthText,
+                        "gender" : gender,
+                        "user_info_key" : userID
+
+                ]
+                
+                self!.db.collection("user_info").document(userID).setData(data) { err in
+                    if let err = err {
+                        print("Error writing document: \(err)")
+                    } else {
+                        print("Document successfully written!")
+                        // 여기서 다음 화면으로 넘어아기
+                        let storyboard = UIStoryboard(name: "SignUp", bundle: nil).instantiateViewController(withIdentifier: "sbPopUpID") as! PopUpViewController
+                        storyboard.modalPresentationStyle = .fullScreen
+                        //self.modalPresentationStyle = .fullScreen
+                        self!.present(storyboard, animated: true, completion: nil)
+                    }
+                }
                 
             } else {
                 //print("no??")
