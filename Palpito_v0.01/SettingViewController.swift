@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class SettingViewController: UITableViewController {
     
@@ -56,10 +57,10 @@ class SettingViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //self.title = "Palpito"
-        self.navigationController?.navigationBar.barTintColor = .white
+        //self.navigationController?.navigationBar.barTintColor = .white
                 
-        self.myTableView.backgroundColor = UIColor.init(white: 1.0, alpha: 1.0)
-        self.edgesForExtendedLayout = UIRectEdge.init(rawValue: 0)
+        //self.myTableView.backgroundColor = UIColor.init(white: 0.0, alpha: 1.0)
+        //self.edgesForExtendedLayout = UIRectEdge.init(rawValue: 0)
         //        self.myTableView.contentInsetAdjustmentBehavior = .never
                 
         //        cell.contentView.backgroundColor = UIColor.init(white: 0.0, alpha: 0.02)
@@ -75,7 +76,45 @@ class SettingViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("선택된 행은 \(indexPath.row) 번째 입니다.")
+        //print("선택된 행은 \(indexPath.row) 번째 입니다.")
+        
+        let row = self.list[indexPath.row]
+        
+        if row.title == "로그아웃" {
+            //print("로그아웃")
+            // 팝업 창 준비 로그아웃 하시겠습니까?
+            let alert = UIAlertController(title: "로그아웃", message: "로그아웃 하시겠습니까?", preferredStyle: UIAlertController.Style.alert)
+            let defaultAction = UIAlertAction(title: "OK", style: .destructive) { (alert) in
+                let firebaseAuth = Auth.auth()
+                
+                do {
+                    try firebaseAuth.signOut()
+                    // 로그인 화면 이동..
+                    
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "StartViewSb") as! ViewController
+                    storyboard.modalPresentationStyle = .fullScreen
+                    self.present(storyboard, animated: true, completion: nil)
+
+                } catch let signOutError as NSError {
+                  print ("Error signing out: %@", signOutError)
+                }  
+            }
+            // 예 하면 로그 아웃 하면서
+            
+            // 로그인 화면으로 이동
+            
+            let cancelAction = UIAlertAction(title: "CANCEL", style: .cancel, handler : nil)
+            alert.addAction(cancelAction)
+            alert.addAction(defaultAction)
+            present(alert, animated: false, completion: nil)
+            
+            
+            
+        }
+        
+        if row.title == "개인 정보 공개 범위" {
+            print("개인 정보 공개 범위")
+        }
         
     }
 

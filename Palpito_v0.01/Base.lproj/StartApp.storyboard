@@ -157,9 +157,7 @@
         <scene sceneID="TAw-K4-JtI">
             <objects>
                 <navigationController title="설정" modalPresentationStyle="fullScreen" id="bVg-1s-oe6" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" selectedImage="setUpIconGray" id="oqu-nt-No6">
-                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
-                    </tabBarItem>
+                    <tabBarItem key="tabBarItem" title="" image="setUpIconGray" selectedImage="setUpIconGray" id="oqu-nt-No6"/>
                     <navigationBar key="navigationBar" contentMode="scaleAspectFit" insetsLayoutMarginsFromSafeArea="NO" id="Num-vj-LNo">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -176,7 +174,7 @@
         <scene sceneID="0Nk-RF-7R4">
             <objects>
                 <navigationController modalPresentationStyle="fullScreen" id="fhJ-Rx-t9o" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="shareIconGray" id="0M1-sr-M3v"/>
+                    <tabBarItem key="tabBarItem" title="" image="shareIconGray" selectedImage="shareIconGray" id="0M1-sr-M3v"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="hwz-ab-JsN">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>
