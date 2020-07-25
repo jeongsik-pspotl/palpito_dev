@@ -184,6 +184,8 @@ class ViewController: ExtensionVC {
                 UserDefaults.standard.set(user.uid, forKey: "UserKey") // UserKey Save
                 UserDefaults.standard.set(email, forKey: "id")
                 UserDefaults.standard.set(password, forKey: "pwd")
+                self.emailCheck.text = ""
+                self.passwordCheck.text = ""
                 
                 // 여기서 다음 화면으로 넘어아기
                 // 모달 방식 에서 네비게이션 방식으로 수정하기

@@ -90,10 +90,10 @@ class SettingViewController: UITableViewController {
                 do {
                     try firebaseAuth.signOut()
                     // 로그인 화면 이동..
-                    
-                    let storyboard = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "StartViewSb") as! ViewController
-                    storyboard.modalPresentationStyle = .fullScreen
-                    self.present(storyboard, animated: true, completion: nil)
+                    self.dismiss(animated: true, completion: nil)
+//                    let storyboard = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "StartViewSb") as! ViewController
+//                    storyboard.modalPresentationStyle = .fullScreen
+//                    self.present(storyboard, animated: true, completion: nil)
 
                 } catch let signOutError as NSError {
                   print ("Error signing out: %@", signOutError)
@@ -114,6 +114,10 @@ class SettingViewController: UITableViewController {
         
         if row.title == "개인 정보 공개 범위" {
             print("개인 정보 공개 범위")
+            
+            let storyboard = UIStoryboard(name: "StartApp", bundle: nil).instantiateViewController(withIdentifier: "PrivateInfomationCotroller") as! PrivateInfomationCotroller
+            storyboard.modalPresentationStyle = .fullScreen
+            self.present(storyboard, animated: true, completion: nil)
         }
         
     }
