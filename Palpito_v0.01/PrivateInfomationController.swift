@@ -11,7 +11,8 @@ import UIKit
 import WebKit
 
 class PrivateInfomationCotroller: UIViewController {
-
+    
+    @IBOutlet weak var privateInfomationView: UIView!
     @IBOutlet weak var wvMain: WKWebView!
     
     func goWeb(postfix: String) -> () {
@@ -22,6 +23,11 @@ class PrivateInfomationCotroller: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let scale = view.bounds.width / privateInfomationView.bounds.width
+        
+        privateInfomationView.transform = CGAffineTransform(scaleX: scale, y: scale)
+        
         // Do any additional setup after loading the view.
         goWeb(postfix: "scale")
         

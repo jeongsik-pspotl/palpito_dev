@@ -116,31 +116,46 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <wkWebView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mfl-9y-yr1">
-                                <rect key="frame" x="20" y="97" width="374" height="754"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <wkWebViewConfiguration key="configuration">
-                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
-                                    <wkPreferences key="preferences"/>
-                                </wkWebViewConfiguration>
-                            </wkWebView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rCk-Tt-ZyO">
-                                <rect key="frame" x="20" y="53" width="374" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <items>
-                                    <barButtonItem title="Back" id="nWn-ft-YEe">
-                                        <connections>
-                                            <action selector="backWorkoutPageAction:" destination="9RS-06-aEE" id="pbs-wQ-RlQ"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </items>
-                            </toolbar>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aFk-Yl-Gqq" userLabel="PrivateView">
+                                <rect key="frame" x="19" y="114.5" width="376" height="667"/>
+                                <subviews>
+                                    <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rCk-Tt-ZyO">
+                                        <rect key="frame" x="8" y="0.0" width="360" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                        <items>
+                                            <barButtonItem title="Back" id="nWn-ft-YEe">
+                                                <connections>
+                                                    <action selector="backWorkoutPageAction:" destination="9RS-06-aEE" id="pbs-wQ-RlQ"/>
+                                                </connections>
+                                            </barButtonItem>
+                                        </items>
+                                    </toolbar>
+                                    <wkWebView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mfl-9y-yr1">
+                                        <rect key="frame" x="8" y="44" width="360" height="607"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <wkWebViewConfiguration key="configuration">
+                                            <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                            <wkPreferences key="preferences"/>
+                                        </wkWebViewConfiguration>
+                                    </wkWebView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="667" id="6cH-hH-38g"/>
+                                    <constraint firstAttribute="width" constant="376" id="l36-4R-u04"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="aFk-Yl-Gqq" firstAttribute="centerX" secondItem="NPG-4G-vDD" secondAttribute="centerX" id="5x7-9d-cgj"/>
+                            <constraint firstItem="aFk-Yl-Gqq" firstAttribute="centerY" secondItem="NPG-4G-vDD" secondAttribute="centerY" id="PlV-T9-5Fe"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="kRv-6g-mpI"/>
                     </view>
                     <connections>
+                        <outlet property="privateInfomationView" destination="aFk-Yl-Gqq" id="Ixq-Zo-nSf"/>
                         <outlet property="wvMain" destination="mfl-9y-yr1" id="aKE-ou-FL6"/>
                     </connections>
                 </viewController>
@@ -156,7 +171,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="j2P-Fd-tCH">
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="j2P-Fd-tCH" userLabel="UserInfoSettingView">
                                 <rect key="frame" x="35" y="63" width="341" height="722"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
@@ -308,6 +323,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="502-Hd-7GX"/>
                     </view>
+                    <connections>
+                        <outlet property="birthTextField" destination="DuJ-kt-6n8" id="YUS-nk-NrK"/>
+                        <outlet property="emailTextField" destination="QLY-Z5-3qX" id="lzX-VJ-Dyi"/>
+                        <outlet property="nickNameTextField" destination="CjU-ix-hiv" id="4NK-ym-jFc"/>
+                        <outlet property="passwordTextField" destination="iX3-MK-f0e" id="4Ve-MH-Dxv"/>
+                        <outlet property="userInfoSettingView" destination="j2P-Fd-tCH" id="njU-9N-xe1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RmG-ui-W23" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

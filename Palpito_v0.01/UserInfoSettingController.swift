@@ -21,7 +21,7 @@ class UserInfoSettingController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField! // 고민해보기
     @IBOutlet weak var nickNameTextField: UITextField!
     @IBOutlet weak var birthTextField: UITextField!
-    @IBOutlet weak var userCreateView: UIView!
+    @IBOutlet weak var userInfoSettingView: UIView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,9 +50,9 @@ class UserInfoSettingController: UIViewController {
         //self.view.addSubview(birthTextField)
         self.genderVal = "F"
                 
-        let scale = view.bounds.width / userCreateView.bounds.width
+        let scale = view.bounds.width / userInfoSettingView.bounds.width
                         
-        userCreateView.transform = CGAffineTransform(scaleX: scale, y: scale)
+        userInfoSettingView.transform = CGAffineTransform(scaleX: scale, y: scale)
                 
     }
     
