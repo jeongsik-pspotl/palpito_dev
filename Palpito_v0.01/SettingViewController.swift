@@ -90,6 +90,7 @@ class SettingViewController: UITableViewController {
                 do {
                     try firebaseAuth.signOut()
                     // 로그인 화면 이동..
+                    UserDefaults.standard.set("notSelected", forKey: "isAutoLoginCheck");
                     self.dismiss(animated: true, completion: nil)
 //                    let storyboard = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "StartViewSb") as! ViewController
 //                    storyboard.modalPresentationStyle = .fullScreen

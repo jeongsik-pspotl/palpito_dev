@@ -97,6 +97,23 @@ class ViewController: ExtensionVC {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.sv.layoutIfNeeded()
+        
+        if let autoLoginCheckVal = UserDefaults.standard.string(forKey: "isAutoLoginCheck"){
+            self.loginCheckYn = autoLoginCheckVal
+            if self.loginCheckYn == "selected" {
+                autoLoginCheck.isSelected = true
+            }else if self.loginCheckYn == "notSelected" {
+                autoLoginCheck.isSelected = false
+            }else {
+                autoLoginCheck.isSelected = false
+            }
+                
+        }
+        
+    }
+    
     func isValidEmailAddress(email: String) -> Bool {
 
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
