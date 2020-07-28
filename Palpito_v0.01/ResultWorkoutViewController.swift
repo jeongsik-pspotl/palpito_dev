@@ -182,8 +182,9 @@ class ResultWorkoutViewController: UIViewController, WCSessionDelegate {
                 //self.resultWorkoutView.removeFromSuperview()
                 //self.resultWorkoutView = nil
                 //self.presentingViewController?.dismiss(animated: true, completion: nil)
-                //self.dismiss(animated: true, completion: nil)
+                // self.dismiss(animated: true, completion: nil)
                 self.performSegue(withIdentifier: "backToMainTabBar", sender: self)
+                self.view.removeFromSuperview()
                 //self.navigationController!.popToRootViewController(animated: true)
                 ////print("message backToMainTab : \(msg)")
                 
@@ -231,8 +232,9 @@ class ResultWorkoutViewController: UIViewController, WCSessionDelegate {
 //                window.rootViewController = vc
                 
                 //self.presentingViewController?.dismiss(animated: true, completion: nil)
-                //self.dismiss(animated: true, completion: nil)
+                // self.dismiss(animated: true, completion: nil)
                 self.performSegue(withIdentifier: "backToMainTabBar", sender: self)
+                self.view.removeFromSuperview()
                 //self.navigationController!.popToRootViewController(animated: true)
                 ////print("userInfo backToMainTab : \(msg)")
                 

@@ -523,25 +523,6 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
                         "result_meters" : ""
 
                 ]
-
-//                self.ref.child(user_exercise_key).setValue(data, withCompletionBlock: {(error, ref) in
-//                    if let err = error {
-//                        //print(err.localizedDescription)
-//                    }
-//
-//                    self.ref.observe(.value, with: {(snapshot) in
-//                        guard snapshot.exists() else {
-//                            return
-//                        }
-//                        // 소스 코드 수정하기
-//                        self.performSegue(withIdentifier: "resultWorkoutSegue", sender: self)
-////                        let storyboard = UIStoryboard(name: "StartApp", bundle: nil).instantiateViewController(withIdentifier: "ResultWorkoutViewController") as! ResultWorkoutViewController
-////                        storyboard.modalPresentationStyle = .fullScreen
-////
-////                        self.present(storyboard, animated: true, completion: nil)
-//                        //self.dismiss(animated: true, completion: nil)
-//                    })
-//                })
                 
                 self.db.collection("user_exercise").document(user_exercise_key).setData(data) { err in
                     if let err = err {
@@ -549,6 +530,7 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
                     } else {
                         print("Document successfully written!")
                         self.performSegue(withIdentifier: "resultWorkoutSegue", sender: self)
+                        self.view.removeFromSuperview()
                     }
                 }
 
@@ -956,6 +938,7 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
                     } else {
                         print("Document successfully written!")
                         self.performSegue(withIdentifier: "resultWorkoutSegue", sender: self)
+                        self.view.removeFromSuperview()
                     }
                 }
                 

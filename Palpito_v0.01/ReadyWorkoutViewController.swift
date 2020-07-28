@@ -49,6 +49,7 @@ class ReadyWorkoutViewController: UIViewController, WCSessionDelegate {
         DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
             // showGetWorkout
             self.performSegue(withIdentifier: "showGetWorkout", sender: self)
+            self.view.removeFromSuperview()
             //let storyboard = UIStoryboard(name: "StartApp", bundle: nil).instantiateViewController(withIdentifier: "WorkoutViewController") as! WorkoutViewController
 //            storyboard.modalPresentationStyle = .fullScreen
             
