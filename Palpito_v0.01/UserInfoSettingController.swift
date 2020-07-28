@@ -65,6 +65,10 @@ class UserInfoSettingController: UIViewController {
         return true
     }
     
+    @IBAction func backWorkoutPageAction(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     // 이메일(고정), 닉네임(고정), 생년웡일(수정), 성별(고정)
     // 파이어베이스 수정하고, healthkit 정보 수정하기.
     //
@@ -77,52 +81,57 @@ class UserInfoSettingController: UIViewController {
             if let err = err {
                 print("Error getting documents: \(err)")
             } else {
-                
+                print(querySnapshot as Any)
             }
         }
             
     }
     
     @IBAction func userUpdateAction(_ sender: UIButton){
-        let backItem = UIBarButtonItem()
-        backItem.title = ""
-        navigationItem.backBarButtonItem = backItem
+        self.dismiss(animated: true, completion: nil)
         
-        guard let email = emailTextField.text, let password = passwordTextField.text, let nickName = nickNameTextField.text, let birthText =  birthTextField.text, let gender = self.genderVal else { return }
+//        let backItem = UIBarButtonItem()
+//        backItem.title = ""
+//        navigationItem.backBarButtonItem = backItem
         
-        Auth.auth().createUser(withEmail: email, password: password) { [weak self] (authResult, error) in
-            
-            guard let user = authResult?.user else { return }
-            
-            if error == nil {
-                //print("user create ok!!")
-                let userID = user.uid
-                
-                let data : [String : Any] = [
-                        "nick_name" :nickName,
-                        "birth_date" : birthText,
-                        "gender" : gender,
-                        "user_info_key" : userID
-
-                ]
-                
-                self!.db.collection("user_info").document(userID).setData(data) { err in
-                    if let err = err {
-                        print("Error writing document: \(err)")
-                    } else {
-                        print("Document successfully written!")
-                        // 여기서 다음 화면으로 넘어아기
-                        let storyboard = UIStoryboard(name: "SignUp", bundle: nil).instantiateViewController(withIdentifier: "sbPopUpID") as! PopUpViewController
-                        storyboard.modalPresentationStyle = .fullScreen
-                        //self.modalPresentationStyle = .fullScreen
-                        self!.present(storyboard, animated: true, completion: nil)
-                    }
-                }
-                
-            } else {
-                //print("no??")
-            }
-        }
+//        guard let email = emailTextField.text, let password = passwordTextField.text, let nickName = nickNameTextField.text, let birthText =  birthTextField.text, let gender = self.genderVal else { return }
+//
+//        Auth.auth().createUser(withEmail: email, password: password) { [weak self] (authResult, error) in
+//
+//            guard let user = authResult?.user else { return }
+//
+//            if error == nil {
+//                //print("user create ok!!")
+//                let userID = user.uid
+//
+//                let data : [String : Any] = [
+//                        "nick_name" :nickName,
+//                        "birth_date" : birthText,
+//                        "gender" : gender,
+//                        "user_info_key" : userID
+//
+//                ]
+//
+//                // update 쿼리 찾아보기
+//                self!.db.collection("user_info").document(userID).setData(data) { err in
+//                    if let err = err {
+//                        print("Error writing document: \(err)")
+//                    } else {
+//                        print("Document successfully written!")
+//                        // 여기서 다음 화면으로 넘어아기
+//                        let storyboard = UIStoryboard(name: "SignUp", bundle: nil).instantiateViewController(withIdentifier: "sbPopUpID") as! PopUpViewController
+//                        storyboard.modalPresentationStyle = .fullScreen
+//                        //self.modalPresentationStyle = .fullScreen
+//                        self!.present(storyboard, animated: true, completion: nil)
+//                        self!.view.removeFromSuperview()
+//                        //
+//                    }
+//                }
+//
+//            } else {
+//                //print("no??")
+//            }
+//        }
         
     }
     

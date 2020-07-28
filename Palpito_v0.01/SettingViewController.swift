@@ -110,18 +110,21 @@ class SettingViewController: UITableViewController {
             alert.addAction(defaultAction)
             present(alert, animated: false, completion: nil)
             
-            
-            
         }
         
         if row.title == "개인 정보 공개 범위" {
-            print("개인 정보 공개 범위")
+            //print("개인 정보 공개 범위")
             
             let storyboard = UIStoryboard(name: "StartApp", bundle: nil).instantiateViewController(withIdentifier: "PrivateInfomationCotroller") as! PrivateInfomationCotroller
             storyboard.modalPresentationStyle = .fullScreen
             self.present(storyboard, animated: true, completion: nil)
         }
         
+        if row.title == "계정 정보" {
+            let storyboard = UIStoryboard(name: "StartApp", bundle: nil).instantiateViewController(withIdentifier: "UserInfoSettingController") as! UserInfoSettingController
+            storyboard.modalPresentationStyle = .fullScreen
+            self.present(storyboard, animated: true, completion: nil)
+        }
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
