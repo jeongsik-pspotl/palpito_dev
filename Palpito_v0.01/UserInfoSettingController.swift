@@ -22,6 +22,7 @@ class UserInfoSettingController: UIViewController {
     @IBOutlet weak var nickNameTextField: UITextField!
     @IBOutlet weak var birthTextField: UITextField!
     @IBOutlet weak var userInfoSettingView: UIView!
+    @IBOutlet weak var genderTextField: UITextField!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,11 +49,13 @@ class UserInfoSettingController: UIViewController {
                 
         birthTextField.inputAccessoryView = toolBar
         //self.view.addSubview(birthTextField)
-        self.genderVal = "F"
+        
                 
         let scale = view.bounds.width / userInfoSettingView.bounds.width
                         
         userInfoSettingView.transform = CGAffineTransform(scaleX: scale, y: scale)
+        
+        selectUserInfo()
                 
     }
     
@@ -63,6 +66,42 @@ class UserInfoSettingController: UIViewController {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+    
+    func selectUserInfo(){
+        
+        let userKey =  Auth.auth().currentUser?.uid
+        
+        
+        //print(userKey as Any)
+        db.collection("user_info").whereField("user_info_key",isEqualTo: userKey!).getDocuments(completion: { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                print("user_info start")
+                for document in querySnapshot!.documents {
+                    let oneDocument = document.data()
+                    let nick_name = oneDocument["nick_name"] as? String
+                    let birth_date = oneDocument["birth_date"] as? String
+                    let gender = oneDocument["gender"] as? String
+                    
+                    self.nickNameTextField.text = nick_name
+                    self.birthTextField.text = birth_date
+                    self.emailTextField.text = Auth.auth().currentUser?.email
+                    self.genderVal = gender
+                    
+                    if self.genderVal == "M" {
+                        self.genderTextField.text = "남자"
+                        
+                    }else {
+                        self.genderTextField.text = "여자"
+                    }
+                    
+                }
+                                
+            }
+        })
+        
     }
     
     @IBAction func backWorkoutPageAction(_ sender: Any) {
