@@ -126,15 +126,18 @@ class RankingViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let obj = self.list[indexPath.row]
         //print(obj)
-        let cell = UITableViewCell.init(style: .default, reuseIdentifier: "scoreCell")
-        //let cell = tableView.dequeueReusableCell(withIdentifier: "scoreCell", for: indexPath) as! RangKingCell
+        //let cell = UITableViewCell.init(style: .default, reuseIdentifier: "scoreCell")
+        let recell = tableView.dequeueReusableCell(withIdentifier: "scoreCell") as! RangKingCell
+        //let cell = tableView.dequeueReusableCell(withIdentifier: "scoreCell", for: indexPath)
         var allExerciseText = ""
 
-        allExerciseText = " \(indexPath.row + 1) | \(obj["nick_name"] as! String) | \(obj["result_total_score"] as! Int)"
-
-        cell.textLabel?.text = allExerciseText
+        allExerciseText = " \(indexPath.row + 1) 이름 :  \(obj["nick_name"] as! String) 점수 : \(obj["result_total_score"] as! Int)"
+        
+        recell.cal.text = "\(indexPath.row + 1)"
+        recell.name.text = "\(obj["nick_name"] as! String)"
+        recell.score.text = "\(obj["result_total_score"] as! Int)"
     
-        return cell
+        return recell
     }
     
     func sum(numbers: [Int]) -> Int {

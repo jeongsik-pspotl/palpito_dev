@@ -10,11 +10,11 @@ import UIKit
 
 class RangKingCell: UITableViewCell {
     
-    @IBOutlet var name:String!
+    @IBOutlet var name:UILabel!
     
-    @IBOutlet var cal:String!
+    @IBOutlet var cal:UILabel!
     
-    @IBOutlet var score:String!
+    @IBOutlet var score:UILabel!
     
     
     var rangKingNum:Int!
