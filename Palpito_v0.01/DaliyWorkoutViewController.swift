@@ -29,13 +29,13 @@ class DaliyWorkoutViewController: UIViewController, WCSessionDelegate {
     @IBOutlet weak var totalWorkoutTimeHourText: UILabel!
     @IBOutlet weak var totalWorkoutTimeMinusText: UILabel!
     
-    var totalcalBurnInt:Int = 0
+    var totalcalBurnInt:Double = 0
     var todayScoreInt:Int = 0
     var totalWorkoutTimeHour:Int = 0
     var totalWorkoutTimeMinus:Int = 0
     var totalcalBurn = "0"
     var todayScoreVal = "0"
-    var totalSescTime:Int = 0
+    var secsTime:Int = 0
     
     var toDate = Date()
     var returnRestingHeartRate:String?
@@ -93,8 +93,8 @@ class DaliyWorkoutViewController: UIViewController, WCSessionDelegate {
         
         for totalCalBurnCount in 0..<resultTotalCalBurn.count
         {
-//            totalcalBurnInt += Int(resultTotalCalBurn[totalCalBurnCount])!
-//            totalBurnCalText.text = String(totalcalBurnInt)
+            totalcalBurnInt += Double(resultTotalCalBurn[totalCalBurnCount])!
+            totalBurnCalText.text = String(totalcalBurnInt)
         }
         
         for totalScoreCount in 0..<resultTotalScore.count
@@ -105,7 +105,7 @@ class DaliyWorkoutViewController: UIViewController, WCSessionDelegate {
         
         for totalWorkoutTime in 0..<resultTotalWorkoutTime.count
         {
-            var secsTime:Int = 0
+            
             let arrayResultTimeArray = resultTotalWorkoutTime[totalWorkoutTime].components(separatedBy: ":")
             
             if Int(arrayResultTimeArray[0]) != 0 {
@@ -117,8 +117,8 @@ class DaliyWorkoutViewController: UIViewController, WCSessionDelegate {
             }
             
             //총 시간 카운트 완료된 이후에 총 운동 시간 합산!
-            let minutes: Int = (totalSescTime / 60) % 60
-            let hour: Int = totalSescTime / 3600
+            let minutes: Int = (secsTime / 60) % 60
+            let hour: Int = secsTime / 3600
             
             totalWorkoutTimeHourText.text = String(format: "%01d", hour)
             totalWorkoutTimeMinusText.text = String(format: "%02d", minutes)
