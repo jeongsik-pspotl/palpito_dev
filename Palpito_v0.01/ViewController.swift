@@ -162,7 +162,7 @@ class ViewController: ExtensionVC {
         self.sv = UIViewController.displaySpinner(onView: self.view)
         guard let email = emailCheck.text, let password = passwordCheck.text else { return }
         let emailCheck = isValidEmailAddress(email: email)
-        let passwordCheck = validatePassword(password: password)
+        // let passwordCheck = validatePassword(password: password)
         
         if !emailCheck {
             // 팝업 창 생성..
@@ -176,25 +176,25 @@ class ViewController: ExtensionVC {
             return
         }
         
-        if !passwordCheck {
-            // 팝업 창 생성..
-            let alert = UIAlertController(title: "로그인 실패", message: "비밀번호를 확인해주세요.", preferredStyle: UIAlertController.Style.alert)
-            let defaultAction = UIAlertAction(title: "OK", style: .destructive, handler : nil)
-            alert.addAction(defaultAction)
-            self.sv.removeFromSuperview()
-            present(alert, animated: false, completion: nil)
-            return
-        }
+//        if !passwordCheck {
+//            // 팝업 창 생성..
+//            let alert = UIAlertController(title: "로그인 실패", message: "비밀번호를 확인해주세요.", preferredStyle: UIAlertController.Style.alert)
+//            let defaultAction = UIAlertAction(title: "OK", style: .destructive, handler : nil)
+//            alert.addAction(defaultAction)
+//            self.sv.removeFromSuperview()
+//            present(alert, animated: false, completion: nil)
+//            return
+//        }
         
         Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
             
             if error != nil {
                 // AuthErrorCode.init(rawValue: <#T##Int#>)
-                //print(error?.localizedDescription as Any)
-                //print(error.unsafelyUnwrapped)
+                print(error?.localizedDescription as Any)
+                print(error.debugDescription)
             } else {
                 // 세션 유지 로그 아웃
-                //print("로그인 체크!")
+                print("로그인 체크!")
                 //print(user as Any)
                 guard let user = user?.user else { return }
                 //print(user.uid)
