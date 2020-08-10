@@ -79,6 +79,33 @@ class EmailAddViewController: UIViewController, UITextFieldDelegate {
         
         guard let email = emailTextField.text, let password = passwordTextField.text, let nickName = nickNameTextField.text, let birthText =  birthTextField.text, let gender = self.genderVal else { return }
         
+        let emailCheck = isValidEmailAddress(email: email)
+        let passwordCheck = validatePassword(password: password)
+        
+        // 이메일 체크
+        if !emailCheck {
+            // 팝업 창 생성..
+            let alert = UIAlertController(title: "회원가입 실패", message: "이메일을 확인해주세요.", preferredStyle: UIAlertController.Style.alert)
+            let defaultAction = UIAlertAction(title: "OK", style: .destructive, handler : nil)
+            alert.addAction(defaultAction)
+            
+            present(alert, animated: false, completion: nil)
+            
+            return
+        }
+        
+        // 비밀번호 체크
+        if !passwordCheck {
+            
+            let alert = UIAlertController(title: "회원가입 실패", message: "비밀번호를 확인해주세요.", preferredStyle: UIAlertController.Style.alert)
+            let defaultAction = UIAlertAction(title: "OK", style: .destructive, handler : nil)
+            alert.addAction(defaultAction)
+            
+            present(alert, animated: false, completion: nil)
+            return
+        }
+        
+        
         Auth.auth().createUser(withEmail: email, password: password) { [weak self] (authResult, error) in
             
             guard let user = authResult?.user else { return }
@@ -226,6 +253,22 @@ class EmailAddViewController: UIViewController, UITextFieldDelegate {
             
             sender.isSelected = true
         }
+    }
+    
+    func isValidEmailAddress(email: String) -> Bool {
+
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+
+        return emailTest.evaluate(with: email)
+
+    }
+    
+    public func validatePassword(password: String) -> Bool {
+        let passwordRegEx = "^(?=.*[0-9])(?=.*[a-z]).{8,16}$"
+            
+        let predicate = NSPredicate(format:"SELF MATCHES %@", passwordRegEx)
+        return predicate.evaluate(with: password)
     }
     
     func onPostCreateUesr(userData:UserInfo){
