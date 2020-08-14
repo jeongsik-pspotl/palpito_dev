@@ -173,7 +173,7 @@ class ViewController: ExtensionVC {
             
             
             present(alert, animated: false, completion: {
-                self.sv.removeFromSuperview()
+                    self.sv.removeFromSuperview()
             })
             
             return
@@ -185,8 +185,9 @@ class ViewController: ExtensionVC {
             let defaultAction = UIAlertAction(title: "OK", style: .destructive, handler : nil)
             alert.addAction(defaultAction)
             
+            
             present(alert, animated: false, completion: {
-                self.sv.removeFromSuperview()
+                    self.sv.removeFromSuperview()
             })
             
             return
@@ -195,9 +196,19 @@ class ViewController: ExtensionVC {
         Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
             
             if error != nil {
-                // AuthErrorCode.init(rawValue: <#T##Int#>)
+
                 print(error?.localizedDescription as Any)
                 print(error.debugDescription)
+                let alert = UIAlertController(title: "로그인 실패", message: "아이디나 비밀번호를 확인해주세요.", preferredStyle: UIAlertController.Style.alert)
+                let defaultAction = UIAlertAction(title: "OK", style: .destructive, handler : nil)
+                alert.addAction(defaultAction)
+                
+                
+                self.present(alert, animated: false, completion: {
+                        self.sv.removeFromSuperview()
+                })
+                
+                return
             } else {
                 // 세션 유지 로그 아웃
                 print("로그인 체크!")
