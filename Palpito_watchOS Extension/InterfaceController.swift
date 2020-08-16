@@ -650,6 +650,8 @@ public class InterfaceController: WKInterfaceController, WCSessionDelegate {
         
         self.palpiLoader.setHidden(false)
         self.palpiLoader.startAnimating()
+        self.endWorkoutBtn.setEnabled(false)
+        self.pauseAndPlayButton.setEnabled(false)
 //        //print("End workout")
 //        //print("End workout contextForSegue")
 //        //print("resultEndTime    : \(self.resultEndTime)")
