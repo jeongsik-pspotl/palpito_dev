@@ -17,6 +17,7 @@ class EmailAddViewController: UIViewController, UITextFieldDelegate {
     var nextdata = UserInfo()
     var db: Firestore!
     var genderVal:String?
+    var emailCheckYn:Bool = false
     
     
     @IBOutlet weak var emailTextField: UITextField!
@@ -90,6 +91,18 @@ class EmailAddViewController: UIViewController, UITextFieldDelegate {
             alert.addAction(defaultAction)
             
             present(alert, animated: false, completion: nil)
+            self.emailCheckYn = false
+            
+            return
+        }
+        
+        if !emailCheckYn {
+            // 팝업 창 생성..
+            let alert = UIAlertController(title: "회원가입 실패", message: "이메일 중복조회 해주세요.", preferredStyle: UIAlertController.Style.alert)
+            let defaultAction = UIAlertAction(title: "OK", style: .destructive, handler : nil)
+            alert.addAction(defaultAction)
+            
+            present(alert, animated: false, completion: nil)
             
             return
         }
@@ -136,7 +149,12 @@ class EmailAddViewController: UIViewController, UITextFieldDelegate {
                 }
                 
             } else {
-                //print("no??")
+                let alert = UIAlertController(title: "회원가입 실패", message: "이메일이나 비밀번호, 그외 내용을 확인해주세요.", preferredStyle: UIAlertController.Style.alert)
+                let defaultAction = UIAlertAction(title: "OK", style: .destructive, handler : nil)
+                alert.addAction(defaultAction)
+                
+                self?.present(alert, animated: false, completion: nil)
+                return
             }
         }
         
@@ -203,13 +221,18 @@ class EmailAddViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func emailCheckAction(_ sender: UIButton) {
         var emailCheckVar = ""
-        let dialogMessage = UIAlertController(title: "이메일 체크", message: "이메일 중복 확인 되었습니다", preferredStyle: .alert)
+        let dialogMessage = UIAlertController(title: "이메일 체크", message: "사용가능한 이메일 입니다.", preferredStyle: .alert)
         
         let ok = UIAlertAction(title: "OK", style: .default) { (action) -> Void in
             //print("test ok!!")
         }
-        
         dialogMessage.addAction(ok)
+        
+        let cancelDialogMessage = UIAlertController(title: "이메일 체크", message: "이미 사용하고 있는 이메일 입니다.", preferredStyle: .alert)
+        let okStatus = UIAlertAction(title: "OK", style: .default) { (action) -> Void in
+            //print("test ok!!")
+        }
+        cancelDialogMessage.addAction(okStatus)
         
         if emailTextField.text == nil {
             
@@ -217,19 +240,27 @@ class EmailAddViewController: UIViewController, UITextFieldDelegate {
             emailCheckVar = emailTextField.text!
         }
         
-        let param: [String: Any] = ["email": emailCheckVar]
+        // 테스트 필요.
         
-        guard let paramData = try? JSONSerialization.data(withJSONObject: param, options: []) else {
-            return
-        }
+        Auth.auth().fetchProviders(forEmail: emailCheckVar, completion: {
+         (providers, error) in
+
+         if let error = error {
+          print(error.localizedDescription)
+         } else if let providers = providers {
+          print(providers)
+            self.present(cancelDialogMessage, animated: false, completion: nil)
+            self.emailCheckYn = false
+         } else {
+            print(providers)
+            self.present(dialogMessage, animated: false, completion: nil)
+            self.emailCheckYn = true
+         }
+        })
         
-        guard let url = URL(string: "http://192.168.0.30:3000/emailCheck_process") else{
-            //print("Error: cannot create URL")
-            return
-            
-        }
+        //Auth.auth().fetchProvidersForEmail(emailCheckVar)
         
-        self.present(dialogMessage, animated: true, completion: nil)
+        
     }
     
     
