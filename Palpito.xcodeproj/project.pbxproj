@@ -88,6 +88,7 @@
 		F6D84B4524790E3C00EC56A0 /* ConfigCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6D84B4424790E3C00EC56A0 /* ConfigCell.xib */; };
 		F6DDC5FE215DE55600F47FEF /* Userinfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6DDC5FD215DE55600F47FEF /* Userinfo.swift */; };
 		F6DDC600215DE77400F47FEF /* UserCreate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6DDC5FF215DE77400F47FEF /* UserCreate.swift */; };
+		F6DFAA6824F0ED0A00A674F7 /* StartPopupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6DFAA6724F0ED0A00A674F7 /* StartPopupController.swift */; };
 		F6EBA2DE2213D06200CCA005 /* StartApp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F6EBA2E02213D06200CCA005 /* StartApp.storyboard */; };
 		F6EBA2E12213D07900CCA005 /* SignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F6EBA2E32213D07900CCA005 /* SignUp.storyboard */; };
 		F6EF57D72483BC8200C4A5C1 /* RangKingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EF57D62483BC8200C4A5C1 /* RangKingCell.swift */; };
@@ -242,6 +243,7 @@
 		F6D84B4424790E3C00EC56A0 /* ConfigCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConfigCell.xib; sourceTree = "<group>"; };
 		F6DDC5FD215DE55600F47FEF /* Userinfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Userinfo.swift; sourceTree = "<group>"; };
 		F6DDC5FF215DE77400F47FEF /* UserCreate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCreate.swift; sourceTree = "<group>"; };
+		F6DFAA6724F0ED0A00A674F7 /* StartPopupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartPopupController.swift; sourceTree = "<group>"; };
 		F6EBA2DD2213D05100CCA005 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F6EBA2DF2213D06200CCA005 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/StartApp.storyboard; sourceTree = "<group>"; };
 		F6EBA2E22213D07900CCA005 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/SignUp.storyboard; sourceTree = "<group>"; };
@@ -462,6 +464,7 @@
 				F6BC90AE24C5C5FF00E2283C /* ExtensionVC.swift */,
 				F6B1861B24CBE1EB003C905D /* PrivateInfomationController.swift */,
 				F6B1861D24CBE35A003C905D /* UserInfoSettingController.swift */,
+				F6DFAA6724F0ED0A00A674F7 /* StartPopupController.swift */,
 			);
 			path = Palpito_v0.01;
 			sourceTree = "<group>";
@@ -811,6 +814,7 @@
 				F6B1861C24CBE1EB003C905D /* PrivateInfomationController.swift in Sources */,
 				F642D7FA21C7D7ED00DA533D /* HeartRateCollectionViewCell.swift in Sources */,
 				F6BC90AF24C5C5FF00E2283C /* ExtensionVC.swift in Sources */,
+				F6DFAA6824F0ED0A00A674F7 /* StartPopupController.swift in Sources */,
 				F650C0A0221151AE001823F7 /* PersistenceService.swift in Sources */,
 				F692BFC6217719E400915E33 /* MainMenuViewController.swift in Sources */,
 				F695C31A215C9F8B00F4DDEB /* AppDelegate.swift in Sources */,

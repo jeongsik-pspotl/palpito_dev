@@ -155,7 +155,10 @@ class MyPageViewController: UIViewController, WCSessionDelegate {
         }
         
         
+        
+        
     }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         
@@ -189,6 +192,11 @@ class MyPageViewController: UIViewController, WCSessionDelegate {
     override func viewDidAppear(_ animated: Bool) {
         
         //print("load did appear??")
+        let storyBoard: UIStoryboard = UIStoryboard(name: "StartApp", bundle: nil)
+        let vc = storyBoard.instantiateViewController(withIdentifier: "StartPopup") as! StartPopupController
+        vc.modalPresentationStyle = .overCurrentContext
+        self.present(vc, animated: true, completion: nil)
+        
     }
     
     override func viewWillDisappear(_ animated: Bool){

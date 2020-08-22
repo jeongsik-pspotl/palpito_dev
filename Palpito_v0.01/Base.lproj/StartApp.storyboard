@@ -850,49 +850,45 @@
             </objects>
             <point key="canvasLocation" x="1611.5942028985507" y="2937.7232142857142"/>
         </scene>
-        <!--View Controller-->
+        <!--Start Popup Controller-->
         <scene sceneID="ipn-FE-q7d">
             <objects>
-                <viewController id="Qb2-lt-V4q" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="StartPopup" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Qb2-lt-V4q" customClass="StartPopupController" customModule="Palpito" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6g2-oN-Lrh">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pUG-xy-1Nt">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="19" y="114.5" width="376" height="667"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchingIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Xq5-FO-wEE">
-                                        <rect key="frame" x="86.5" y="325.5" width="241" height="167"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="Xq5-FO-wEE" secondAttribute="height" multiplier="241:167" id="rR9-oW-B2Q"/>
-                                        </constraints>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="appleWatchImage" translatesAutoresizingMaskIntoConstraints="NO" id="nUO-bS-cC7">
+                                        <rect key="frame" x="78" y="42" width="220" height="380"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
-                                    <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleAspectFit" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e1K-Pb-Ave">
-                                        <rect key="frame" x="-1" y="8" width="414" height="44"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                        <items>
-                                            <barButtonItem title="back" id="7zL-3R-aro">
-                                                <connections>
-                                                    <action selector="backWorkoutPageAction:" destination="Qb2-lt-V4q" id="OCH-o0-DQU"/>
-                                                </connections>
-                                            </barButtonItem>
-                                        </items>
-                                        <color key="barTintColor" red="0.99980741740000001" green="0.99634987119999996" blue="0.98039048910000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                    </toolbar>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="appleWatchStartText" translatesAutoresizingMaskIntoConstraints="NO" id="94l-Mf-Vfx">
+                                        <rect key="frame" x="70" y="454" width="236" height="64"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uha-uI-2C3">
+                                        <rect key="frame" x="87" y="544" width="202" height="46"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="paltitoBakcPage"/>
+                                        <connections>
+                                            <action selector="returnToMainPage" destination="Qb2-lt-V4q" eventType="touchUpInside" id="atY-2S-NKw"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="Xq5-FO-wEE" firstAttribute="centerY" secondItem="pUG-xy-1Nt" secondAttribute="centerY" id="fMk-ds-oKO"/>
-                                    <constraint firstItem="Xq5-FO-wEE" firstAttribute="centerX" secondItem="pUG-xy-1Nt" secondAttribute="centerX" id="nzr-9v-8T2"/>
+                                    <constraint firstAttribute="width" constant="376" id="MXq-OG-CQW"/>
+                                    <constraint firstAttribute="height" constant="667" id="Xnj-IJ-sym"/>
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.99980741740000001" green="0.99634987119999996" blue="0.98039048910000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstItem="pUG-xy-1Nt" firstAttribute="leading" secondItem="66K-ia-QTc" secondAttribute="leading" id="8uh-Lw-Ug0"/>
-                            <constraint firstItem="pUG-xy-1Nt" firstAttribute="trailing" secondItem="66K-ia-QTc" secondAttribute="trailing" id="LKQ-Bc-rgl"/>
-                            <constraint firstItem="pUG-xy-1Nt" firstAttribute="bottom" secondItem="66K-ia-QTc" secondAttribute="bottom" id="iVF-8E-w9E"/>
-                            <constraint firstItem="pUG-xy-1Nt" firstAttribute="top" secondItem="66K-ia-QTc" secondAttribute="top" id="yZZ-2S-CIq"/>
+                            <constraint firstItem="pUG-xy-1Nt" firstAttribute="centerY" secondItem="6g2-oN-Lrh" secondAttribute="centerY" id="3h0-sU-20g"/>
+                            <constraint firstItem="pUG-xy-1Nt" firstAttribute="centerX" secondItem="6g2-oN-Lrh" secondAttribute="centerX" id="dli-3T-VEd"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="66K-ia-QTc"/>
                     </view>
@@ -900,7 +896,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bCZ-L9-8Xk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1824.6376811594205" y="851.78571428571422"/>
+            <point key="canvasLocation" x="857.97101449275374" y="849.77678571428567"/>
         </scene>
         <!--Relax View Controller-->
         <scene sceneID="VtA-Nm-kj4">
@@ -1501,6 +1497,8 @@
         <image name="BasicEasyExplanation" width="148.5" height="14"/>
         <image name="BasicHardExplanation" width="125" height="14"/>
         <image name="BasicMidExplanation" width="157.5" height="13.5"/>
+        <image name="appleWatchImage" width="220.5" height="381.5"/>
+        <image name="appleWatchStartText" width="236.5" height="64.5"/>
         <image name="backgroundOrange" width="336.5" height="211.5"/>
         <image name="backgroundOrangeFull" width="336.5" height="517"/>
         <image name="basicWorkoutText" width="84.5" height="23.5"/>
@@ -1530,7 +1528,6 @@
         <image name="indoorIcon" width="87.5" height="87.5"/>
         <image name="kcalNameText" width="44.5" height="16"/>
         <image name="kcalSmallText" width="32.5" height="13.5"/>
-        <image name="launchingIcon" width="241" height="167.5"/>
         <image name="lv1Message" width="178.5" height="142"/>
         <image name="lv2Message" width="178.5" height="141.5"/>
         <image name="lv3Message" width="178.5" height="141.5"/>
@@ -1548,6 +1545,7 @@
         <image name="orangebtn" width="282" height="46"/>
         <image name="orangeline" width="322.5" height="2.5"/>
         <image name="outdoorIconChose" width="107.5" height="107.5"/>
+        <image name="paltitoBakcPage" width="201.5" height="45.5"/>
         <image name="play" width="35" height="31"/>
         <image name="relaxCharacter1iOS" width="133.5" height="261.5"/>
         <image name="relaxiOS" width="29" height="16"/>
