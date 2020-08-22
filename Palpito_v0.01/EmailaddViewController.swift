@@ -242,7 +242,7 @@ class EmailAddViewController: UIViewController, UITextFieldDelegate {
         
         // 테스트 필요.
         
-        Auth.auth().fetchProviders(forEmail: emailCheckVar, completion: {
+        Auth.auth().fetchSignInMethods(forEmail: emailCheckVar, completion: {
          (providers, error) in
 
          if let error = error {
