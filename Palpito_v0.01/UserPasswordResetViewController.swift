@@ -27,6 +27,12 @@ class UserPasswordResetViewController: ExtensionVC {
         // Do any additional setup after loading the view.
     }
     
+    @IBAction func backToLogin(){
+        self.dismiss(animated: false) {
+            
+        }
+    }
+    
     @IBAction func passwordResetfromEmailSendAction(){
         
         //self.sv = UIViewController.displaySpinner(onView: self.view)

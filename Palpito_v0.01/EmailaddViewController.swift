@@ -64,6 +64,12 @@ class EmailAddViewController: UIViewController, UITextFieldDelegate {
         
     }
     
+    @IBAction func backToLogin(){
+        self.dismiss(animated: false) {
+            
+        }
+    }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
