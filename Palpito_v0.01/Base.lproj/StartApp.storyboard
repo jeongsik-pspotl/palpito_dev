@@ -893,6 +893,9 @@
                         <viewLayoutGuide key="safeArea" id="66K-ia-QTc"/>
                     </view>
                     <navigationItem key="navigationItem" id="Hgp-x7-G9i"/>
+                    <connections>
+                        <outlet property="startPopupView" destination="pUG-xy-1Nt" id="bGN-5c-G0f"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bCZ-L9-8Xk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1490,7 +1493,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="9mI-rY-UDF"/>
-        <segue reference="sh2-c3-ele"/>
+        <segue reference="KT4-jO-YeY"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.95294117649999999" green="0.41568627450000001" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
     <resources>
