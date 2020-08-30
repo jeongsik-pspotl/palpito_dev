@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="16096" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="7Dg-95-n2k">
-    <device id="watch38"/>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="16097.2" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="7Dg-95-n2k">
+    <device id="watch40"/>
     <dependencies>
         <deployment identifier="watchOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -12,13 +12,13 @@
             <objects>
                 <controller identifier="MainInterfaceController" fullScreen="YES" id="AgC-eL-Hgc" customClass="InterfaceController" customModule="Palpito_watchOS" customModuleProvider="target">
                     <items>
-                        <group width="1" alignment="left" layout="overlap" id="7di-Qi-7IU" userLabel="workoutMain">
+                        <group width="1" alignment="center" verticalAlignment="bottom" id="7di-Qi-7IU" userLabel="workoutMain">
                             <items>
-                                <group width="1" alignment="left" contentMode="scaleAspectFit" id="iFS-ji-1pz" userLabel="MidGroup">
+                                <group width="1" alignment="left" verticalAlignment="center" contentMode="scaleAspectFit" id="iFS-ji-1pz" userLabel="MidGroup">
                                     <items>
                                         <group width="136" alignment="left" verticalAlignment="center" contentMode="scaleAspectFit" layout="vertical" id="Caq-l9-2Hm" userLabel="workoutGroup">
                                             <items>
-                                                <group alignment="left" contentMode="scaleAspectFit" layout="vertical" id="XmE-Ga-Mgg" userLabel="time">
+                                                <group width="125" height="30" alignment="left" contentMode="scaleAspectFit" layout="vertical" id="XmE-Ga-Mgg" userLabel="time">
                                                     <items>
                                                         <label height="70" alignment="left" text="00:00:00" id="RiR-ve-eiI">
                                                             <color key="textColor" red="0.95294117649999999" green="0.41568627450000001" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -32,11 +32,13 @@
                                                             <variation key="device=watch42mm" height="50">
                                                                 <fontDescription key="font" type="system" pointSize="31"/>
                                                             </variation>
-                                                            <variation key="device=watch44mm" height="70">
+                                                            <variation key="device=watch44mm" height="75">
                                                                 <fontDescription key="font" type="system" pointSize="36"/>
                                                             </variation>
                                                         </label>
                                                     </items>
+                                                    <variation key="device=watch40mm" width="125"/>
+                                                    <variation key="device=watch44mm" width="150"/>
                                                 </group>
                                                 <group width="100" height="1" alignment="left" id="895-c8-cE1" userLabel="Heart Rate">
                                                     <items>
@@ -272,11 +274,11 @@
         <!--ResultWorkoutInterfaceController-->
         <scene sceneID="iLO-Cz-TEp">
             <objects>
-                <controller identifier="ResultWorkoutInterfaceController" fullScreen="YES" id="UMg-3w-gQh" customClass="ResultWorkoutInterfaceController" customModule="Palpito_watchOS" customModuleProvider="target">
+                <controller identifier="ResultWorkoutInterfaceController" contentMode="scaleAspectFit" fullScreen="YES" id="UMg-3w-gQh" customClass="ResultWorkoutInterfaceController" customModule="Palpito_watchOS" customModuleProvider="target">
                     <items>
-                        <group width="1" alignment="left" layout="overlap" id="qMy-NC-QgU" userLabel="ResultWorkoutMain">
+                        <group height="190" alignment="center" verticalAlignment="bottom" id="qMy-NC-QgU" userLabel="ResultWorkoutMain">
                             <items>
-                                <group height="1" alignment="center" layout="vertical" id="c0a-GV-CUI" userLabel="resultWorkoutGroup">
+                                <group height="1" alignment="center" verticalAlignment="bottom" layout="vertical" id="c0a-GV-CUI" userLabel="resultWorkoutGroup">
                                     <items>
                                         <group width="1" alignment="center" id="sgG-jc-fOe">
                                             <items>
@@ -314,19 +316,23 @@
                                                 </label>
                                                 <imageView alignment="left" verticalAlignment="bottom" image="scoreDotWatchText" contentMode="scaleAspectFit" id="MH8-xE-8sX"/>
                                             </items>
+                                            <variation key="device=watch40mm" height="17"/>
                                         </group>
-                                        <group width="1" alignment="left" id="98q-P7-Vsm">
+                                        <group width="1" height="100" alignment="left" id="98q-P7-Vsm">
                                             <items>
                                                 <label alignment="left" verticalAlignment="bottom" text="--" id="oiT-3G-H43">
                                                     <fontDescription key="font" type="boldSystem" pointSize="20"/>
                                                 </label>
-                                                <imageView alignment="left" verticalAlignment="bottom" image="whiteWatchKmText" contentMode="scaleAspectFit" id="isT-4e-1Z4"/>
+                                                <imageView height="15" alignment="left" verticalAlignment="bottom" image="whiteWatchKmText" contentMode="scaleAspectFit" id="isT-4e-1Z4">
+                                                    <variation key="device=watch40mm" height="17"/>
+                                                </imageView>
                                             </items>
+                                            <variation key="device=watch40mm" height="17"/>
                                         </group>
-                                        <group width="1" height="10" alignment="left" id="Ced-b2-CZE"/>
+                                        <group width="1" height="7" alignment="left" id="Ced-b2-CZE"/>
                                         <group alignment="left" verticalAlignment="bottom" id="3Dz-MR-P8q">
                                             <items>
-                                                <button alignment="center" verticalAlignment="bottom" backgroundImage="resultBtn" id="VfO-Y7-Xbc">
+                                                <button alignment="center" backgroundImage="resultBtn" id="VfO-Y7-Xbc">
                                                     <connections>
                                                         <action selector="resultWorkoutAction" destination="UMg-3w-gQh" id="82D-Tu-5TD"/>
                                                     </connections>
@@ -336,6 +342,8 @@
                                     </items>
                                 </group>
                             </items>
+                            <variation key="device=watch40mm" height="190"/>
+                            <variation key="device=watch44mm" height="210"/>
                         </group>
                     </items>
                     <connections>
@@ -347,7 +355,7 @@
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="391" y="663"/>
+            <point key="canvasLocation" x="390.37037037037038" y="667.91878172588827"/>
         </scene>
         <!--ResultRelaxInterfaceController-->
         <scene sceneID="Ovc-Yd-tWG">
