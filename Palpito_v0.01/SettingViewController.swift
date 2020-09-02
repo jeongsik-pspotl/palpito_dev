@@ -125,6 +125,7 @@ class SettingViewController: UITableViewController {
             storyboard.modalPresentationStyle = .fullScreen
             self.present(storyboard, animated: true, completion: nil)
         }
+        
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

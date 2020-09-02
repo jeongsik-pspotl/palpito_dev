@@ -34,9 +34,8 @@ class StartPopupController: UIViewController, WCSessionDelegate  {
     }
     
     @IBAction func returnToMainPage(){
-        self.dismiss(animated: false) {
-            
-        }
+        self.performSegue(withIdentifier: "backToMainTabBar", sender: self)
+        self.view.removeFromSuperview()
     }
     
     func sessionDidBecomeInactive(_ session: WCSession) { }

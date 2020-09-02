@@ -875,6 +875,7 @@
                                         <state key="normal" image="paltitoBakcPage"/>
                                         <connections>
                                             <action selector="returnToMainPage" destination="Qb2-lt-V4q" eventType="touchUpInside" id="atY-2S-NKw"/>
+                                            <segue destination="eCg-UG-Z1b" kind="show" identifier="backToMainTabar2" id="1cR-me-NGl"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -1492,7 +1493,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="9mI-rY-UDF"/>
+        <segue reference="1cR-me-NGl"/>
         <segue reference="KT4-jO-YeY"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.95294117649999999" green="0.41568627450000001" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
