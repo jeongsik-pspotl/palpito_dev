@@ -34,7 +34,7 @@ class StartPopupController: UIViewController, WCSessionDelegate  {
     }
     
     @IBAction func returnToMainPage(){
-        self.performSegue(withIdentifier: "backToMainTabBar", sender: self)
+        self.performSegue(withIdentifier: "backToMainTabar2", sender: self)
         self.view.removeFromSuperview()
     }
     
@@ -52,6 +52,12 @@ class StartPopupController: UIViewController, WCSessionDelegate  {
     
     func handlesSession(_ session: WCSession, didReceiveMessage message: [String: Any], replyHandler: (([String: Any]) -> Void)? = nil) {
         
+        if let msg = message["MyStageLvl"] as? String {
+            //print("userInfo message : \(msg)")
+            UserDefaults.standard.set(msg, forKey: "myStage")
+        
+        }
+        
         DispatchQueue.main.async {
             if let msg = message["StartWorkoutCall"] as? String {
                 //print("message StartWorkoutCall : \(msg)")
@@ -60,15 +66,7 @@ class StartPopupController: UIViewController, WCSessionDelegate  {
                 storyboard.modalPresentationStyle = .fullScreen
                 self.present(storyboard, animated: true, completion: nil)
                 
-            }else if let msg = message["StartRelaxCall"] as? String {
-                //print("message StartRelaxCall : \(msg)")
-                
-                let storyboard = UIStoryboard(name: "StartApp", bundle: nil).instantiateViewController(withIdentifier: "RelaxViewController") as! RelaxViewController
-                storyboard.modalPresentationStyle = .fullScreen
-                self.present(storyboard, animated: true, completion: nil)
-                
             }
-            
             
         }
         

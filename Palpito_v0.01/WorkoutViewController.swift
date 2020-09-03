@@ -160,13 +160,13 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
             self.stageLevel = "SL2"
         }
         
-        if stageLevel == "SL1" {
+        if self.stageLevel == "SL1" {
             myStageLevelImg.image = UIImage(named: "easyLevelText")
 
-        } else if stageLevel == "SL2" {
+        } else if self.stageLevel == "SL2" {
             myStageLevelImg.image = UIImage(named: "middleLevelText")
 
-        } else if stageLevel == "SL3" {
+        } else if self.stageLevel == "SL3" {
             myStageLevelImg.image = UIImage(named: "highLevelText")
 
         }
