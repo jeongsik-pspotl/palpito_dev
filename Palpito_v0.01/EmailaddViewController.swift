@@ -18,6 +18,7 @@ class EmailAddViewController: UIViewController, UITextFieldDelegate {
     var db: Firestore!
     var genderVal:String?
     var emailCheckYn:Bool = false
+    var informationAgreeCheckYn:Bool = false
     
     
     @IBOutlet weak var emailTextField: UITextField!
@@ -70,6 +71,26 @@ class EmailAddViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    @IBAction func goToPrivateInfomationAgreee(){
+        
+        let storyboard = UIStoryboard(name: "StartApp", bundle: nil).instantiateViewController(withIdentifier: "PrivateInfomationCotroller") as! PrivateInfomationCotroller
+        storyboard.modalPresentationStyle = .fullScreen
+        self.present(storyboard, animated: true, completion: nil)
+        
+    }
+    
+    @IBAction func privateInfomationAgreeCheck(_ sender: UIButton) {
+        //print(sender.isSelected)
+        if sender.isSelected == true {
+            informationAgreeCheckYn = false
+            sender.isSelected = false
+        }else {
+            informationAgreeCheckYn = true
+            sender.isSelected = true
+            
+        }
+    }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
@@ -84,7 +105,38 @@ class EmailAddViewController: UIViewController, UITextFieldDelegate {
         backItem.title = ""
         navigationItem.backBarButtonItem = backItem
         
-        guard let email = emailTextField.text, let password = passwordTextField.text, let nickName = nickNameTextField.text, let birthText =  birthTextField.text, let gender = self.genderVal else { return }
+        guard let birthText = birthTextField.text else {
+            
+            let alert = UIAlertController(title: "회원가입 실패", message: "생년월일을 입력해주세요.", preferredStyle: UIAlertController.Style.alert)
+            let defaultAction = UIAlertAction(title: "OK", style: .destructive, handler : nil)
+            alert.addAction(defaultAction)
+            
+            present(alert, animated: false, completion: nil)
+            
+            return
+        }
+        
+        if (birthText == "") {
+            let alert = UIAlertController(title: "회원가입 실패", message: "생년월일을 입력해주세요.", preferredStyle: UIAlertController.Style.alert)
+            let defaultAction = UIAlertAction(title: "OK", style: .destructive, handler : nil)
+            alert.addAction(defaultAction)
+            
+            present(alert, animated: false, completion: nil)
+            
+            return
+        }
+        
+        guard let email = emailTextField.text, let password = passwordTextField.text, let nickName = nickNameTextField.text, let gender = self.genderVal else { return }
+        
+        if (nickName == "") {
+            let alert = UIAlertController(title: "회원가입 실패", message: "닉네임을 입력해주세요.", preferredStyle: UIAlertController.Style.alert)
+            let defaultAction = UIAlertAction(title: "OK", style: .destructive, handler : nil)
+            alert.addAction(defaultAction)
+            
+            present(alert, animated: false, completion: nil)
+            
+            return
+        }
         
         let emailCheck = isValidEmailAddress(email: email)
         let passwordCheck = validatePassword(password: password)
@@ -98,6 +150,17 @@ class EmailAddViewController: UIViewController, UITextFieldDelegate {
             
             present(alert, animated: false, completion: nil)
             self.emailCheckYn = false
+            
+            return
+        }
+        
+        if !informationAgreeCheckYn {
+            // 팝업 창 생성..
+            let alert = UIAlertController(title: "회원가입 실패", message: "약관 동의 체크해야 회원가입이 가능합니다.", preferredStyle: UIAlertController.Style.alert)
+            let defaultAction = UIAlertAction(title: "OK", style: .destructive, handler : nil)
+            alert.addAction(defaultAction)
+            
+            present(alert, animated: false, completion: nil)
             
             return
         }
@@ -290,6 +353,15 @@ class EmailAddViewController: UIViewController, UITextFieldDelegate {
             
             sender.isSelected = true
         }
+    }
+    
+    func hasCharacters(userName: String) -> Bool{
+        
+        let userNameRegEx = "^[a-zA-Z가-힣ㄱ-ㅎㅏ-ㅣ\\s]$"
+        let userNameTest = NSPredicate(format:"SELF MATCHES %@", userNameRegEx)
+            
+        return userNameTest.evaluate(with: userName)
+        
     }
     
     func isValidEmailAddress(email: String) -> Bool {

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="MnA-08-iKS">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="MnA-08-iKS">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -204,45 +204,19 @@
                                         <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                                     </textField>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="orangeline" translatesAutoresizingMaskIntoConstraints="NO" id="YDU-ST-wfg">
-                                        <rect key="frame" x="49" y="314" width="278" height="4"/>
+                                        <rect key="frame" x="51" y="264" width="278" height="4"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="orangeline" translatesAutoresizingMaskIntoConstraints="NO" id="GLq-9s-GWs">
-                                        <rect key="frame" x="47" y="355" width="278" height="4"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                    </imageView>
-                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="iX3-MK-f0e">
-                                        <rect key="frame" x="68" y="176" width="230" height="30"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <color key="tintColor" red="0.016804177310000001" green="0.55240172350000005" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <rect key="contentStretch" x="0.25" y="0.0" width="1" height="1"/>
-                                        <color key="textColor" red="0.58431372550000005" green="0.58431372550000005" blue="0.57254901960000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
-                                    </textField>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="orangeline" translatesAutoresizingMaskIntoConstraints="NO" id="Fc8-Pm-9Jn">
                                         <rect key="frame" x="49" y="164" width="278" height="4"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="orangeline" translatesAutoresizingMaskIntoConstraints="NO" id="GwD-2H-Gif">
-                                        <rect key="frame" x="49" y="264" width="278" height="4"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                    </imageView>
-                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="NickName" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="CjU-ix-hiv">
-                                        <rect key="frame" x="67" y="226" width="231" height="30"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <color key="tintColor" red="0.016804177310000001" green="0.55240172350000005" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <rect key="contentStretch" x="0.25" y="0.0" width="1" height="1"/>
-                                        <color key="textColor" red="0.58431372550000005" green="0.58431372550000005" blue="0.57254901960000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="namePhonePad"/>
-                                    </textField>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="orangeline" translatesAutoresizingMaskIntoConstraints="NO" id="Cin-VA-EUj">
-                                        <rect key="frame" x="49" y="214" width="278" height="4"/>
+                                        <rect key="frame" x="51" y="214" width="278" height="4"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                     </imageView>
                                     <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="YYYY.MM.DD" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="DuJ-kt-6n8">
-                                        <rect key="frame" x="59" y="276" width="258" height="30"/>
+                                        <rect key="frame" x="59" y="226" width="258" height="30"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <rect key="contentStretch" x="0.25" y="0.0" width="1" height="1"/>
                                         <viewLayoutGuide key="safeArea" id="Gra-N4-Yum"/>
@@ -274,7 +248,7 @@
                                         <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </toolbar>
                                     <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Gender" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="RKB-Bf-4go" userLabel="성별">
-                                        <rect key="frame" x="59" y="326" width="258" height="30"/>
+                                        <rect key="frame" x="65" y="276" width="258" height="30"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <rect key="contentStretch" x="0.25" y="0.0" width="1" height="1"/>
                                         <viewLayoutGuide key="safeArea" id="1sZ-Sg-dB1"/>
@@ -282,6 +256,19 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="NickName" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="CjU-ix-hiv">
+                                        <rect key="frame" x="65" y="176" width="231" height="30"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <color key="tintColor" red="0.016804177310000001" green="0.55240172350000005" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <rect key="contentStretch" x="0.25" y="0.0" width="1" height="1"/>
+                                        <color key="textColor" red="0.58431372550000005" green="0.58431372550000005" blue="0.57254901960000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="namePhonePad"/>
+                                    </textField>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="orangeline" translatesAutoresizingMaskIntoConstraints="NO" id="GLq-9s-GWs">
+                                        <rect key="frame" x="51" y="314" width="278" height="4"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
@@ -302,7 +289,6 @@
                         <outlet property="emailTextField" destination="QLY-Z5-3qX" id="lzX-VJ-Dyi"/>
                         <outlet property="genderTextField" destination="RKB-Bf-4go" id="PG4-Ou-z0l"/>
                         <outlet property="nickNameTextField" destination="CjU-ix-hiv" id="4NK-ym-jFc"/>
-                        <outlet property="passwordTextField" destination="iX3-MK-f0e" id="4Ve-MH-Dxv"/>
                         <outlet property="userInfoSettingView" destination="j2P-Fd-tCH" id="njU-9N-xe1"/>
                     </connections>
                 </viewController>
