@@ -78,7 +78,7 @@ class UserInfoSettingController: UIViewController {
             if let err = err {
                 print("Error getting documents: \(err)")
             } else {
-                print("user_info start")
+                // print("user_info start")
                 for document in querySnapshot!.documents {
                     let oneDocument = document.data()
                     let nick_name = oneDocument["nick_name"] as? String
@@ -120,7 +120,7 @@ class UserInfoSettingController: UIViewController {
             if let err = err {
                 print("Error getting documents: \(err)")
             } else {
-                print(querySnapshot as Any)
+                // print(querySnapshot as Any)
             }
         }
             

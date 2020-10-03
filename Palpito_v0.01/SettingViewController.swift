@@ -13,7 +13,7 @@ class SettingViewController: UITableViewController {
     
     //var list = [MovieVO]()
     var dataset = [
-        ("계정 정보"),("개인 정보 공개 범위"),("보안"),("도움말"),("로그아웃")
+        ("계정 정보"),("개인 정보 공개 범위"),("로그아웃")
     ]
     
     @IBOutlet weak var myTableView: UITableView!

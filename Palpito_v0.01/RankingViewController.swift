@@ -37,7 +37,7 @@ class RankingViewController: UITableViewController {
     
     
     func getAllUser() {
-        print("getAllUser start ")
+        // print("getAllUser start ")
         db.collection("user_info").getDocuments { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
@@ -129,9 +129,9 @@ class RankingViewController: UITableViewController {
         //let cell = UITableViewCell.init(style: .default, reuseIdentifier: "scoreCell")
         let recell = tableView.dequeueReusableCell(withIdentifier: "scoreCell") as! RangKingCell
         //let cell = tableView.dequeueReusableCell(withIdentifier: "scoreCell", for: indexPath)
-        var allExerciseText = ""
-
-        allExerciseText = " \(indexPath.row + 1) 이름 :  \(obj["nick_name"] as! String) 점수 : \(obj["result_total_score"] as! Int)"
+//        var allExerciseText = ""
+//
+//        allExerciseText = " \(indexPath.row + 1) 이름 :  \(obj["nick_name"] as! String) 점수 : \(obj["result_total_score"] as! Int)"
         
         recell.cal.text = "\(indexPath.row + 1)"
         recell.name.text = "\(obj["nick_name"] as! String)"

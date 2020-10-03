@@ -165,7 +165,7 @@ class ResultWorkoutViewController: UIViewController, WCSessionDelegate {
                 self.resultTotalScoreText.text = "\(resultTotalScoreMsg)"
             }
             
-            if let msg = message["backToMainTab"] as? String {
+            if (message["backToMainTab"] as? String) != nil {
                 
                 //backToMainTabBar
 //                let startAppSb: UIStoryboard = UIStoryboard(name: "StartApp", bundle: nil)
@@ -217,7 +217,7 @@ class ResultWorkoutViewController: UIViewController, WCSessionDelegate {
                 self.resultTotalScoreText.text = "\(resultTotalScoreMsg)"
             }
             
-            if let msg = userInfo["backToMainTab"] as? String {
+            if (userInfo["backToMainTab"] as? String) != nil {
                 
                 //backToMainTabBar
 //                let startAppSb: UIStoryboard = UIStoryboard(name: "StartApp", bundle: nil)

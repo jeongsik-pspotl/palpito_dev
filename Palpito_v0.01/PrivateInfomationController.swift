@@ -16,7 +16,7 @@ class PrivateInfomationCotroller: UIViewController {
     @IBOutlet weak var wvMain: WKWebView!
     
     func goWeb(postfix: String) -> () {
-        let url = URL(string: "https://palpito-project.firebaseapp.com/")
+        let url = URL(string: "https://app.palpito.co.kr/")
         let request = URLRequest(url: url!)
         wvMain.load(request)
     }
