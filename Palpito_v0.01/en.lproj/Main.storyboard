@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="TJC-zx-DLA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="TJC-zx-DLA">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,7 +19,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xr4-bT-n5k" userLabel="StartView">
                                 <rect key="frame" x="-0.66666666666665719" y="72.666666666666686" width="376.33333333333326" height="667"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AwT-EO-7zd">
+                                    <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AwT-EO-7zd">
                                         <rect key="frame" x="47" y="416.00000000000006" width="282" height="39.5"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -111,12 +111,12 @@
                                 </constraints>
                             </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="hLT-a1-DQa"/>
                         <color key="backgroundColor" red="0.99923449750000004" green="0.99683517219999995" blue="0.97931188339999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="xr4-bT-n5k" firstAttribute="centerY" secondItem="xdx-Ry-pwK" secondAttribute="centerY" id="bmN-I9-VMC"/>
                             <constraint firstItem="xr4-bT-n5k" firstAttribute="centerX" secondItem="xdx-Ry-pwK" secondAttribute="centerX" id="gAc-7b-GFi"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="hLT-a1-DQa"/>
                     </view>
                     <navigationItem key="navigationItem" id="Yml-ve-0UK">
                         <barButtonItem key="backBarButtonItem" title=" " id="Z8A-VN-tsT"/>
