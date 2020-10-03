@@ -136,7 +136,7 @@ class MyPageViewController: UIViewController, WCSessionDelegate {
             if let err = err {
                 print("Error getting documents: \(err)")
             } else {
-                print("user_info start")
+                // print("user_info start")
                 for document in querySnapshot!.documents {
                     let oneDocument = document.data()
                     let nick_name = oneDocument["nick_name"] as? String
@@ -261,7 +261,7 @@ class MyPageViewController: UIViewController, WCSessionDelegate {
             
             }
             
-            if let msg = message["StartWorkoutCall"] as? String {
+            if (message["StartWorkoutCall"] as? String) != nil {
                 //print("message StartWorkoutCall : \(msg)")
 
                 let storyboard = UIStoryboard(name: "StartApp", bundle: nil).instantiateViewController(withIdentifier: "ReadyWorkoutViewController") as! ReadyWorkoutViewController
@@ -273,7 +273,7 @@ class MyPageViewController: UIViewController, WCSessionDelegate {
                 self.stageLevelSendMsg.removeAll()
                 //self.session = nil
                 
-            } else if let msg = message["StartRelaxCall"] as? String {
+            } else if (message["StartRelaxCall"] as? String) != nil {
                 //print("message StartRelaxCall : \(msg)")
                 
                 let storyboard = UIStoryboard(name: "StartApp", bundle: nil).instantiateViewController(withIdentifier: "RelaxViewController") as! RelaxViewController
@@ -300,7 +300,7 @@ class MyPageViewController: UIViewController, WCSessionDelegate {
             
             }
             
-            if let msg = userInfo["StartWorkoutCall"] as? String {
+            if (userInfo["StartWorkoutCall"] as? String) != nil {
                     //print("userInfo StartWorkoutCall : \(msg)")
 
                     let storyboard = UIStoryboard(name: "StartApp", bundle: nil).instantiateViewController(withIdentifier: "ReadyWorkoutViewController") as! ReadyWorkoutViewController
@@ -312,7 +312,7 @@ class MyPageViewController: UIViewController, WCSessionDelegate {
                     self.stageLevelSendMsg.removeAll()
                     //self.session = nil
                     
-                } else if let msg = userInfo["StartRelaxCall"] as? String {
+            } else if (userInfo["StartRelaxCall"] as? String) != nil {
                     //print("userInfo StartRelaxCall : \(msg)")
                     
                     let storyboard = UIStoryboard(name: "StartApp", bundle: nil).instantiateViewController(withIdentifier: "RelaxViewController") as! RelaxViewController

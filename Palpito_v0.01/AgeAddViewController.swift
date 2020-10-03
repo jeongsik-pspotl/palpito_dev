@@ -34,7 +34,7 @@ class AgeAddViewController: UIViewController, UITextFieldDelegate {
         beforeCreateUserData.age = mUserCreate.ageAdd(age: Int(ageTextField.text!)!)!
         //print(" check data :  \(beforeCreateUserData)")
         if segue.identifier == "nextUserGender" {
-            (segue.destination as! GenderViewController).beforeCreateUserData = beforeCreateUserData
+            // (segue.destination as! GenderViewController).beforeCreateUserData = beforeCreateUserData
         }
     }
     /*

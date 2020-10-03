@@ -53,6 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         
         
+        
         return true
     }
 
@@ -213,14 +214,14 @@ extension AppDelegate: WCSessionDelegate {
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "StartApp", bundle: nil)
         
         DispatchQueue.main.async {
-            if let msg = message["StartWorkoutCall"] as? String {
+            if (message["StartWorkoutCall"] as? String) != nil {
                 //print(" StartWorkoutCall msg : \(msg)")
                 let readyWorkoutPage: ReadyWorkoutViewController = mainStoryboard.instantiateViewController(withIdentifier: "ReadyWorkoutViewController") as! ReadyWorkoutViewController
                 self.window?.rootViewController = readyWorkoutPage
                 //            //print("AppDelegate data check | message StringValueHeartRate : \(msg)")
             }
             
-            if let msg = message["StartRelaxCall"] as? String {
+            if (message["StartRelaxCall"] as? String) != nil {
                 //print(" StartRelaxCall msg : \(msg)")
                 let relaxPage: RelaxViewController = mainStoryboard.instantiateViewController(withIdentifier: "RelaxViewController") as! RelaxViewController
                 self.window?.rootViewController = relaxPage
@@ -228,14 +229,14 @@ extension AppDelegate: WCSessionDelegate {
             }
             
             
-            if let msg = message["resultEndTimeVal"] as? String {
+            if (message["resultEndTimeVal"] as? String) != nil {
                 //print(" resultEndTimer msg : \(msg)")
                 let resultWorkoutPage: ResultWorkoutViewController = mainStoryboard.instantiateViewController(withIdentifier: "ResultWorkoutViewController") as! ResultWorkoutViewController
                 self.window?.rootViewController = resultWorkoutPage
                 //            //print("AppDelegate data check | message StringValueHeartRate : \(msg)")
             }
             
-            if let msg = message["resultRelaxEndTimeVal"] as? String {
+            if (message["resultRelaxEndTimeVal"] as? String) != nil {
                 //print(" resultRelaxEndTimeVal msg : \(msg)")
                 let resultRelaxPage: ResultRelaxViewController = mainStoryboard.instantiateViewController(withIdentifier: "ResultRelaxViewController") as! ResultRelaxViewController
                 self.window?.rootViewController = resultRelaxPage
@@ -255,7 +256,7 @@ extension AppDelegate: WCSessionDelegate {
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "StartApp", bundle: nil)
         
         DispatchQueue.main.async {
-            if let msg = userInfo["StartWorkoutCall"] as? String {
+            if (userInfo["StartWorkoutCall"] as? String) != nil {
                 //print(" StringValueHeartRate msg : \(msg)")
                 
                 let readyWorkoutPage: WorkoutViewController = mainStoryboard.instantiateViewController(withIdentifier: "WorkoutViewController") as! WorkoutViewController
@@ -263,7 +264,7 @@ extension AppDelegate: WCSessionDelegate {
                 //            //print("AppDelegate data check | message StringValueHeartRate : \(msg)")
             }
             
-            if let msg = userInfo["StartRelaxCall"] as? String {
+            if (userInfo["StartRelaxCall"] as? String) != nil {
                 //print(" StartRelaxCall msg : \(msg)")
                 
                 let relaxPage: RelaxViewController = mainStoryboard.instantiateViewController(withIdentifier: "RelaxViewController") as! RelaxViewController
@@ -272,14 +273,14 @@ extension AppDelegate: WCSessionDelegate {
             }
             
             //resultEndTimer
-            if let msg = userInfo["resultRelaxEndTimeVal"] as? String {
+            if (userInfo["resultRelaxEndTimeVal"] as? String) != nil {
                 //print(" resultEndTimer msg : \(msg)")
                 let resultWorkoutPage: ResultWorkoutViewController = mainStoryboard.instantiateViewController(withIdentifier: "ResultWorkoutViewController") as! ResultWorkoutViewController
                 self.window?.rootViewController = resultWorkoutPage
                 //            //print("AppDelegate data check | message StringValueHeartRate : \(msg)")
             }
             
-            if let msg = userInfo["resultRelaxEndTimeVal"] as? String {
+            if (userInfo["resultRelaxEndTimeVal"] as? String) != nil {
                 //print(" resultRelaxEndTimeVal msg : \(msg)")
                 let resultRelaxPage: ResultRelaxViewController = mainStoryboard.instantiateViewController(withIdentifier: "ResultRelaxViewController") as! ResultRelaxViewController
                 self.window?.rootViewController = resultRelaxPage

@@ -116,27 +116,9 @@ class EmailAddViewController: UIViewController, UITextFieldDelegate {
             return
         }
         
-        if (birthText == "") {
-            let alert = UIAlertController(title: "회원가입 실패", message: "생년월일을 입력해주세요.", preferredStyle: UIAlertController.Style.alert)
-            let defaultAction = UIAlertAction(title: "OK", style: .destructive, handler : nil)
-            alert.addAction(defaultAction)
-            
-            present(alert, animated: false, completion: nil)
-            
-            return
-        }
-        
         guard let email = emailTextField.text, let password = passwordTextField.text, let nickName = nickNameTextField.text, let gender = self.genderVal else { return }
         
-        if (nickName == "") {
-            let alert = UIAlertController(title: "회원가입 실패", message: "닉네임을 입력해주세요.", preferredStyle: UIAlertController.Style.alert)
-            let defaultAction = UIAlertAction(title: "OK", style: .destructive, handler : nil)
-            alert.addAction(defaultAction)
-            
-            present(alert, animated: false, completion: nil)
-            
-            return
-        }
+        
         
         let emailCheck = isValidEmailAddress(email: email)
         let passwordCheck = validatePassword(password: password)
@@ -154,17 +136,7 @@ class EmailAddViewController: UIViewController, UITextFieldDelegate {
             return
         }
         
-        if !informationAgreeCheckYn {
-            // 팝업 창 생성..
-            let alert = UIAlertController(title: "회원가입 실패", message: "약관 동의 체크해야 회원가입이 가능합니다.", preferredStyle: UIAlertController.Style.alert)
-            let defaultAction = UIAlertAction(title: "OK", style: .destructive, handler : nil)
-            alert.addAction(defaultAction)
-            
-            present(alert, animated: false, completion: nil)
-            
-            return
-        }
-        
+        // 이메일 중복 여부 체크
         if !emailCheckYn {
             // 팝업 창 생성..
             let alert = UIAlertController(title: "회원가입 실패", message: "이메일 중복조회 해주세요.", preferredStyle: UIAlertController.Style.alert)
@@ -187,6 +159,38 @@ class EmailAddViewController: UIViewController, UITextFieldDelegate {
             return
         }
         
+        if (birthText == "") {
+            let alert = UIAlertController(title: "회원가입 실패", message: "생년월일을 입력해주세요.", preferredStyle: UIAlertController.Style.alert)
+            let defaultAction = UIAlertAction(title: "OK", style: .destructive, handler : nil)
+            alert.addAction(defaultAction)
+            
+            present(alert, animated: false, completion: nil)
+            
+            return
+        }
+        
+        // 닉네임 체크
+        if (nickName == "") {
+            let alert = UIAlertController(title: "회원가입 실패", message: "닉네임을 입력해주세요.", preferredStyle: UIAlertController.Style.alert)
+            let defaultAction = UIAlertAction(title: "OK", style: .destructive, handler : nil)
+            alert.addAction(defaultAction)
+            
+            present(alert, animated: false, completion: nil)
+            
+            return
+        }
+        
+        // 약관 동의 체크 여부
+        if !informationAgreeCheckYn {
+            // 팝업 창 생성..
+            let alert = UIAlertController(title: "회원가입 실패", message: "약관 동의 체크해야 회원가입이 가능합니다.", preferredStyle: UIAlertController.Style.alert)
+            let defaultAction = UIAlertAction(title: "OK", style: .destructive, handler : nil)
+            alert.addAction(defaultAction)
+            
+            present(alert, animated: false, completion: nil)
+            
+            return
+        }
         
         Auth.auth().createUser(withEmail: email, password: password) { [weak self] (authResult, error) in
             
@@ -208,7 +212,7 @@ class EmailAddViewController: UIViewController, UITextFieldDelegate {
                     if let err = err {
                         print("Error writing document: \(err)")
                     } else {
-                        print("Document successfully written!")
+                        // print("Document successfully written!")
                         // 여기서 다음 화면으로 넘어아기
                         let storyboard = UIStoryboard(name: "SignUp", bundle: nil).instantiateViewController(withIdentifier: "sbPopUpID") as! PopUpViewController
                         storyboard.modalPresentationStyle = .fullScreen
@@ -316,12 +320,12 @@ class EmailAddViewController: UIViewController, UITextFieldDelegate {
 
          if let error = error {
           print(error.localizedDescription)
-         } else if let providers = providers {
-          print(providers)
+         } else if providers != nil {
+            //print(providers)
             self.present(cancelDialogMessage, animated: false, completion: nil)
             self.emailCheckYn = false
          } else {
-            print(providers)
+            // print(providers)
             self.present(dialogMessage, animated: false, completion: nil)
             self.emailCheckYn = true
          }
@@ -386,7 +390,7 @@ class EmailAddViewController: UIViewController, UITextFieldDelegate {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         
-        let stringDate = dateFormatter.string(from: date)
+        _ = dateFormatter.string(from: date)
         
         //print(stringDate)
         //print("userData  = \(userData)")
@@ -434,7 +438,7 @@ class EmailAddViewController: UIViewController, UITextFieldDelegate {
                 
                 let status = responseJson["status"] as? String
                 //                //print("json.2 \(responseJson)")
-                if let actualStatus = status {
+                if status != nil {
                     //print("json status \(actualStatus)")
                     
                 }

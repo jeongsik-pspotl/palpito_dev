@@ -176,14 +176,14 @@ class DaliyWorkoutViewController: UIViewController, WCSessionDelegate {
     func handlesSession(_ session: WCSession, didReceiveMessage message: [String: Any], replyHandler: (([String: Any]) -> Void)? = nil) {
         
         DispatchQueue.main.async {
-            if let msg = message["StartWorkoutCall"] as? String {
+            if (message["StartWorkoutCall"] as? String) != nil {
                 //print("message StartWorkoutCall : \(msg)")
                 
                 let storyboard = UIStoryboard(name: "StartApp", bundle: nil).instantiateViewController(withIdentifier: "ReadyWorkoutViewController") as! ReadyWorkoutViewController
                 storyboard.modalPresentationStyle = .fullScreen
                 self.present(storyboard, animated: true, completion: nil)
                 
-            }else if let msg = message["StartRelaxCall"] as? String {
+            }else if (message["StartRelaxCall"] as? String) != nil {
                 //print("message StartRelaxCall : \(msg)")
                 
                 let storyboard = UIStoryboard(name: "StartApp", bundle: nil).instantiateViewController(withIdentifier: "RelaxViewController") as! RelaxViewController
@@ -200,14 +200,14 @@ class DaliyWorkoutViewController: UIViewController, WCSessionDelegate {
     func session(_ session: WCSession, didReceiveUserInfo userInfo: [String : Any] = [:]) {
         
         DispatchQueue.main.async {
-            if let msg = userInfo["StartWorkoutCall"] as? String {
+            if (userInfo["StartWorkoutCall"] as? String) != nil {
                 //print("userInfo StartWorkoutCall : \(msg)")
                 
                 let storyboard = UIStoryboard(name: "StartApp", bundle: nil).instantiateViewController(withIdentifier: "ReadyWorkoutViewController") as! ReadyWorkoutViewController
                 storyboard.modalPresentationStyle = .fullScreen
                 self.present(storyboard, animated: true, completion: nil)
                 
-            } else if let msg = userInfo["StartRelaxCall"] as? String {
+            } else if (userInfo["StartRelaxCall"] as? String) != nil {
                 //print("userInfo StartRelaxCall : \(msg)")
                 
                 let storyboard = UIStoryboard(name: "StartApp", bundle: nil).instantiateViewController(withIdentifier: "RelaxViewController") as! RelaxViewController

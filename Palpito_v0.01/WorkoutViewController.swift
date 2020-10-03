@@ -14,7 +14,8 @@ import AVFoundation
 import CoreData
 import Firebase
 import FirebaseDatabase
-import FirebaseFirestoreSwift
+import FirebaseFirestore
+//import FirebaseFirestoreSwift
 
 class WorkoutViewController: UIViewController, WCSessionDelegate {
     
@@ -135,7 +136,7 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
             
             //print("workoutViewController resultworkout count check... :  \(self.resultWorkoutArray.count)")
             
-            for result in resultWorkoutStatus as [NSManagedObject]
+            for _ in resultWorkoutStatus as [NSManagedObject]
             {
                 //print("resultworkout core data check... ")
                 //print(result.value(forKey: "todayDate") as Any)
@@ -451,7 +452,7 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
             self.dataHandlering(message: message);
             
             //stopTimer
-            if let stopTimerDataMsg = message["stopTimer"] as? String {
+            if (message["stopTimer"] as? String) != nil {
                 //print("message stopTimer : \(stopTimerDataMsg)")
 
                 self.startTimer.invalidate()
@@ -528,7 +529,7 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
                     if let err = err {
                         print("Error writing document: \(err)")
                     } else {
-                        print("Document successfully written!")
+                        // print("Document successfully written!")
                         self.performSegue(withIdentifier: "resultWorkoutSegue", sender: self)
                         self.view.removeFromSuperview()
                     }
@@ -720,7 +721,7 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
                     self.timer  = Timer.scheduledTimer(timeInterval: self.soundDelay5, target: self, selector:
                         #selector(self.zone2SoundAction), userInfo: nil, repeats: false)
 
-                    self.zone2MusicBGMAction()
+                    // self.zone2MusicBGMAction()
 
                 case "z3":
 
@@ -729,7 +730,7 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
                     self.timer  = Timer.scheduledTimer(timeInterval: self.soundDelay5, target: self, selector:
                         #selector(self.zone3SoundAction), userInfo: nil, repeats: false)
 
-                    self.zone3MusicBGMAction()
+                    // self.zone3MusicBGMAction()
 
 
                 case "z4":
@@ -739,7 +740,7 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
                     self.timer  = Timer.scheduledTimer(timeInterval: self.soundDelay5, target: self, selector:
                         #selector(self.zone4SoundAction), userInfo: nil, repeats: false)
 
-                    self.zone4MusicBGMAction()
+                    // self.zone4MusicBGMAction()
 
 
                 case "z5":
@@ -749,7 +750,7 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
                     self.timer  = Timer.scheduledTimer(timeInterval: self.soundDelay5, target: self, selector:
                         #selector(self.zone5SoundAction), userInfo: nil, repeats: false)
 
-                    self.zone5MusicBGMAction()
+                    // self.zone5MusicBGMAction()
 
 
                 default:
@@ -791,7 +792,7 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
             }
             
             //stopTimer
-            if let stopTimerDataMsg = userInfo["stopTimer"] as? String {
+            if (userInfo["stopTimer"] as? String) != nil {
                 //print("userInfo stopTimer : \(stopTimerDataMsg)")
                 self.zoneMusicPlay?.pause()
                 self.zoneSoundPlay?.pause()
@@ -800,7 +801,7 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
             }
             
             //resumeTimer
-            if let resumeTimerDataMsg = userInfo["resumeTimer"] as? String {
+            if (userInfo["resumeTimer"] as? String) != nil {
                 //print("userInfo resumeTimer : \(resumeTimerDataMsg)")
                 self.zoneMusicPlay?.play()
 
@@ -936,7 +937,7 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
                     if let err = err {
                         print("Error writing document: \(err)")
                     } else {
-                        print("Document successfully written!")
+                        // print("Document successfully written!")
                         self.performSegue(withIdentifier: "resultWorkoutSegue", sender: self)
                         self.view.removeFromSuperview()
                     }
@@ -1112,7 +1113,7 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
                     self.timer  = Timer.scheduledTimer(timeInterval: self.soundDelay5, target: self, selector:
                         #selector(self.zone2SoundAction), userInfo: nil, repeats: false)
 
-                    self.zone2MusicBGMAction()
+                    // self.zone2MusicBGMAction()
 
                 case "z3":
 
@@ -1121,7 +1122,7 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
                     self.timer  = Timer.scheduledTimer(timeInterval: self.soundDelay5, target: self, selector:
                         #selector(self.zone3SoundAction), userInfo: nil, repeats: false)
 
-                    self.zone3MusicBGMAction()
+                    // self.zone3MusicBGMAction()
 
 
                 case "z4":
@@ -1131,7 +1132,7 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
                     self.timer  = Timer.scheduledTimer(timeInterval: self.soundDelay5, target: self, selector:
                         #selector(self.zone4SoundAction), userInfo: nil, repeats: false)
 
-                    self.zone4MusicBGMAction()
+                    // self.zone4MusicBGMAction()
 
 
                 case "z5":
@@ -1141,7 +1142,7 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
                     self.timer  = Timer.scheduledTimer(timeInterval: self.soundDelay5, target: self, selector:
                         #selector(self.zone5SoundAction), userInfo: nil, repeats: false)
 
-                    self.zone5MusicBGMAction()
+                    // self.zone5MusicBGMAction()
 
 
                 default: break

@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseCrashlytics
 
 class ViewController: ExtensionVC {
 
@@ -197,8 +198,8 @@ class ViewController: ExtensionVC {
             
             if error != nil {
 
-                print(error?.localizedDescription as Any)
-                print(error.debugDescription)
+                // print(error?.localizedDescription as Any)
+                //print(error.debugDescription)
                 let alert = UIAlertController(title: "로그인 실패", message: "아이디나 비밀번호를 확인해주세요.", preferredStyle: UIAlertController.Style.alert)
                 let defaultAction = UIAlertAction(title: "OK", style: .destructive, handler : nil)
                 alert.addAction(defaultAction)
@@ -211,7 +212,7 @@ class ViewController: ExtensionVC {
                 return
             } else {
                 // 세션 유지 로그 아웃
-                print("로그인 체크!")
+                // print("로그인 체크!")
                 //print(user as Any)
                 guard let user = user?.user else { return }
                 //print(user.uid)
