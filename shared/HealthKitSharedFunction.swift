@@ -120,22 +120,31 @@ class HealthKitSharedFunction: NSObject {
         
         let heartRateQuery = HKAnchoredObjectQuery(type: heartRateType, predicate: compoundPredicate, anchor: nil, limit: Int(HKObjectQueryNoLimit)) { (query, sampleObjects, deletedObjects, newAnchor, error) in
             
-            guard let newAnchor = newAnchor,
-                let sampleObjects = sampleObjects else {
-                    return
+            if(error != nil){
+                
+            }else {
+                guard let newAnchor = newAnchor,
+                    let sampleObjects = sampleObjects else {
+                        return
+                }
+                self.anchor = newAnchor
+                self.heartRateDelegate?.heartRateUpdated(heartRateSamples: sampleObjects)
             }
-            self.anchor = newAnchor
-            self.heartRateDelegate?.heartRateUpdated(heartRateSamples: sampleObjects)
+            
         }
         
         heartRateQuery.updateHandler = {(query, sampleObjects, deletedObjects, newAnchor, error) -> Void in
-            
-            guard let newAnchor = newAnchor,
-                let sampleObjects = sampleObjects else {
-                    return
+            if(error != nil){
+                
+            }else {
+                guard let newAnchor = newAnchor,
+                    let sampleObjects = sampleObjects else {
+                        return
+                }
+                self.anchor = newAnchor
+                self.heartRateDelegate?.heartRateUpdated(heartRateSamples: sampleObjects)
             }
-            self.anchor = newAnchor
-            self.heartRateDelegate?.heartRateUpdated(heartRateSamples: sampleObjects)
+            
         }
         
         return heartRateQuery
@@ -152,23 +161,31 @@ class HealthKitSharedFunction: NSObject {
         let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [datePredicate])
         
         let heartRateQuery = HKAnchoredObjectQuery(type: activeEnergyBurnedType, predicate: compoundPredicate, anchor: nil, limit: Int(HKObjectQueryNoLimit)) { (query, sampleObjects, deletedObjects, newAnchor, error) in
-            
-            guard let newAnchor = newAnchor,
-                let sampleObjects = sampleObjects else {
-                    return
+            if(error != nil){
+                
+            }else {
+                guard let newAnchor = newAnchor,
+                    let sampleObjects = sampleObjects else {
+                        return
+                }
+                self.anchor = newAnchor
+                self.activeEnergyBurnedDelegate?.activeEnergyBurnedDelegate(activeEnergyBurned: sampleObjects)
             }
-            self.anchor = newAnchor
-            self.activeEnergyBurnedDelegate?.activeEnergyBurnedDelegate(activeEnergyBurned: sampleObjects)
+            
         }
         
         heartRateQuery.updateHandler = {(query, sampleObjects, deletedObjects, newAnchor, error) -> Void in
-            
-            guard let newAnchor = newAnchor,
-                let sampleObjects = sampleObjects else {
-                    return
+            if(error != nil){
+                
+            }else {
+                guard let newAnchor = newAnchor,
+                    let sampleObjects = sampleObjects else {
+                        return
+                }
+                self.anchor = newAnchor
+                self.activeEnergyBurnedDelegate?.activeEnergyBurnedDelegate(activeEnergyBurned: sampleObjects)
             }
-            self.anchor = newAnchor
-            self.activeEnergyBurnedDelegate?.activeEnergyBurnedDelegate(activeEnergyBurned: sampleObjects)
+            
         }
         
         return heartRateQuery
@@ -185,25 +202,33 @@ class HealthKitSharedFunction: NSObject {
         let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [datePredicate])
         
         let walkRunningQuery = HKAnchoredObjectQuery(type: walkRunningType, predicate: compoundPredicate, anchor: nil, limit: Int(HKObjectQueryNoLimit)) { (query, sampleObjects, deletedObjects, newAnchor, error) in
-            
-            guard let newAnchor = newAnchor,
-                let sampleObjects = sampleObjects else {
-                    return
+            if(error != nil){
+                
+            }else {
+                guard let newAnchor = newAnchor,
+                    let sampleObjects = sampleObjects else {
+                        return
+                }
+                self.anchor = newAnchor
+                self.meterDataDelegate?.meterDataUpdated(meterDataSamples: sampleObjects)
             }
-            self.anchor = newAnchor
-            self.meterDataDelegate?.meterDataUpdated(meterDataSamples: sampleObjects)
+            
         }
         
         walkRunningQuery.updateHandler = {(query, sampleObjects, deletedObjects, newAnchor, error) -> Void in
-            
-            guard let newAnchor = newAnchor,
-                let sampleObjects = sampleObjects else {
-                    return
+            if(error != nil){
+                
+            }else{
+                guard let newAnchor = newAnchor,
+                    let sampleObjects = sampleObjects else {
+                        return
+                }
+                
+                // weak self [] 첨부 하기
+                self.anchor = newAnchor
+                self.meterDataDelegate?.meterDataUpdated(meterDataSamples: sampleObjects)
             }
             
-            // weak self [] 첨부 하기
-            self.anchor = newAnchor
-            self.meterDataDelegate?.meterDataUpdated(meterDataSamples: sampleObjects)
         }
         
         return walkRunningQuery
@@ -222,12 +247,16 @@ class HealthKitSharedFunction: NSObject {
         let predicate: NSPredicate? = HKQuery.predicateForSamples(withStart: resultDate, end: Date(), options: HKQueryOptions.strictEndDate)
         
         let squery = HKStatisticsQuery(quantityType: typeHeart!, quantitySamplePredicate: predicate, options: .discreteAverage, completionHandler: {(query: HKStatisticsQuery,result: HKStatistics?, error: Error?) -> Void in
-
+            if(error != nil){
+                
+            }else {
                 let quantity: HKQuantity? = result?.averageQuantity()
                 let beats: Double? = quantity?.doubleValue(for: HKUnit.count().unitDivided(by: HKUnit.minute()))
                 //print("got: \(String(format: "%.f", beats!))")
                 getHeartBeats = "\(String(format: "%.f", beats!))"
                 self.mainAvgHeartRate = getHeartBeats
+            }
+                
 
         })
         healthStore.execute(squery)
@@ -249,14 +278,19 @@ class HealthKitSharedFunction: NSObject {
         
         let squery = HKStatisticsQuery(quantityType: walkRunningType!, quantitySamplePredicate: predicate, options: .discreteAverage, completionHandler: {(query: HKStatisticsQuery,result: HKStatistics?, error: Error?) -> Void in
             
-            //print("result data check... ")
-            //print(result?.averageQuantity())
-            let quantity: HKQuantity? = result?.sumQuantity()
-//            let beats: Double? = quantity?.doubleValue(for: HKUnit.count().unitDivided(by: HKUnit.minute()))
-            let meters: Double? = quantity?.doubleValue(for: HKUnit.meter().unitDivided(by: HKUnit.hour()))
-            //print("meter: \(String(format: "%.f", meters!))")
-            getMeters = "\(String(format: "%.f", meters!))"
-            self.mainAvgMeters = getMeters
+            if(error != nil){
+                
+            }else {
+                //print("result data check... ")
+                //print(result?.averageQuantity())
+                let quantity: HKQuantity? = result?.sumQuantity()
+    //            let beats: Double? = quantity?.doubleValue(for: HKUnit.count().unitDivided(by: HKUnit.minute()))
+                let meters: Double? = quantity?.doubleValue(for: HKUnit.meter().unitDivided(by: HKUnit.hour()))
+                //print("meter: \(String(format: "%.f", meters!))")
+                getMeters = "\(String(format: "%.f", meters!))"
+                self.mainAvgMeters = getMeters
+            }
+            
             
         })
         healthStore.execute(squery)
@@ -335,7 +369,10 @@ class HealthKitSharedFunction: NSObject {
         let weightType = HKSampleType.quantityType(forIdentifier: HKQuantityTypeIdentifier.bodyMass)!
 //        //print("weightType .. data check ..  \(weightType)")
         let query = HKSampleQuery(sampleType: weightType, predicate: nil, limit: Int(HKObjectQueryNoLimit), sortDescriptors: nil) { (query, result, error) in
-            
+                
+            if(error != nil){
+                
+            }else {
                 //print("weightType .. data check ..  \(result?.last)")
                 if let sample = result?.last as? HKQuantitySample{
                     
@@ -352,6 +389,8 @@ class HealthKitSharedFunction: NSObject {
                     
                 }
             
+            }
+                
         }
         healthStore.execute(query)
     }
@@ -364,14 +403,18 @@ class HealthKitSharedFunction: NSObject {
         let predicate = HKQuery.predicateForSamples(withStart: startOfDay, end: now, options: HKQueryOptions.strictEndDate)
         
         let sampleQuery = HKStatisticsQuery(quantityType: todayAvgHeartRateType!, quantitySamplePredicate: predicate, options: .discreteAverage, completionHandler: {(query: HKStatisticsQuery,result: HKStatistics?, error: Error?) -> Void in
-            
-            guard let result = result, let avg = result.averageQuantity() else {
-                return
+            if(error != nil){
+                
+            }else {
+                guard let result = result, let avg = result.averageQuantity() else {
+                    return
+                }
+                
+                let avgHeartRate = avg.doubleValue(for: HKUnit.count().unitDivided(by: HKUnit.minute()))
+                //print("avgHeartRate : \(String(format: "%.f", avgHeartRate))")
+                self.todayAvgHeartRate = "\(String(format: "%.f", avgHeartRate))"
             }
             
-            let avgHeartRate = avg.doubleValue(for: HKUnit.count().unitDivided(by: HKUnit.minute()))
-            //print("avgHeartRate : \(String(format: "%.f", avgHeartRate))")
-            self.todayAvgHeartRate = "\(String(format: "%.f", avgHeartRate))"
             
         })
         
@@ -416,19 +459,34 @@ class HealthKitSharedFunction: NSObject {
         let predicate = HKQuery.predicateForActivitySummary(with: dateComponents)
         
         let query = HKActivitySummaryQuery(predicate: predicate) { (query, summaries, error) in
-            for summary in summaries! {
-                let activeEnergyBurned = summary.activeEnergyBurned.doubleValue(for: HKUnit.kilocalorie())
-                let activeEnergyBurnedGoal = summary.activeEnergyBurnedGoal.doubleValue(for: HKUnit.kilocalorie())
-//                let activeEnergyBurnGoalPercent = round(activeEnergyBurned/activeEnergyBurnedGoal)
+            
+            if(error != nil){
                 
-                //print("activeEnergyBurned")
-                //print(activeEnergyBurned)
-                //print("activeEnergyBurnedGoal")
-                //print(activeEnergyBurnedGoal)
-                
-                self.todayActiveEnergyBurned = "\(String(format: "%.f", activeEnergyBurned))"
-                self.todayActiveEnergyBurnedGoal = "\(String(format: "%.f", activeEnergyBurnedGoal))"
+            }else {
+                for summary in summaries! {
+                    
+                    if(summary != nil){
+                        let activeEnergyBurned = summary.activeEnergyBurned.doubleValue(for: HKUnit.kilocalorie())
+                        let activeEnergyBurnedGoal = summary.activeEnergyBurnedGoal.doubleValue(for: HKUnit.kilocalorie())
+                        
+                        self.todayActiveEnergyBurned = "\(String(format: "%.f", activeEnergyBurned))"
+                        self.todayActiveEnergyBurnedGoal = "\(String(format: "%.f", activeEnergyBurnedGoal))"
+                    }else {
+                        self.todayActiveEnergyBurned = "0"
+                        self.todayActiveEnergyBurnedGoal = "0"
+                    }
+                    
+    //                let activeEnergyBurnGoalPercent = round(activeEnergyBurned/activeEnergyBurnedGoal)
+                    
+                    //print("activeEnergyBurned")
+                    //print(activeEnergyBurned)
+                    //print("activeEnergyBurnedGoal")
+                    //print(activeEnergyBurnedGoal)
+                    
+                    
+                }
             }
+            
         }
         
         healthStore.execute(query)
