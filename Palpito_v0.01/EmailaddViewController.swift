@@ -11,7 +11,7 @@ import Firebase
 import FirebaseAuth
 import FirebaseFirestoreSwift
 
-class EmailAddViewController: UIViewController, UITextFieldDelegate {
+class EmailAddViewController: ExtensionVC, UITextFieldDelegate  {
     
     var mUserCreate = UserCreate()
     var nextdata = UserInfo()
@@ -19,6 +19,8 @@ class EmailAddViewController: UIViewController, UITextFieldDelegate {
     var genderVal:String?
     var emailCheckYn:Bool = false
     var informationAgreeCheckYn:Bool = false
+    
+    var sv:UIView = UIView.init()
     
     
     @IBOutlet weak var emailTextField: UITextField!
@@ -31,32 +33,41 @@ class EmailAddViewController: UIViewController, UITextFieldDelegate {
     
     
 //    var datePicker = UIDatePicker()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         db = Firestore.firestore()
         
         let datePickerView = UIDatePicker()
+        datePickerView.sizeToFit()
+        
+        if #available(iOS 13.4, *) {
+            datePickerView.preferredDatePickerStyle = .wheels
+        } else {
+            // Fallback on earlier versions
+        }
         
         datePickerView.datePickerMode = .date
         datePickerView.addTarget(self, action: #selector(EmailAddViewController.onDatePickerValueChanged(sender:)), for: UIControl.Event.valueChanged)
         datePickerView.locale = Locale(identifier: "ko_KR")
+        datePickerView.autoresizingMask = UIView.AutoresizingMask.flexibleHeight
         
         birthTextField.inputView = datePickerView
         
         let toolBar = UIToolbar()
         toolBar.barStyle = UIBarStyle.default
         toolBar.isTranslucent = true
+        toolBar.sizeToFit()
         let space = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
-        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItem.Style.done, target: self, action: #selector(EmailAddViewController.doneDatePickerPressed))
+        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItem.Style.plain, target: self, action: #selector(EmailAddViewController.doneDatePickerPressed))
         // Do any additional setup after loading the view.
         toolBar.setItems([space,doneButton], animated: false)
         toolBar.isUserInteractionEnabled = true
-        toolBar.sizeToFit()
         
         birthTextField.inputAccessoryView = toolBar
-        //self.view.addSubview(birthTextField)
+        
+//        self.view.addSubview(birthTextField)
         self.genderVal = "F"
         
         let scale = view.bounds.width / userCreateView.bounds.width
@@ -104,13 +115,14 @@ class EmailAddViewController: UIViewController, UITextFieldDelegate {
         let backItem = UIBarButtonItem()
         backItem.title = ""
         navigationItem.backBarButtonItem = backItem
+        self.sv = UIViewController.displaySpinner(onView: self.view)
         
         guard let birthText = birthTextField.text else {
             
             let alert = UIAlertController(title: "회원가입 실패", message: "생년월일을 입력해주세요.", preferredStyle: UIAlertController.Style.alert)
             let defaultAction = UIAlertAction(title: "OK", style: .destructive, handler : nil)
             alert.addAction(defaultAction)
-            
+            self.sv.removeFromSuperview()
             present(alert, animated: false, completion: nil)
             
             return
@@ -129,7 +141,7 @@ class EmailAddViewController: UIViewController, UITextFieldDelegate {
             let alert = UIAlertController(title: "회원가입 실패", message: "이메일을 확인해주세요.", preferredStyle: UIAlertController.Style.alert)
             let defaultAction = UIAlertAction(title: "OK", style: .destructive, handler : nil)
             alert.addAction(defaultAction)
-            
+            self.sv.removeFromSuperview()
             present(alert, animated: false, completion: nil)
             self.emailCheckYn = false
             
@@ -142,7 +154,7 @@ class EmailAddViewController: UIViewController, UITextFieldDelegate {
             let alert = UIAlertController(title: "회원가입 실패", message: "이메일 중복조회 해주세요.", preferredStyle: UIAlertController.Style.alert)
             let defaultAction = UIAlertAction(title: "OK", style: .destructive, handler : nil)
             alert.addAction(defaultAction)
-            
+            self.sv.removeFromSuperview()
             present(alert, animated: false, completion: nil)
             
             return
@@ -154,7 +166,7 @@ class EmailAddViewController: UIViewController, UITextFieldDelegate {
             let alert = UIAlertController(title: "회원가입 실패", message: "비밀번호를 확인해주세요.", preferredStyle: UIAlertController.Style.alert)
             let defaultAction = UIAlertAction(title: "OK", style: .destructive, handler : nil)
             alert.addAction(defaultAction)
-            
+            self.sv.removeFromSuperview()
             present(alert, animated: false, completion: nil)
             return
         }
@@ -163,7 +175,7 @@ class EmailAddViewController: UIViewController, UITextFieldDelegate {
             let alert = UIAlertController(title: "회원가입 실패", message: "생년월일을 입력해주세요.", preferredStyle: UIAlertController.Style.alert)
             let defaultAction = UIAlertAction(title: "OK", style: .destructive, handler : nil)
             alert.addAction(defaultAction)
-            
+            self.sv.removeFromSuperview()
             present(alert, animated: false, completion: nil)
             
             return
@@ -174,7 +186,7 @@ class EmailAddViewController: UIViewController, UITextFieldDelegate {
             let alert = UIAlertController(title: "회원가입 실패", message: "닉네임을 입력해주세요.", preferredStyle: UIAlertController.Style.alert)
             let defaultAction = UIAlertAction(title: "OK", style: .destructive, handler : nil)
             alert.addAction(defaultAction)
-            
+            self.sv.removeFromSuperview()
             present(alert, animated: false, completion: nil)
             
             return
@@ -186,7 +198,7 @@ class EmailAddViewController: UIViewController, UITextFieldDelegate {
             let alert = UIAlertController(title: "회원가입 실패", message: "약관 동의 체크해야 회원가입이 가능합니다.", preferredStyle: UIAlertController.Style.alert)
             let defaultAction = UIAlertAction(title: "OK", style: .destructive, handler : nil)
             alert.addAction(defaultAction)
-            
+            self.sv.removeFromSuperview()
             present(alert, animated: false, completion: nil)
             
             return
@@ -211,12 +223,14 @@ class EmailAddViewController: UIViewController, UITextFieldDelegate {
                 self!.db.collection("user_info").document(userID).setData(data) { err in
                     if let err = err {
                         print("Error writing document: \(err)")
+                        
                     } else {
                         // print("Document successfully written!")
                         // 여기서 다음 화면으로 넘어아기
                         let storyboard = UIStoryboard(name: "SignUp", bundle: nil).instantiateViewController(withIdentifier: "sbPopUpID") as! PopUpViewController
                         storyboard.modalPresentationStyle = .fullScreen
                         //self.modalPresentationStyle = .fullScreen
+                        self!.sv.removeFromSuperview()
                         self!.present(storyboard, animated: true, completion: nil)
                     }
                 }
@@ -225,7 +239,7 @@ class EmailAddViewController: UIViewController, UITextFieldDelegate {
                 let alert = UIAlertController(title: "회원가입 실패", message: "이메일이나 비밀번호, 그외 내용을 확인해주세요.", preferredStyle: UIAlertController.Style.alert)
                 let defaultAction = UIAlertAction(title: "OK", style: .destructive, handler : nil)
                 alert.addAction(defaultAction)
-                
+                self!.sv.removeFromSuperview()
                 self?.present(alert, animated: false, completion: nil)
                 return
             }
