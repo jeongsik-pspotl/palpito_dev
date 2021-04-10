@@ -13,7 +13,7 @@ class StartPopupController: UIViewController, WCSessionDelegate  {
     
     @IBOutlet weak var startPopupView: UIView!
     
-    weak var session = WCSession.default
+    weak var wcSession = WCSession.default
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,13 +23,45 @@ class StartPopupController: UIViewController, WCSessionDelegate  {
         startPopupView.transform = CGAffineTransform(scaleX: scale, y: scale)
         
         if WCSession.isSupported() {
-            session?.delegate = self
-            session?.activate()
+            wcSession?.delegate = self
+            wcSession?.activate()
+            let data: [String: Any] = ["logincheck": "Yes" as String]
+            UserDefaults.standard.set("Yes" , forKey: "logincheck")
+            //wcSession?.transferUserInfo(data)
+            
+            tryWatchSendMessage(message: data)
+            
+            print("session activate")
+        } else {
+            //print("session error")
+        }
+        
+        
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if WCSession.isSupported() {
+            wcSession = WCSession.default
+            wcSession!.delegate = self
+            wcSession!.activate()
+            
+            let data: [String: Any] = ["logincheck": "Yes" as String]
+            UserDefaults.standard.set("Yes" , forKey: "logincheck")
+            
+            tryWatchSendMessage(message: data)
+//            wcSession?.transferUserInfo(data)
+//            wcSession?.sendMessage(data, replyHandler: nil, errorHandler: { (Error) in
+//
+//            })
             
             //print("session activate")
         } else {
             //print("session error")
         }
+        
+        
+        
         
     }
     
@@ -101,6 +133,45 @@ class StartPopupController: UIViewController, WCSessionDelegate  {
     }
     
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) { }
+        
     
+    func tryWatchSendMessage(message: [String : Any]) {
+        
+        if let validSession = self.wcSession {
+            //let data: [String: Any] = ["logincheck": "No" as Any]
+            //UserDefaults.standard.set("No" , forKey: "logincheck")
+            validSession.transferUserInfo(message)
+            
+        }
+        
+        if self.wcSession != nil && self.wcSession?.activationState == .activated {
+            if self.wcSession?.isReachable == true {
+                self.wcSession?.sendMessage(message, replyHandler: nil) { (error) -> Void in
+                             // If the message failed to send, queue it up for future transfer
+                             print(" StandByWorkoutInterfaceController error : \(error)")
+                             self.wcSession?.transferUserInfo(message)
+                }
+            }
+        }
+        
+//        else if self.wcSession != nil && self.wcSession?.activationState == .inactive  {
+//
+//            self.wcSession?.transferUserInfo(message)
+//            
+//        }else if self.wcSession != nil && self.wcSession?.activationState == .none {
+//            self.wcSession?.sendMessage(message, replyHandler: nil) { (error) -> Void in
+//                         // If the message failed to send, queue it up for future transfer
+//                         print(" StandByWorkoutInterfaceController error : \(error)")
+//                         self.wcSession?.transferUserInfo(message)
+//            }
+//        }else {
+//            self.wcSession?.sendMessage(message, replyHandler: nil) { (error) -> Void in
+//                         // If the message failed to send, queue it up for future transfer
+//                         print(" StandByWorkoutInterfaceController error : \(error)")
+//                         self.wcSession?.transferUserInfo(message)
+//            }
+//        }
+            
+    }
     
 }
