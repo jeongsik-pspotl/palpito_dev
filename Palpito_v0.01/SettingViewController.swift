@@ -8,13 +8,33 @@
 
 import UIKit
 import FirebaseAuth
+import WatchConnectivity
 
-class SettingViewController: UITableViewController {
+@available(iOS 13.4, *)
+class SettingViewController: UITableViewController, WCSessionDelegate {
+    
+    
+    func sessionDidBecomeInactive(_ session: WCSession) {
+        
+    }
+    
+    func sessionDidDeactivate(_ session: WCSession) {
+        
+    }
+    
+    
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+        
+    }
+    
+    
     
     //var list = [MovieVO]()
     var dataset = [
         ("계정 정보"),("개인 정보 공개 범위"),("로그아웃")
     ]
+    
+    weak var session:WCSession?
     
     @IBOutlet weak var myTableView: UITableView!
     let username = "pspotl"
@@ -56,6 +76,24 @@ class SettingViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if WCSession.isSupported() {
+            session = WCSession.default
+            session!.delegate = self
+            session!.activate()
+            
+            //print("session activate")
+            if session!.isPaired != true {
+                //print("Apple Watch is not paired")
+            }else {
+                //print("Apple Watch is paired")
+                
+            }
+        } else {
+            //print("session error")
+        }
+        
+        
         //self.title = "Palpito"
         //self.navigationController?.navigationBar.barTintColor = .white
                 
@@ -75,6 +113,12 @@ class SettingViewController: UITableViewController {
         // Do any additional setup after loading the view.
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        
+        
+        
+    }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //print("선택된 행은 \(indexPath.row) 번째 입니다.")
         
@@ -90,7 +134,15 @@ class SettingViewController: UITableViewController {
                 do {
                     try firebaseAuth.signOut()
                     // 로그인 화면 이동..
-                    UserDefaults.standard.set("notSelected", forKey: "isAutoLoginCheck");
+                    UserDefaults.standard.set("notSelected", forKey: "isAutoLoginCheck")
+                    
+                    if let validSession = self.session {
+                        let data: [String: Any] = ["logincheck": "No" as Any]
+                        UserDefaults.standard.set("No" , forKey: "logincheck")
+                        validSession.transferUserInfo(data)
+                        
+                    }
+                    
                     // self.dismiss(animated: true, completion: nil)
                     let storyboard = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "StartViewSb") as! ViewController
                     storyboard.modalPresentationStyle = .fullScreen
