@@ -317,103 +317,19 @@ public class InterfaceController: WKInterfaceController, WCSessionDelegate {
         
         // 2분이 지나고 심박구간 카운트 하여 점수 산정 알고리즘
         let scoreTimeStatus = self.scoreTime! % 120
-        //print("scoreTimeStatus : \(scoreTimeStatus)")
         if scoreTimeStatus == 0 {
             self.scoreResultTimer()
+            self.tension2MinTimer()
         }
         
         // 해당 구간에서 3분동안 구간에 도달 했을시 음성 피드백 실행하기
         let tensionTimeZoneStatus = self.scoreTime! % 180
-        //print("tensionTimeZoneStatus : \(tensionTimeZoneStatus)")
         if tensionTimeZoneStatus == 0 {
-            //self.scoreResultTimer()
-            self.tensionTimer()
+            // self.tensionTimer()// as is 소스
+            self.tensionStatus3MinTimer()
         }
         
         // 해당 구간에서 3분동안 구간에 도달 했을시 음성 피드백 실행하기
-        
-        // 수정부분 운동 구간 1 상태
-//        if self.zoneStatus1LowTension == 24 {
-//           zoneStatusTensionVoice = ["zoneStatusTensionVoice":"zone1Voice"]
-//            wcSession!.transferUserInfo(zoneStatusTensionVoice!)
-//                self.zoneStatus1LowTension = 0
-//                self.zoneStatus2LowTension = 0
-//                self.zoneStatusGoodjob = 0
-//                self.zoneStatus4HighTension = 0
-//                self.zoneStatus5HighTension = 0
-//        }
-//
-//        if self.zoneStatus2LowTension == 24 {
-//            zoneStatusTensionVoice = ["zoneStatusTensionVoice":"zone2Voice"]
-////            wcSession!.sendMessage(zoneStatusTensionVoice!, replyHandler: nil, errorHandler: nil)
-//            wcSession!.transferUserInfo(zoneStatusTensionVoice!)
-//
-//            self.zoneStatus1LowTension = 0
-//            self.zoneStatus2LowTension = 0
-//            self.zoneStatusGoodjob = 0
-//            self.zoneStatus4HighTension = 0
-//            self.zoneStatus5HighTension = 0
-//
-//        }
-
-//        if self.zoneStatusGoodjob == 36 {
-//            zoneStatusTensionVoice = ["zoneStatusTensionVoice":"zone3Voice"]
-////            wcSession!.sendMessage(zoneStatusTensionVoice!, replyHandler: nil, errorHandler: nil)
-//            wcSession!.transferUserInfo(zoneStatusTensionVoice!)
-//
-//            self.zoneStatus1LowTension = 0
-//            self.zoneStatus2LowTension = 0
-//            self.zoneStatusGoodjob = 0
-//            self.zoneStatus4HighTension = 0
-//            self.zoneStatus5HighTension = 0
-//
-//        }
-
-//        if self.zoneStatus4HighTension == 36 {
-//            zoneStatusTensionVoice = ["zoneStatusTensionVoice":"zone4Voice"]
-////            wcSession!.sendMessage(zoneStatusTensionVoice!, replyHandler: nil, errorHandler: nil)
-//            wcSession!.transferUserInfo(zoneStatusTensionVoice!)
-//
-//            self.zoneStatus1LowTension = 0
-//            self.zoneStatus2LowTension = 0
-//            self.zoneStatusGoodjob = 0
-//            self.zoneStatus4HighTension = 0
-//            self.zoneStatus5HighTension = 0
-//
-//        }
-        
-//        if self.zoneStatus5HighTension == 36 {
-//            zoneStatusTensionVoice = ["zoneStatusTensionVoice":"zone4Voice"]
-//            //            wcSession!.sendMessage(zoneStatusTensionVoice!, replyHandler: nil, errorHandler: nil)
-//            wcSession!.transferUserInfo(zoneStatusTensionVoice!)
-//
-//            self.zoneStatus1LowTension = 0
-//            self.zoneStatus2LowTension = 0
-//            self.zoneStatusGoodjob = 0
-//            self.zoneStatus4HighTension = 0
-//            self.zoneStatus5HighTension = 0
-//
-//        }
-        
-          // 높았던 심박수가 갑자기 존 2로 바뀌었을때 재수정해야함 기능 중지!
-//        if self.zoneStatus1LowTension == 1 && (self.zoneStatus1LowTension < self.zoneStatus2LowTension || self.zoneStatus1LowTension < self.zoneStatusGoodjob || self.zoneStatus1LowTension < self.zoneStatus4HighTension || self.scoreZone1Cnt < self.zoneStatus5HighTension) {
-//            zoneStatusTensionVoice = ["zoneStatusTensionVoice":"zone1Voice"]
-//        //            wcSession!.sendMessage(zoneStatusTensionVoice!, replyHandler: nil, errorHandler: nil)
-//            wcSession!.transferUserInfo(zoneStatusTensionVoice!)
-//
-//            self.zoneStatus2LowTension = 0
-//            self.zoneStatusGoodjob = 0
-//            self.zoneStatus4HighTension = 0
-//            self.zoneStatus5HighTension = 0
-//
-//        }
-        
-        // 높았던 심박수가 갑자기 존 2로 바뀌었을때 재수정해야함 기능 중지!
-//        if self.scoreZone1Cnt == 1 && (self.scoreZone1Cnt < self.scoreZone2Cnt || self.scoreZone1Cnt < self.scoreZone3Cnt || self.scoreZone1Cnt < self.scoreZone4Cnt || self.scoreZone1Cnt < self.scoreZone5Cnt) {
-//            zoneStatusTensionVoice = ["zoneStatusTensionVoice":"zone1Voice"]
-//            wcSession!.sendMessage(zoneStatusTensionVoice!, replyHandler: nil, errorHandler: nil)
-//            wcSession!.transferUserInfo(zoneStatusTensionVoice!)
-//        }
         
         //print(" scoreResultZone : \(self.scoreResultZone) ")
     }
@@ -484,161 +400,121 @@ public class InterfaceController: WKInterfaceController, WCSessionDelegate {
         
     }
     
-    // 운동 피드백 산정
+    // 운동 피드백 산정 2분기준 as-is
     func tensionTimer(){
         
         var zoneStatusTensionVoice:[String:String]?
         
         // tensionZoneStatus == "zt1"
-        //if self.zoneStatus1LowTension == 24 {
-            if self.tensionZoneStatus == "zt1" {
-                   zoneStatusTensionVoice = ["zoneStatusTensionVoice":"zone1Voice"]
-                // change wcssession
-                self.tryWatchSendMessage(message: zoneStatusTensionVoice!)
-                    //wcSession!.transferUserInfo(zoneStatusTensionVoice!)
-//                        self.zoneStatus1LowTension = 0
-//                        self.zoneStatus2LowTension = 0
-//                        self.zoneStatusGoodjob = 0
-//                        self.zoneStatus4HighTension = 0
-//                        self.zoneStatus5HighTension = 0
-                }
+        if self.tensionZoneStatus == "zt1" {
+            zoneStatusTensionVoice = ["zoneStatusTensionVoice":"zone1Voice"]
+            // change wcssession
+            self.tryWatchSendMessage(message: zoneStatusTensionVoice!)
+                    
+        }
                 
          if self.tensionZoneStatus == "zt2" {
-//                if self.zoneStatus2LowTension == 24 {
-                    zoneStatusTensionVoice = ["zoneStatusTensionVoice":"zone2Voice"]
-        //            wcSession!.sendMessage(zoneStatusTensionVoice!, replyHandler: nil, errorHandler: nil)
+            zoneStatusTensionVoice = ["zoneStatusTensionVoice":"zone2Voice"]
             // change wcssession
             self.tryWatchSendMessage(message: zoneStatusTensionVoice!)
-                    //wcSession!.transferUserInfo(zoneStatusTensionVoice!)
-
-//                    self.zoneStatus1LowTension = 0
-//                    self.zoneStatus2LowTension = 0
-//                    self.zoneStatusGoodjob = 0
-//                    self.zoneStatus4HighTension = 0
-//                    self.zoneStatus5HighTension = 0
-
-                }
+                    
+        }
 
         if self.tensionZoneStatus == "zt3" {
-//                if self.zoneStatusGoodjob == 36 {
-                    zoneStatusTensionVoice = ["zoneStatusTensionVoice":"zone3Voice"]
-        //            wcSession!.sendMessage(zoneStatusTensionVoice!, replyHandler: nil, errorHandler: nil)
-            // change wcssession
+            zoneStatusTensionVoice = ["zoneStatusTensionVoice":"zone3Voice"]
             self.tryWatchSendMessage(message: zoneStatusTensionVoice!)
-                    //wcSession!.transferUserInfo(zoneStatusTensionVoice!)
-//                            if self.zoneStatusGoodjob == 1 {
-                             // 햅틱 기동
-                             WKInterfaceDevice.current().play(.notification)
-//                           }
-//                    self.zoneStatus1LowTension = 0
-//                    self.zoneStatus2LowTension = 0
-//                    self.zoneStatusGoodjob = 0
-//                    self.zoneStatus4HighTension = 0
-//                    self.zoneStatus5HighTension = 0
+            // 햅틱 기동
+            WKInterfaceDevice.current().play(.notification)
 
-                }
+        }
         
         if self.tensionZoneStatus == "zt4" {
-//                if self.zoneStatus4HighTension == 36 {
-                    zoneStatusTensionVoice = ["zoneStatusTensionVoice":"zone4Voice"]
-        //            wcSession!.sendMessage(zoneStatusTensionVoice!, replyHandler: nil, errorHandler: nil)
+            zoneStatusTensionVoice = ["zoneStatusTensionVoice":"zone4Voice"]
+            self.tryWatchSendMessage(message: zoneStatusTensionVoice!)
+            // 햅틱 기동
+            WKInterfaceDevice.current().play(.notification)
+                    
+        }
+        
+        if self.tensionZoneStatus == "zt5" {
+            zoneStatusTensionVoice = ["zoneStatusTensionVoice":"zone5Voice"]
+            self.tryWatchSendMessage(message: zoneStatusTensionVoice!)
+                    
+        }
+    }
+    
+    // 운동 피드백 3분 산정 zone 3,4
+    func tensionStatus3MinTimer(){
+        var zoneStatusTensionVoice:[String:String]?
+
+        if self.tensionZoneStatus == "zt3" {
+            zoneStatusTensionVoice = ["zoneStatusTensionVoice":"zone3Voice"]
+            self.tryWatchSendMessage(message: zoneStatusTensionVoice!)
+            // 햅틱 기동
+            WKInterfaceDevice.current().play(.notification)
+
+        }
+        
+        if self.tensionZoneStatus == "zt4" {
+            zoneStatusTensionVoice = ["zoneStatusTensionVoice":"zone4Voice"]
+            self.tryWatchSendMessage(message: zoneStatusTensionVoice!)
+            // 햅틱 기동
+            WKInterfaceDevice.current().play(.notification)
+                    
+        }
+        
+    }
+    
+    // 운동 피드백 산정 2분기준 1,2,5
+    func tension2MinTimer(){
+        
+        var zoneStatusTensionVoice:[String:String]?
+        
+        // tensionZoneStatus == "zt1"
+        if self.tensionZoneStatus == "zt1" {
+            zoneStatusTensionVoice = ["zoneStatusTensionVoice":"zone1Voice"]
             // change wcssession
             self.tryWatchSendMessage(message: zoneStatusTensionVoice!)
-                    //wcSession!.transferUserInfo(zoneStatusTensionVoice!)
-
-//                    self.zoneStatus1LowTension = 0
-//                    self.zoneStatus2LowTension = 0
-//                    self.zoneStatusGoodjob = 0
-//                    self.zoneStatus4HighTension = 0
-//                    self.zoneStatus5HighTension = 0
-
-                }
+                    
+        }
+                
+         if self.tensionZoneStatus == "zt2" {
+            zoneStatusTensionVoice = ["zoneStatusTensionVoice":"zone2Voice"]
+            // change wcssession
+            self.tryWatchSendMessage(message: zoneStatusTensionVoice!)
+                    
+        }
         
-                if self.tensionZoneStatus == "zt5" {
-//                if self.zoneStatus5HighTension == 36 {
-                    zoneStatusTensionVoice = ["zoneStatusTensionVoice":"zone4Voice"]
-                    //            wcSession!.sendMessage(zoneStatusTensionVoice!, replyHandler: nil, errorHandler: nil)
-                    // change wcssession
-                    self.tryWatchSendMessage(message: zoneStatusTensionVoice!)
-                    //wcSession!.transferUserInfo(zoneStatusTensionVoice!)
-
-//                    self.zoneStatus1LowTension = 0
-//                    self.zoneStatus2LowTension = 0
-//                    self.zoneStatusGoodjob = 0
-//                    self.zoneStatus4HighTension = 0
-//                    self.zoneStatus5HighTension = 0
-
-                }
+        if self.tensionZoneStatus == "zt5" {
+            zoneStatusTensionVoice = ["zoneStatusTensionVoice":"zone5Voice"]
+            self.tryWatchSendMessage(message: zoneStatusTensionVoice!)
+                    
+        }
     }
     
     // 운동 점수 산정
     func scoreResultTimer(){
-//        //print("self.scoreZone1Cnt : \(self.scoreZone1Cnt)")
-//        //print("self.scoreZone2Cnt : \(self.scoreZone2Cnt)")
-//        //print("self.scoreZone3Cnt : \(self.scoreZone3Cnt)")
-//        //print("self.scoreZone4Cnt : \(self.scoreZone4Cnt)")
-//        //print("self.scoreZone5Cnt : \(self.scoreZone5Cnt)")
-//        //print("as is score : \(self.scoreResultZone)")
-        // self.zoneStatus
-//        if self.scoreZone1Cnt > (self.scoreZone2Cnt + self.scoreZone3Cnt + self.scoreZone4Cnt + self.scoreZone5Cnt) {
+        
         if self.zoneStatus == "z1" {
             // zone 1 구간이 제일 많은 경우
             self.scoreResultZone += 1
             
-            // 존구간 카운트 초기화
-//            self.scoreZone1Cnt = 0
-//            self.scoreZone2Cnt = 0
-//            self.scoreZone3Cnt = 0
-//            self.scoreZone4Cnt = 0
-//            self.scoreZone5Cnt = 0
-        
-//        }else if self.scoreZone2Cnt > (self.scoreZone1Cnt + self.scoreZone3Cnt + self.scoreZone4Cnt + self.scoreZone5Cnt) {
         }else if self.zoneStatus == "z2" {
             // zone 2 구간이 제일 많은 경우
             self.scoreResultZone += 3
             
-            // 존구간 카운트 초기화
-//            self.scoreZone1Cnt = 0
-//            self.scoreZone2Cnt = 0
-//            self.scoreZone3Cnt = 0
-//            self.scoreZone4Cnt = 0
-//            self.scoreZone5Cnt = 0
-            
-        //}else if self.scoreZone3Cnt > (self.scoreZone1Cnt + self.scoreZone2Cnt + self.scoreZone4Cnt + self.scoreZone5Cnt) {
         }else if self.zoneStatus == "z3" {
             // zone 3 구간이 제일 많은 경우
             self.scoreResultZone += 10
             
-            // 존구간 카운트 초기화
-//            self.scoreZone1Cnt = 0
-//            self.scoreZone2Cnt = 0
-//            self.scoreZone3Cnt = 0
-//            self.scoreZone4Cnt = 0
-//            self.scoreZone5Cnt = 0
-        
-        //}else if self.scoreZone4Cnt > (self.scoreZone1Cnt + self.scoreZone2Cnt + self.scoreZone3Cnt + self.scoreZone5Cnt) {
         }else if self.zoneStatus == "z4" {
             // zone 4 구간이 제일 많은 경우
             self.scoreResultZone += 12
             
-            // 존구간 카운트 초기화
-//            self.scoreZone1Cnt = 0
-//            self.scoreZone2Cnt = 0
-//            self.scoreZone3Cnt = 0
-//            self.scoreZone4Cnt = 0
-//            self.scoreZone5Cnt = 0
-        
-        //}else if self.scoreZone5Cnt > (self.scoreZone1Cnt + self.scoreZone2Cnt + self.scoreZone3Cnt + self.scoreZone4Cnt) {
         }else if self.zoneStatus == "z5" {
             // zone 5 구간이 제일 많은 경우 | 추후에 수정이 필요함.
             self.scoreResultZone += 3
             
-            // 존구간 카운트 초기화
-//            self.scoreZone1Cnt = 0
-//            self.scoreZone2Cnt = 0
-//            self.scoreZone3Cnt = 0
-//            self.scoreZone4Cnt = 0
-//            self.scoreZone5Cnt = 0
         }
         
         //print("to be score : \(self.scoreResultZone)")
@@ -809,9 +685,7 @@ extension InterfaceController: ActiveEnergyBurnedDelegate {
             
             let msg = ["StringValueKcalData" : "\(String(format: "%.01f", self.totalSum))"]
             // change
-             self.tryWatchSendMessage(message: msg as [String : Any])
-            //self.wcSession!.transferUserInfo(msg)
-            //self.wcSession!.sendMessage(msg, replyHandler: nil, errorHandler: {error in //print(error.localizedDescription)})
+            self.tryWatchSendMessage(message: msg as [String : Any])
         }
         
     }
@@ -1010,38 +884,28 @@ extension InterfaceController: HeartRateDelegate {
         
     }
     
-     func tryWatchSendMessage(message: [String : Any]) {
-           
-               if #available(watchOSApplicationExtension 6.0, *) {
-                    if self.wcSession != nil && self.wcSession?.activationState == .activated {
-                       if self.wcSession?.isReachable == true {
-                           self.wcSession?.sendMessage(message, replyHandler: nil) { (error) -> Void in
-                               // If the message failed to send, queue it up for future transfer
-                               //print(" StandByWorkoutInterfaceController error : \(error)")
-                               self.wcSession?.transferUserInfo(message)
-                           }
-                       }
-                    } else if self.wcSession != nil && self.wcSession?.activationState == .inactive  {
-                      self.wcSession?.transferUserInfo(message)
-                    }
-               } else {
-                    // Fallback on earlier versions
-                    if self.wcSession != nil && self.wcSession?.activationState == .activated {
-                       if self.wcSession?.isReachable == true {
-                            self.wcSession?.sendMessage(message, replyHandler: nil) { (error) -> Void in
-                            //print(" StandByWorkoutInterfaceController error : \(error)")
-                                          // If the message failed to send, queue it up for future transfer
-                                          //self.wcSession?.transferUserInfo(message)
-                            }
-                       } else {
-                           self.wcSession?.transferUserInfo(message)
-                       }
-                    } else if self.wcSession != nil && self.wcSession?.activationState == .inactive {
+    func tryWatchSendMessage(message: [String : Any]) {
+        // 해당 구간이 에러 일 확률이 크다 추후에 수정해야할 것이다.
+       if self.wcSession != nil && self.wcSession?.activationState == .activated {
+               if self.wcSession?.isReachable == true {
+                   self.wcSession?.sendMessage(message, replyHandler: nil) { (error) -> Void in
+                       // If the message failed to send, queue it up for future transfer
+                       //print(" StandByWorkoutInterfaceController error : \(error)")
                        self.wcSession?.transferUserInfo(message)
-                    }
+                   }
                }
+        } else if let validSession = self.wcSession {
+            //let data: [String: Any] = ["logincheck": "No" as Any]
+            //UserDefaults.standard.set("No" , forKey: "logincheck")
+            validSession.transferUserInfo(message)
+
+        } else if self.wcSession != nil && self.wcSession?.activationState == .inactive  {
+            self.wcSession?.transferUserInfo(message)
+        }else {
+           self.wcSession?.transferUserInfo(message)
+        }
               
-       }
+    }
 
     
     
