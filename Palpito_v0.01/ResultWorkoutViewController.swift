@@ -9,6 +9,9 @@
 import UIKit
 import WatchConnectivity
 import CoreData
+import Firebase
+import FirebaseDatabase
+import FirebaseFirestore
 
 class ResultWorkoutViewController: UIViewController, WCSessionDelegate {
 
@@ -20,7 +23,14 @@ class ResultWorkoutViewController: UIViewController, WCSessionDelegate {
     
     weak var session:WCSession?
     
+    var resultWorkoutArray = [ResultWorkOut]()
+    
+    var ref : DatabaseReference! = Database.database().reference().child("user_exercise")
+    var db : Firestore!
+    
+    let today = Date()
     var stageLevel = ""
+    var resultSendToday:String = ""
     var avgHeartRate: String?
     var totalWorkOutTime: String?
     var totalcalBurn: String?
@@ -42,19 +52,39 @@ class ResultWorkoutViewController: UIViewController, WCSessionDelegate {
             session!.delegate = self
             session!.activate()
             
-            ////print("session activate")
         } else {
             //print("session error")
         }
         
+        db = Firestore.firestore()
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy.MM.dd"
+        
+        self.resultSendToday = dateFormatter.string(from: today)
+        
+        if let myStage = UserDefaults.standard.string(forKey: "myStage"){
+            self.stageLevel = myStage
+        }else {
+            UserDefaults.standard.set("SL2" , forKey: "myStage")
+            self.stageLevel = "SL2"
+        }
+        
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "ResultWorkOut")
+        let fetchRequest: NSFetchRequest<ResultWorkOut> = ResultWorkOut.fetchRequest()
+        let predicate = NSPredicate(format: "todayDate == %@", self.resultSendToday)
+        
         request.returnsObjectsAsFaults = false
+        fetchRequest.predicate = predicate
         
         do {
             
             let status = try PersistenceService.context.fetch(request)
+            let resultWorkoutStatus = try PersistenceService.context.fetch(fetchRequest)
+            self.resultWorkoutArray = resultWorkoutStatus
             for data in status as! [NSManagedObject]
             {
+//                stageLevel = (data.value(forKey: "userLevel") as? String)!
                 avgHeartRate = data.value(forKey: "avgHeartRate") as? String
                 totalWorkOutTime = data.value(forKey: "totalWorkOutTime") as? String
                 totalcalBurn = data.value(forKey: "totalcalBurn") as? String
@@ -67,7 +97,7 @@ class ResultWorkoutViewController: UIViewController, WCSessionDelegate {
                 self.resultHeartRateText.text = avgHeartRate
             }
             
-            if totalScore != nil {
+            if totalcalBurn != nil {
                 self.resultTotalCalText.text = totalcalBurn
             }
             
@@ -90,7 +120,6 @@ class ResultWorkoutViewController: UIViewController, WCSessionDelegate {
             session!.delegate = self
             session!.activate()
             
-            ////print("viewWillAppear session activate")
         } else {
             //print("viewWillAppear session error")
         }
@@ -100,7 +129,6 @@ class ResultWorkoutViewController: UIViewController, WCSessionDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         
-        ////print("load did appear??")
     }
     
     override func viewWillDisappear(_ animated: Bool){
@@ -167,22 +195,35 @@ class ResultWorkoutViewController: UIViewController, WCSessionDelegate {
             
             if (message["backToMainTab"] as? String) != nil {
                 
-                //backToMainTabBar
-//                let startAppSb: UIStoryboard = UIStoryboard(name: "StartApp", bundle: nil)
-//                let vc: UIViewController = startAppSb.instantiateViewController(withIdentifier: "UITabBarVC")
-//                vc.modalPresentationStyle = .fullScreen
-//                vc.loadView()
+                // db insert 구간
+//                let user_exercise_key:String = self.ref.childByAutoId().key as Any as! String // 수정해야함
 //
-//                let window = UIApplication.shared.windows[0] as UIWindow
-//                UIView.transition(from: (window.rootViewController?.view)!, to: vc.view, duration: 0.5, options: UIView.AnimationOptions.transitionCrossDissolve) { [weak window] (finished) in
-//                    window?.rootViewController = vc
-//                }
-//                window.rootViewController = vc
+//                let data : [String : Any] = [
+//                    "uid" : Auth.auth().currentUser!.uid,
+//                    "user_exercise_key" : user_exercise_key,
+//                    "avg_heart_rate" : self.avgHeartRate!,
+//                    "user_level" : self.stageLevel,
+//                    "total_cal_burn" : self.totalcalBurn!,
+//                    "result_total_score" : Int(self.totalScore!)! as Any , // 개선해야함.
+//                    "exercise_date" : self.resultSendToday,
+//                    "today_workout_count" : self.resultWorkoutArray.count + 1, // 중요
+//                    "result_total_time" : self.totalWorkOutTime!,
+//                    "result_send_today" : self.resultSendToday,
+//                    "result_meters" : ""
+//                ]
+//
+//                print("user exercise data check :   \(data)")
                 
-                //self.resultWorkoutView.removeFromSuperview()
-                //self.resultWorkoutView = nil
-                //self.presentingViewController?.dismiss(animated: true, completion: nil)
-                // self.dismiss(animated: true, completion: nil)
+                // 이동해야함 운동 완료 화면으로
+//                self.db.collection("user_exercise").document(user_exercise_key).setData(data) { err in
+//                    if let err = err {
+//                        print("Error writing document: \(err)")
+//                    } else {
+//                        // print("Document successfully written!")
+//
+//                    }
+//                }
+                
                 self.performSegue(withIdentifier: "backToMainTabBar", sender: self)
                 self.view.removeFromSuperview()
                 //self.navigationController!.popToRootViewController(animated: true)
@@ -219,24 +260,35 @@ class ResultWorkoutViewController: UIViewController, WCSessionDelegate {
             
             if (userInfo["backToMainTab"] as? String) != nil {
                 
-                //backToMainTabBar
-//                let startAppSb: UIStoryboard = UIStoryboard(name: "StartApp", bundle: nil)
-//                let vc: UIViewController = startAppSb.instantiateViewController(withIdentifier: "UITabBarVC")
-//                vc.modalPresentationStyle = .fullScreen
-//                vc.loadView()
+                // db insert 구간
+//                let user_exercise_key:String = self.ref.childByAutoId().key as Any as! String // 수정해야함
 //
-//                let window = UIApplication.shared.windows[0] as UIWindow
-//                UIView.transition(from: (window.rootViewController?.view)!, to: vc.view, duration: 0.5, options: UIView.AnimationOptions.transitionCrossDissolve) { [weak window] (finished) in
-//                    window?.rootViewController = vc
-//                }
-//                window.rootViewController = vc
+//                let data : [String : Any] = [
+//                    "uid" : Auth.auth().currentUser!.uid,
+//                    "user_exercise_key" : user_exercise_key,
+//                    "avg_heart_rate" : self.avgHeartRate!,
+//                    "user_level" : self.stageLevel,
+//                    "total_cal_burn" : self.totalcalBurn!,
+//                    "result_total_score" : Int(self.totalScore!)! as Any , // 개선해야함.
+//                    "exercise_date" : self.resultSendToday,
+//                    "today_workout_count" : self.resultWorkoutArray.count + 1, // 중요
+//                    "result_total_time" : self.totalWorkOutTime!,
+//                    "result_send_today" : self.resultSendToday,
+//                    "result_meters" : ""
+//                ]
                 
-                //self.presentingViewController?.dismiss(animated: true, completion: nil)
-                // self.dismiss(animated: true, completion: nil)
+                // 이동해야함 운동 완료 화면으로
+//                self.db.collection("user_exercise").document(user_exercise_key).setData(data) { err in
+//                    if let err = err {
+//                        print("Error writing document: \(err)")
+//                    } else {
+//                        // print("Document successfully written!")
+//
+//                    }
+//                }
+                
                 self.performSegue(withIdentifier: "backToMainTabBar", sender: self)
                 self.view.removeFromSuperview()
-                //self.navigationController!.popToRootViewController(animated: true)
-                ////print("userInfo backToMainTab : \(msg)")
                 
             }
         
