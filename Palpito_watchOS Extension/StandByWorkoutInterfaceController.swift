@@ -9,6 +9,7 @@
 import WatchKit
 import Foundation
 import WatchConnectivity
+import HealthKit
 
 
 class StandByWorkoutInterfaceController: WKInterfaceController, WCSessionDelegate {
@@ -16,7 +17,10 @@ class StandByWorkoutInterfaceController: WKInterfaceController, WCSessionDelegat
     weak var wcSession:WCSession?
     var myStageLevelData: String = "SL1"
     
+    
     var launchWatchAppVal:String?
+    
+    let healthStore = HKHealthStore()
     
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
@@ -28,10 +32,7 @@ class StandByWorkoutInterfaceController: WKInterfaceController, WCSessionDelegat
             wcSession = WCSession.default
             wcSession?.delegate = self
             wcSession?.activate()
-            
-            
-            //wcSession?.di
-            //wcSession?.dele
+            //wcSession?.finalize()
             //print("session \(String(describing: wcSession?.activationState.rawValue))")
             //print("session activate")
         } else {
@@ -61,20 +62,32 @@ class StandByWorkoutInterfaceController: WKInterfaceController, WCSessionDelegat
     }
     
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
-        //print("session \(session) activationDidCompleteWith activationState:\(activationState) error:\(String(describing: error))")
+        print("session \(session) activationDidCompleteWith activationState:\(activationState) error:\(String(describing: error))")
+        
+        if let error = error {
+            print("\(error.localizedDescription)")
+        }
     }
+    
+    func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String : Any]) {
+        if let logincheckInfo = applicationContext["logincheck"] as? String {
+            print("applicationContext logincheck : \(logincheckInfo)")
+            loginCheck = "\(logincheckInfo)"
+        }
+        
+    }
+    
     
     // 백그라운드 처리 전환 작업 소스 시작 지점
     func session(_ session: WCSession, didReceiveUserInfo userInfo: [String : Any] = [:]) {
         DispatchQueue.main.async {
-            if let msg = userInfo["MyStageLvl"] as? String {
-                //print("userInfo MyStageLvl : \(msg)")
-                self.myStageLevelData = "\(msg)"
+            if let logincheckInfo = userInfo["logincheck"] as? String {
+                print("transferCurrentComplicationUserInfo logincheck : \(logincheckInfo)")
+                loginCheck = "\(logincheckInfo)"
             }
-            
         }
     }
-    
+
     func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
 
         handlesSession(session, didReceiveMessage: message)
@@ -88,25 +101,16 @@ class StandByWorkoutInterfaceController: WKInterfaceController, WCSessionDelegat
     }
 
     func handlesSession(_ session: WCSession, didReceiveMessage message: [String: Any], replyHandler: (([String: Any]) -> Void)? = nil) {
-        DispatchQueue.main.async {
-            if let myStageLvl = message["MyStageLvl"] {
-                //print(" data check : \(myStageLvl)")
-                self.myStageLevelData = myStageLvl as! String
+        
+        if let logincheckInfo = message["logincheck"] as? String {
+                print(" data check : \(logincheckInfo)")
+                loginCheck = logincheckInfo
             }
-            
-        }
+
+        
 
     }
-    
-    func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String : Any]) {
-        
-        if let context = applicationContext["MyStageLvl"] {
-            //print(" context check : \(context)")
-            self.myStageLevelData = context as! String
-        }
-        
-    }
-    
+
 
     override func didDeactivate() {
         // This method is called when watch view controller is no longer visible
@@ -116,21 +120,39 @@ class StandByWorkoutInterfaceController: WKInterfaceController, WCSessionDelegat
     // 운동 화면으로 이동
     func workoutSendMainInterface(MyStageLvl: String){
         
+        
+        
         var context:[String:String]?
         context = ["MyStageLvl": MyStageLvl]
         
-        var startWorkoutSendData = ["StartWorkoutCall":"true","MyStageLvl": MyStageLvl]
+        let startWorkoutSendData = ["StartWorkoutCall":"true","MyStageLvl": MyStageLvl]
         
-        if(wcSession?.isReachable == true){
+        let action1 = WKAlertAction(title: "확인", style: .default) {}
+        
+        let healthDataAuthValue = healthStore.authorizationStatus(for: HKObjectType.quantityType(forIdentifier: .heartRate)!).rawValue
+        
+        if healthDataAuthValue == 0 || healthDataAuthValue == 1{
+            presentAlert(withTitle: "HealthKit 데이터 승인 필요", message: "팔피토 앱 HealthKit 데이터 사용 승인 해주세요.", preferredStyle: .alert, actions: [action1])
+            return
+        }else {
             
-            tryWatchSendMessage(message: startWorkoutSendData as [String : Any])
         }
+        
+        if loginCheck != "Yes" {
+            presentAlert(withTitle: "팔피토 앱 로그인 필요", message: "팔피토 앱 로그인 해주세요.", preferredStyle: .alert, actions: [action1])
+            return
+        }
+        
+        
+//        if(wcSession?.isReachable == true){
+            
+           tryWatchSendMessage(message: startWorkoutSendData as [String : Any])
+//        }
         
         
         // 아이폰 통신 구간.. waek self memory leak 구간
         pushController(withName: "MainInterfaceController", context: context)
         
-        startWorkoutSendData.removeAll()
         //context?.removeAll()
     }
     
@@ -153,6 +175,7 @@ class StandByWorkoutInterfaceController: WKInterfaceController, WCSessionDelegat
     // SL1
     @IBAction func workoutOutdoorLowStart() {
         //print("workoutOutdoorStart action ?? ")
+       
         
         workoutSendMainInterface(MyStageLvl: "SL1")
         
@@ -182,7 +205,14 @@ class StandByWorkoutInterfaceController: WKInterfaceController, WCSessionDelegat
     
     func tryWatchSendMessage(message: [String : Any]) {
         
-            if #available(watchOSApplicationExtension 6.0, *) {
+            // 해당 구간이 에러 일 확률이 크다 추후에 수정해야할 것이다.
+//            if let validSession = self.wcSession {
+//                //let data: [String: Any] = ["logincheck": "No" as Any]
+//                //UserDefaults.standard.set("No" , forKey: "logincheck")
+//                validSession.transferUserInfo(message)
+//
+//            }
+        
              if self.wcSession != nil && self.wcSession?.activationState == .activated {
                     if self.wcSession?.isReachable == true {
                         self.wcSession?.sendMessage(message, replyHandler: nil) { (error) -> Void in
@@ -193,24 +223,9 @@ class StandByWorkoutInterfaceController: WKInterfaceController, WCSessionDelegat
                     }
              } else if self.wcSession != nil && self.wcSession?.activationState == .inactive  {
                  self.wcSession?.transferUserInfo(message)
+             }else {
+                self.wcSession?.transferUserInfo(message)
              }
-            } else {
-                
-             // Fallback on earlier versions
-             if self.wcSession != nil && self.wcSession?.activationState == .activated {
-                    if self.wcSession?.isReachable == true {
-                        self.wcSession?.sendMessage(message, replyHandler: nil) { (error) -> Void in
-                            //print(" StandByWorkoutInterfaceController error : \(error)")
-                                       // If the message failed to send, queue it up for future transfer
-                                       //self.wcSession?.transferUserInfo(message)
-                            }
-                    } else {
-                        self.wcSession?.transferUserInfo(message)
-                    }
-                } else if self.wcSession != nil && self.wcSession?.activationState == .inactive  {
-                    self.wcSession?.transferUserInfo(message)
-                }
-            }
            
     }
     
