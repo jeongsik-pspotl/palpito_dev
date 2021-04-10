@@ -9,6 +9,8 @@
 import WatchKit
 import WatchConnectivity
 
+var loginCheck = ""
+
 class ExtensionDelegate: NSObject, WKExtensionDelegate, WCSessionDelegate {
     
     weak var session = WCSession.default
@@ -16,8 +18,8 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate, WCSessionDelegate {
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
         //print("=== ExtensionDelegate .. ======")
         //print("session WCSession : \(session)")
-        //print("activationState WCSessionActivationState : \(activationState)")
-        //print("error Error : \(String(describing: error))")
+        print("activationState WCSessionActivationState : \(activationState)")
+        print("error Error : \(String(describing: error))")
     }
     
 
@@ -42,7 +44,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate, WCSessionDelegate {
             session?.delegate = self
             session?.activate()
         }
-        
+
     }
 
     func applicationDidBecomeActive() {
@@ -50,7 +52,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate, WCSessionDelegate {
             session?.delegate = self
             session?.activate()
         }
-        
+
     }
 
     func applicationWillResignActive() {
@@ -59,6 +61,51 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate, WCSessionDelegate {
             session?.activate()
         }
         
+    }
+    
+    // 백그라운드 처리 전환 작업 소스 시작 지점
+    func session(_ session: WCSession, didReceiveUserInfo userInfo: [String : Any] = [:]) {
+        DispatchQueue.main.async {
+            if let logincheckInfo = userInfo["logincheck"] as? String {
+                print("userInfo logincheck : \(logincheckInfo)")
+                loginCheck = "\(logincheckInfo)"
+            }
+
+        }
+    }
+    
+    func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String : Any]) {
+        
+            if let logincheckInfo = applicationContext["logincheck"] as? String {
+                print("applicationContext logincheck : \(logincheckInfo)")
+                loginCheck = "\(logincheckInfo)"
+            }
+
+        
+    }
+
+    func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
+
+        handlesSession(session, didReceiveMessage: message)
+
+    }
+
+    func session(_ session: WCSession, didReceiveMessage message: [String : Any], replyHandler: @escaping ([String : Any]) -> Void) {
+
+        handlesSession(session, didReceiveMessage: message, replyHandler: replyHandler)
+
+    }
+
+    func handlesSession(_ session: WCSession, didReceiveMessage message: [String: Any], replyHandler: (([String: Any]) -> Void)? = nil) {
+        DispatchQueue.main.async {
+            if let logincheckInfo = message["logincheck"] as? String {
+                print(" data check : \(logincheckInfo)")
+                loginCheck = logincheckInfo
+            }
+        }
+
+        
+
     }
 
     func handle(_ backgroundTasks: Set<WKRefreshBackgroundTask>) {
