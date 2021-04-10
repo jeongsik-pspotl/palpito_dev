@@ -139,7 +139,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        } else {
 //            //print("WatchConnectivity is not supported on this device")
 //        }
-        
+//
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
@@ -155,28 +155,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //print("url host :\(url.host!)")
         //print("url path :\(url.path)")
         
-        let urlPath : String = url.path
-        let urlHost : String = url.host!
-        let mainStoryboard: UIStoryboard = UIStoryboard(name: "StartApp", bundle: nil)
-        
-        if urlHost != "palpito.xyz" {
-            //print("Host is not correct")
-            return false
-        }
-        
-        if urlPath == "/workout" {
-            let workoutPage: WorkoutViewController = mainStoryboard.instantiateViewController(withIdentifier: "WorkoutViewController") as! WorkoutViewController
-            self.window?.rootViewController = workoutPage
-        } else if urlPath == "/abort" {
-            
-        }
+//        let urlPath : String = url.path
+//        let urlHost : String = url.host!
+//        let mainStoryboard: UIStoryboard = UIStoryboard(name: "StartApp", bundle: nil)
+//
+//        if urlHost != "palpito.xyz" {
+//            //print("Host is not correct")
+//            return false
+//        }
+//
+//        if urlPath == "/workout" {
+//            let workoutPage: WorkoutViewController = mainStoryboard.instantiateViewController(withIdentifier: "WorkoutViewController") as! WorkoutViewController
+//            self.window?.rootViewController = workoutPage
+//        } else if urlPath == "/abort" {
+//
+//        }
         self.window?.makeKeyAndVisible()
         return true
     }
     
     func application(_ application: UIApplication, handleWatchKitExtensionRequest userInfo: [AnyHashable : Any]?, reply: @escaping ([AnyHashable : Any]?) -> Void) {
         // 워치os 상에 받는 함수..
-        //print("userInfo : \(String(describing: userInfo))")
+        print("userInfo : \(String(describing: userInfo))")
         //print("reply    : \(String(describing: reply))")
         
     }
@@ -221,12 +221,12 @@ extension AppDelegate: WCSessionDelegate {
                 //            //print("AppDelegate data check | message StringValueHeartRate : \(msg)")
             }
             
-            if (message["StartRelaxCall"] as? String) != nil {
-                //print(" StartRelaxCall msg : \(msg)")
-                let relaxPage: RelaxViewController = mainStoryboard.instantiateViewController(withIdentifier: "RelaxViewController") as! RelaxViewController
-                self.window?.rootViewController = relaxPage
-                //            //print("AppDelegate data check | message StringValueHeartRate : \(msg)")
-            }
+//            if (message["StartRelaxCall"] as? String) != nil {
+//                //print(" StartRelaxCall msg : \(msg)")
+//                let relaxPage: RelaxViewController = mainStoryboard.instantiateViewController(withIdentifier: "RelaxViewController") as! RelaxViewController
+//                self.window?.rootViewController = relaxPage
+//                //            //print("AppDelegate data check | message StringValueHeartRate : \(msg)")
+//            }
             
             
             if (message["resultEndTimeVal"] as? String) != nil {
@@ -236,16 +236,16 @@ extension AppDelegate: WCSessionDelegate {
                 //            //print("AppDelegate data check | message StringValueHeartRate : \(msg)")
             }
             
-            if (message["resultRelaxEndTimeVal"] as? String) != nil {
-                //print(" resultRelaxEndTimeVal msg : \(msg)")
-                let resultRelaxPage: ResultRelaxViewController = mainStoryboard.instantiateViewController(withIdentifier: "ResultRelaxViewController") as! ResultRelaxViewController
-                self.window?.rootViewController = resultRelaxPage
-                //            //print("AppDelegate data check | message StringValueHeartRate : \(msg)")
-            }
+//            if (message["resultRelaxEndTimeVal"] as? String) != nil {
+//                //print(" resultRelaxEndTimeVal msg : \(msg)")
+//                let resultRelaxPage: ResultRelaxViewController = mainStoryboard.instantiateViewController(withIdentifier: "ResultRelaxViewController") as! ResultRelaxViewController
+//                self.window?.rootViewController = resultRelaxPage
+//                //            //print("AppDelegate data check | message StringValueHeartRate : \(msg)")
+//            }
             
-            if let msg = message["MyStageLvl"] as? String {
-                 UserDefaults.standard.set(msg, forKey: "myStage")
-            }
+//            if let msg = message["MyStageLvl"] as? String {
+//                 UserDefaults.standard.set(msg, forKey: "myStage")
+//            }
             
         }
         
@@ -264,28 +264,34 @@ extension AppDelegate: WCSessionDelegate {
                 //            //print("AppDelegate data check | message StringValueHeartRate : \(msg)")
             }
             
-            if (userInfo["StartRelaxCall"] as? String) != nil {
-                //print(" StartRelaxCall msg : \(msg)")
+//            if (userInfo["StartRelaxCall"] as? String) != nil {
+//                //print(" StartRelaxCall msg : \(msg)")
+//
+//                let relaxPage: RelaxViewController = mainStoryboard.instantiateViewController(withIdentifier: "RelaxViewController") as! RelaxViewController
+//                self.window?.rootViewController = relaxPage
+//                //            //print("AppDelegate data check | message StringValueHeartRate : \(msg)")
+//            }
+            
+            if let heartRateVal = userInfo["StringValueHeartRate"] as? String {
                 
-                let relaxPage: RelaxViewController = mainStoryboard.instantiateViewController(withIdentifier: "RelaxViewController") as! RelaxViewController
-                self.window?.rootViewController = relaxPage
-                //            //print("AppDelegate data check | message StringValueHeartRate : \(msg)")
+                print(" appDelegate | StringValueHeartRate | heartRateVal : \(heartRateVal) ")
+                
             }
             
             //resultEndTimer
-            if (userInfo["resultRelaxEndTimeVal"] as? String) != nil {
+            if (userInfo["resultEndTimeVal"] as? String) != nil {
                 //print(" resultEndTimer msg : \(msg)")
                 let resultWorkoutPage: ResultWorkoutViewController = mainStoryboard.instantiateViewController(withIdentifier: "ResultWorkoutViewController") as! ResultWorkoutViewController
                 self.window?.rootViewController = resultWorkoutPage
                 //            //print("AppDelegate data check | message StringValueHeartRate : \(msg)")
             }
             
-            if (userInfo["resultRelaxEndTimeVal"] as? String) != nil {
-                //print(" resultRelaxEndTimeVal msg : \(msg)")
-                let resultRelaxPage: ResultRelaxViewController = mainStoryboard.instantiateViewController(withIdentifier: "ResultRelaxViewController") as! ResultRelaxViewController
-                self.window?.rootViewController = resultRelaxPage
-                //            //print("AppDelegate data check | message StringValueHeartRate : \(msg)")
-            }
+//            if (userInfo["resultRelaxEndTimeVal"] as? String) != nil {
+//                //print(" resultRelaxEndTimeVal msg : \(msg)")
+//                let resultRelaxPage: ResultRelaxViewController = mainStoryboard.instantiateViewController(withIdentifier: "ResultRelaxViewController") as! ResultRelaxViewController
+//                self.window?.rootViewController = resultRelaxPage
+//                //            //print("AppDelegate data check | message StringValueHeartRate : \(msg)")
+//            }
             
         }
         
