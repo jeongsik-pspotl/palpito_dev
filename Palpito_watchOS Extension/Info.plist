@@ -35,13 +35,9 @@
 		<string>com.apple.watchkit</string>
 	</dict>
 	<key>NSHealthShareUsageDescription</key>
-	<string>Health Share using data</string>
+	<string>Health Share using data, this app integrates with the Health app</string>
 	<key>NSHealthUpdateUsageDescription</key>
-	<string>Health data Update using</string>
-	<key>UIBackgroundModes</key>
-	<array>
-		<string>audio</string>
-	</array>
+	<string>Health data Update using, this app integrates with the Health app</string>
 	<key>WKBackgroundModes</key>
 	<array>
 		<string>workout-processing</string>

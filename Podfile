@@ -7,11 +7,14 @@ use_frameworks!
 pod 'LicensePlist'
 #pod 'Carte'
 pod 'Firebase/Core'
+pod 'Firebase/Crashlytics'
 pod 'Firebase/Database'
 pod 'Firebase/Auth'
 pod 'GoogleSignIn'
 pod 'FirebaseFirestoreSwift'
 # Pods for Palpito
+
+
 end
 
 #post_install do |installer|
