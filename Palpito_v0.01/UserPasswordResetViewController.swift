@@ -33,6 +33,10 @@ class UserPasswordResetViewController: ExtensionVC {
         }
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
     @IBAction func passwordResetfromEmailSendAction(){
         
         //self.sv = UIViewController.displaySpinner(onView: self.view)
