@@ -9,9 +9,12 @@
 import UIKit
 import FirebaseAuth
 import FirebaseCrashlytics
+import WatchConnectivity
 
 class ViewController: ExtensionVC {
-
+    
+    
+    var session: WCSession?
     var uid = ""
     var pwd = ""
     var myStage = ""
@@ -27,7 +30,7 @@ class ViewController: ExtensionVC {
     @IBOutlet weak var autoLoginCheck: UIButton!
     
     deinit {
-        //print("deinit start page")
+        print("deinit start page")
     }
     
     override func viewDidLoad() {
@@ -46,6 +49,25 @@ class ViewController: ExtensionVC {
             UserDefaults.standard.set("SL2" , forKey: "myStage")
         }
         
+        if WCSession.isSupported() {
+            session = WCSession.default
+            session?.delegate = self
+            session!.activate()
+            
+            //print("session activate")
+            if session!.isPaired != true {
+                //print("Apple Watch is not paired")
+            }else {
+                //print("Apple Watch is paired")
+                
+            }
+        } else {
+            //print("session error")
+        }
+        
+        
+        
+        
         if let autoLoginCheckVal = UserDefaults.standard.string(forKey: "isAutoLoginCheck"){
             self.loginCheckYn = autoLoginCheckVal
             if self.loginCheckYn == "selected" {
@@ -55,6 +77,13 @@ class ViewController: ExtensionVC {
             }else {
                 autoLoginCheck.isSelected = false
             }
+            
+        }
+        
+        if let validSession = self.session {
+            let data: [String: Any] = ["logincheck": "No" as Any]
+            UserDefaults.standard.set("No" , forKey: "logincheck")
+            validSession.transferUserInfo(data)
             
         }
         
@@ -91,6 +120,14 @@ class ViewController: ExtensionVC {
                     }
                 }
                 
+            }else {
+                
+                if let validSession = self.session {
+                    let data: [String: Any] = ["logincheck": "No" as Any]
+                    UserDefaults.standard.set("No" , forKey: "logincheck")
+                    validSession.transferUserInfo(data)
+                    
+                }
             }
             
         }
@@ -248,5 +285,29 @@ class ViewController: ExtensionVC {
         
     }
     
+   
+    
+    
 }
+
+extension ViewController: WCSessionDelegate {
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+        
+    }
+    
+    func session(_ session: WCSession, didReceiveUserInfo userInfo: [String : Any] = [:]) {
+        print("received data: \(userInfo)")
+        
+    }
+    
+    func sessionDidBecomeInactive(_ session: WCSession) {
+        
+    }
+    
+    func sessionDidDeactivate(_ session: WCSession) {
+        
+    }
+}
+
+
 
