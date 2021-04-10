@@ -31,7 +31,7 @@ class MyPageViewController: UIViewController, WCSessionDelegate {
     var totalcalBurn = "0"
     var todayScoreVal = "0"
     
-    weak var session:WCSession?
+    weak var wcSession:WCSession?
     
     @IBOutlet weak var myStageLevelButton: UIButton!
     @IBOutlet weak var todayScoreText: UILabel!
@@ -51,14 +51,35 @@ class MyPageViewController: UIViewController, WCSessionDelegate {
         
         myPageView.transform = CGAffineTransform(scaleX: scale, y: scale)
         
+        if WCSession.isSupported() {
+            wcSession = WCSession.default
+            wcSession!.delegate = self
+            wcSession!.activate()
+            
+            //print("session activate")
+            if wcSession!.isPaired != true {
+                //print("Apple Watch is not paired")
+            }else {
+                //print("Apple Watch is paired")
+                
+            }
+        } else {
+            //print("session error")
+        }
+        
+        let data: [String: Any] = ["logincheck": "Yes" ]
+        
+        tryWatchSendMessage(message: data)
+        
         // weak 처리
         healthKitShared.authorizeHealthKit { [weak self] (success, error) in
-            //print("Was healthkit successful? \(success)")
+            print("Was healthkit successful? \(success)")
             if success == true {
                 
 //                self?.healthKitShared.readMostRecentSample()
                 self?.healthKitShared.readTodayAvgHeartRate()
                 self?.healthKitShared.getActivitySummaryEnergyBurnedGoal()
+                
 
             }
             
@@ -112,27 +133,13 @@ class MyPageViewController: UIViewController, WCSessionDelegate {
         }
         
         
-        if WCSession.isSupported() {
-            session = WCSession.default
-            session!.delegate = self
-            session!.activate()
-            
-            //print("session activate")
-            if session!.isPaired != true {
-                //print("Apple Watch is not paired")
-            }else {
-                //print("Apple Watch is paired")
-                
-            }
-        } else {
-            //print("session error")
-        }
+        
         
         let myStage = UserDefaults.standard.string(forKey: "myStage")
         
         let userKey =  Auth.auth().currentUser?.uid
         //print(userKey as Any)
-        db.collection("user_info").whereField("user_info_key",isEqualTo: userKey!).getDocuments(completion: { (querySnapshot, err) in
+        db.collection("user_info").whereField("user_info_key",isEqualTo: userKey!).getDocuments(completion: { [self] (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
             } else {
@@ -142,6 +149,27 @@ class MyPageViewController: UIViewController, WCSessionDelegate {
                     let nick_name = oneDocument["nick_name"] as? String
                     self.userNickName.text = nick_name
                 }
+                
+                let data: [String: Any] = ["logincheck": "Yes" as String]
+                print(data)
+                UserDefaults.standard.set("Yes" , forKey: "logincheck")
+                
+                
+//                if self.wcSession != nil && self.wcSession?.isReachable == true {
+//                    self.wcSession?.sendMessage(data, replyHandler: nil) { (error) -> Void in
+//                        print(" StartPopupController error : \(error)")
+//                                   // If the message failed to send, queue it up for future transfer
+//                                   //self.wcSession?.transferUserInfo(message)
+//                        self.wcSession?.transferCurrentComplicationUserInfo(data)
+//                            //self.wcSession?.transferUserInfo(data)
+//                        }
+//                } else if self.wcSession != nil && self.wcSession?.activationState == .inactive {
+//                    self.wcSession?.transferCurrentComplicationUserInfo(data)
+//                    //self.wcSession?.transferUserInfo(data)
+//                    // print("StartPopupController  isReachable \(String(describing: self.wcSession?.isReachable))")
+//                } else {
+//                    self.wcSession?.transferCurrentComplicationUserInfo(data)
+//                }
                                 
             }
         })
@@ -163,9 +191,9 @@ class MyPageViewController: UIViewController, WCSessionDelegate {
     override func viewWillAppear(_ animated: Bool) {
         
         if WCSession.isSupported() {
-            session = WCSession.default
-            session!.delegate = self
-            session!.activate()
+            wcSession = WCSession.default
+            wcSession!.delegate = self
+            wcSession!.activate()
             
             //print("session activate")
         } else {
@@ -184,6 +212,12 @@ class MyPageViewController: UIViewController, WCSessionDelegate {
             stageLevelSendMsg = ["MyStageLvl":myStage] as! [String : String]
         }
         
+        
+        let data: [String: Any] = ["logincheck": "Yes" as String]
+        UserDefaults.standard.set("Yes" , forKey: "logincheck")
+        
+        tryWatchSendMessage(message: data)
+        //tryWatchSendMessage(message: data)
 //        do {
 //            try session!.updateApplicationContext(stageLevelSendMsg)
 //        } catch { }
@@ -329,6 +363,51 @@ class MyPageViewController: UIViewController, WCSessionDelegate {
         }
             
     }
+    
+    func tryWatchSendMessage(message: [String : Any]) {
+        
+        if let validSession = self.wcSession {
+            //let data: [String: Any] = ["logincheck": "No" as Any]
+            //UserDefaults.standard.set("No" , forKey: "logincheck")
+            validSession.transferUserInfo(message)
+            
+        }
+        
+        if self.wcSession != nil && self.wcSession?.activationState == .activated {
+            if self.wcSession?.isReachable == true {
+                self.wcSession?.sendMessage(message, replyHandler: nil) { (error) -> Void in
+                             // If the message failed to send, queue it up for future transfer
+                             print(" StandByWorkoutInterfaceController error : \(error)")
+                             self.wcSession?.transferUserInfo(message)
+                }
+            }
+        }
+        
+//        else if self.wcSession != nil && self.wcSession?.activationState == .inactive  {
+//        
+//            self.wcSession?.transferUserInfo(message)
+//            do {
+//                try self.wcSession?.updateApplicationContext(message)
+//            } catch {
+//                
+//            }
+//        
+//        }else if self.wcSession != nil && self.wcSession?.activationState == .none {
+//            self.wcSession?.sendMessage(message, replyHandler: nil) { (error) -> Void in
+//                         // If the message failed to send, queue it up for future transfer
+//                         print(" StandByWorkoutInterfaceController error : \(error)")
+//                         self.wcSession?.transferUserInfo(message)
+//            }
+//        }else {
+//            self.wcSession?.sendMessage(message, replyHandler: nil) { (error) -> Void in
+//                         // If the message failed to send, queue it up for future transfer
+//                         print(" StandByWorkoutInterfaceController error : \(error)")
+//                         self.wcSession?.transferUserInfo(message)
+//            }
+//        }
+            
+    }
+    
 //    func dataReceived(data: String) {
 //
 //        if data == "SL1" {
