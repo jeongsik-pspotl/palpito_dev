@@ -31,7 +31,7 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
     
     var resultWorkoutArray = [ResultWorkOut]()
 
-    let activityIndicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.whiteLarge)
+    let activityIndicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.large)
     
     weak var wcSession:WCSession?
     var mainQueue = DispatchQueue.global()
@@ -179,11 +179,12 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
         palpiActiveAnimationZone4 = createPalpiImage(total: 2, imagePrefix: "exerciseCharacter")
         palpiActiveAnimationZone5 = createPalpiImage(total: 2, imagePrefix: "exerciseCharacter")
         
-        animate(imageView: palpiAnimationImage, images: paiplActiveAnimation)
-        animate(imageView: palpiAnimationZone2, images: palpiActiveAnimationZone2)
-        animate(imageView: palpiAnimationZone3, images: palpiActiveAnimationZone3)
-        animate(imageView: palpiAnimationZone4, images: palpiActiveAnimationZone4)
-        animate(imageView: palpiAnimationZone5, images: palpiActiveAnimationZone5)
+        // 구간별로 속도 수정하기
+        animateZone1(imageView: palpiAnimationImage, images: paiplActiveAnimation)
+        animateZone2(imageView: palpiAnimationZone2, images: palpiActiveAnimationZone2)
+        animateZone3(imageView: palpiAnimationZone3, images: palpiActiveAnimationZone3)
+        animateZone4(imageView: palpiAnimationZone4, images: palpiActiveAnimationZone4)
+        animateZone5(imageView: palpiAnimationZone5, images: palpiActiveAnimationZone5)
         
         palpiAnimationZone2.stopAnimating()
         palpiAnimationZone3.stopAnimating()
@@ -228,6 +229,39 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
         
         return imageArray
     }
+    
+    // 구간별로 설정
+    // 함수 분리하기
+    func animateZone1(imageView: UIImageView, images:[UIImage]){
+        imageView.animationImages = images
+        imageView.animationDuration = 1.5
+        imageView.startAnimating()
+    }
+    
+    func animateZone2(imageView: UIImageView, images:[UIImage]){
+        imageView.animationImages = images
+        imageView.animationDuration = 1.0
+        imageView.startAnimating()
+    }
+    
+    func animateZone3(imageView: UIImageView, images:[UIImage]){
+        imageView.animationImages = images
+        imageView.animationDuration = 0.4
+        imageView.startAnimating()
+    }
+    
+    func animateZone4(imageView: UIImageView, images:[UIImage]){
+        imageView.animationImages = images
+        imageView.animationDuration = 0.2
+        imageView.startAnimating()
+    }
+    
+    func animateZone5(imageView: UIImageView, images:[UIImage]){
+        imageView.animationImages = images
+        imageView.animationDuration = 0.1
+        imageView.startAnimating()
+    }
+    
     
     func animate(imageView: UIImageView, images:[UIImage]) {
         imageView.animationImages = images
@@ -370,7 +404,7 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
     // userinfo, message type 두가지로 나눠서 분기 처리 if 조건문으로
     func updateUIData(message:[String: Any]){
         if let msg = message["StringValueHeartRate"] as? String {
-            //print("message StringValueHeartRateMsg : \(msg)")
+            // print("message StringValueHeartRateMsg : \(msg)")
             self.heartRateText.text = "\(msg)"
         }
 
@@ -416,11 +450,11 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
             // if zoneStatusTensionVoice start
             if let zoneStatusVoice = message["zoneStatusTensionVoice"] as? String {
                 //print("userInfo zoneStatusTensionVoice : \(zoneStatusVoice)")
-            
+                
                 if zoneStatusVoice == "zone1Voice" {
                     self.timer.invalidate()
                     self.timer  = Timer.scheduledTimer(timeInterval: 1, target: self, selector:
-                        #selector(self.zone1RecycleAction), userInfo: nil, repeats: false)
+                        #selector(self.zone2RecycleAction), userInfo: nil, repeats: false) // 피드백 수정
 
                 }
                 
@@ -440,6 +474,13 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
                 }
                 
                 if zoneStatusVoice == "zone4Voice" {
+                    self.timer.invalidate()
+                    self.timer  = Timer.scheduledTimer(timeInterval: 1, target: self, selector:
+                        #selector(self.zone3RecycleAction), userInfo: nil, repeats: false)
+
+                }
+                
+                if zoneStatusVoice == "zone5Voice" {
                     self.timer.invalidate()
                     self.timer  = Timer.scheduledTimer(timeInterval: 1, target: self, selector:
                         #selector(self.zone45RecycleAction), userInfo: nil, repeats: false)
@@ -489,76 +530,103 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
             
             // if resultHeartRate start
             if self.resultHeartRate != nil {
-
-                self.activityIndicator.startAnimating()
-                let ResultWorkOut = NSEntityDescription.entity(forEntityName: "ResultWorkOut", in: PersistenceService.context)
-                let newEntity = NSManagedObject(entity: ResultWorkOut!, insertInto: PersistenceService.context)
-
-                if self.resultTotalScore == nil {
-                    self.resultTotalScore = "0"
-                }
-                // 운동 강도 데이터 저장 기능추가 해야함
-                newEntity.setValue(self.resultHeartRate, forKey: "avgHeartRate")
-                newEntity.setValue(self.resultTotalTime, forKey: "totalWorkOutTime")
-                newEntity.setValue(self.resultTotalCal, forKey: "totalcalBurn")
-                newEntity.setValue(self.resultTotalScore, forKey: "totalScore")
-                newEntity.setValue(self.resultMetersVal, forKey: "avgSpeedHour")
-                newEntity.setValue(self.resultWorkoutArray.count + 1, forKey: "todayWorkOutCount")
-                newEntity.setValue(self.resultSendToday, forKey: "todayDate")
-
-                PersistenceService.saveContext()
+                // 테스트 구간 ...
+                // 실제 운동 링이 제로 일때 한번 테스트를 해봐야 할것이다..
+                // 2021.3.28일에 소스 코드 작성해보고
+                // 초기 테스트는 간단하 1분정도 쓰고 있다가
+                // 잘되는지 확인해보고
+                // 이상이 없으면
+                // 밖에 나와서 테스트 진행하기..
+                //self.activityIndicator.startAnimating()
                 
-                let user_exercise_key:String = self.ref.childByAutoId().key as Any as! String
-                
-                let data : [String : Any] = [
-                        "uid" : Auth.auth().currentUser!.uid,
-                        "user_exercise_key" : user_exercise_key,
-                        "avg_heart_rate" : self.resultHeartRate!,
-                        "user_level" : self.stageLevel,
-                        "total_cal_burn" : self.resultTotalCal!,
-                        "result_total_score" : Int(self.resultTotalScore!) as Any ,
-                        "exercise_date" : self.resultSendToday,
-                        "today_workout_count" : self.resultWorkoutArray.count + 1,
-                        "result_total_time" : self.resultTotalTime!,
-                        "result_send_today" : self.resultSendToday,
-                        "result_meters" : ""
+                DispatchQueue.global().async {
+                    
+                    let ResultWorkOut = NSEntityDescription.entity(forEntityName: "ResultWorkOut", in: PersistenceService.context)
+                    let newEntity = NSManagedObject(entity: ResultWorkOut!, insertInto: PersistenceService.context)
 
-                ]
-                
-                self.db.collection("user_exercise").document(user_exercise_key).setData(data) { err in
-                    if let err = err {
-                        print("Error writing document: \(err)")
-                    } else {
-                        // print("Document successfully written!")
-                        self.performSegue(withIdentifier: "resultWorkoutSegue", sender: self)
-                        self.view.removeFromSuperview()
+                    if self.resultTotalScore == nil || self.resultTotalScore == "" {
+                        self.resultTotalScore = "0"
+                    }else {
+                        
                     }
+                    
+                    if self.resultTotalTime == "" {
+                        self.resultTotalTime = "00:00:00"
+                    }
+                    // 운동 강도 데이터 저장 기능추가 해야함
+                    // userLevel
+    //                newEntity.setValue(self.stageLevel, forKey: "userLevel")
+                    newEntity.setValue(self.resultHeartRate, forKey: "avgHeartRate")
+                    newEntity.setValue(self.resultTotalTime, forKey: "totalWorkOutTime")
+                    newEntity.setValue(self.resultTotalCal, forKey: "totalcalBurn")
+                    newEntity.setValue(self.resultTotalScore, forKey: "totalScore")
+                    newEntity.setValue(self.resultMetersVal, forKey: "avgSpeedHour")
+                    newEntity.setValue(self.resultWorkoutArray.count + 1, forKey: "todayWorkOutCount")
+                    newEntity.setValue(self.resultSendToday, forKey: "todayDate")
+
+                    
+                    
+                    let user_exercise_key:String = self.ref.childByAutoId().key as Any as! String
+                    
+                    let data : [String : Any] = [
+                            "uid" : Auth.auth().currentUser!.uid,
+                            "user_exercise_key" : user_exercise_key,
+                            "avg_heart_rate" : self.resultHeartRate!,
+                            "user_level" : self.stageLevel,
+                            "total_cal_burn" : self.resultTotalCal!,
+                            "result_total_score" : Int(self.resultTotalScore!)! ,
+                            "exercise_date" : self.resultSendToday,
+                            "today_workout_count" : self.resultWorkoutArray.count + 1,
+                            "result_total_time" : self.resultTotalTime!,
+                            "result_send_today" : self.resultSendToday,
+                            "result_meters" : ""
+
+                    ]
+                    
+                    PersistenceService.saveContext()
+                    
+                    print("\(data)")
+                    
+                    // 테스트 이후에 삭제하기
+                    self.db.collection("user_exercise").document(user_exercise_key).setData(data) { err in
+                        if let err = err {
+                            print("Error writing document: \(err)")
+                        } else {
+                            // print("Document successfully written!")
+                            self.performSegue(withIdentifier: "resultWorkoutSegue", sender: self)
+                            self.view.removeFromSuperview()
+
+
+                        }
+                    }
+                    
+                    self.zoneMusicPlay?.stop()
+                    self.zoneSoundPlay?.stop()
+
+                    self.stageLevel = ""
+                    
+                    self.paiplActiveAnimation.removeAll()
+                    self.palpiActiveAnimationZone2.removeAll()
+                    self.palpiActiveAnimationZone3.removeAll()
+                    self.palpiActiveAnimationZone4.removeAll()
+                    self.palpiActiveAnimationZone5.removeAll()
+
+                    // image view nil
+
+                    self.resultHeartRate = nil
+                    self.resultTotalTime = nil
+                    self.resultTotalCal = nil
+                    self.resultTotalScore = nil
+                    self.resultMetersVal = nil
+                    self.resultWorkoutArray.removeAll()
+                    self.resultSendToday = ""
+                    
+                    
                 }
-
-
-                self.zoneMusicPlay?.stop()
-                self.zoneSoundPlay?.stop()
-
-                self.stageLevel = ""
                 
-                self.paiplActiveAnimation.removeAll()
-                self.palpiActiveAnimationZone2.removeAll()
-                self.palpiActiveAnimationZone3.removeAll()
-                self.palpiActiveAnimationZone4.removeAll()
-                self.palpiActiveAnimationZone5.removeAll()
-
-                // image view nil
-
-                self.resultHeartRate = nil
-                self.resultTotalTime = nil
-                self.resultTotalCal = nil
-                self.resultTotalScore = nil
-                self.resultMetersVal = nil
-                self.resultWorkoutArray.removeAll()
-                self.resultSendToday = ""
                 
-                self.activityIndicator.stopAnimating()
-
+                //self.activityIndicator.stopAnimating()
+                
             }
             // if resultHeartRate end
             
@@ -711,8 +779,12 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
                 self.checkZoneStatusSound = self.zoneStatusiOS
 
                 switch self.checkZoneStatusSound {
-                case "z1": break
+                case "z1":
                     //print("warn up..")
+                    self.timer.invalidate()
+
+                    self.timer  = Timer.scheduledTimer(timeInterval: self.soundDelay5, target: self, selector:
+                        #selector(self.zone1SoundAction), userInfo: nil, repeats: false)
 
                 case "z2":
 
@@ -771,7 +843,7 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
         DispatchQueue.main.async {
             
             if let msg = userInfo["StringValueHeartRate"] as? String {
-                //print("userInfo StringValueHeartRate : \(msg)")
+                print("userInfo StringValueHeartRate : \(msg)")
                 self.heartRateText.text = "\(msg)"
             }
 
@@ -826,7 +898,7 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
                 if zoneStatusVoice == "zone1Voice" {
                     self.timer.invalidate()
                     self.timer  = Timer.scheduledTimer(timeInterval: 1, target: self, selector:
-                        #selector(self.zone1RecycleAction), userInfo: nil, repeats: false)
+                        #selector(self.zone2RecycleAction), userInfo: nil, repeats: false)
 
                 }
 
@@ -845,6 +917,13 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
                 }
 
                 if zoneStatusVoice == "zone4Voice" {
+                    self.timer.invalidate()
+                    self.timer  = Timer.scheduledTimer(timeInterval: 1, target: self, selector:
+                        #selector(self.zone3RecycleAction), userInfo: nil, repeats: false)
+
+                }
+                
+                if zoneStatusVoice == "zone5Voice" {
                     self.timer.invalidate()
                     self.timer  = Timer.scheduledTimer(timeInterval: 1, target: self, selector:
                         #selector(self.zone45RecycleAction), userInfo: nil, repeats: false)
@@ -882,36 +961,51 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
             // if resultHeartRate start
             if self.resultHeartRate != nil {
                 
-                let ResultWorkOut = NSEntityDescription.entity(forEntityName: "ResultWorkOut", in: PersistenceService.context)
-                let newEntity = NSManagedObject(entity: ResultWorkOut!, insertInto: PersistenceService.context)
+                DispatchQueue.global().async {
+                    
+                    if self.resultTotalScore == nil || self.resultTotalScore == "" {
+                        self.resultTotalScore = "0"
+                    }else {
+                        
+                    }
+                    
+                    if self.resultTotalTime == "" {
+                        self.resultTotalTime = "00:00:00"
+                    }
                 
-                // 운동 강도 데이터 저장 기능추가 해야함
-                newEntity.setValue(self.resultHeartRate, forKey: "avgHeartRate")
-                newEntity.setValue(self.resultTotalTime, forKey: "totalWorkOutTime")
-                newEntity.setValue(self.resultTotalCal, forKey: "totalcalBurn")
-                newEntity.setValue(self.resultTotalScore, forKey: "totalScore")
-                newEntity.setValue(self.resultMetersVal, forKey: "avgSpeedHour")
-                newEntity.setValue(self.resultWorkoutArray.count + 1, forKey: "todayWorkOutCount")
-                newEntity.setValue(self.resultSendToday, forKey: "todayDate")
-                
-                PersistenceService.saveContext()
+                    let ResultWorkOut = NSEntityDescription.entity(forEntityName: "ResultWorkOut", in: PersistenceService.context)
+                    let newEntity = NSManagedObject(entity: ResultWorkOut!, insertInto: PersistenceService.context)
+                    
+                    // 운동 강도 데이터 저장 기능추가 해야함
+                    newEntity.setValue(self.resultHeartRate, forKey: "avgHeartRate")
+                    newEntity.setValue(self.resultTotalTime, forKey: "totalWorkOutTime")
+                    newEntity.setValue(self.resultTotalCal, forKey: "totalcalBurn")
+                    newEntity.setValue(self.resultTotalScore, forKey: "totalScore")
+                    newEntity.setValue(self.resultMetersVal, forKey: "avgSpeedHour")
+                    newEntity.setValue(self.resultWorkoutArray.count + 1, forKey: "todayWorkOutCount")
+                    newEntity.setValue(self.resultSendToday, forKey: "todayDate")
+                    
+                    
+                    PersistenceService.saveContext()
 
-                let user_exercise_key:String = self.ref.childByAutoId().key as Any as! String
+                    let user_exercise_key:String = self.ref.childByAutoId().key as Any as! String
                 
-                let data : [String : Any] = [
-                        "uid" : Auth.auth().currentUser!.uid,
-                        "user_exercise_key" : user_exercise_key,
-                        "avg_heart_rate" : self.resultHeartRate!,
-                        "user_level" : self.stageLevel,
-                        "total_cal_burn" : self.resultTotalCal!,
-                        "result_total_score" : self.resultTotalScore!,
-                        "exercise_date" : self.resultSendToday,
-                        "today_workout_count" : self.resultWorkoutArray.count + 1,
-                        "result_total_time" : self.resultTotalTime!,
-                        "result_send_today" : self.resultSendToday,
-                        "result_meters" : ""
+                    let data : [String : Any] = [
+                            "uid" : Auth.auth().currentUser!.uid,
+                            "user_exercise_key" : user_exercise_key,
+                            "avg_heart_rate" : self.resultHeartRate!,
+                            "user_level" : self.stageLevel,
+                            "total_cal_burn" : self.resultTotalCal!,
+                            "result_total_score" : self.resultTotalScore!,
+                            "exercise_date" : self.resultSendToday,
+                            "today_workout_count" : self.resultWorkoutArray.count + 1,
+                            "result_total_time" : self.resultTotalTime!,
+                            "result_send_today" : self.resultSendToday,
+                            "result_meters" : ""
 
-                ]
+                    ]
+                    
+                    
 
 //                self.ref.child(user_exercise_key).setValue(data, withCompletionBlock: {(error, ref) in
 //                    if let err = error {
@@ -926,22 +1020,27 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
 //                        self.performSegue(withIdentifier: "resultWorkoutSegue", sender: self)
 ////                        let storyboard = UIStoryboard(name: "StartApp", bundle: nil).instantiateViewController(withIdentifier: "ResultWorkoutViewController") as! ResultWorkoutViewController
 ////                        storyboard.modalPresentationStyle = .fullScreen
-//
-//                        // 변경..
-//                        // self.navigationController!.pushViewController(storyboard, animated: true)
-////                        self.present(storyboard, animated: true, completion: nil)
+
+                        // 변경..
+                        // self.navigationController!.pushViewController(storyboard, animated: true)
+//                        self.present(storyboard, animated: true, completion: nil)
 //                    })
 //                })
-                
-                self.db.collection("user_exercise").document(user_exercise_key).setData(data) { err in
-                    if let err = err {
-                        print("Error writing document: \(err)")
-                    } else {
-                        // print("Document successfully written!")
-                        self.performSegue(withIdentifier: "resultWorkoutSegue", sender: self)
-                        self.view.removeFromSuperview()
+                    print("\(data)")
+                // 테스트 이후에 삭제하기
+                    self.db.collection("user_exercise").document(user_exercise_key).setData(data) { err in
+                        if let err = err {
+                            print("Error writing document: \(err)")
+                        } else {
+                            // print("Document successfully written!")
+                            self.performSegue(withIdentifier: "resultWorkoutSegue", sender: self)
+                            self.view.removeFromSuperview()
+
+                        }
                     }
                 }
+                
+                
                 
                 self.zoneMusicPlay?.stop()
                 self.zoneSoundPlay?.stop()
@@ -1103,8 +1202,12 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
                 self.checkZoneStatusSound = self.zoneStatusiOS
 
                 switch self.checkZoneStatusSound {
-                case "z1": break
+                case "z1":
                     //print("warn up..")
+                    self.timer.invalidate()
+
+                    self.timer  = Timer.scheduledTimer(timeInterval: self.soundDelay5, target: self, selector:
+                        #selector(self.zone1SoundAction), userInfo: nil, repeats: false)
 
                 case "z2":
 
@@ -1191,6 +1294,32 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
         
     }
     
+    @objc func zone1SoundAction() {
+        let path = Bundle.main.path(forResource: "zone1Recycle", ofType: "mp3")!
+        let url = URL(fileURLWithPath: path)
+        
+        do {
+            
+            if self.isSoundChecked == true {
+                self.zoneSoundPlay = try AVAudioPlayer(contentsOf: url)
+                self.zoneSoundPlay?.play()
+//                self.zoneSoundPlay?.setVolume(15.0, fadeDuration: 0)
+                try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [.duckOthers])
+                
+            } else {
+                self.zoneSoundPlay = try AVAudioPlayer(contentsOf: url)
+                self.zoneSoundPlay?.pause()
+//                self.zoneSoundPlay?.setVolume(15.0, fadeDuration: 0)
+                try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [.duckOthers])
+                
+            }
+            
+        } catch {
+            //print("not play...")
+        }
+        
+    }
+    
     @objc func zone2SoundAction() {
         let path = Bundle.main.path(forResource: "zone2start", ofType: "mp3")!
         let url = URL(fileURLWithPath: path)
@@ -1201,13 +1330,13 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
                 self.zoneSoundPlay = try AVAudioPlayer(contentsOf: url)
                 self.zoneSoundPlay?.play()
 //                self.zoneSoundPlay?.setVolume(15.0, fadeDuration: 0)
-                try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [])
+                try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [.duckOthers])
                 
             } else {
                 self.zoneSoundPlay = try AVAudioPlayer(contentsOf: url)
                 self.zoneSoundPlay?.pause()
 //                self.zoneSoundPlay?.setVolume(15.0, fadeDuration: 0)
-                try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [])
+                try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [.duckOthers])
                 
             }
             
@@ -1227,13 +1356,13 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
                 self.zoneSoundPlay = try AVAudioPlayer(contentsOf: url)
                 self.zoneSoundPlay?.play()
 //                self.zoneSoundPlay?.setVolume(15.0, fadeDuration: 0)
-                try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [])
+                try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [.duckOthers])
                 
             } else {
                 self.zoneSoundPlay = try AVAudioPlayer(contentsOf: url)
                 self.zoneSoundPlay?.pause()
 //                self.zoneSoundPlay?.setVolume(15.0, fadeDuration: 0)
-                try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [])
+                try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [.duckOthers])
                 
             }
             
@@ -1253,13 +1382,13 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
                 self.zoneSoundPlay = try AVAudioPlayer(contentsOf: url)
                 self.zoneSoundPlay?.play()
 //                self.zoneSoundPlay?.setVolume(15.0, fadeDuration: 0)
-                try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [])
+                try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [.duckOthers])
                 
             } else {
                 self.zoneSoundPlay = try AVAudioPlayer(contentsOf: url)
                 self.zoneSoundPlay?.pause()
 //                self.zoneSoundPlay?.setVolume(15.0, fadeDuration: 0)
-                try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [])
+                try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [.duckOthers])
                 
             }
             
@@ -1279,13 +1408,13 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
                 self.zoneSoundPlay = try AVAudioPlayer(contentsOf: url)
                 self.zoneSoundPlay?.play()
 //                self.zoneSoundPlay?.setVolume(15.0, fadeDuration: 0)
-                try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [])
+                try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [.duckOthers])
                 
             } else {
                 self.zoneSoundPlay = try AVAudioPlayer(contentsOf: url)
                 self.zoneSoundPlay?.pause()
 //                self.zoneSoundPlay?.setVolume(15.0, fadeDuration: 0)
-                try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [])
+                try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [.duckOthers])
                 
             }
             
@@ -1306,13 +1435,13 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
                 self.zoneSoundPlay = try AVAudioPlayer(contentsOf: url)
                 self.zoneSoundPlay?.play()
                 //                self.zoneSoundPlay?.setVolume(15.0, fadeDuration: 0)
-                try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [])
+                try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [.duckOthers])
                 
             } else {
                 self.zoneSoundPlay = try AVAudioPlayer(contentsOf: url)
                 self.zoneSoundPlay?.pause()
                 //                self.zoneSoundPlay?.setVolume(15.0, fadeDuration: 0)
-                try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [])
+                try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [.duckOthers])
                 
             }
             
@@ -1332,13 +1461,13 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
                 self.zoneSoundPlay = try AVAudioPlayer(contentsOf: url)
                 self.zoneSoundPlay?.play()
                 //                self.zoneSoundPlay?.setVolume(15.0, fadeDuration: 0)
-                try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [])
+                try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [.duckOthers])
                 
             } else {
                 self.zoneSoundPlay = try AVAudioPlayer(contentsOf: url)
                 self.zoneSoundPlay?.pause()
                 //                self.zoneSoundPlay?.setVolume(15.0, fadeDuration: 0)
-                try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [])
+                try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [.duckOthers])
                 
             }
             
@@ -1358,13 +1487,13 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
                 self.zoneSoundPlay = try AVAudioPlayer(contentsOf: url)
                 self.zoneSoundPlay?.play()
                 //                self.zoneSoundPlay?.setVolume(15.0, fadeDuration: 0)
-                try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [])
+                try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [.duckOthers])
                 
             } else {
                 self.zoneSoundPlay = try AVAudioPlayer(contentsOf: url)
                 self.zoneSoundPlay?.pause()
                 //                self.zoneSoundPlay?.setVolume(15.0, fadeDuration: 0)
-                try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [])
+                try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [.duckOthers])
                 
             }
             
@@ -1384,13 +1513,13 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
                 self.zoneSoundPlay = try AVAudioPlayer(contentsOf: url)
                 self.zoneSoundPlay?.play()
                 //                self.zoneSoundPlay?.setVolume(15.0, fadeDuration: 0)
-                try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [])
+                try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [.duckOthers])
                 
             } else {
                 self.zoneSoundPlay = try AVAudioPlayer(contentsOf: url)
                 self.zoneSoundPlay?.pause()
                 //                self.zoneSoundPlay?.setVolume(15.0, fadeDuration: 0)
-                try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [])
+                try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [.duckOthers])
                 
             }
             
@@ -1412,7 +1541,7 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
 //                self.zoneMusicPlay?.setVolume(15.0, fadeDuration: 7)
                 self.zoneMusicPlay?.numberOfLoops = -1 // 임시 반복 기능... 추후에 수정 필요
                 
-                try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [])
+                try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [.duckOthers])
                 
             }else {
                 self.zoneMusicPlay = try AVAudioPlayer(contentsOf: url)
@@ -1421,7 +1550,7 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
 //                self.zoneMusicPlay?.setVolume(15.0, fadeDuration: 7)
                 self.zoneMusicPlay?.numberOfLoops = -1 // 임시 반복 기능... 추후에 수정 필요
                 
-                try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [])
+                try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [.duckOthers])
             }
             
         } catch {
@@ -1442,7 +1571,7 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
 //                self.zoneMusicPlay?.setVolume(15.0, fadeDuration: 7)
                 self.zoneMusicPlay?.numberOfLoops = -1 // 임시 반복 기능... 추후에 수정 필요
                 
-                try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [])
+                try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [.duckOthers])
                 
             }else {
                 self.zoneMusicPlay = try AVAudioPlayer(contentsOf: url)
@@ -1451,7 +1580,7 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
 //                self.zoneMusicPlay?.setVolume(15.0, fadeDuration: 7)
                 self.zoneMusicPlay?.numberOfLoops = -1 // 임시 반복 기능... 추후에 수정 필요
                 
-                try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [])
+                try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [.duckOthers])
             }
             
         } catch {
@@ -1472,7 +1601,7 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
 //                self.zoneMusicPlay?.setVolume(15.0, fadeDuration: 7)
                 self.zoneMusicPlay?.numberOfLoops = -1 // 임시 반복 기능... 추후에 수정 필요
                 
-                try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [])
+                try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [.duckOthers])
                 
             }else {
                 self.zoneMusicPlay = try AVAudioPlayer(contentsOf: url)
@@ -1481,7 +1610,7 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
 //                self.zoneMusicPlay?.setVolume(15.0, fadeDuration: 7)
                 self.zoneMusicPlay?.numberOfLoops = -1 // 임시 반복 기능... 추후에 수정 필요
                 
-                try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [])
+                try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [.duckOthers])
             }
             
         } catch {
@@ -1502,7 +1631,7 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
 //                self.zoneMusicPlay?.setVolume(15.0, fadeDuration: 7)
                 self.zoneMusicPlay?.numberOfLoops = -1 // 임시 반복 기능... 추후에 수정 필요
                 
-                try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [])
+                try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [.duckOthers])
                 
             }else {
                 self.zoneMusicPlay = try AVAudioPlayer(contentsOf: url)
@@ -1511,7 +1640,7 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
 //                self.zoneMusicPlay?.setVolume(15.0, fadeDuration: 7)
                 self.zoneMusicPlay?.numberOfLoops = -1 // 임시 반복 기능... 추후에 수정 필요
                 
-                try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [])
+                try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [.duckOthers])
             }
             
         } catch {
