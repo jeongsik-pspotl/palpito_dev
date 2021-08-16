@@ -201,6 +201,10 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
                 
             }
             
+            if error != nil {
+                Crashlytics.crashlytics().record(error: error!)
+            }
+            
         }
         
         do {
@@ -377,6 +381,9 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
         // print("activationState : \(activationState)")
         // print("session : \(session)")
         //print("error \(error as Any)")
+        if(error != nil){
+            Crashlytics.crashlytics().record(error: error!)
+        }
     }
     
     func sessionDidBecomeInactive(_ session: WCSession) {
@@ -428,6 +435,27 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
         }
     }
     
+    func session(_ session: WCSession, didReceive file: WCSessionFile) {
+        DispatchQueue.main.async {
+            print(file)
+            
+            do {
+                
+                // 29일에 해당 구간 좀 더 구현할 방법 찾아보기
+                // try fileManager.createDirectory(at: <#T##URL#>, withIntermediateDirectories: <#T##Bool#>, attributes: <#T##[FileAttributeKey : Any]?#>)
+                
+                let strText = try String(contentsOf: file.fileURL, encoding: .utf8)
+                
+                print(strText)
+                
+            } catch let e {
+                print(e.localizedDescription)
+            }
+            
+        }
+    }
+    
+    
     func handlesSession(_ session: WCSession, didReceiveMessage message: [String: Any], replyHandler: (([String: Any]) -> Void)? = nil) {
         
         // DispatchQueue.main start
@@ -450,41 +478,42 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
             // if zoneStatusTensionVoice start
             if let zoneStatusVoice = message["zoneStatusTensionVoice"] as? String {
                 //print("userInfo zoneStatusTensionVoice : \(zoneStatusVoice)")
-                
-                if zoneStatusVoice == "zone1Voice" {
-                    self.timer.invalidate()
-                    self.timer  = Timer.scheduledTimer(timeInterval: 1, target: self, selector:
-                        #selector(self.zone2RecycleAction), userInfo: nil, repeats: false) // 피드백 수정
+                DispatchQueue.global().async {
+                    if zoneStatusVoice == "zone1Voice" {
+                        self.timer.invalidate()
+                        self.timer  = Timer.scheduledTimer(timeInterval: 1, target: self, selector:
+                            #selector(self.zone2RecycleAction), userInfo: nil, repeats: false) // 피드백 수정
 
-                }
-                
-                if zoneStatusVoice == "zone2Voice" {
-                    self.timer.invalidate()
-                    self.timer  = Timer.scheduledTimer(timeInterval: 1, target: self, selector:
-                        #selector(self.zone2RecycleAction), userInfo: nil, repeats: false)
+                    }
+                    
+                    if zoneStatusVoice == "zone2Voice" {
+                        self.timer.invalidate()
+                        self.timer  = Timer.scheduledTimer(timeInterval: 1, target: self, selector:
+                            #selector(self.zone2RecycleAction), userInfo: nil, repeats: false)
 
-                }
-                
-                //zone 3 구간만 격려 피드백 실행하기
-                if zoneStatusVoice == "zone3Voice" {
-                    self.timer.invalidate()
-                    self.timer  = Timer.scheduledTimer(timeInterval: 1, target: self, selector:
-                        #selector(self.zone3RecycleAction), userInfo: nil, repeats: false)
+                    }
+                    
+                    //zone 3 구간만 격려 피드백 실행하기
+                    if zoneStatusVoice == "zone3Voice" {
+                        self.timer.invalidate()
+                        self.timer  = Timer.scheduledTimer(timeInterval: 1, target: self, selector:
+                            #selector(self.zone3RecycleAction), userInfo: nil, repeats: false)
 
-                }
-                
-                if zoneStatusVoice == "zone4Voice" {
-                    self.timer.invalidate()
-                    self.timer  = Timer.scheduledTimer(timeInterval: 1, target: self, selector:
-                        #selector(self.zone3RecycleAction), userInfo: nil, repeats: false)
+                    }
+                    
+                    if zoneStatusVoice == "zone4Voice" {
+                        self.timer.invalidate()
+                        self.timer  = Timer.scheduledTimer(timeInterval: 1, target: self, selector:
+                            #selector(self.zone3RecycleAction), userInfo: nil, repeats: false)
 
-                }
-                
-                if zoneStatusVoice == "zone5Voice" {
-                    self.timer.invalidate()
-                    self.timer  = Timer.scheduledTimer(timeInterval: 1, target: self, selector:
-                        #selector(self.zone45RecycleAction), userInfo: nil, repeats: false)
+                    }
+                    
+                    if zoneStatusVoice == "zone5Voice" {
+                        self.timer.invalidate()
+                        self.timer  = Timer.scheduledTimer(timeInterval: 1, target: self, selector:
+                            #selector(self.zone45RecycleAction), userInfo: nil, repeats: false)
 
+                    }
                 }
                 
                 
@@ -591,6 +620,7 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
                     self.db.collection("user_exercise").document(user_exercise_key).setData(data) { err in
                         if let err = err {
                             print("Error writing document: \(err)")
+                            Crashlytics.crashlytics().record(error: err)
                         } else {
                             // print("Document successfully written!")
                             self.performSegue(withIdentifier: "resultWorkoutSegue", sender: self)
@@ -777,56 +807,57 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
             // if checkZoneStatusSound and zoneStatusiOS start
             if self.checkZoneStatusSound != self.zoneStatusiOS {
                 self.checkZoneStatusSound = self.zoneStatusiOS
+                DispatchQueue.global().async {
+                    switch self.checkZoneStatusSound {
+                    case "z1":
+                        //print("warn up..")
+                        self.timer.invalidate()
 
-                switch self.checkZoneStatusSound {
-                case "z1":
-                    //print("warn up..")
-                    self.timer.invalidate()
+                        self.timer  = Timer.scheduledTimer(timeInterval: self.soundDelay5, target: self, selector:
+                            #selector(self.zone1SoundAction), userInfo: nil, repeats: false)
 
-                    self.timer  = Timer.scheduledTimer(timeInterval: self.soundDelay5, target: self, selector:
-                        #selector(self.zone1SoundAction), userInfo: nil, repeats: false)
+                    case "z2":
 
-                case "z2":
+                        self.timer.invalidate()
 
-                    self.timer.invalidate()
+                        self.timer  = Timer.scheduledTimer(timeInterval: self.soundDelay5, target: self, selector:
+                            #selector(self.zone2SoundAction), userInfo: nil, repeats: false)
 
-                    self.timer  = Timer.scheduledTimer(timeInterval: self.soundDelay5, target: self, selector:
-                        #selector(self.zone2SoundAction), userInfo: nil, repeats: false)
+                        // self.zone2MusicBGMAction()
 
-                    // self.zone2MusicBGMAction()
+                    case "z3":
 
-                case "z3":
+                        self.timer.invalidate()
 
-                    self.timer.invalidate()
+                        self.timer  = Timer.scheduledTimer(timeInterval: self.soundDelay5, target: self, selector:
+                            #selector(self.zone3SoundAction), userInfo: nil, repeats: false)
 
-                    self.timer  = Timer.scheduledTimer(timeInterval: self.soundDelay5, target: self, selector:
-                        #selector(self.zone3SoundAction), userInfo: nil, repeats: false)
-
-                    // self.zone3MusicBGMAction()
-
-
-                case "z4":
-
-                    self.timer.invalidate()
-
-                    self.timer  = Timer.scheduledTimer(timeInterval: self.soundDelay5, target: self, selector:
-                        #selector(self.zone4SoundAction), userInfo: nil, repeats: false)
-
-                    // self.zone4MusicBGMAction()
+                        // self.zone3MusicBGMAction()
 
 
-                case "z5":
+                    case "z4":
 
-                    self.timer.invalidate()
+                        self.timer.invalidate()
 
-                    self.timer  = Timer.scheduledTimer(timeInterval: self.soundDelay5, target: self, selector:
-                        #selector(self.zone5SoundAction), userInfo: nil, repeats: false)
+                        self.timer  = Timer.scheduledTimer(timeInterval: self.soundDelay5, target: self, selector:
+                            #selector(self.zone4SoundAction), userInfo: nil, repeats: false)
 
-                    // self.zone5MusicBGMAction()
+                        // self.zone4MusicBGMAction()
 
 
-                default:
-                    print("not play..")
+                    case "z5":
+
+                        self.timer.invalidate()
+
+                        self.timer  = Timer.scheduledTimer(timeInterval: self.soundDelay5, target: self, selector:
+                            #selector(self.zone5SoundAction), userInfo: nil, repeats: false)
+
+                        // self.zone5MusicBGMAction()
+
+
+                    default:
+                        print("not play..")
+                    }
                 }
 
             }
@@ -893,41 +924,42 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
             // zone 1 ~ 5 구간 마다 처리 결과 가저 오기 zoneStatusTensionVoice 기능 비활성화
             if let zoneStatusVoice = userInfo["zoneStatusTensionVoice"] as? String {
                 //print("userInfo zoneStatusTensionVoice : \(zoneStatusVoice)")
+                DispatchQueue.global().async {
+                    // zone 1 voice test
+                    if zoneStatusVoice == "zone1Voice" {
+                        self.timer.invalidate()
+                        self.timer  = Timer.scheduledTimer(timeInterval: 1, target: self, selector:
+                            #selector(self.zone2RecycleAction), userInfo: nil, repeats: false)
 
-                // zone 1 voice test
-                if zoneStatusVoice == "zone1Voice" {
-                    self.timer.invalidate()
-                    self.timer  = Timer.scheduledTimer(timeInterval: 1, target: self, selector:
-                        #selector(self.zone2RecycleAction), userInfo: nil, repeats: false)
+                    }
 
-                }
+                    if zoneStatusVoice == "zone2Voice" {
+                        self.timer.invalidate()
+                        self.timer  = Timer.scheduledTimer(timeInterval: 1, target: self, selector:
+                            #selector(self.zone2RecycleAction), userInfo: nil, repeats: false)
 
-                if zoneStatusVoice == "zone2Voice" {
-                    self.timer.invalidate()
-                    self.timer  = Timer.scheduledTimer(timeInterval: 1, target: self, selector:
-                        #selector(self.zone2RecycleAction), userInfo: nil, repeats: false)
+                    }
 
-                }
+                    if zoneStatusVoice == "zone3Voice" {
+                        self.timer.invalidate()
+                        self.timer  = Timer.scheduledTimer(timeInterval: 1, target: self, selector:
+                            #selector(self.zone3RecycleAction), userInfo: nil, repeats: false)
 
-                if zoneStatusVoice == "zone3Voice" {
-                    self.timer.invalidate()
-                    self.timer  = Timer.scheduledTimer(timeInterval: 1, target: self, selector:
-                        #selector(self.zone3RecycleAction), userInfo: nil, repeats: false)
+                    }
 
-                }
+                    if zoneStatusVoice == "zone4Voice" {
+                        self.timer.invalidate()
+                        self.timer  = Timer.scheduledTimer(timeInterval: 1, target: self, selector:
+                            #selector(self.zone3RecycleAction), userInfo: nil, repeats: false)
 
-                if zoneStatusVoice == "zone4Voice" {
-                    self.timer.invalidate()
-                    self.timer  = Timer.scheduledTimer(timeInterval: 1, target: self, selector:
-                        #selector(self.zone3RecycleAction), userInfo: nil, repeats: false)
+                    }
+                    
+                    if zoneStatusVoice == "zone5Voice" {
+                        self.timer.invalidate()
+                        self.timer  = Timer.scheduledTimer(timeInterval: 1, target: self, selector:
+                            #selector(self.zone45RecycleAction), userInfo: nil, repeats: false)
 
-                }
-                
-                if zoneStatusVoice == "zone5Voice" {
-                    self.timer.invalidate()
-                    self.timer  = Timer.scheduledTimer(timeInterval: 1, target: self, selector:
-                        #selector(self.zone45RecycleAction), userInfo: nil, repeats: false)
-
+                    }
                 }
 
             }
@@ -996,7 +1028,7 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
                             "avg_heart_rate" : self.resultHeartRate!,
                             "user_level" : self.stageLevel,
                             "total_cal_burn" : self.resultTotalCal!,
-                            "result_total_score" : self.resultTotalScore!,
+                            "result_total_score" : Int(self.resultTotalScore!)!,
                             "exercise_date" : self.resultSendToday,
                             "today_workout_count" : self.resultWorkoutArray.count + 1,
                             "result_total_time" : self.resultTotalTime!,
@@ -1027,10 +1059,12 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
 //                    })
 //                })
                     print("\(data)")
+                    Crashlytics.crashlytics().log(" result data \(data)")
                 // 테스트 이후에 삭제하기
                     self.db.collection("user_exercise").document(user_exercise_key).setData(data) { err in
                         if let err = err {
                             print("Error writing document: \(err)")
+                            Crashlytics.crashlytics().record(error: err)
                         } else {
                             // print("Document successfully written!")
                             self.performSegue(withIdentifier: "resultWorkoutSegue", sender: self)
@@ -1200,56 +1234,57 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
             // if checkZoneStatusSound zoneStatusiOS  start
             if self.checkZoneStatusSound != self.zoneStatusiOS {
                 self.checkZoneStatusSound = self.zoneStatusiOS
+                DispatchQueue.global().async {
+                    switch self.checkZoneStatusSound {
+                    case "z1":
+                        //print("warn up..")
+                        self.timer.invalidate()
 
-                switch self.checkZoneStatusSound {
-                case "z1":
-                    //print("warn up..")
-                    self.timer.invalidate()
+                        self.timer  = Timer.scheduledTimer(timeInterval: self.soundDelay5, target: self, selector:
+                            #selector(self.zone1SoundAction), userInfo: nil, repeats: false)
 
-                    self.timer  = Timer.scheduledTimer(timeInterval: self.soundDelay5, target: self, selector:
-                        #selector(self.zone1SoundAction), userInfo: nil, repeats: false)
+                    case "z2":
 
-                case "z2":
+                        self.timer.invalidate()
 
-                    self.timer.invalidate()
+                        self.timer  = Timer.scheduledTimer(timeInterval: self.soundDelay5, target: self, selector:
+                            #selector(self.zone2SoundAction), userInfo: nil, repeats: false)
 
-                    self.timer  = Timer.scheduledTimer(timeInterval: self.soundDelay5, target: self, selector:
-                        #selector(self.zone2SoundAction), userInfo: nil, repeats: false)
+                        // self.zone2MusicBGMAction()
 
-                    // self.zone2MusicBGMAction()
+                    case "z3":
 
-                case "z3":
+                        self.timer.invalidate()
 
-                    self.timer.invalidate()
+                        self.timer  = Timer.scheduledTimer(timeInterval: self.soundDelay5, target: self, selector:
+                            #selector(self.zone3SoundAction), userInfo: nil, repeats: false)
 
-                    self.timer  = Timer.scheduledTimer(timeInterval: self.soundDelay5, target: self, selector:
-                        #selector(self.zone3SoundAction), userInfo: nil, repeats: false)
-
-                    // self.zone3MusicBGMAction()
-
-
-                case "z4":
-
-                    self.timer.invalidate()
-
-                    self.timer  = Timer.scheduledTimer(timeInterval: self.soundDelay5, target: self, selector:
-                        #selector(self.zone4SoundAction), userInfo: nil, repeats: false)
-
-                    // self.zone4MusicBGMAction()
+                        // self.zone3MusicBGMAction()
 
 
-                case "z5":
+                    case "z4":
 
-                    self.timer.invalidate()
+                        self.timer.invalidate()
 
-                    self.timer  = Timer.scheduledTimer(timeInterval: self.soundDelay5, target: self, selector:
-                        #selector(self.zone5SoundAction), userInfo: nil, repeats: false)
+                        self.timer  = Timer.scheduledTimer(timeInterval: self.soundDelay5, target: self, selector:
+                            #selector(self.zone4SoundAction), userInfo: nil, repeats: false)
 
-                    // self.zone5MusicBGMAction()
+                        // self.zone4MusicBGMAction()
 
 
-                default: break
-                    //print("not play..")
+                    case "z5":
+
+                        self.timer.invalidate()
+
+                        self.timer  = Timer.scheduledTimer(timeInterval: self.soundDelay5, target: self, selector:
+                            #selector(self.zone5SoundAction), userInfo: nil, repeats: false)
+
+                        // self.zone5MusicBGMAction()
+
+
+                    default: break
+                        //print("not play..")
+                    }
                 }
 
             }

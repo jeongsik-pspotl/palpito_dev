@@ -12,6 +12,7 @@ import FirebaseAuth
 import FirebaseFirestoreSwift
 
 // 유저 정보 수정 화면
+@available(iOS 13.4, *)
 class UserInfoSettingController: UIViewController {
     
     var db: Firestore!

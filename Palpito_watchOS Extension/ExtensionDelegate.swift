@@ -9,7 +9,13 @@
 import WatchKit
 import WatchConnectivity
 
+// 전역 변수 처리 두가지
 var loginCheck = ""
+var saveURL: URL {
+        return FileManager.default
+            .urls(for: .documentDirectory, in: .userDomainMask)[0]
+            .appendingPathComponent("test.txt")
+}
 
 class ExtensionDelegate: NSObject, WKExtensionDelegate, WCSessionDelegate {
     

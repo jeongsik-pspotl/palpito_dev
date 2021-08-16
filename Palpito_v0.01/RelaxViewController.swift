@@ -86,7 +86,7 @@ class RelaxViewController: UIViewController, WCSessionDelegate {
             
             //print("workoutViewController resultworkout count check... :  \(self.resultRelaxArray.count)")
             
-            for result in resultRelaxArray as [NSManagedObject]
+            for _ in resultRelaxArray as [NSManagedObject]
             {
                 //print("resultRelax core data check... ")
                 //print(result.value(forKey: "todayDate") as Any)
@@ -280,7 +280,7 @@ class RelaxViewController: UIViewController, WCSessionDelegate {
             }
             
             //stopRelaxTimer
-            if let stopTimerDataMsg = message["stopRelaxTimer"] as? String {
+            if (message["stopRelaxTimer"] as? String) != nil {
                 //print("message stopTimer : \(stopTimerDataMsg)")
                 
                 self.startTimer.invalidate()
@@ -362,7 +362,7 @@ class RelaxViewController: UIViewController, WCSessionDelegate {
             }
             
             // stopTimer
-            if let stopTimerDataMsg = userInfo["stopRelaxTimer"] as? String {
+            if (userInfo["stopRelaxTimer"] as? String) != nil {
                 //print("userInfo stopRelaxTimer : \(stopTimerDataMsg)")
                 self.zoneMusicPlay?.pause()
                 
@@ -376,7 +376,7 @@ class RelaxViewController: UIViewController, WCSessionDelegate {
             }
             
             // resumeTimer
-            if let resumeTimerDataMsg = userInfo["resumeRelaxTimer"] as? String {
+            if (userInfo["resumeRelaxTimer"] as? String) != nil {
                 //print("userInfo resumeRelaxTimer : \(resumeTimerDataMsg)")
                 self.zoneMusicPlay?.play()
                 

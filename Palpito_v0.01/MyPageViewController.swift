@@ -13,6 +13,7 @@ import CoreData
 import WatchConnectivity
 import Firebase
 import FirebaseFirestoreSwift
+import FirebaseCrashlytics
 
 class MyPageViewController: UIViewController, WCSessionDelegate {
     
@@ -151,7 +152,7 @@ class MyPageViewController: UIViewController, WCSessionDelegate {
                 }
                 
                 let data: [String: Any] = ["logincheck": "Yes" as String]
-                print(data)
+                
                 UserDefaults.standard.set("Yes" , forKey: "logincheck")
                 
                 
@@ -182,10 +183,13 @@ class MyPageViewController: UIViewController, WCSessionDelegate {
             stageLevelSendMsg = ["MyStageLvl":myStage] as! [String : String]
         }
         
-        
-        
-        
     }
+    
+//    @IBAction func crashButtonTapped(_ sender: AnyObject) {
+//        Crashlytics.crashlytics().setCustomValue("hello", forKey: "str_key")
+//        fatalError("test")
+//        //fatalError()
+//    }
     
     
     override func viewWillAppear(_ animated: Bool) {
@@ -362,6 +366,25 @@ class MyPageViewController: UIViewController, WCSessionDelegate {
             
         }
             
+    }
+    
+    func session(_ session: WCSession, didReceive file: WCSessionFile) {
+        DispatchQueue.main.async {
+            
+            do {
+                print(file)
+                // 29일에 해당 구간 좀 더 구현할 방법 찾아보기
+                // try fileManager.createDirectory(at: <#T##URL#>, withIntermediateDirectories: <#T##Bool#>, attributes: <#T##[FileAttributeKey : Any]?#>)
+                
+                let strText = try String(contentsOf: file.fileURL, encoding: .utf8)
+                
+                print(strText)
+                
+            } catch let e {
+                print(e.localizedDescription)
+            }
+            
+        }
     }
     
     func tryWatchSendMessage(message: [String : Any]) {

@@ -32,10 +32,17 @@ class ResultWorkoutInterfaceController: WKInterfaceController, WCSessionDelegate
     var resultCalVal:String?
     var resultScoreCountVal:String?
     var resultMetersVal:String?
+    
+    let fileManager = FileManager.default
 
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
         self.setTitle("")
+        
+//        let documentURL = self.fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
+//        let directoryURL = documentURL.appendingPathComponent("NewDirectory")
+//        let fileURL = directoryURL.appendingPathComponent("test.txt")
+        let text = NSString(string: "result workout interfase controller start ")
         
         if WCSession.isSupported() {
             wcSession = WCSession.default
@@ -74,6 +81,32 @@ class ResultWorkoutInterfaceController: WKInterfaceController, WCSessionDelegate
         self.resultScoreCountText.setText(self.resultScoreCountVal!)
         self.resultHeartRateText.setText(self.resultHeartRateVal)
         self.resultMeterText.setText(self.resultMetersVal!)
+        
+                
+        do {
+            if let fileUpdater = try? FileHandle(forUpdating: saveURL) {
+
+                    // Function which when called will cause all updates to start from end of the file
+                fileUpdater.seekToEndOfFile()
+
+                    // Which lets the caller move editing to any position within the file by supplying an offset
+                fileUpdater.write(text.data(using: .zero, allowLossyConversion: false)!)
+
+                    // Once we convert our new content to data and write it, we close the file and that’s it!
+                fileUpdater.closeFile()
+            }
+            
+            // 여기서 강도 설정 값을 받을지..
+            var transContext:[String:String]?
+            transContext = ["transfile":"test"]
+            
+            // 행동 수집 구간 조건을 처리 잘 처리하기
+             wcSession?.transferFile(saveURL, metadata: transContext) // 보내는 구간
+            
+        } catch let e {
+            print(e.localizedDescription)
+        }
+        
         
         // Configure interface objects here.
     }

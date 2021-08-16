@@ -26,6 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        FirebaseApp.configure()
         
         if WCSession.isSupported(){
             let session = WCSession.default
@@ -50,7 +51,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } else {
             //print("WatchConnectivity is not supported on this device")
         }
-        FirebaseApp.configure()
         
         
         
@@ -190,6 +190,10 @@ extension AppDelegate: WCSessionDelegate {
         //print("AppDelegate activationState : \(activationState)")
         //print("AppDelegate session : \(session)")
         //print("AppDelegate error \(error as Any)")
+        if error != nil {
+            Crashlytics.crashlytics().record(error: error!)
+        }
+        
     }
     
     func sessionDidBecomeInactive(_ session: WCSession) {

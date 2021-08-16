@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import FirebaseFirestore
 
-class RankingViewController: UITableViewController {
+class RankingViewController: UIViewController {
     
     var list = [Dictionary<String, AnyObject>]()
     var user_list_dic = [Dictionary<String, AnyObject>]()
@@ -27,10 +27,16 @@ class RankingViewController: UITableViewController {
     override func viewDidLoad() {
         db = Firestore.firestore()
         
+    
         self.getAllUser()
         
-        tableViewRangKing.delegate = self
-        tableViewRangKing.dataSource = self
+        //tableView.register(UITableViewHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: "customHeader")
+       
+        
+        //tableViewRangKing.delegate = self
+        //tableViewRangKing.dataSource = self
+        
+        
         
         
     }
@@ -110,8 +116,8 @@ class RankingViewController: UITableViewController {
 
                         
                         DispatchQueue.main.async {
-                            self.tableViewRangKing.reloadData() //Main
-                            //self.resultScoreData()
+                            //self.tableViewRangKing.reloadData() //Main
+
                         }
                     }
                 }
@@ -119,11 +125,71 @@ class RankingViewController: UITableViewController {
         
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    
+    
+    
+    
+   
+    
+    func sum(numbers: [Int]) -> Int {
+      // 1
+      return numbers.reduce(0, +)
+      // 2
+      
+    }
+        
+}
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
+    }
+    */
+extension RankingViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "customHeader")
+        
+        let returnedView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 200))
+        returnedView.backgroundColor = UIColor.orange
+    
+        
+        let label = UILabel(frame: CGRect(x: 140, y: 0, width: 100, height: 25))
+        label.text = "RangKing"
+        label.textAlignment = .center
+        
+        let labelsub1 = UILabel(frame: CGRect(x: 10, y: 50, width: 100, height: 25))
+        labelsub1.text = "순위"
+        labelsub1.textAlignment = .left
+        
+        let labelsub2 = UILabel(frame: CGRect(x: 140, y: 50, width: 100, height: 25))
+        labelsub2.text = "ID"
+        labelsub2.textAlignment = .center
+        
+        let labelsub3 = UILabel(frame: CGRect(x: 190, y: 50, width: 100, height: 25))
+        labelsub3.text = "Score"
+        labelsub3.textAlignment = .right
+        
+        returnedView.addSubview(label)
+        returnedView.addSubview(labelsub1)
+        returnedView.addSubview(labelsub2)
+        returnedView.addSubview(labelsub3)
+        
+        header?.backgroundView = returnedView
+        
+        
+        return header
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.list.count
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    private func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let obj = self.list[indexPath.row]
         //print(obj)
         //let cell = UITableViewCell.init(style: .default, reuseIdentifier: "scoreCell")
@@ -140,22 +206,4 @@ class RankingViewController: UITableViewController {
         return recell
     }
     
-    func sum(numbers: [Int]) -> Int {
-      // 1
-      return numbers.reduce(0, +)
-      // 2
-      
-    }
-        
 }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-

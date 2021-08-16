@@ -115,15 +115,16 @@ class EmailAddViewController: ExtensionVC, UITextFieldDelegate  {
         let backItem = UIBarButtonItem()
         backItem.title = ""
         navigationItem.backBarButtonItem = backItem
-        self.sv = UIViewController.displaySpinner(onView: self.view)
+        
         
         guard let birthText = birthTextField.text else {
             
             let alert = UIAlertController(title: "회원가입 실패", message: "생년월일을 입력해주세요.", preferredStyle: UIAlertController.Style.alert)
             let defaultAction = UIAlertAction(title: "OK", style: .destructive, handler : nil)
             alert.addAction(defaultAction)
-            self.sv.removeFromSuperview()
+            
             present(alert, animated: false, completion: nil)
+            //self.sv.removeFromSuperview()
             
             return
         }
@@ -135,27 +136,29 @@ class EmailAddViewController: ExtensionVC, UITextFieldDelegate  {
         let emailCheck = isValidEmailAddress(email: email)
         let passwordCheck = validatePassword(password: password)
         
-        // 이메일 체크
-        if !emailCheck {
-            // 팝업 창 생성..
-            let alert = UIAlertController(title: "회원가입 실패", message: "이메일을 확인해주세요.", preferredStyle: UIAlertController.Style.alert)
-            let defaultAction = UIAlertAction(title: "OK", style: .destructive, handler : nil)
-            alert.addAction(defaultAction)
-            self.sv.removeFromSuperview()
-            present(alert, animated: false, completion: nil)
-            self.emailCheckYn = false
-            
-            return
-        }
-        
         // 이메일 중복 여부 체크
         if !emailCheckYn {
             // 팝업 창 생성..
             let alert = UIAlertController(title: "회원가입 실패", message: "이메일 중복조회 해주세요.", preferredStyle: UIAlertController.Style.alert)
             let defaultAction = UIAlertAction(title: "OK", style: .destructive, handler : nil)
             alert.addAction(defaultAction)
-            self.sv.removeFromSuperview()
+            
             present(alert, animated: false, completion: nil)
+            //self.sv.removeFromSuperview()
+            
+            return
+        }
+        
+        // 이메일 체크
+        if !emailCheck {
+            // 팝업 창 생성..
+            let alert = UIAlertController(title: "회원가입 실패", message: "이메일을 확인해주세요.", preferredStyle: UIAlertController.Style.alert)
+            let defaultAction = UIAlertAction(title: "OK", style: .destructive, handler : nil)
+            alert.addAction(defaultAction)
+            
+            present(alert, animated: false, completion: nil)
+            //self.sv.removeFromSuperview()
+            self.emailCheckYn = false
             
             return
         }
@@ -166,8 +169,9 @@ class EmailAddViewController: ExtensionVC, UITextFieldDelegate  {
             let alert = UIAlertController(title: "회원가입 실패", message: "비밀번호를 확인해주세요.", preferredStyle: UIAlertController.Style.alert)
             let defaultAction = UIAlertAction(title: "OK", style: .destructive, handler : nil)
             alert.addAction(defaultAction)
-            self.sv.removeFromSuperview()
+            //self.sv.removeFromSuperview()
             present(alert, animated: false, completion: nil)
+            //self.sv.removeFromSuperview()
             return
         }
         
@@ -175,9 +179,9 @@ class EmailAddViewController: ExtensionVC, UITextFieldDelegate  {
             let alert = UIAlertController(title: "회원가입 실패", message: "생년월일을 입력해주세요.", preferredStyle: UIAlertController.Style.alert)
             let defaultAction = UIAlertAction(title: "OK", style: .destructive, handler : nil)
             alert.addAction(defaultAction)
-            self.sv.removeFromSuperview()
+            //self.sv.removeFromSuperview()
             present(alert, animated: false, completion: nil)
-            
+            //self.sv.removeFromSuperview()
             return
         }
         
@@ -186,8 +190,9 @@ class EmailAddViewController: ExtensionVC, UITextFieldDelegate  {
             let alert = UIAlertController(title: "회원가입 실패", message: "닉네임을 입력해주세요.", preferredStyle: UIAlertController.Style.alert)
             let defaultAction = UIAlertAction(title: "OK", style: .destructive, handler : nil)
             alert.addAction(defaultAction)
-            self.sv.removeFromSuperview()
+            //self.sv.removeFromSuperview()
             present(alert, animated: false, completion: nil)
+            //self.sv.removeFromSuperview()
             
             return
         }
@@ -198,12 +203,13 @@ class EmailAddViewController: ExtensionVC, UITextFieldDelegate  {
             let alert = UIAlertController(title: "회원가입 실패", message: "약관 동의 체크해야 회원가입이 가능합니다.", preferredStyle: UIAlertController.Style.alert)
             let defaultAction = UIAlertAction(title: "OK", style: .destructive, handler : nil)
             alert.addAction(defaultAction)
-            self.sv.removeFromSuperview()
+            //self.sv.removeFromSuperview()
             present(alert, animated: false, completion: nil)
+            //self.sv.removeFromSuperview()
             
             return
         }
-        
+        self.sv = UIViewController.displaySpinner(onView: self.view)
         Auth.auth().createUser(withEmail: email, password: password) { [weak self] (authResult, error) in
             
             guard let user = authResult?.user else { return }
@@ -240,7 +246,7 @@ class EmailAddViewController: ExtensionVC, UITextFieldDelegate  {
                 let defaultAction = UIAlertAction(title: "OK", style: .destructive, handler : nil)
                 alert.addAction(defaultAction)
                 self!.sv.removeFromSuperview()
-                self?.present(alert, animated: false, completion: nil)
+                self?.present(alert, animated: true, completion: nil)
                 return
             }
         }
@@ -321,13 +327,28 @@ class EmailAddViewController: ExtensionVC, UITextFieldDelegate  {
         }
         cancelDialogMessage.addAction(okStatus)
         
-        if emailTextField.text == nil {
-            
+        // 이메일 형식에 맞는 validation 처리 기능 추가하기
+        if emailTextField.text == nil || emailTextField.text == "" {
+            let alert = UIAlertController(title: "이메일 체크", message: "이메일을 입력해주세요.", preferredStyle: UIAlertController.Style.alert)
+            let defaultAction = UIAlertAction(title: "OK", style: .destructive, handler : nil)
+            alert.addAction(defaultAction)
+            present(alert, animated: false, completion: nil)
+            return
         }else{
             emailCheckVar = emailTextField.text!
         }
         
+        let emailCheck = isValidEmailAddress(email: emailCheckVar)
+        
         // 테스트 필요.
+        if !emailCheck {
+            // 이메일 형식에 맞지 않습니다.
+            let alert = UIAlertController(title: "이메일 체크", message: "이메일을 형식에 맞지 않습니다.", preferredStyle: UIAlertController.Style.alert)
+            let defaultAction = UIAlertAction(title: "OK", style: .destructive, handler : nil)
+            alert.addAction(defaultAction)
+            present(alert, animated: false, completion: nil)
+            return
+        }
         
         Auth.auth().fetchSignInMethods(forEmail: emailCheckVar, completion: {
          (providers, error) in
@@ -384,10 +405,25 @@ class EmailAddViewController: ExtensionVC, UITextFieldDelegate  {
     
     func isValidEmailAddress(email: String) -> Bool {
 
-        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
-        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
-
-        return emailTest.evaluate(with: email)
+        var returnValue = true
+        let emailRegEx = "[A-Z0-9a-z.-_]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,3}"
+            
+        do {
+            let regex = try NSRegularExpression(pattern: emailRegEx)
+            let nsString = email as NSString
+            let results = regex.matches(in: email, range: NSRange(location: 0, length: nsString.length))
+                
+            if results.count == 0
+            {
+                returnValue = false
+            }
+                
+        } catch let error as NSError {
+            print("invalid regex: \(error.localizedDescription)")
+            returnValue = false
+        }
+            
+        return  returnValue
 
     }
     

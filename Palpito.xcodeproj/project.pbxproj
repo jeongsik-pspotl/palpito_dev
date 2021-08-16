@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 53;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -46,6 +46,7 @@
 		F68A787D2161D8B800A1C2A6 /* UnCheckbox@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = F68A787C2161D8B800A1C2A6 /* UnCheckbox@3x.png */; };
 		F68A78812161DEC400A1C2A6 /* DLRadioButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F68A78802161DEC400A1C2A6 /* DLRadioButton.m */; };
 		F68A78832161E87900A1C2A6 /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68A78822161E87900A1C2A6 /* PopUpViewController.swift */; };
+		F692306C26592E6C005D93DD /* RangkingSampleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F692306B26592E6C005D93DD /* RangkingSampleController.swift */; };
 		F69413AB24C8798D0008531D /* MovieVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69413AA24C8798D0008531D /* MovieVO.swift */; };
 		F695C31A215C9F8B00F4DDEB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F695C319215C9F8B00F4DDEB /* AppDelegate.swift */; };
 		F695C31C215C9F8B00F4DDEB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F695C31B215C9F8B00F4DDEB /* ViewController.swift */; };
@@ -53,6 +54,8 @@
 		F695C321215C9F8C00F4DDEB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F695C320215C9F8C00F4DDEB /* Assets.xcassets */; };
 		F695C324215C9F8C00F4DDEB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F695C322215C9F8C00F4DDEB /* LaunchScreen.storyboard */; };
 		F69BE38A22018BCE00B9C1CC /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69BE38922018BCE00B9C1CC /* MyPageViewController.swift */; };
+		F69C065A265684CE00407370 /* RangKingHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69C0659265684CE00407370 /* RangKingHeader.swift */; };
+		F69C065E2656886000407370 /* RangkingSubHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69C065D2656886000407370 /* RangkingSubHeader.swift */; };
 		F69F50242296399100581B49 /* RelaxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60183BB2296390700380C47 /* RelaxViewController.swift */; };
 		F69F502622963AA800581B49 /* ResultRelaxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69F502522963AA800581B49 /* ResultRelaxViewController.swift */; };
 		F6B1861C24CBE1EB003C905D /* PrivateInfomationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B1861B24CBE1EB003C905D /* PrivateInfomationController.swift */; };
@@ -206,6 +209,7 @@
 		F68A787F2161DEC400A1C2A6 /* DLRadioButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLRadioButton.h; sourceTree = "<group>"; };
 		F68A78802161DEC400A1C2A6 /* DLRadioButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLRadioButton.m; sourceTree = "<group>"; };
 		F68A78822161E87900A1C2A6 /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
+		F692306B26592E6C005D93DD /* RangkingSampleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangkingSampleController.swift; sourceTree = "<group>"; };
 		F69413AA24C8798D0008531D /* MovieVO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieVO.swift; sourceTree = "<group>"; };
 		F695C316215C9F8B00F4DDEB /* Palpito.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Palpito.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F695C319215C9F8B00F4DDEB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -215,6 +219,8 @@
 		F695C325215C9F8C00F4DDEB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F69BE3872201887000B9C1CC /* PersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceService.swift; sourceTree = "<group>"; };
 		F69BE38922018BCE00B9C1CC /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
+		F69C0659265684CE00407370 /* RangKingHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangKingHeader.swift; sourceTree = "<group>"; };
+		F69C065D2656886000407370 /* RangkingSubHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangkingSubHeader.swift; sourceTree = "<group>"; };
 		F69F502522963AA800581B49 /* ResultRelaxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultRelaxViewController.swift; sourceTree = "<group>"; };
 		F6A49CF725B45B8900F492AA /* Palpito_watchOSRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Palpito_watchOSRelease.entitlements; sourceTree = "<group>"; };
 		F6B1861B24CBE1EB003C905D /* PrivateInfomationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateInfomationController.swift; sourceTree = "<group>"; };
@@ -476,6 +482,7 @@
 				F6B1861B24CBE1EB003C905D /* PrivateInfomationController.swift */,
 				F6B1861D24CBE35A003C905D /* UserInfoSettingController.swift */,
 				F6DFAA6724F0ED0A00A674F7 /* StartPopupController.swift */,
+				F692306B26592E6C005D93DD /* RangkingSampleController.swift */,
 			);
 			path = Palpito_v0.01;
 			sourceTree = "<group>";
@@ -508,6 +515,8 @@
 				F6D84B4424790E3C00EC56A0 /* ConfigCell.xib */,
 				F6EF57D62483BC8200C4A5C1 /* RangKingCell.swift */,
 				F69413AA24C8798D0008531D /* MovieVO.swift */,
+				F69C0659265684CE00407370 /* RangKingHeader.swift */,
+				F69C065D2656886000407370 /* RangkingSubHeader.swift */,
 			);
 			path = cell;
 			sourceTree = "<group>";
@@ -565,6 +574,7 @@
 				F67D12602513858D00E70692 /* ShellScript */,
 				07C5C90A5BAD90883660C6D5 /* [CP] Embed Pods Frameworks */,
 				30FC1CA3321E8E4F21212451 /* [CP] Copy Pods Resources */,
+				F6FE8813266CF0620087EFE2 /* FireBase Crashlytics */,
 			);
 			buildRules = (
 			);
@@ -626,7 +636,7 @@
 				};
 			};
 			buildConfigurationList = F695C311215C9F8B00F4DDEB /* Build configuration list for PBXProject "Palpito" */;
-			compatibilityVersion = "Xcode 11.4";
+			compatibilityVersion = "Xcode 12.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -803,6 +813,24 @@
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n";
 		};
+		F6FE8813266CF0620087EFE2 /* FireBase Crashlytics */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "FireBase Crashlytics";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#if [ \"${CONFIGURATION}\" != \"Debug\" ]; then\n #   \"${PODS_ROOT}/FirebaseCrashlytics/run\"\n #   \"${PODS_ROOT}/FirebaseCrashlytics/upload-symbols\" -gsp ${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist -p ios ${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}\n#fi\n";
+		};
 		FEA991E6DAC35FE7CC34D898 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -873,13 +901,16 @@
 				F6BC90AF24C5C5FF00E2283C /* ExtensionVC.swift in Sources */,
 				F6DFAA6824F0ED0A00A674F7 /* StartPopupController.swift in Sources */,
 				F650C0A0221151AE001823F7 /* PersistenceService.swift in Sources */,
+				F69C065E2656886000407370 /* RangkingSubHeader.swift in Sources */,
 				F695C31A215C9F8B00F4DDEB /* AppDelegate.swift in Sources */,
+				F692306C26592E6C005D93DD /* RangkingSampleController.swift in Sources */,
 				F69413AB24C8798D0008531D /* MovieVO.swift in Sources */,
 				F69F502622963AA800581B49 /* ResultRelaxViewController.swift in Sources */,
 				F62788472201921D003B3540 /* MyStage+CoreDataProperties.swift in Sources */,
 				F6B1861E24CBE35A003C905D /* UserInfoSettingController.swift in Sources */,
 				F6EF57D72483BC8200C4A5C1 /* RangKingCell.swift in Sources */,
 				F6D1BC2E229F758200581073 /* ResultRelax+CoreDataClass.swift in Sources */,
+				F69C065A265684CE00407370 /* RangKingHeader.swift in Sources */,
 				F69BE38A22018BCE00B9C1CC /* MyPageViewController.swift in Sources */,
 				F6DDC600215DE77400F47FEF /* UserCreate.swift in Sources */,
 				F6BBA05421C0D81D00C19C27 /* WorkoutViewController.swift in Sources */,
@@ -957,7 +988,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Palpito_watchOS Extension/Palpito_watchOS Extension.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 54B55B6766;
 				ENABLE_TESTABILITY = NO;
@@ -968,7 +999,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.6.6;
+				MARKETING_VERSION = 1.6.8;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = xyz.palpito.dev.app.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
@@ -977,7 +1008,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 7.1;
+				WATCHOS_DEPLOYMENT_TARGET = 7.4;
 			};
 			name = Debug;
 		};
@@ -987,9 +1018,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_ENTITLEMENTS = "Palpito_watchOS Extension/Palpito_watchOS ExtensionRelease.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 54B55B6766;
 				INFOPLIST_FILE = "Palpito_watchOS Extension/Info.plist";
@@ -999,16 +1030,16 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.6.6;
+				MARKETING_VERSION = 1.6.8;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = xyz.palpito.dev.app.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
-				PROVISIONING_PROFILE_SPECIFIER = Palpito_app_WatchOS_Extension;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 7.1;
+				WATCHOS_DEPLOYMENT_TARGET = 7.4;
 			};
 			name = Release;
 		};
@@ -1020,12 +1051,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = WatchAppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 54B55B6766;
 				IBSC_MODULE = Palpito_watchOS_Extension;
 				INFOPLIST_FILE = Palpito_watchOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 1.6.6;
+				MARKETING_VERSION = 1.6.8;
 				PRODUCT_BUNDLE_IDENTIFIER = xyz.palpito.dev.app.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1033,7 +1064,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 7.1;
+				WATCHOS_DEPLOYMENT_TARGET = 7.4;
 			};
 			name = Debug;
 		};
@@ -1044,22 +1075,22 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = WatchAppIcon;
 				CODE_SIGN_ENTITLEMENTS = Palpito_watchOS/Palpito_watchOSRelease.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 54B55B6766;
 				IBSC_MODULE = Palpito_watchOS_Extension;
 				INFOPLIST_FILE = Palpito_watchOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 1.6.6;
+				MARKETING_VERSION = 1.6.8;
 				PRODUCT_BUNDLE_IDENTIFIER = xyz.palpito.dev.app.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = palpipo_app_WatchOS_real;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 7.1;
+				WATCHOS_DEPLOYMENT_TARGET = 7.4;
 			};
 			name = Release;
 		};
@@ -1098,9 +1129,9 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
+				ENABLE_TESTABILITY = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1160,7 +1191,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -1189,21 +1220,22 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Palpito.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 2;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 54B55B6766;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = Palpito_v0.01/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.6.6;
+				MARKETING_VERSION = 1.6.8;
 				PRODUCT_BUNDLE_IDENTIFIER = xyz.palpito.dev.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = palpito_dev_iphone;
 				SWIFT_COMPILATION_MODE = singlefile;
 				SWIFT_OBJC_BRIDGING_HEADER = "Palpito_v0.01/ImgResource/Palpito_v0.01-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1219,21 +1251,22 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = PalpitoRelease.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 54B55B6766;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = Palpito_v0.01/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.6.6;
+				MARKETING_VERSION = 1.6.8;
 				PRODUCT_BUNDLE_IDENTIFIER = xyz.palpito.dev.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = palpipo_app_iPhone;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Palpito_v0.01/ImgResource/Palpito_v0.01-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;

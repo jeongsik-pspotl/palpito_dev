@@ -118,7 +118,7 @@ class ResultRelaxViewController: UIViewController, WCSessionDelegate {
     func handlesSession(_ session: WCSession, didReceiveMessage message: [String: Any], replyHandler: (([String: Any]) -> Void)? = nil) {
         DispatchQueue.main.async {
             
-            if let msg = message["backToMainTab"] as? String {
+            if (message["backToMainTab"] as? String) != nil {
                 
                 //backToMainTabBar
                 let startAppSb: UIStoryboard = UIStoryboard(name: "StartApp", bundle: nil)
@@ -151,7 +151,7 @@ class ResultRelaxViewController: UIViewController, WCSessionDelegate {
     
     func session(_ session: WCSession, didReceiveUserInfo userInfo: [String : Any] = [:]) {
         DispatchQueue.main.async {
-            if let msg = userInfo["backToMainTab"] as? String {
+            if (userInfo["backToMainTab"] as? String) != nil {
                 
                 //backToMainTabBar
                 let startAppSb: UIStoryboard = UIStoryboard(name: "StartApp", bundle: nil)

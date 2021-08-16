@@ -16,7 +16,8 @@ extension ResultWorkOut {
     @nonobjc public class func fetchRequest() -> NSFetchRequest<ResultWorkOut> {
         return NSFetchRequest<ResultWorkOut>(entityName: "ResultWorkOut")
     }
-
+    
+    @NSManaged public var userLevel: String?
     @NSManaged public var avgHeartRate: String?
     @NSManaged public var avgSpeedHour: String?
     @NSManaged public var todayDate: String?
