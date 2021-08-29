@@ -39,47 +39,6 @@ class StandByWorkoutInterfaceController: WKInterfaceController, WCSessionDelegat
         //let fileManager = FileManager.default
         //let documentURL = self.fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
         //let directoryURL = documentURL.appendingPathComponent("NewDirectory")
-        let fileURL = saveURL
-        let text = NSString(string: "start StandByWorkoutInterfaceController ")
-        
-        do {
-                //try fileManager.createDirectory(at: fileURL, withIntermediateDirectories: false, attributes: nil)
-                
-                try text.write(to: fileURL, atomically: true, encoding: String.Encoding.utf8.rawValue)
-                
-                let text10 = try String(contentsOf: fileURL, encoding: .utf8)
-                print(text10)
-                    
-                    
-        } catch let e {
-                print(e.localizedDescription)
-        }
-        
-        
-        do {
-            if let fileUpdater = try? FileHandle(forUpdating: saveURL) {
-
-                    // Function which when called will cause all updates to start from end of the file
-                fileUpdater.seekToEndOfFile()
-
-                    // Which lets the caller move editing to any position within the file by supplying an offset
-                fileUpdater.write(text.data(using: .zero, allowLossyConversion: false)!)
-
-                    // Once we convert our new content to data and write it, we close the file and that’s it!
-                fileUpdater.closeFile()
-            }
-            
-            // 여기서 강도 설정 값을 받을지..
-            var transContext:[String:String]?
-            transContext = ["transfile":"test"]
-            
-            // 행동 수집 구간 조건을 처리 잘 처리하기
-             wcSession?.transferFile(saveURL, metadata: transContext) // 보내는 구간
-            
-        } catch let e {
-            print(e.localizedDescription)
-        }
-        
         
 //        WCSession.deac
         if WCSession.isSupported() {
@@ -122,32 +81,6 @@ class StandByWorkoutInterfaceController: WKInterfaceController, WCSessionDelegat
         //let documentURL = self.fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
         //let directoryURL = documentURL.appendingPathComponent("NewDirectory")
         //let fileURL = directoryURL.appendingPathComponent("test.txt")
-        let text = NSString(string: "restart StandByWorkoutInterfaceController ")
-        
-        
-        do {
-            if let fileUpdater = try? FileHandle(forUpdating: saveURL) {
-
-                    // Function which when called will cause all updates to start from end of the file
-                fileUpdater.seekToEndOfFile()
-
-                    // Which lets the caller move editing to any position within the file by supplying an offset
-                fileUpdater.write(text.data(using: .zero, allowLossyConversion: false)!)
-
-                    // Once we convert our new content to data and write it, we close the file and that’s it!
-                fileUpdater.closeFile()
-            }
-            
-            // 여기서 강도 설정 값을 받을지..
-            var transContext:[String:String]?
-            transContext = ["transfile":"test"]
-            
-            // 행동 수집 구간 조건을 처리 잘 처리하기
-             wcSession?.transferFile(saveURL, metadata: transContext) // 보내는 구간
-            
-        } catch let e {
-            print(e.localizedDescription)
-        }
         
         
     }
@@ -250,32 +183,6 @@ class StandByWorkoutInterfaceController: WKInterfaceController, WCSessionDelegat
     // SL3
     @IBAction func workoutOutdoorStart() {
         //print("workoutOutdoorStart action ?? ")
-        // file write 처리 구간
-        let text = NSString(string: "StandByWorkoutInterfaceController | workoutOutDoorHigh Start OnClick ")
-        
-        do {
-            if let fileUpdater = try? FileHandle(forUpdating: saveURL) {
-
-                    // Function which when called will cause all updates to start from end of the file
-                fileUpdater.seekToEndOfFile()
-
-                    // Which lets the caller move editing to any position within the file by supplying an offset
-                fileUpdater.write(text.data(using: .zero, allowLossyConversion: false)!)
-
-                    // Once we convert our new content to data and write it, we close the file and that’s it!
-                fileUpdater.closeFile()
-            }
-            
-            // 여기서 강도 설정 값을 받을지..
-            var transContext:[String:String]?
-            transContext = ["transfile":"test"]
-            
-            // 행동 수집 구간 조건을 처리 잘 처리하기
-             wcSession?.transferFile(saveURL, metadata: transContext) // 보내는 구간
-            
-        } catch let e {
-            print(e.localizedDescription)
-        }
         
         workoutSendMainInterface(MyStageLvl: "SL3")
 
@@ -284,32 +191,7 @@ class StandByWorkoutInterfaceController: WKInterfaceController, WCSessionDelegat
     // SL2
     @IBAction func workoutOutdoorMidStart() {
         //print("workoutOutdoorStart action ?? ")
-        // file write 처리 구간
-        let text = NSString(string: "StandByWorkoutInterfaceController | workoutOutDoorMid Start OnClick ")
         
-        do {
-            if let fileUpdater = try? FileHandle(forUpdating: saveURL) {
-
-                    // Function which when called will cause all updates to start from end of the file
-                fileUpdater.seekToEndOfFile()
-
-                    // Which lets the caller move editing to any position within the file by supplying an offset
-                fileUpdater.write(text.data(using: .zero, allowLossyConversion: false)!)
-
-                    // Once we convert our new content to data and write it, we close the file and that’s it!
-                fileUpdater.closeFile()
-            }
-            
-            // 여기서 강도 설정 값을 받을지..
-            var transContext:[String:String]?
-            transContext = ["transfile":"test"]
-            
-            // 행동 수집 구간 조건을 처리 잘 처리하기
-             wcSession?.transferFile(saveURL, metadata: transContext) // 보내는 구간
-            
-        } catch let e {
-            print(e.localizedDescription)
-        }
         workoutSendMainInterface(MyStageLvl: "SL2")
         
     }
@@ -318,31 +200,7 @@ class StandByWorkoutInterfaceController: WKInterfaceController, WCSessionDelegat
     @IBAction func workoutOutdoorLowStart() {
         //print("workoutOutdoorStart action ?? ")
         // file write 처리 구간
-        let text = NSString(string: "StandByWorkoutInterfaceController | workoutOutDoorLow Start OnClick ")
         
-        do {
-            if let fileUpdater = try? FileHandle(forUpdating: saveURL) {
-
-                    // Function which when called will cause all updates to start from end of the file
-                fileUpdater.seekToEndOfFile()
-
-                    // Which lets the caller move editing to any position within the file by supplying an offset
-                fileUpdater.write(text.data(using: .zero, allowLossyConversion: false)!)
-
-                    // Once we convert our new content to data and write it, we close the file and that’s it!
-                fileUpdater.closeFile()
-            }
-            
-            // 여기서 강도 설정 값을 받을지..
-            var transContext:[String:String]?
-            transContext = ["transfile":"test"]
-            
-            // 행동 수집 구간 조건을 처리 잘 처리하기
-             wcSession?.transferFile(saveURL, metadata: transContext) // 보내는 구간
-            
-        } catch let e {
-            print(e.localizedDescription)
-        }
         workoutSendMainInterface(MyStageLvl: "SL1")
         
     }

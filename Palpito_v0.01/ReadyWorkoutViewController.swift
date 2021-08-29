@@ -50,14 +50,7 @@ class ReadyWorkoutViewController: UIViewController, WCSessionDelegate {
             // showGetWorkout
             self.performSegue(withIdentifier: "showGetWorkout", sender: self)
             self.view.removeFromSuperview()
-            //let storyboard = UIStoryboard(name: "StartApp", bundle: nil).instantiateViewController(withIdentifier: "WorkoutViewController") as! WorkoutViewController
-//            storyboard.modalPresentationStyle = .fullScreen
-            
-            //self.navigationController!.pushViewController(storyboard, animated: true)
-            //self.present(storyboard, animated: true, completion: nil)
-            //self.readyImages.removeAll()
-            //self.readyImageView.removeFromSuperview()
-            //self.readyImageView = nil
+           
         }
         
 //        //print("타이밍 체크.. 외부")

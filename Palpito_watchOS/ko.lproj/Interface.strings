@@ -1,0 +1,36 @@
+
+/* Class = "WKInterfaceButton"; title = "중급"; ObjectID = "1Ae-xD-CpX"; */
+"1Ae-xD-CpX.title" = "중급";
+
+/* Class = "WKInterfaceLabel"; text = "----"; ObjectID = "J9H-UO-w1b"; */
+"J9H-UO-w1b.text" = "----";
+
+/* Class = "WKInterfaceLabel"; text = "---"; ObjectID = "OfK-ag-hGo"; */
+"OfK-ag-hGo.text" = "---";
+
+/* Class = "WKInterfaceLabel"; text = "00:00:00"; ObjectID = "Rfg-z6-2LN"; */
+"Rfg-z6-2LN.text" = "00:00:00";
+
+/* Class = "WKInterfaceLabel"; text = "00:00:00"; ObjectID = "RiR-ve-eiI"; */
+"RiR-ve-eiI.text" = "00:00:00";
+
+/* Class = "WKInterfaceButton"; title = "상급"; ObjectID = "XCq-63-qqY"; */
+"XCq-63-qqY.title" = "상급";
+
+/* Class = "WKInterfaceLabel"; text = "----"; ObjectID = "aDl-Fw-vfp"; */
+"aDl-Fw-vfp.text" = "----";
+
+/* Class = "WKInterfaceButton"; title = "초급"; ObjectID = "jMG-Y6-VGf"; */
+"jMG-Y6-VGf.title" = "초급";
+
+/* Class = "WKInterfaceLabel"; text = "---"; ObjectID = "ktJ-S4-zRX"; */
+"ktJ-S4-zRX.text" = "---";
+
+/* Class = "WKInterfaceLabel"; text = "--"; ObjectID = "oiT-3G-H43"; */
+"oiT-3G-H43.text" = "--";
+
+/* Class = "WKInterfaceLabel"; text = "---"; ObjectID = "uol-dD-8JJ"; */
+"uol-dD-8JJ.text" = "---";
+
+/* Class = "WKInterfaceLabel"; text = "---"; ObjectID = "zXU-c8-cyh"; */
+"zXU-c8-cyh.text" = "---";

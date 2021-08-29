@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--User Password Reset View Controller-->
+        <scene sceneID="fki-va-xqB">
+            <objects>
+                <viewController storyboardIdentifier="ResetPasswordVC" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="tuo-oS-8dU" customClass="UserPasswordResetViewController" customModule="Palpito" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="saJ-QL-2tu">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Bq-dw-Xim">
+                                <rect key="frame" x="17.5" y="114.5" width="379" height="667"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="orangeline" translatesAutoresizingMaskIntoConstraints="NO" id="pZg-lk-6ua">
+                                        <rect key="frame" x="48" y="194" width="278" height="4"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YUS-5J-dzO">
+                                        <rect key="frame" x="88" y="411" width="198" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="확인" backgroundImage="orangebtn">
+                                            <color key="titleColor" red="1" green="0.98039215690000003" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="passwordResetfromEmailSendAction" destination="tuo-oS-8dU" eventType="touchUpInside" id="6A5-uO-iSK"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="비밀번호 재발급을 위해" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RQp-15-o90">
+                                        <rect key="frame" x="109" y="75" width="156" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.58431372550000005" green="0.58431372550000005" blue="0.57254901960000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="이메일 주소를 입력해주세요." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="svW-9x-Peh">
+                                        <rect key="frame" x="92" y="101" width="190" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.58431372550000005" green="0.58431372550000005" blue="0.57254901960000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="e-mail" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hCE-LR-128">
+                                        <rect key="frame" x="57" y="165" width="259" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <toolbar opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleAspectFit" fixedFrame="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XPz-qm-9Az">
+                                        <rect key="frame" x="0.0" y="0.0" width="360" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                        <items>
+                                            <barButtonItem title="Back" id="XRl-Qn-F5r">
+                                                <color key="tintColor" red="0.89024144409999995" green="0.4463836551" blue="0.2195157707" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <connections>
+                                                    <action selector="backToLogin" destination="tuo-oS-8dU" id="DTx-mn-tkc"/>
+                                                </connections>
+                                            </barButtonItem>
+                                        </items>
+                                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </toolbar>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="667" id="CUA-G3-iQR"/>
+                                    <constraint firstAttribute="width" constant="379" id="Z5w-qG-dEf"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="GMe-aJ-fFX"/>
+                        <color key="backgroundColor" red="0.99980741740000001" green="0.99634987119999996" blue="0.98039048910000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstItem="5Bq-dw-Xim" firstAttribute="centerY" secondItem="saJ-QL-2tu" secondAttribute="centerY" id="7Yc-k5-flm"/>
+                            <constraint firstItem="5Bq-dw-Xim" firstAttribute="centerX" secondItem="saJ-QL-2tu" secondAttribute="centerX" id="WCc-sI-5Ft"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="emailCheckTextFeled" destination="hCE-LR-128" id="EuU-go-EIy"/>
+                        <outlet property="passwordResetView" destination="5Bq-dw-Xim" id="FTk-c6-sR2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dMs-81-t7s" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="892.75362318840587" y="861.83035714285711"/>
+        </scene>
+        <!--Email Add View Controller-->
+        <scene sceneID="OQS-nj-i1o">
+            <objects>
+                <viewController storyboardIdentifier="UserCreateVC" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="s0I-nG-yZZ" customClass="EmailAddViewController" customModule="Palpito" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="lLU-Rl-WRo">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wQd-ZO-TWq" userLabel="UserCreateView">
+                                <rect key="frame" x="19" y="114.5" width="376" height="667"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="실례지만, 이메일과 닉네임을" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XTy-94-k9K">
+                                        <rect key="frame" x="46" y="41" width="278" height="38"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
+                                        <color key="textColor" red="0.58431372550000005" green="0.58431372550000005" blue="0.57254901960000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="e-mail" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="63j-09-oTm">
+                                        <rect key="frame" x="45" y="112" width="230" height="30"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <color key="tintColor" red="0.016804177310000001" green="0.55240172350000005" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <rect key="contentStretch" x="0.25" y="0.0" width="1" height="1"/>
+                                        <color key="textColor" red="0.58431372550000005" green="0.58431372550000005" blue="0.57254901960000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="s0I-nG-yZZ" id="hNT-Ot-k6H"/>
+                                        </connections>
+                                    </textField>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="orangeline" translatesAutoresizingMaskIntoConstraints="NO" id="1mv-aW-SyJ">
+                                        <rect key="frame" x="46" y="138" width="278" height="4"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                    </imageView>
+                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="O0g-17-d90">
+                                        <rect key="frame" x="45" y="150" width="230" height="30"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <color key="tintColor" red="0.016804177310000001" green="0.55240172350000005" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <rect key="contentStretch" x="0.25" y="0.0" width="1" height="1"/>
+                                        <color key="textColor" red="0.58431372550000005" green="0.58431372550000005" blue="0.57254901960000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="s0I-nG-yZZ" id="tW8-hb-Mce"/>
+                                        </connections>
+                                    </textField>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="orangeline" translatesAutoresizingMaskIntoConstraints="NO" id="IGy-NH-45K">
+                                        <rect key="frame" x="46" y="176" width="278" height="4"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="orangeline" translatesAutoresizingMaskIntoConstraints="NO" id="9mu-cV-Ej0">
+                                        <rect key="frame" x="46" y="220" width="278" height="4"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lvV-SR-Caj">
+                                        <rect key="frame" x="289" y="157" width="36" height="22"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="8"/>
+                                        <state key="normal" title="보이기"/>
+                                        <state key="selected" title="안보이기"/>
+                                        <connections>
+                                            <action selector="passwordInfoAction:" destination="s0I-nG-yZZ" eventType="touchUpInside" id="N5L-dy-A2K"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="알 수 있을까요?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vlC-Py-8aJ">
+                                        <rect key="frame" x="52" y="74" width="278" height="38"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
+                                        <color key="textColor" red="0.58431372550000005" green="0.58431372550000005" blue="0.57254901960000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="NickName" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="eod-Z8-Pp5">
+                                        <rect key="frame" x="46" y="238" width="231" height="30"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <color key="tintColor" red="0.016804177310000001" green="0.55240172350000005" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <rect key="contentStretch" x="0.25" y="0.0" width="1" height="1"/>
+                                        <color key="textColor" red="0.58431372550000005" green="0.58431372550000005" blue="0.57254901960000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="namePhonePad"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="s0I-nG-yZZ" id="BMb-Ol-eRS"/>
+                                        </connections>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aNV-tQ-BaF">
+                                        <rect key="frame" x="294" y="120" width="30" height="22"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="8"/>
+                                        <state key="normal" title="중복확인"/>
+                                        <connections>
+                                            <action selector="emailCheckAction:" destination="s0I-nG-yZZ" eventType="touchUpInside" id="dC1-cS-gka"/>
+                                        </connections>
+                                    </button>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="orangeline" translatesAutoresizingMaskIntoConstraints="NO" id="AuR-MR-I85">
+                                        <rect key="frame" x="46" y="264" width="278" height="4"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Female" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Vd-70-LBf">
+                                        <rect key="frame" x="45" y="278" width="56" height="21"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Male" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vxx-WN-2av">
+                                        <rect key="frame" x="137" y="278" width="37" height="21"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="whw-1O-I5z" userLabel="FemaleRadioBtn" customClass="DLRadioButton">
+                                        <rect key="frame" x="99" y="276" width="30" height="30"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <color key="tintColor" systemColor="systemOrangeColor"/>
+                                        <state key="normal">
+                                            <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="titleShadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="icon" value="circle"/>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="iconSelected" value="circleChose"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="femaleRadioBtnAction:" destination="s0I-nG-yZZ" eventType="touchUpInside" id="fpT-UC-7Q1"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hz7-Hc-g6W" userLabel="MaleRadioBtn" customClass="DLRadioButton">
+                                        <rect key="frame" x="182" y="278" width="30" height="30"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <color key="tintColor" systemColor="systemOrangeColor"/>
+                                        <state key="normal">
+                                            <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="titleShadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="icon" value="circle"/>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="iconSelected" value="circleChose"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="maleRadioBtnAction:" destination="s0I-nG-yZZ" eventType="touchUpInside" id="EU0-nm-XbE"/>
+                                            <outletCollection property="otherButtons" destination="whw-1O-I5z" id="zBt-gn-bKH"/>
+                                        </connections>
+                                    </button>
+                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="YYYY.MM.DD" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="pRq-ok-abz">
+                                        <rect key="frame" x="46" y="194" width="258" height="30"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <viewLayoutGuide key="safeArea" id="XqG-xl-mWk"/>
+                                        <rect key="contentStretch" x="0.25" y="0.0" width="1" height="1"/>
+                                        <color key="textColor" red="0.58431372550000005" green="0.58431372550000005" blue="0.57254901960000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="s0I-nG-yZZ" id="Yrq-p0-ts0"/>
+                                        </connections>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="09i-AJ-atx">
+                                        <rect key="frame" x="48" y="398" width="282" height="46"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                        <state key="normal" title="다음" backgroundImage="orangebtn">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="userCreateAction:" destination="s0I-nG-yZZ" eventType="touchUpInside" id="462-bc-4I6"/>
+                                        </connections>
+                                    </button>
+                                    <toolbar opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleAspectFit" fixedFrame="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oUV-lt-xkR">
+                                        <rect key="frame" x="9" y="-3" width="360" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                        <items>
+                                            <barButtonItem title="Back" id="W0a-pM-yfK">
+                                                <color key="tintColor" red="0.89024144409999995" green="0.4463836551" blue="0.2195157707" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <connections>
+                                                    <action selector="backToLogin" destination="s0I-nG-yZZ" id="sEb-d3-58P"/>
+                                                </connections>
+                                            </barButtonItem>
+                                        </items>
+                                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </toolbar>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hpK-RO-jC1">
+                                        <rect key="frame" x="43" y="306" width="26" height="27"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="UnCheckbox.png">
+                                            <color key="titleColor" systemColor="darkTextColor"/>
+                                        </state>
+                                        <state key="selected" image="Checkbox.png"/>
+                                        <connections>
+                                            <action selector="privateInfomationAgreeCheck:" destination="s0I-nG-yZZ" eventType="touchUpInside" id="abf-Bg-hlY"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U1N-Sx-Eob">
+                                        <rect key="frame" x="77" y="305" width="116" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="약관 내용 동의 확인">
+                                            <color key="titleColor" systemColor="labelColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="goToPrivateInfomationAgreee" destination="s0I-nG-yZZ" eventType="touchUpInside" id="qxN-bs-S7J"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="667" id="Xb4-OM-kEc"/>
+                                    <constraint firstAttribute="width" constant="376" id="h9g-Kk-mXk"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="EQe-ni-ho7"/>
+                        <color key="backgroundColor" red="0.99980741740000001" green="0.99634987119999996" blue="0.98039048910000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstItem="wQd-ZO-TWq" firstAttribute="centerX" secondItem="lLU-Rl-WRo" secondAttribute="centerX" id="SrU-Xl-ayb"/>
+                            <constraint firstItem="wQd-ZO-TWq" firstAttribute="centerY" secondItem="lLU-Rl-WRo" secondAttribute="centerY" id="s7Z-pw-Ko2"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="birthTextField" destination="pRq-ok-abz" id="W8d-7O-mL4"/>
+                        <outlet property="emailTextField" destination="63j-09-oTm" id="9Uw-jY-0OW"/>
+                        <outlet property="femaleRadioBtn" destination="whw-1O-I5z" id="NOx-Rj-Gca"/>
+                        <outlet property="maleRadioBtn" destination="hz7-Hc-g6W" id="gHQ-ls-RZK"/>
+                        <outlet property="nickNameTextField" destination="eod-Z8-Pp5" id="4Az-5y-7VA"/>
+                        <outlet property="passwordTextField" destination="O0g-17-d90" id="yPG-XY-TDL"/>
+                        <outlet property="userCreateView" destination="wQd-ZO-TWq" id="WVF-06-fLy"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2Z6-Qs-oXh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1611.5942028985507" y="117.85714285714285"/>
+        </scene>
+        <!--Pop Up View Controller-->
+        <scene sceneID="YDL-p4-9eB">
+            <objects>
+                <viewController storyboardIdentifier="sbPopUpID" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="0pb-UZ-HON" customClass="PopUpViewController" customModule="Palpito" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" clipsSubviews="YES" contentMode="scaleToFill" id="Xn9-IH-amk">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hmf-AW-82g">
+                                <rect key="frame" x="108" y="535" width="198" height="50"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <state key="normal" title="시작" backgroundImage="orangebtn">
+                                    <color key="titleColor" red="1" green="0.98039215690000003" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="closeTap_Inside:" destination="0pb-UZ-HON" eventType="touchUpInside" id="4UY-Du-g8k"/>
+                                    <segue destination="3Sq-9r-9Vh" kind="show" id="ZWS-dw-uIm"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="함께하게 되어" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WE5-dH-SDl">
+                                <rect key="frame" x="150" y="251" width="93" height="21"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.58431372550000005" green="0.58431372550000005" blue="0.57254901960000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="highlightedColor" red="1" green="0.98039215690000003" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="너무나 기뻐요." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bgU-N8-hGI">
+                                <rect key="frame" x="130" y="280" width="132" height="21"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.58431372550000005" green="0.58431372550000005" blue="0.57254901960000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="JmG-zo-eDH"/>
+                        <color key="backgroundColor" red="0.99980741740000001" green="0.99634987119999996" blue="0.98039048910000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="hnA-1X-m03"/>
+                    <connections>
+                        <outlet property="signUpNickName" destination="WE5-dH-SDl" id="zYE-Ot-OG7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cRK-p1-rml" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1611.5942028985507" y="861.83035714285711"/>
+        </scene>
+        <!--UITabBarVC-->
+        <scene sceneID="XUd-MS-Shk">
+            <objects>
+                <viewControllerPlaceholder storyboardName="StartApp" referencedIdentifier="UITabBarVC" id="3Sq-9r-9Vh" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="nAs-fP-Tug"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BoB-kc-TJV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2333" y="925"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Checkbox.png" width="60" height="60"/>
+        <image name="UnCheckbox.png" width="60" height="60"/>
+        <image name="circle" width="38" height="37.5"/>
+        <image name="circleChose" width="38" height="38"/>
+        <image name="orangebtn" width="282" height="46"/>
+        <image name="orangeline" width="322.5" height="2.5"/>
+        <systemColor name="darkTextColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

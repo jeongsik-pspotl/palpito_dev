@@ -48,6 +48,11 @@ class MyPageViewController: UIViewController, WCSessionDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Locale.current.regionCode
+        print("Locale.current.regionCode")
+        print(Locale.current.regionCode)
+        
+        
         let scale = view.bounds.width / myPageView.bounds.width
         
         myPageView.transform = CGAffineTransform(scaleX: scale, y: scale)
@@ -368,24 +373,24 @@ class MyPageViewController: UIViewController, WCSessionDelegate {
             
     }
     
-    func session(_ session: WCSession, didReceive file: WCSessionFile) {
-        DispatchQueue.main.async {
-            
-            do {
-                print(file)
-                // 29일에 해당 구간 좀 더 구현할 방법 찾아보기
-                // try fileManager.createDirectory(at: <#T##URL#>, withIntermediateDirectories: <#T##Bool#>, attributes: <#T##[FileAttributeKey : Any]?#>)
-                
-                let strText = try String(contentsOf: file.fileURL, encoding: .utf8)
-                
-                print(strText)
-                
-            } catch let e {
-                print(e.localizedDescription)
-            }
-            
-        }
-    }
+//    func session(_ session: WCSession, didReceive file: WCSessionFile) {
+//        DispatchQueue.main.async {
+//
+//            do {
+//                print(file)
+//                // 29일에 해당 구간 좀 더 구현할 방법 찾아보기
+//                // try fileManager.createDirectory(at: <#T##URL#>, withIntermediateDirectories: <#T##Bool#>, attributes: <#T##[FileAttributeKey : Any]?#>)
+//
+//                let strText = try String(contentsOf: file.fileURL, encoding: .utf8)
+//
+//                print(strText)
+//
+//            } catch let e {
+//                print(e.localizedDescription)
+//            }
+//
+//        }
+//    }
     
     func tryWatchSendMessage(message: [String : Any]) {
         

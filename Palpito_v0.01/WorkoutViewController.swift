@@ -479,40 +479,43 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
             if let zoneStatusVoice = message["zoneStatusTensionVoice"] as? String {
                 //print("userInfo zoneStatusTensionVoice : \(zoneStatusVoice)")
                 DispatchQueue.global().async {
-                    if zoneStatusVoice == "zone1Voice" {
-                        self.timer.invalidate()
-                        self.timer  = Timer.scheduledTimer(timeInterval: 1, target: self, selector:
-                            #selector(self.zone2RecycleAction), userInfo: nil, repeats: false) // 피드백 수정
+                    DispatchQueue.main.async {
+                        
+                        if zoneStatusVoice == "zone1Voice" {
+                            self.timer.invalidate()
+                            self.timer  = Timer.scheduledTimer(timeInterval: 1, target: self, selector:
+                                #selector(self.zone2RecycleAction), userInfo: nil, repeats: false) // 피드백 수정
 
-                    }
-                    
-                    if zoneStatusVoice == "zone2Voice" {
-                        self.timer.invalidate()
-                        self.timer  = Timer.scheduledTimer(timeInterval: 1, target: self, selector:
-                            #selector(self.zone2RecycleAction), userInfo: nil, repeats: false)
+                        }
+                        
+                        if zoneStatusVoice == "zone2Voice" {
+                            self.timer.invalidate()
+                            self.timer  = Timer.scheduledTimer(timeInterval: 1, target: self, selector:
+                                #selector(self.zone2RecycleAction), userInfo: nil, repeats: false)
 
-                    }
-                    
-                    //zone 3 구간만 격려 피드백 실행하기
-                    if zoneStatusVoice == "zone3Voice" {
-                        self.timer.invalidate()
-                        self.timer  = Timer.scheduledTimer(timeInterval: 1, target: self, selector:
-                            #selector(self.zone3RecycleAction), userInfo: nil, repeats: false)
+                        }
+                        
+                        //zone 3 구간만 격려 피드백 실행하기
+                        if zoneStatusVoice == "zone3Voice" {
+                            self.timer.invalidate()
+                            self.timer  = Timer.scheduledTimer(timeInterval: 1, target: self, selector:
+                                #selector(self.zone3RecycleAction), userInfo: nil, repeats: false)
 
-                    }
-                    
-                    if zoneStatusVoice == "zone4Voice" {
-                        self.timer.invalidate()
-                        self.timer  = Timer.scheduledTimer(timeInterval: 1, target: self, selector:
-                            #selector(self.zone3RecycleAction), userInfo: nil, repeats: false)
+                        }
+                        
+                        if zoneStatusVoice == "zone4Voice" {
+                            self.timer.invalidate()
+                            self.timer  = Timer.scheduledTimer(timeInterval: 1, target: self, selector:
+                                #selector(self.zone3RecycleAction), userInfo: nil, repeats: false)
 
-                    }
-                    
-                    if zoneStatusVoice == "zone5Voice" {
-                        self.timer.invalidate()
-                        self.timer  = Timer.scheduledTimer(timeInterval: 1, target: self, selector:
-                            #selector(self.zone45RecycleAction), userInfo: nil, repeats: false)
+                        }
+                        
+                        if zoneStatusVoice == "zone5Voice" {
+                            self.timer.invalidate()
+                            self.timer  = Timer.scheduledTimer(timeInterval: 1, target: self, selector:
+                                #selector(self.zone45RecycleAction), userInfo: nil, repeats: false)
 
+                        }
                     }
                 }
                 
@@ -569,88 +572,90 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
                 //self.activityIndicator.startAnimating()
                 
                 DispatchQueue.global().async {
-                    
-                    let ResultWorkOut = NSEntityDescription.entity(forEntityName: "ResultWorkOut", in: PersistenceService.context)
-                    let newEntity = NSManagedObject(entity: ResultWorkOut!, insertInto: PersistenceService.context)
+                    DispatchQueue.main.async {
+                        
+                        let ResultWorkOut = NSEntityDescription.entity(forEntityName: "ResultWorkOut", in: PersistenceService.context)
+                        let newEntity = NSManagedObject(entity: ResultWorkOut!, insertInto: PersistenceService.context)
 
-                    if self.resultTotalScore == nil || self.resultTotalScore == "" {
-                        self.resultTotalScore = "0"
-                    }else {
+                        if self.resultTotalScore == nil || self.resultTotalScore == "" {
+                            self.resultTotalScore = "0"
+                        }else {
+                            
+                        }
+                        
+                        if self.resultTotalTime == "" {
+                            self.resultTotalTime = "00:00:00"
+                        }
+                        // 운동 강도 데이터 저장 기능추가 해야함
+                        // userLevel
+        //                newEntity.setValue(self.stageLevel, forKey: "userLevel")
+                        newEntity.setValue(self.resultHeartRate, forKey: "avgHeartRate")
+                        newEntity.setValue(self.resultTotalTime, forKey: "totalWorkOutTime")
+                        newEntity.setValue(self.resultTotalCal, forKey: "totalcalBurn")
+                        newEntity.setValue(self.resultTotalScore, forKey: "totalScore")
+                        newEntity.setValue(self.resultMetersVal, forKey: "avgSpeedHour")
+                        newEntity.setValue(self.resultWorkoutArray.count + 1, forKey: "todayWorkOutCount")
+                        newEntity.setValue(self.resultSendToday, forKey: "todayDate")
+
+                        
+                        
+                        let user_exercise_key:String = self.ref.childByAutoId().key as Any as! String
+                        
+                        let data : [String : Any] = [
+                                "uid" : Auth.auth().currentUser!.uid,
+                                "user_exercise_key" : user_exercise_key,
+                                "avg_heart_rate" : self.resultHeartRate!,
+                                "user_level" : self.stageLevel,
+                                "total_cal_burn" : self.resultTotalCal!,
+                                "result_total_score" : Int(self.resultTotalScore!)! ,
+                                "exercise_date" : self.resultSendToday,
+                                "today_workout_count" : self.resultWorkoutArray.count + 1,
+                                "result_total_time" : self.resultTotalTime!,
+                                "result_send_today" : self.resultSendToday,
+                                "result_meters" : ""
+
+                        ]
+                        
+                        PersistenceService.saveContext()
+                        
+                        print("\(data)")
+                        
+                        // 테스트 이후에 삭제하기
+                        self.db.collection("user_exercise").document(user_exercise_key).setData(data) { err in
+                            if let err = err {
+                                print("Error writing document: \(err)")
+                                Crashlytics.crashlytics().record(error: err)
+                            } else {
+                                // print("Document successfully written!")
+                                self.performSegue(withIdentifier: "resultWorkoutSegue", sender: self)
+                                self.view.removeFromSuperview()
+
+
+                            }
+                        }
+
+                        self.zoneMusicPlay?.stop()
+                        self.zoneSoundPlay?.stop()
+
+                        self.stageLevel = ""
+                        
+                        self.paiplActiveAnimation.removeAll()
+                        self.palpiActiveAnimationZone2.removeAll()
+                        self.palpiActiveAnimationZone3.removeAll()
+                        self.palpiActiveAnimationZone4.removeAll()
+                        self.palpiActiveAnimationZone5.removeAll()
+
+                        // image view nil
+
+                        self.resultHeartRate = nil
+                        self.resultTotalTime = nil
+                        self.resultTotalCal = nil
+                        self.resultTotalScore = nil
+                        self.resultMetersVal = nil
+                        self.resultWorkoutArray.removeAll()
+                        self.resultSendToday = ""
                         
                     }
-                    
-                    if self.resultTotalTime == "" {
-                        self.resultTotalTime = "00:00:00"
-                    }
-                    // 운동 강도 데이터 저장 기능추가 해야함
-                    // userLevel
-    //                newEntity.setValue(self.stageLevel, forKey: "userLevel")
-                    newEntity.setValue(self.resultHeartRate, forKey: "avgHeartRate")
-                    newEntity.setValue(self.resultTotalTime, forKey: "totalWorkOutTime")
-                    newEntity.setValue(self.resultTotalCal, forKey: "totalcalBurn")
-                    newEntity.setValue(self.resultTotalScore, forKey: "totalScore")
-                    newEntity.setValue(self.resultMetersVal, forKey: "avgSpeedHour")
-                    newEntity.setValue(self.resultWorkoutArray.count + 1, forKey: "todayWorkOutCount")
-                    newEntity.setValue(self.resultSendToday, forKey: "todayDate")
-
-                    
-                    
-                    let user_exercise_key:String = self.ref.childByAutoId().key as Any as! String
-                    
-                    let data : [String : Any] = [
-                            "uid" : Auth.auth().currentUser!.uid,
-                            "user_exercise_key" : user_exercise_key,
-                            "avg_heart_rate" : self.resultHeartRate!,
-                            "user_level" : self.stageLevel,
-                            "total_cal_burn" : self.resultTotalCal!,
-                            "result_total_score" : Int(self.resultTotalScore!)! ,
-                            "exercise_date" : self.resultSendToday,
-                            "today_workout_count" : self.resultWorkoutArray.count + 1,
-                            "result_total_time" : self.resultTotalTime!,
-                            "result_send_today" : self.resultSendToday,
-                            "result_meters" : ""
-
-                    ]
-                    
-                    PersistenceService.saveContext()
-                    
-                    print("\(data)")
-                    
-                    // 테스트 이후에 삭제하기
-                    self.db.collection("user_exercise").document(user_exercise_key).setData(data) { err in
-                        if let err = err {
-                            print("Error writing document: \(err)")
-                            Crashlytics.crashlytics().record(error: err)
-                        } else {
-                            // print("Document successfully written!")
-                            self.performSegue(withIdentifier: "resultWorkoutSegue", sender: self)
-                            self.view.removeFromSuperview()
-
-
-                        }
-                    }
-                    
-                    self.zoneMusicPlay?.stop()
-                    self.zoneSoundPlay?.stop()
-
-                    self.stageLevel = ""
-                    
-                    self.paiplActiveAnimation.removeAll()
-                    self.palpiActiveAnimationZone2.removeAll()
-                    self.palpiActiveAnimationZone3.removeAll()
-                    self.palpiActiveAnimationZone4.removeAll()
-                    self.palpiActiveAnimationZone5.removeAll()
-
-                    // image view nil
-
-                    self.resultHeartRate = nil
-                    self.resultTotalTime = nil
-                    self.resultTotalCal = nil
-                    self.resultTotalScore = nil
-                    self.resultMetersVal = nil
-                    self.resultWorkoutArray.removeAll()
-                    self.resultSendToday = ""
-                    
                     
                 }
                 
@@ -808,55 +813,58 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
             if self.checkZoneStatusSound != self.zoneStatusiOS {
                 self.checkZoneStatusSound = self.zoneStatusiOS
                 DispatchQueue.global().async {
+                    DispatchQueue.main.async {
+                     
                     switch self.checkZoneStatusSound {
-                    case "z1":
-                        //print("warn up..")
-                        self.timer.invalidate()
+                        case "z1":
+                            //print("warn up..")
+                            self.timer.invalidate()
 
-                        self.timer  = Timer.scheduledTimer(timeInterval: self.soundDelay5, target: self, selector:
-                            #selector(self.zone1SoundAction), userInfo: nil, repeats: false)
+                            self.timer  = Timer.scheduledTimer(timeInterval: self.soundDelay5, target: self, selector:
+                                #selector(self.zone1SoundAction), userInfo: nil, repeats: false)
 
-                    case "z2":
+                        case "z2":
 
-                        self.timer.invalidate()
+                            self.timer.invalidate()
 
-                        self.timer  = Timer.scheduledTimer(timeInterval: self.soundDelay5, target: self, selector:
-                            #selector(self.zone2SoundAction), userInfo: nil, repeats: false)
+                            self.timer  = Timer.scheduledTimer(timeInterval: self.soundDelay5, target: self, selector:
+                                #selector(self.zone2SoundAction), userInfo: nil, repeats: false)
 
-                        // self.zone2MusicBGMAction()
+                            // self.zone2MusicBGMAction()
 
-                    case "z3":
+                        case "z3":
 
-                        self.timer.invalidate()
+                            self.timer.invalidate()
 
-                        self.timer  = Timer.scheduledTimer(timeInterval: self.soundDelay5, target: self, selector:
-                            #selector(self.zone3SoundAction), userInfo: nil, repeats: false)
+                            self.timer  = Timer.scheduledTimer(timeInterval: self.soundDelay5, target: self, selector:
+                                #selector(self.zone3SoundAction), userInfo: nil, repeats: false)
 
-                        // self.zone3MusicBGMAction()
-
-
-                    case "z4":
-
-                        self.timer.invalidate()
-
-                        self.timer  = Timer.scheduledTimer(timeInterval: self.soundDelay5, target: self, selector:
-                            #selector(self.zone4SoundAction), userInfo: nil, repeats: false)
-
-                        // self.zone4MusicBGMAction()
+                            // self.zone3MusicBGMAction()
 
 
-                    case "z5":
+                        case "z4":
 
-                        self.timer.invalidate()
+                            self.timer.invalidate()
 
-                        self.timer  = Timer.scheduledTimer(timeInterval: self.soundDelay5, target: self, selector:
-                            #selector(self.zone5SoundAction), userInfo: nil, repeats: false)
+                            self.timer  = Timer.scheduledTimer(timeInterval: self.soundDelay5, target: self, selector:
+                                #selector(self.zone4SoundAction), userInfo: nil, repeats: false)
 
-                        // self.zone5MusicBGMAction()
+                            // self.zone4MusicBGMAction()
 
 
-                    default:
-                        print("not play..")
+                        case "z5":
+
+                            self.timer.invalidate()
+
+                            self.timer  = Timer.scheduledTimer(timeInterval: self.soundDelay5, target: self, selector:
+                                #selector(self.zone5SoundAction), userInfo: nil, repeats: false)
+
+                            // self.zone5MusicBGMAction()
+
+
+                        default:
+                            print("not play..")
+                        }
                     }
                 }
 
@@ -925,40 +933,43 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
             if let zoneStatusVoice = userInfo["zoneStatusTensionVoice"] as? String {
                 //print("userInfo zoneStatusTensionVoice : \(zoneStatusVoice)")
                 DispatchQueue.global().async {
-                    // zone 1 voice test
-                    if zoneStatusVoice == "zone1Voice" {
-                        self.timer.invalidate()
-                        self.timer  = Timer.scheduledTimer(timeInterval: 1, target: self, selector:
-                            #selector(self.zone2RecycleAction), userInfo: nil, repeats: false)
+                    DispatchQueue.main.async {
+                        
+                        // zone 1 voice test
+                        if zoneStatusVoice == "zone1Voice" {
+                            self.timer.invalidate()
+                            self.timer  = Timer.scheduledTimer(timeInterval: 1, target: self, selector:
+                                #selector(self.zone2RecycleAction), userInfo: nil, repeats: false)
 
-                    }
+                        }
 
-                    if zoneStatusVoice == "zone2Voice" {
-                        self.timer.invalidate()
-                        self.timer  = Timer.scheduledTimer(timeInterval: 1, target: self, selector:
-                            #selector(self.zone2RecycleAction), userInfo: nil, repeats: false)
+                        if zoneStatusVoice == "zone2Voice" {
+                            self.timer.invalidate()
+                            self.timer  = Timer.scheduledTimer(timeInterval: 1, target: self, selector:
+                                #selector(self.zone2RecycleAction), userInfo: nil, repeats: false)
 
-                    }
+                        }
 
-                    if zoneStatusVoice == "zone3Voice" {
-                        self.timer.invalidate()
-                        self.timer  = Timer.scheduledTimer(timeInterval: 1, target: self, selector:
-                            #selector(self.zone3RecycleAction), userInfo: nil, repeats: false)
+                        if zoneStatusVoice == "zone3Voice" {
+                            self.timer.invalidate()
+                            self.timer  = Timer.scheduledTimer(timeInterval: 1, target: self, selector:
+                                #selector(self.zone3RecycleAction), userInfo: nil, repeats: false)
 
-                    }
+                        }
 
-                    if zoneStatusVoice == "zone4Voice" {
-                        self.timer.invalidate()
-                        self.timer  = Timer.scheduledTimer(timeInterval: 1, target: self, selector:
-                            #selector(self.zone3RecycleAction), userInfo: nil, repeats: false)
+                        if zoneStatusVoice == "zone4Voice" {
+                            self.timer.invalidate()
+                            self.timer  = Timer.scheduledTimer(timeInterval: 1, target: self, selector:
+                                #selector(self.zone3RecycleAction), userInfo: nil, repeats: false)
 
-                    }
-                    
-                    if zoneStatusVoice == "zone5Voice" {
-                        self.timer.invalidate()
-                        self.timer  = Timer.scheduledTimer(timeInterval: 1, target: self, selector:
-                            #selector(self.zone45RecycleAction), userInfo: nil, repeats: false)
+                        }
+                        
+                        if zoneStatusVoice == "zone5Voice" {
+                            self.timer.invalidate()
+                            self.timer  = Timer.scheduledTimer(timeInterval: 1, target: self, selector:
+                                #selector(self.zone45RecycleAction), userInfo: nil, repeats: false)
 
+                        }
                     }
                 }
 
@@ -994,94 +1005,97 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
             if self.resultHeartRate != nil {
                 
                 DispatchQueue.global().async {
+                    DispatchQueue.main.async {
+                        
+                        if self.resultTotalScore == nil || self.resultTotalScore == "" {
+                            self.resultTotalScore = "0"
+                        }else {
+                            
+                        }
+                        
+                        if self.resultTotalTime == "" {
+                            self.resultTotalTime = "00:00:00"
+                        }
                     
-                    if self.resultTotalScore == nil || self.resultTotalScore == "" {
-                        self.resultTotalScore = "0"
-                    }else {
+                        let ResultWorkOut = NSEntityDescription.entity(forEntityName: "ResultWorkOut", in: PersistenceService.context)
+                        let newEntity = NSManagedObject(entity: ResultWorkOut!, insertInto: PersistenceService.context)
+                        
+                        // 운동 강도 데이터 저장 기능추가 해야함
+                        newEntity.setValue(self.resultHeartRate, forKey: "avgHeartRate")
+                        newEntity.setValue(self.resultTotalTime, forKey: "totalWorkOutTime")
+                        newEntity.setValue(self.resultTotalCal, forKey: "totalcalBurn")
+                        newEntity.setValue(self.resultTotalScore, forKey: "totalScore")
+                        newEntity.setValue(self.resultMetersVal, forKey: "avgSpeedHour")
+                        newEntity.setValue(self.resultWorkoutArray.count + 1, forKey: "todayWorkOutCount")
+                        newEntity.setValue(self.resultSendToday, forKey: "todayDate")
+                        
+                        
+                        PersistenceService.saveContext()
+
+                        let user_exercise_key:String = self.ref.childByAutoId().key as Any as! String
+                    
+                        let data : [String : Any] = [
+                                "uid" : Auth.auth().currentUser!.uid,
+                                "user_exercise_key" : user_exercise_key,
+                                "avg_heart_rate" : self.resultHeartRate!,
+                                "user_level" : self.stageLevel,
+                                "total_cal_burn" : self.resultTotalCal!,
+                                "result_total_score" : Int(self.resultTotalScore!)!,
+                                "exercise_date" : self.resultSendToday,
+                                "today_workout_count" : self.resultWorkoutArray.count + 1,
+                                "result_total_time" : self.resultTotalTime!,
+                                "result_send_today" : self.resultSendToday,
+                                "result_meters" : ""
+
+                        ]
+                        
+                        
+
+    //                self.ref.child(user_exercise_key).setValue(data, withCompletionBlock: {(error, ref) in
+    //                    if let err = error {
+    //                        //print(err.localizedDescription)
+    //                    }
+    //
+    //                    self.ref.observe(.value, with: {(snapshot) in
+    //                        guard snapshot.exists() else {
+    //                            return
+    //                        }
+    //                        // 소스 코드 수정하기
+    //                        self.performSegue(withIdentifier: "resultWorkoutSegue", sender: self)
+    ////                        let storyboard = UIStoryboard(name: "StartApp", bundle: nil).instantiateViewController(withIdentifier: "ResultWorkoutViewController") as! ResultWorkoutViewController
+    ////                        storyboard.modalPresentationStyle = .fullScreen
+
+                            // 변경..
+                            // self.navigationController!.pushViewController(storyboard, animated: true)
+    //                        self.present(storyboard, animated: true, completion: nil)
+    //                    })
+    //                })
+                        print("\(data)")
+                        //Crashlytics.crashlytics().log(" result data \(data)")
+                    // 테스트 이후에 삭제하기
+                        self.db.collection("user_exercise").document(user_exercise_key).setData(data) { err in
+                            if let err = err {
+                                print("Error writing document: \(err)")
+                                Crashlytics.crashlytics().record(error: err)
+                            } else {
+                                // print("Document successfully written!")
+                                self.performSegue(withIdentifier: "resultWorkoutSegue", sender: self)
+                                self.view.removeFromSuperview()
+
+                            }
+                        }
+                        
+                        self.zoneMusicPlay?.stop()
+                        self.zoneSoundPlay?.stop()
+
+                        self.stageLevel = ""
+
+                        self.activityIndicator.stopAnimating()
                         
                     }
-                    
-                    if self.resultTotalTime == "" {
-                        self.resultTotalTime = "00:00:00"
-                    }
                 
-                    let ResultWorkOut = NSEntityDescription.entity(forEntityName: "ResultWorkOut", in: PersistenceService.context)
-                    let newEntity = NSManagedObject(entity: ResultWorkOut!, insertInto: PersistenceService.context)
                     
-                    // 운동 강도 데이터 저장 기능추가 해야함
-                    newEntity.setValue(self.resultHeartRate, forKey: "avgHeartRate")
-                    newEntity.setValue(self.resultTotalTime, forKey: "totalWorkOutTime")
-                    newEntity.setValue(self.resultTotalCal, forKey: "totalcalBurn")
-                    newEntity.setValue(self.resultTotalScore, forKey: "totalScore")
-                    newEntity.setValue(self.resultMetersVal, forKey: "avgSpeedHour")
-                    newEntity.setValue(self.resultWorkoutArray.count + 1, forKey: "todayWorkOutCount")
-                    newEntity.setValue(self.resultSendToday, forKey: "todayDate")
-                    
-                    
-                    PersistenceService.saveContext()
-
-                    let user_exercise_key:String = self.ref.childByAutoId().key as Any as! String
-                
-                    let data : [String : Any] = [
-                            "uid" : Auth.auth().currentUser!.uid,
-                            "user_exercise_key" : user_exercise_key,
-                            "avg_heart_rate" : self.resultHeartRate!,
-                            "user_level" : self.stageLevel,
-                            "total_cal_burn" : self.resultTotalCal!,
-                            "result_total_score" : Int(self.resultTotalScore!)!,
-                            "exercise_date" : self.resultSendToday,
-                            "today_workout_count" : self.resultWorkoutArray.count + 1,
-                            "result_total_time" : self.resultTotalTime!,
-                            "result_send_today" : self.resultSendToday,
-                            "result_meters" : ""
-
-                    ]
-                    
-                    
-
-//                self.ref.child(user_exercise_key).setValue(data, withCompletionBlock: {(error, ref) in
-//                    if let err = error {
-//                        //print(err.localizedDescription)
-//                    }
-//
-//                    self.ref.observe(.value, with: {(snapshot) in
-//                        guard snapshot.exists() else {
-//                            return
-//                        }
-//                        // 소스 코드 수정하기
-//                        self.performSegue(withIdentifier: "resultWorkoutSegue", sender: self)
-////                        let storyboard = UIStoryboard(name: "StartApp", bundle: nil).instantiateViewController(withIdentifier: "ResultWorkoutViewController") as! ResultWorkoutViewController
-////                        storyboard.modalPresentationStyle = .fullScreen
-
-                        // 변경..
-                        // self.navigationController!.pushViewController(storyboard, animated: true)
-//                        self.present(storyboard, animated: true, completion: nil)
-//                    })
-//                })
-                    print("\(data)")
-                    Crashlytics.crashlytics().log(" result data \(data)")
-                // 테스트 이후에 삭제하기
-                    self.db.collection("user_exercise").document(user_exercise_key).setData(data) { err in
-                        if let err = err {
-                            print("Error writing document: \(err)")
-                            Crashlytics.crashlytics().record(error: err)
-                        } else {
-                            // print("Document successfully written!")
-                            self.performSegue(withIdentifier: "resultWorkoutSegue", sender: self)
-                            self.view.removeFromSuperview()
-
-                        }
-                    }
                 }
-                
-                
-                
-                self.zoneMusicPlay?.stop()
-                self.zoneSoundPlay?.stop()
-
-                self.stageLevel = ""
-
-                self.activityIndicator.stopAnimating()
 
             }
             // if resultHeartRate end
@@ -1235,55 +1249,58 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
             if self.checkZoneStatusSound != self.zoneStatusiOS {
                 self.checkZoneStatusSound = self.zoneStatusiOS
                 DispatchQueue.global().async {
+                    DispatchQueue.main.async {
+                        
                     switch self.checkZoneStatusSound {
-                    case "z1":
-                        //print("warn up..")
-                        self.timer.invalidate()
+                        case "z1":
+                            //print("warn up..")
+                            self.timer.invalidate()
 
-                        self.timer  = Timer.scheduledTimer(timeInterval: self.soundDelay5, target: self, selector:
-                            #selector(self.zone1SoundAction), userInfo: nil, repeats: false)
+                            self.timer  = Timer.scheduledTimer(timeInterval: self.soundDelay5, target: self, selector:
+                                #selector(self.zone1SoundAction), userInfo: nil, repeats: false)
 
-                    case "z2":
+                        case "z2":
 
-                        self.timer.invalidate()
+                            self.timer.invalidate()
 
-                        self.timer  = Timer.scheduledTimer(timeInterval: self.soundDelay5, target: self, selector:
-                            #selector(self.zone2SoundAction), userInfo: nil, repeats: false)
+                            self.timer  = Timer.scheduledTimer(timeInterval: self.soundDelay5, target: self, selector:
+                                #selector(self.zone2SoundAction), userInfo: nil, repeats: false)
 
-                        // self.zone2MusicBGMAction()
+                            // self.zone2MusicBGMAction()
 
-                    case "z3":
+                        case "z3":
 
-                        self.timer.invalidate()
+                            self.timer.invalidate()
 
-                        self.timer  = Timer.scheduledTimer(timeInterval: self.soundDelay5, target: self, selector:
-                            #selector(self.zone3SoundAction), userInfo: nil, repeats: false)
+                            self.timer  = Timer.scheduledTimer(timeInterval: self.soundDelay5, target: self, selector:
+                                #selector(self.zone3SoundAction), userInfo: nil, repeats: false)
 
-                        // self.zone3MusicBGMAction()
-
-
-                    case "z4":
-
-                        self.timer.invalidate()
-
-                        self.timer  = Timer.scheduledTimer(timeInterval: self.soundDelay5, target: self, selector:
-                            #selector(self.zone4SoundAction), userInfo: nil, repeats: false)
-
-                        // self.zone4MusicBGMAction()
+                            // self.zone3MusicBGMAction()
 
 
-                    case "z5":
+                        case "z4":
 
-                        self.timer.invalidate()
+                            self.timer.invalidate()
 
-                        self.timer  = Timer.scheduledTimer(timeInterval: self.soundDelay5, target: self, selector:
-                            #selector(self.zone5SoundAction), userInfo: nil, repeats: false)
+                            self.timer  = Timer.scheduledTimer(timeInterval: self.soundDelay5, target: self, selector:
+                                #selector(self.zone4SoundAction), userInfo: nil, repeats: false)
 
-                        // self.zone5MusicBGMAction()
+                            // self.zone4MusicBGMAction()
 
 
-                    default: break
-                        //print("not play..")
+                        case "z5":
+
+                            self.timer.invalidate()
+
+                            self.timer  = Timer.scheduledTimer(timeInterval: self.soundDelay5, target: self, selector:
+                                #selector(self.zone5SoundAction), userInfo: nil, repeats: false)
+
+                            // self.zone5MusicBGMAction()
+
+
+                        default: break
+                            //print("not play..")
+                        }
                     }
                 }
 
