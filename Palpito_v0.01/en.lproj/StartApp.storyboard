@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="MnA-08-iKS">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -18,7 +18,7 @@
             <objects>
                 <viewController id="utG-yr-stG" customClass="RangkingSampleController" customModule="Palpito" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dJh-kJ-F2C">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="P3z-5a-VZG">
@@ -32,7 +32,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="scoreCell" rowHeight="79" id="Wa2-Qy-F7Q" customClass="RangKingCell" customModule="Palpito" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="24.5" width="414" height="79"/>
+                                        <rect key="frame" x="0.0" y="24.333333969116211" width="414" height="79"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Wa2-Qy-F7Q" id="GLi-jn-NdD">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="79"/>
@@ -84,11 +84,11 @@
             <objects>
                 <viewController storyboardIdentifier="PrivateInfomationCotroller" useStoryboardIdentifierAsRestorationIdentifier="YES" id="9RS-06-aEE" customClass="PrivateInfomationCotroller" customModule="Palpito" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NPG-4G-vDD">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aFk-Yl-Gqq" userLabel="PrivateView">
-                                <rect key="frame" x="19" y="114.5" width="376" height="667"/>
+                                <rect key="frame" x="7" y="88.666666666666686" width="376" height="667"/>
                                 <subviews>
                                     <wkWebView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mfl-9y-yr1">
                                         <rect key="frame" x="8" y="44" width="360" height="607"/>
@@ -140,11 +140,11 @@
             <objects>
                 <viewController storyboardIdentifier="UserInfoSettingController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="KU9-2C-Ko5" customClass="UserInfoSettingController" customModule="Palpito" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="oTa-Mn-zZs" userLabel="UserCreateView">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j2P-Fd-tCH" userLabel="UserInfoSettingView">
-                                <rect key="frame" x="19" y="114.5" width="376" height="667"/>
+                                <rect key="frame" x="7" y="88.666666666666686" width="376" height="667"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="User account information" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y59-vu-okg">
                                         <rect key="frame" x="49" y="47" width="278" height="38"/>
@@ -260,19 +260,19 @@
             <objects>
                 <tableViewController id="RR4-Rz-k8k" customClass="SettingViewController" customModule="Palpito" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="GT2-cK-Oni">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ListCell" textLabel="rw6-Vp-lTD" style="IBUITableViewCellStyleDefault" id="LLc-Aa-SFe">
-                                <rect key="frame" x="0.0" y="24.5" width="414" height="43.5"/>
+                                <rect key="frame" x="0.0" y="24.333333969116211" width="390" height="43.666667938232422"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="LLc-Aa-SFe" id="W5M-uZ-cIR">
-                                    <rect key="frame" x="0.0" y="0.0" width="384.5" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="360.33333333333331" height="43.666667938232422"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="rw6-Vp-lTD">
-                                            <rect key="frame" x="20" y="0.0" width="356.5" height="43.5"/>
+                                            <rect key="frame" x="20" y="0.0" width="332.33333333333331" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -308,7 +308,7 @@
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
                     </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleAspectFit" insetsLayoutMarginsFromSafeArea="NO" id="Num-vj-LNo">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -327,7 +327,7 @@
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="10"/>
                     </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="hwz-ab-JsN">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.89024144409999995" green="0.4463836551" blue="0.2195157707" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </navigationBar>
@@ -344,11 +344,11 @@
             <objects>
                 <viewController storyboardIdentifier="MyPageVC" modalPresentationStyle="fullScreen" id="zB1-rm-QdX" customClass="MyPageViewController" customModule="Palpito" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="iDa-s9-K9Y">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hsx-UZ-2V6">
-                                <rect key="frame" x="19" y="114.5" width="376" height="667"/>
+                                <rect key="frame" x="7" y="88.666666666666686" width="376" height="667"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Bronze" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AH2-8A-xuM">
                                         <rect key="frame" x="163" y="189" width="51" height="17"/>
@@ -481,11 +481,11 @@
             <objects>
                 <viewController storyboardIdentifier="pushStageLevelVC" modalPresentationStyle="fullScreen" id="ouR-XS-OQt" customClass="StageSelectPushViewController" customModule="Palpito" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleAspectFit" id="FgH-GI-Lb5">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleAspectFit" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Jy-ou-4CA" userLabel="safe in View">
-                                <rect key="frame" x="19" y="114.5" width="376" height="667"/>
+                                <rect key="frame" x="7" y="88.666666666666686" width="376" height="667"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="backgroundOrangeFull" translatesAutoresizingMaskIntoConstraints="NO" id="NpJ-Hj-Zy2">
                                         <rect key="frame" x="19.999999999999915" y="222.99999999999983" width="336" height="516.66666666666674"/>
@@ -620,6 +620,13 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Beginner aerobic" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bpE-A6-1gf">
+                                        <rect key="frame" x="69" y="347" width="139" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.99980741740000001" green="0.99634987119999996" blue="0.98039048910000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
@@ -627,13 +634,6 @@
                                     <constraint firstAttribute="width" constant="376" id="ga8-XN-4qm"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Beginner aerobic" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bpE-A6-1gf">
-                                <rect key="frame" x="87" y="454" width="139" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="4Ux-kF-6Yr"/>
                         <color key="backgroundColor" red="1" green="0.99607843137254903" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -659,11 +659,11 @@
             <objects>
                 <viewController modalPresentationStyle="fullScreen" id="nEZ-tX-Tw9" customClass="DaliyWorkoutViewController" customModule="Palpito" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="iWw-fk-Jtg">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6RS-I4-NBT">
-                                <rect key="frame" x="19" y="114.5" width="376" height="667"/>
+                                <rect key="frame" x="7" y="88.666666666666686" width="376" height="667"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qsk-gO-UHK">
                                         <rect key="frame" x="205" y="63" width="136" height="44"/>
@@ -728,11 +728,9 @@
                                         <color key="textColor" red="0.95294117649999999" green="0.41568627450000001" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="000" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9bc-mu-QgC">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="000" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9bc-mu-QgC">
                                         <rect key="frame" x="193" y="429" width="59.5" height="36"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="59.5" id="H8E-Qh-xIY"/>
-                                        </constraints>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                         <color key="textColor" red="0.95294117649999999" green="0.41568627450000001" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -854,11 +852,11 @@
             <objects>
                 <viewController storyboardIdentifier="StartPopup" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Qb2-lt-V4q" customClass="StartPopupController" customModule="Palpito" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6g2-oN-Lrh">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pUG-xy-1Nt">
-                                <rect key="frame" x="19" y="114.5" width="376" height="667"/>
+                                <rect key="frame" x="7" y="88.666666666666686" width="376" height="667"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="appleWatchImageEng" translatesAutoresizingMaskIntoConstraints="NO" id="nUO-bS-cC7">
                                         <rect key="frame" x="78" y="42" width="220" height="380"/>
@@ -916,11 +914,11 @@
             <objects>
                 <viewController storyboardIdentifier="WorkoutViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="aIW-S9-7ER" customClass="WorkoutViewController" customModule="Palpito" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="isn-xq-4B2">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AqS-pI-6yS">
-                                <rect key="frame" x="19" y="114.5" width="376" height="667"/>
+                                <rect key="frame" x="7" y="88.666666666666686" width="376" height="667"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="exercise-palpi1" translatesAutoresizingMaskIntoConstraints="NO" id="Opb-ZI-dGq">
                                         <rect key="frame" x="255" y="92" width="41" height="482.66666666666663"/>
@@ -960,8 +958,8 @@
                                             <action selector="soundTurnOnOffAction:" destination="aIW-S9-7ER" eventType="touchUpInside" id="lYn-QX-bHH"/>
                                         </connections>
                                     </button>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="easyLevelText" translatesAutoresizingMaskIntoConstraints="NO" id="eW8-hA-egz">
-                                        <rect key="frame" x="260" y="30" width="30.333333333333314" height="15.666666666666671"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="easyLevelTextEng" translatesAutoresizingMaskIntoConstraints="NO" id="eW8-hA-egz">
+                                        <rect key="frame" x="242" y="23" width="60" height="26"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="---" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="gS2-SH-1Zp">
@@ -1013,7 +1011,7 @@
                                         <rect key="frame" x="36.000000000000028" y="561.00000000000023" width="162.66666666666666" height="26"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="lv1Message" translatesAutoresizingMaskIntoConstraints="NO" id="YVC-gm-PPj">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="lv1MessageEng" translatesAutoresizingMaskIntoConstraints="NO" id="YVC-gm-PPj">
                                         <rect key="frame" x="29" y="375" width="176.66666666666666" height="140"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
@@ -1033,19 +1031,19 @@
                                         <rect key="frame" x="206" y="53" width="131.33333333333326" height="202.66666666666663"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
-                                    <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="lv2Message" translatesAutoresizingMaskIntoConstraints="NO" id="N4l-tZ-3hi">
+                                    <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="lv2MessageEng" translatesAutoresizingMaskIntoConstraints="NO" id="N4l-tZ-3hi">
                                         <rect key="frame" x="29" y="309" width="176.66666666666666" height="140"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
-                                    <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="lv4Message" translatesAutoresizingMaskIntoConstraints="NO" id="3eZ-Rs-4bU">
+                                    <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="lv4MessageEng" translatesAutoresizingMaskIntoConstraints="NO" id="3eZ-Rs-4bU">
                                         <rect key="frame" x="29" y="144" width="176.66666666666666" height="140"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
-                                    <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="lv5Message" translatesAutoresizingMaskIntoConstraints="NO" id="luA-eo-f2l">
+                                    <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="lv5MessageEng" translatesAutoresizingMaskIntoConstraints="NO" id="luA-eo-f2l">
                                         <rect key="frame" x="28" y="64" width="176.66666666666666" height="140"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
-                                    <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="lv3Message" translatesAutoresizingMaskIntoConstraints="NO" id="w6h-E6-FoV">
+                                    <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="lv3MessageEng" translatesAutoresizingMaskIntoConstraints="NO" id="w6h-E6-FoV">
                                         <rect key="frame" x="27" y="217" width="176.66666666666666" height="140"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
@@ -1126,11 +1124,11 @@
             <objects>
                 <viewController storyboardIdentifier="ResultWorkoutViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="9Eq-cG-XeX" customClass="ResultWorkoutViewController" customModule="Palpito" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="oHk-gA-2dV">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WUu-7s-SNX">
-                                <rect key="frame" x="19" y="114.5" width="376" height="667"/>
+                                <rect key="frame" x="7" y="88.666666666666686" width="376" height="667"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="workoutResultPalpitoEng" translatesAutoresizingMaskIntoConstraints="NO" id="TLZ-19-Afw">
                                         <rect key="frame" x="83" y="46" width="210" height="199"/>
@@ -1280,11 +1278,11 @@
             <objects>
                 <viewController storyboardIdentifier="ReadyWorkoutViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="9iD-4x-dj4" customClass="ReadyWorkoutViewController" customModule="Palpito" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="i2a-d8-6jr">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fsl-tT-WRM">
-                                <rect key="frame" x="19" y="114.5" width="376" height="667"/>
+                                <rect key="frame" x="7" y="88.666666666666686" width="376" height="667"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" placeholderIntrinsicWidth="270" placeholderIntrinsicHeight="260" image="counteng-0" translatesAutoresizingMaskIntoConstraints="NO" id="ym5-Wo-uq5">
                                         <rect key="frame" x="53" y="203" width="270" height="260.33333333333326"/>
@@ -1323,7 +1321,7 @@
             <objects>
                 <navigationController id="MnA-08-iKS" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="DbB-Yl-szk">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="44" width="390" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -1360,61 +1358,61 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="9mI-rY-UDF"/>
-        <segue reference="KT4-jO-YeY"/>
+        <segue reference="sh2-c3-ele"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.95294117649999999" green="0.41568627450000001" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
     <resources>
         <image name="RestEng" width="87" height="87"/>
         <image name="WorkoutEng" width="108" height="108"/>
         <image name="appleWatchImageEng" width="220" height="380"/>
-        <image name="backgroundOrange" width="336.5" height="211.5"/>
-        <image name="backgroundOrangeFull" width="336.5" height="517"/>
-        <image name="blackiOSKmText" width="24.5" height="14"/>
-        <image name="bpmIcon" width="36" height="17.5"/>
-        <image name="calenderIconOrange" width="34.5" height="34.5"/>
-        <image name="circle" width="38" height="37.5"/>
+        <image name="backgroundOrange" width="336.33334350585938" height="211.33332824707031"/>
+        <image name="backgroundOrangeFull" width="336.33334350585938" height="516.66668701171875"/>
+        <image name="blackiOSKmText" width="24.333333969116211" height="14"/>
+        <image name="bpmIcon" width="36" height="17.333333969116211"/>
+        <image name="calenderIconOrange" width="34.666667938232422" height="34.666667938232422"/>
+        <image name="circle" width="38" height="37.666667938232422"/>
         <image name="circleChose" width="38" height="38"/>
         <image name="counteng-0" width="316" height="124"/>
         <image name="dailtPalpiCharacter" width="333" height="453"/>
-        <image name="dailyIconOrange" width="136.5" height="44"/>
-        <image name="easyLevelIconEng" width="251.5" height="42"/>
-        <image name="easyLevelText" width="30.5" height="16"/>
-        <image name="exercise-palpi1" width="41" height="482.5"/>
-        <image name="exerciseBpmIcon" width="162.5" height="26"/>
-        <image name="exerciseCharacter0" width="131.5" height="197"/>
-        <image name="exerciseIconGray" width="21" height="50.5"/>
-        <image name="exerciseMusicOff" width="29.5" height="30"/>
+        <image name="dailyIconOrange" width="136.66667175292969" height="44"/>
+        <image name="easyLevelIconEng" width="251.66667175292969" height="42"/>
+        <image name="easyLevelTextEng" width="60.333332061767578" height="15"/>
+        <image name="exercise-palpi1" width="41" height="482.66665649414062"/>
+        <image name="exerciseBpmIcon" width="162.66667175292969" height="26"/>
+        <image name="exerciseCharacter0" width="131.66667175292969" height="197"/>
+        <image name="exerciseIconGray" width="21" height="50.333332061767578"/>
+        <image name="exerciseMusicOff" width="29.666666030883789" height="30"/>
         <image name="exercisePlayButton" width="53" height="53"/>
         <image name="exerciseStopButton" width="53" height="53"/>
         <image name="exercisepauseButton" width="53" height="53"/>
-        <image name="highLevelEng" width="251.5" height="42"/>
-        <image name="home" width="77.5" height="77"/>
-        <image name="kcalSmallText" width="32.5" height="13.5"/>
-        <image name="lv1Message" width="178.5" height="142"/>
-        <image name="lv2Message" width="178.5" height="141.5"/>
-        <image name="lv3Message" width="178.5" height="141.5"/>
-        <image name="lv4Message" width="178.5" height="142"/>
-        <image name="lv5Message" width="178.5" height="141.5"/>
-        <image name="mapIcon" width="22.5" height="31"/>
-        <image name="middleLevelEng" width="251.5" height="42"/>
-        <image name="monthlyIcon" width="136.5" height="44"/>
-        <image name="musicOn" width="21.5" height="30"/>
-        <image name="mute" width="30.5" height="31"/>
-        <image name="myPageMenu" width="34.5" height="34.5"/>
-        <image name="myPictureIcon" width="130.5" height="130.5"/>
-        <image name="orangeLineVeltical" width="3.5" height="51"/>
+        <image name="highLevelEng" width="251.66667175292969" height="42"/>
+        <image name="home" width="77.333335876464844" height="77"/>
+        <image name="kcalSmallText" width="32.333332061767578" height="13.333333015441895"/>
+        <image name="lv1MessageEng" width="357" height="284"/>
+        <image name="lv2MessageEng" width="357" height="283"/>
+        <image name="lv3MessageEng" width="357" height="283"/>
+        <image name="lv4MessageEng" width="357" height="284"/>
+        <image name="lv5MessageEng" width="357" height="283"/>
+        <image name="mapIcon" width="22.666666030883789" height="31"/>
+        <image name="middleLevelEng" width="251.66667175292969" height="42"/>
+        <image name="monthlyIcon" width="136.66667175292969" height="44"/>
+        <image name="musicOn" width="21.333333969116211" height="30"/>
+        <image name="mute" width="30.666666030883789" height="31"/>
+        <image name="myPageMenu" width="34.666667938232422" height="34.666667938232422"/>
+        <image name="myPictureIcon" width="130.33332824707031" height="130.33332824707031"/>
+        <image name="orangeLineVeltical" width="3.3333332538604736" height="48.333332061767578"/>
         <image name="orangebtn" width="282" height="46"/>
-        <image name="orangeline" width="322.5" height="2.5"/>
+        <image name="orangeline" width="322.66665649414062" height="2.3333332538604736"/>
         <image name="palpitoBackPageEng" width="202" height="45"/>
         <image name="play" width="35" height="31"/>
-        <image name="setUpIconGray" width="34.5" height="34.5"/>
-        <image name="shareIconGray" width="32.5" height="35"/>
-        <image name="todayCondition" width="135.5" height="18"/>
+        <image name="setUpIconGray" width="34.666667938232422" height="34.666667938232422"/>
+        <image name="shareIconGray" width="32.333332061767578" height="34.666667938232422"/>
+        <image name="todayCondition" width="135.66667175292969" height="18"/>
         <image name="whiteBpmText" width="42" height="20"/>
-        <image name="whiteKmText" width="29" height="15.5"/>
-        <image name="whitekcalText" width="37.5" height="15.5"/>
-        <image name="workoutResultBpmText" width="36" height="17.5"/>
-        <image name="workoutResultPalpitoEng" width="210.5" height="164.5"/>
+        <image name="whiteKmText" width="29" height="15.333333015441895"/>
+        <image name="whitekcalText" width="37.666667938232422" height="15.666666984558105"/>
+        <image name="workoutResultBpmText" width="36" height="17.333333969116211"/>
+        <image name="workoutResultPalpitoEng" width="140.33332824707031" height="109.66666412353516"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

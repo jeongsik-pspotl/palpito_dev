@@ -37,25 +37,46 @@ class TableHeader: UITableViewHeaderFooterView {
         let cellView = UIView()
         cellView.backgroundColor = .white
         
+        if Locale.current.languageCode == "ko" {
+            let awardCnt = UIImageView()
+            awardCnt.contentMode = .scaleAspectFit
+            awardCnt.image = UIImage(named: "RangkingCellAward")
+            awardCnt.frame = CGRect(x: 20, y: 10, width: 25, height: 20)
+            
+            let cellID = UIImageView()
+            cellID.contentMode = .scaleAspectFit
+            cellID.image = UIImage(named: "RangkingCellid")
+            cellID.frame = CGRect(x: 170, y: 10, width: 40, height: 20)
+            
+            let cellScore = UIImageView()
+            cellScore.contentMode = .scaleAspectFit
+            cellScore.image = UIImage(named: "RangkingCellScore")
+            cellScore.frame = CGRect(x: 310, y: 10, width: 40, height: 20)
+            
+            cellView.addSubview(awardCnt)
+            cellView.addSubview(cellID)
+            cellView.addSubview(cellScore)
+        }else {
+            let awardCnt = UILabel()
+            awardCnt.contentMode = .scaleAspectFit
+            awardCnt.text = "Ranking" //UIImage(named: "RangkingCellAward")
+            awardCnt.frame = CGRect(x: 20, y: 10, width: 70, height: 20)
+            
+            let cellID = UILabel()
+            cellID.contentMode = .scaleAspectFit
+            cellID.text = "ID"
+            cellID.frame = CGRect(x: 170, y: 10, width: 50, height: 20)
+            
+            let cellScore = UILabel()
+            cellScore.contentMode = .scaleAspectFit
+            cellScore.text = "Score"  // UIImage(named: "RangkingCellScore")
+            cellScore.frame = CGRect(x: 310, y: 10, width: 50, height: 20)
+            
+            cellView.addSubview(awardCnt)
+            cellView.addSubview(cellID)
+            cellView.addSubview(cellScore)
+        }
         
-        let awardCnt = UIImageView()
-        awardCnt.contentMode = .scaleAspectFit
-        awardCnt.image = UIImage(named: "RangkingCellAward")
-        awardCnt.frame = CGRect(x: 20, y: 10, width: 25, height: 20)
-        
-        let cellID = UIImageView()
-        cellID.contentMode = .scaleAspectFit
-        cellID.image = UIImage(named: "RangkingCellid")
-        cellID.frame = CGRect(x: 170, y: 10, width: 40, height: 20)
-        
-        let cellScore = UIImageView()
-        cellScore.contentMode = .scaleAspectFit
-        cellScore.image = UIImage(named: "RangkingCellScore")
-        cellScore.frame = CGRect(x: 310, y: 10, width: 40, height: 20)
-        
-        cellView.addSubview(awardCnt)
-        cellView.addSubview(cellID)
-        cellView.addSubview(cellScore)
         
         
         return cellView

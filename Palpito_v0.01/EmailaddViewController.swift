@@ -20,8 +20,17 @@ class EmailAddViewController: ExtensionVC, UITextFieldDelegate  {
     var emailCheckYn:Bool = false
     var informationAgreeCheckYn:Bool = false
     
+    var languageCode = Locale.current.languageCode
+    
     var sv:UIView = UIView.init()
     
+    let dialogMessageKo = UIAlertController(title: "이메일 체크", message: "사용가능한 이메일 입니다.", preferredStyle: .alert)
+    
+    let dialogMessageEng = UIAlertController(title: "check email", message: "Available email.", preferredStyle: .alert)
+    
+    let cancelDialogMessageKo = UIAlertController(title: "이메일 체크", message: "이미 사용하고 있는 이메일 입니다.", preferredStyle: .alert)
+    
+    let cancelDialogMessageEng = UIAlertController(title: "check email", message: "This email is already in use.", preferredStyle: .alert)
     
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -50,7 +59,7 @@ class EmailAddViewController: ExtensionVC, UITextFieldDelegate  {
         
         datePickerView.datePickerMode = .date
         datePickerView.addTarget(self, action: #selector(EmailAddViewController.onDatePickerValueChanged(sender:)), for: UIControl.Event.valueChanged)
-        datePickerView.locale = Locale(identifier: "ko_KR")
+        //datePickerView.locale = Locale(identifier: "ko_KR")
         datePickerView.autoresizingMask = UIView.AutoresizingMask.flexibleHeight
         
         birthTextField.inputView = datePickerView
@@ -113,20 +122,39 @@ class EmailAddViewController: ExtensionVC, UITextFieldDelegate  {
 
     @IBAction func userCreateAction(_ sender: UIButton){
         let backItem = UIBarButtonItem()
+        var birthText = ""
         backItem.title = ""
         navigationItem.backBarButtonItem = backItem
         
-        
-        guard let birthText = birthTextField.text else {
+        if self.languageCode == "ko" {
+            birthText = birthTextField.text ?? ""
+            guard birthTextField.text != nil else {
+                
+                let alert = UIAlertController(title: "회원가입 실패", message: "생년월일을 입력해주세요.", preferredStyle: UIAlertController.Style.alert)
+                let defaultAction = UIAlertAction(title: "OK", style: .destructive, handler : nil)
+                alert.addAction(defaultAction)
+                
+                present(alert, animated: false, completion: nil)
+                //self.sv.removeFromSuperview()
+                
+                return
+            }
             
-            let alert = UIAlertController(title: "회원가입 실패", message: "생년월일을 입력해주세요.", preferredStyle: UIAlertController.Style.alert)
-            let defaultAction = UIAlertAction(title: "OK", style: .destructive, handler : nil)
-            alert.addAction(defaultAction)
+        }else {
+            birthText = birthTextField.text ?? ""
+            guard birthTextField.text != nil else {
+                
+                print(birthText)
+                let alert = UIAlertController(title: "Failed to sign up", message: "Please enter your birth date.", preferredStyle: UIAlertController.Style.alert)
+                let defaultAction = UIAlertAction(title: "OK", style: .destructive, handler : nil)
+                alert.addAction(defaultAction)
+                
+                present(alert, animated: false, completion: nil)
+                //self.sv.removeFromSuperview()
+                
+                return
+            }
             
-            present(alert, animated: false, completion: nil)
-            //self.sv.removeFromSuperview()
-            
-            return
         }
         
         guard let email = emailTextField.text, let password = passwordTextField.text, let nickName = nickNameTextField.text, let gender = self.genderVal else { return }
@@ -137,77 +165,154 @@ class EmailAddViewController: ExtensionVC, UITextFieldDelegate  {
         let passwordCheck = validatePassword(password: password)
         
         // 이메일 중복 여부 체크
+        
         if !emailCheckYn {
             // 팝업 창 생성..
-            let alert = UIAlertController(title: "회원가입 실패", message: "이메일 중복조회 해주세요.", preferredStyle: UIAlertController.Style.alert)
-            let defaultAction = UIAlertAction(title: "OK", style: .destructive, handler : nil)
-            alert.addAction(defaultAction)
+            // Please double check your email.
+            if self.languageCode == "ko" {
+                let alert = UIAlertController(title: "회원가입 실패", message: "이메일 중복조회 해주세요.", preferredStyle: UIAlertController.Style.alert)
+                let defaultAction = UIAlertAction(title: "OK", style: .destructive, handler : nil)
+                alert.addAction(defaultAction)
+                
+                present(alert, animated: false, completion: nil)
+                //self.sv.removeFromSuperview()
+                
+                return
+            } else {
+                let alert = UIAlertController(title: "Failed to sign up", message: "Please double check your email.", preferredStyle: UIAlertController.Style.alert)
+                let defaultAction = UIAlertAction(title: "OK", style: .destructive, handler : nil)
+                alert.addAction(defaultAction)
+                
+                present(alert, animated: false, completion: nil)
+                //self.sv.removeFromSuperview()
+                
+                return
+            }
             
-            present(alert, animated: false, completion: nil)
-            //self.sv.removeFromSuperview()
-            
-            return
         }
         
         // 이메일 체크
         if !emailCheck {
             // 팝업 창 생성..
-            let alert = UIAlertController(title: "회원가입 실패", message: "이메일을 확인해주세요.", preferredStyle: UIAlertController.Style.alert)
-            let defaultAction = UIAlertAction(title: "OK", style: .destructive, handler : nil)
-            alert.addAction(defaultAction)
-            
-            present(alert, animated: false, completion: nil)
-            //self.sv.removeFromSuperview()
-            self.emailCheckYn = false
-            
-            return
+            // Please check your email.
+            if self.languageCode == "ko" {
+                let alert = UIAlertController(title: "회원가입 실패", message: "이메일을 확인해주세요.", preferredStyle: UIAlertController.Style.alert)
+                let defaultAction = UIAlertAction(title: "OK", style: .destructive, handler : nil)
+                alert.addAction(defaultAction)
+                
+                present(alert, animated: false, completion: nil)
+                //self.sv.removeFromSuperview()
+                self.emailCheckYn = false
+                
+                return
+            } else {
+                let alert = UIAlertController(title: "Failed to sign up", message: "Please check your email.", preferredStyle: UIAlertController.Style.alert)
+                let defaultAction = UIAlertAction(title: "OK", style: .destructive, handler : nil)
+                alert.addAction(defaultAction)
+                
+                present(alert, animated: false, completion: nil)
+                //self.sv.removeFromSuperview()
+                self.emailCheckYn = false
+                
+                return
+            }
         }
         
         // 비밀번호 체크
         if !passwordCheck {
-            
-            let alert = UIAlertController(title: "회원가입 실패", message: "비밀번호를 확인해주세요.", preferredStyle: UIAlertController.Style.alert)
-            let defaultAction = UIAlertAction(title: "OK", style: .destructive, handler : nil)
-            alert.addAction(defaultAction)
-            //self.sv.removeFromSuperview()
-            present(alert, animated: false, completion: nil)
-            //self.sv.removeFromSuperview()
-            return
+            // Please confirm your password.
+            if self.languageCode == "ko" {
+                let alert = UIAlertController(title: "회원가입 실패", message: "비밀번호를 확인해주세요.", preferredStyle: UIAlertController.Style.alert)
+                let defaultAction = UIAlertAction(title: "OK", style: .destructive, handler : nil)
+                alert.addAction(defaultAction)
+                //self.sv.removeFromSuperview()
+                present(alert, animated: false, completion: nil)
+                //self.sv.removeFromSuperview()
+                return
+                
+            } else {
+                let alert = UIAlertController(title: "Failed to sign up", message: "Please confirm your password.", preferredStyle: UIAlertController.Style.alert)
+                let defaultAction = UIAlertAction(title: "OK", style: .destructive, handler : nil)
+                alert.addAction(defaultAction)
+                //self.sv.removeFromSuperview()
+                present(alert, animated: false, completion: nil)
+                //self.sv.removeFromSuperview()
+                return
+                
+            }
         }
         
         if (birthText == "") {
-            let alert = UIAlertController(title: "회원가입 실패", message: "생년월일을 입력해주세요.", preferredStyle: UIAlertController.Style.alert)
-            let defaultAction = UIAlertAction(title: "OK", style: .destructive, handler : nil)
-            alert.addAction(defaultAction)
-            //self.sv.removeFromSuperview()
-            present(alert, animated: false, completion: nil)
-            //self.sv.removeFromSuperview()
-            return
+            // Please enter your birth date.
+            if self.languageCode == "ko" {
+                let alert = UIAlertController(title: "회원가입 실패", message: "생년월일을 입력해주세요.", preferredStyle: UIAlertController.Style.alert)
+                let defaultAction = UIAlertAction(title: "OK", style: .destructive, handler : nil)
+                alert.addAction(defaultAction)
+                //self.sv.removeFromSuperview()
+                present(alert, animated: false, completion: nil)
+                //self.sv.removeFromSuperview()
+                return
+                
+            } else {
+                let alert = UIAlertController(title: "Failed to sign up", message: "Please enter your birth date.", preferredStyle: UIAlertController.Style.alert)
+                let defaultAction = UIAlertAction(title: "OK", style: .destructive, handler : nil)
+                alert.addAction(defaultAction)
+                //self.sv.removeFromSuperview()
+                present(alert, animated: false, completion: nil)
+                //self.sv.removeFromSuperview()
+                return
+                
+            }
         }
         
         // 닉네임 체크
         if (nickName == "") {
-            let alert = UIAlertController(title: "회원가입 실패", message: "닉네임을 입력해주세요.", preferredStyle: UIAlertController.Style.alert)
-            let defaultAction = UIAlertAction(title: "OK", style: .destructive, handler : nil)
-            alert.addAction(defaultAction)
-            //self.sv.removeFromSuperview()
-            present(alert, animated: false, completion: nil)
-            //self.sv.removeFromSuperview()
-            
-            return
+            // Please enter your nickname.
+            if self.languageCode == "ko" {
+                let alert = UIAlertController(title: "회원가입 실패", message: "닉네임을 입력해주세요.", preferredStyle: UIAlertController.Style.alert)
+                let defaultAction = UIAlertAction(title: "OK", style: .destructive, handler : nil)
+                alert.addAction(defaultAction)
+                //self.sv.removeFromSuperview()
+                present(alert, animated: false, completion: nil)
+                //self.sv.removeFromSuperview()
+                
+                return
+            }else {
+                let alert = UIAlertController(title: "Failed to sign up", message: "Please enter your nickname.", preferredStyle: UIAlertController.Style.alert)
+                let defaultAction = UIAlertAction(title: "OK", style: .destructive, handler : nil)
+                alert.addAction(defaultAction)
+                //self.sv.removeFromSuperview()
+                present(alert, animated: false, completion: nil)
+                //self.sv.removeFromSuperview()
+                
+                return
+                
+            }
         }
         
         // 약관 동의 체크 여부
         if !informationAgreeCheckYn {
             // 팝업 창 생성..
-            let alert = UIAlertController(title: "회원가입 실패", message: "약관 동의 체크해야 회원가입이 가능합니다.", preferredStyle: UIAlertController.Style.alert)
-            let defaultAction = UIAlertAction(title: "OK", style: .destructive, handler : nil)
-            alert.addAction(defaultAction)
-            //self.sv.removeFromSuperview()
-            present(alert, animated: false, completion: nil)
-            //self.sv.removeFromSuperview()
-            
-            return
+            // You must agree to the terms and conditions to sign up.
+            if self.languageCode == "ko" {
+                let alert = UIAlertController(title: "회원가입 실패", message: "약관 동의 체크해야 회원가입이 가능합니다.", preferredStyle: UIAlertController.Style.alert)
+                let defaultAction = UIAlertAction(title: "OK", style: .destructive, handler : nil)
+                alert.addAction(defaultAction)
+                //self.sv.removeFromSuperview()
+                present(alert, animated: false, completion: nil)
+                //self.sv.removeFromSuperview()
+                
+                return
+            } else {
+                let alert = UIAlertController(title: "Failed to sign up", message: "You must agree to the terms and conditions to sign up.", preferredStyle: UIAlertController.Style.alert)
+                let defaultAction = UIAlertAction(title: "OK", style: .destructive, handler : nil)
+                alert.addAction(defaultAction)
+                //self.sv.removeFromSuperview()
+                present(alert, animated: false, completion: nil)
+                //self.sv.removeFromSuperview()
+                
+                return
+            }
         }
         self.sv = UIViewController.displaySpinner(onView: self.view)
         Auth.auth().createUser(withEmail: email, password: password) { [weak self] (authResult, error) in
@@ -242,12 +347,24 @@ class EmailAddViewController: ExtensionVC, UITextFieldDelegate  {
                 }
                 
             } else {
-                let alert = UIAlertController(title: "회원가입 실패", message: "이메일이나 비밀번호, 그외 내용을 확인해주세요.", preferredStyle: UIAlertController.Style.alert)
-                let defaultAction = UIAlertAction(title: "OK", style: .destructive, handler : nil)
-                alert.addAction(defaultAction)
-                self!.sv.removeFromSuperview()
-                self?.present(alert, animated: true, completion: nil)
-                return
+                // Please check your email address, password, and other information.
+                if self?.languageCode == "ko" {
+                    let alert = UIAlertController(title: "회원가입 실패", message: "이메일이나 비밀번호, 그외 내용을 확인해주세요.", preferredStyle: UIAlertController.Style.alert)
+                    let defaultAction = UIAlertAction(title: "OK", style: .destructive, handler : nil)
+                    alert.addAction(defaultAction)
+                    self!.sv.removeFromSuperview()
+                    self?.present(alert, animated: true, completion: nil)
+                    return
+                    
+                } else {
+                    let alert = UIAlertController(title: "Failed to sign up", message: "Please check your email address, password, and other information.", preferredStyle: UIAlertController.Style.alert)
+                    let defaultAction = UIAlertAction(title: "OK", style: .destructive, handler : nil)
+                    alert.addAction(defaultAction)
+                    self!.sv.removeFromSuperview()
+                    self?.present(alert, animated: true, completion: nil)
+                    return
+                    
+                }
             }
         }
         
@@ -314,26 +431,54 @@ class EmailAddViewController: ExtensionVC, UITextFieldDelegate  {
     
     @IBAction func emailCheckAction(_ sender: UIButton) {
         var emailCheckVar = ""
-        let dialogMessage = UIAlertController(title: "이메일 체크", message: "사용가능한 이메일 입니다.", preferredStyle: .alert)
-        
-        let ok = UIAlertAction(title: "OK", style: .default) { (action) -> Void in
-            //print("test ok!!")
+        // check email
+        // Available email.
+        // This email is already in use.
+        if languageCode == "ko" {
+            
+            
+            let ok = UIAlertAction(title: "OK", style: .default) { (action) -> Void in
+                //print("test ok!!")
+            }
+            dialogMessageKo.addAction(ok)
+            
+            let okStatus = UIAlertAction(title: "OK", style: .default) { (action) -> Void in
+                //print("test ok!!")
+            }
+            cancelDialogMessageKo.addAction(okStatus)
+        }else {
+            
+            let ok = UIAlertAction(title: "OK", style: .default) { (action) -> Void in
+                //print("test ok!!")
+            }
+            dialogMessageEng.addAction(ok)
+            
+            let okStatus = UIAlertAction(title: "OK", style: .default) { (action) -> Void in
+                //print("test ok!!")
+            }
+            cancelDialogMessageEng.addAction(okStatus)
         }
-        dialogMessage.addAction(ok)
         
-        let cancelDialogMessage = UIAlertController(title: "이메일 체크", message: "이미 사용하고 있는 이메일 입니다.", preferredStyle: .alert)
-        let okStatus = UIAlertAction(title: "OK", style: .default) { (action) -> Void in
-            //print("test ok!!")
-        }
-        cancelDialogMessage.addAction(okStatus)
+        
         
         // 이메일 형식에 맞는 validation 처리 기능 추가하기
         if emailTextField.text == nil || emailTextField.text == "" {
-            let alert = UIAlertController(title: "이메일 체크", message: "이메일을 입력해주세요.", preferredStyle: UIAlertController.Style.alert)
-            let defaultAction = UIAlertAction(title: "OK", style: .destructive, handler : nil)
-            alert.addAction(defaultAction)
-            present(alert, animated: false, completion: nil)
-            return
+            //Please enter your e-mail.
+            if languageCode == "ko" {
+                let alert = UIAlertController(title: "이메일 체크", message: "이메일을 입력해주세요.", preferredStyle: UIAlertController.Style.alert)
+                let defaultAction = UIAlertAction(title: "OK", style: .destructive, handler : nil)
+                alert.addAction(defaultAction)
+                present(alert, animated: false, completion: nil)
+                return
+                
+            } else {
+                let alert = UIAlertController(title: "check email", message: "Please enter your e-mail.", preferredStyle: UIAlertController.Style.alert)
+                let defaultAction = UIAlertAction(title: "OK", style: .destructive, handler : nil)
+                alert.addAction(defaultAction)
+                present(alert, animated: false, completion: nil)
+                return
+                
+            }
         }else{
             emailCheckVar = emailTextField.text!
         }
@@ -343,11 +488,21 @@ class EmailAddViewController: ExtensionVC, UITextFieldDelegate  {
         // 테스트 필요.
         if !emailCheck {
             // 이메일 형식에 맞지 않습니다.
-            let alert = UIAlertController(title: "이메일 체크", message: "이메일을 형식에 맞지 않습니다.", preferredStyle: UIAlertController.Style.alert)
-            let defaultAction = UIAlertAction(title: "OK", style: .destructive, handler : nil)
-            alert.addAction(defaultAction)
-            present(alert, animated: false, completion: nil)
-            return
+            // The email is not formatted.
+            if languageCode == "ko" {
+                let alert = UIAlertController(title: "이메일 체크", message: "이메일을 형식에 맞지 않습니다.", preferredStyle: UIAlertController.Style.alert)
+                let defaultAction = UIAlertAction(title: "OK", style: .destructive, handler : nil)
+                alert.addAction(defaultAction)
+                present(alert, animated: false, completion: nil)
+                return
+                
+            } else {
+                let alert = UIAlertController(title: "check email", message: "The email is not formatted.", preferredStyle: UIAlertController.Style.alert)
+                let defaultAction = UIAlertAction(title: "OK", style: .destructive, handler : nil)
+                alert.addAction(defaultAction)
+                present(alert, animated: false, completion: nil)
+                return
+            }
         }
         
         Auth.auth().fetchSignInMethods(forEmail: emailCheckVar, completion: {
@@ -357,11 +512,21 @@ class EmailAddViewController: ExtensionVC, UITextFieldDelegate  {
           print(error.localizedDescription)
          } else if providers != nil {
             //print(providers)
-            self.present(cancelDialogMessage, animated: false, completion: nil)
+            if self.languageCode == "ko" {
+                self.present(self.cancelDialogMessageKo, animated: false, completion: nil)
+            }else {
+                self.present(self.cancelDialogMessageEng, animated: false, completion: nil)
+            }
+            
             self.emailCheckYn = false
          } else {
             // print(providers)
-            self.present(dialogMessage, animated: false, completion: nil)
+            if self.languageCode == "ko" {
+                self.present(self.dialogMessageKo, animated: false, completion: nil)
+            }else {
+                self.present(self.dialogMessageEng, animated: false, completion: nil)
+            }
+            
             self.emailCheckYn = true
          }
         })

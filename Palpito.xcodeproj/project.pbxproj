@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		09B8AD818FE53E322BC83037 /* Pods_Palpito.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CDDEED2C49EAF9CA8B6FD1F /* Pods_Palpito.framework */; };
-		28CC5D701FBC840B06540188 /* libPods-Palpito_watchOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 07FAE0C1FF5FB0298171D80E /* libPods-Palpito_watchOS.a */; };
-		4F192DB2040CD493D4E6DC23 /* libPods-Palpito_watchOS Extension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BA236629A1E4D5D7BDBE475 /* libPods-Palpito_watchOS Extension.a */; };
+		18443F616024F30248448ECD /* libPods-Palpito_watchOS Extension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 79309424A392F094463A7D0B /* libPods-Palpito_watchOS Extension.a */; };
+		7D314AC2B53F1F3DAF9CD2A1 /* Pods_Palpito.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74604709ABE3DEF0D72D3188 /* Pods_Palpito.framework */; };
+		ED081591B1FFD7949E38F123 /* libPods-Palpito_watchOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A104FC97EC4E36611B492C35 /* libPods-Palpito_watchOS.a */; };
 		F6009CA121E82D5A007DF73B /* palpito_Data.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F6009C9F21E82D5A007DF73B /* palpito_Data.xcdatamodeld */; };
 		F6009CA321E83755007DF73B /* ResultWorkoutInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6009CA221E83755007DF73B /* ResultWorkoutInterfaceController.swift */; };
 		F600BEDE218937C100116455 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F600BEDD218937C100116455 /* HealthKit.framework */; };
@@ -42,6 +42,14 @@
 		F677EB1C21788B3C000AE332 /* 팔피토 로고.png in Resources */ = {isa = PBXBuildFile; fileRef = F677EB1B21788B3C000AE332 /* 팔피토 로고.png */; };
 		F67B2066215DB1CC0092077F /* AgeAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67B2065215DB1CC0092077F /* AgeAddViewController.swift */; };
 		F67B90762227712700B7042D /* ReadyWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67B90752227712700B7042D /* ReadyWorkoutViewController.swift */; };
+		F680E67026DB3466005AB251 /* zone2startEng.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F680E66826DB3466005AB251 /* zone2startEng.mp3 */; };
+		F680E67126DB3466005AB251 /* zone34RecycleEng.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F680E66926DB3466005AB251 /* zone34RecycleEng.mp3 */; };
+		F680E67226DB3466005AB251 /* zone12RecycleEng.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F680E66A26DB3466005AB251 /* zone12RecycleEng.mp3 */; };
+		F680E67326DB3466005AB251 /* zone5startEng.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F680E66B26DB3466005AB251 /* zone5startEng.mp3 */; };
+		F680E67426DB3466005AB251 /* zone3startEng.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F680E66C26DB3466005AB251 /* zone3startEng.mp3 */; };
+		F680E67526DB3466005AB251 /* zone1RecycleEng.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F680E66D26DB3466005AB251 /* zone1RecycleEng.mp3 */; };
+		F680E67626DB3466005AB251 /* zone45RecycleEng.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F680E66E26DB3466005AB251 /* zone45RecycleEng.mp3 */; };
+		F680E67726DB3466005AB251 /* zone4startEng.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F680E66F26DB3466005AB251 /* zone4startEng.mp3 */; };
 		F68A787B2161D89400A1C2A6 /* Checkbox@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = F68A787A2161D89400A1C2A6 /* Checkbox@3x.png */; };
 		F68A787D2161D8B800A1C2A6 /* UnCheckbox@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = F68A787C2161D8B800A1C2A6 /* UnCheckbox@3x.png */; };
 		F68A78812161DEC400A1C2A6 /* DLRadioButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F68A78802161DEC400A1C2A6 /* DLRadioButton.m */; };
@@ -159,14 +167,15 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		07FAE0C1FF5FB0298171D80E /* libPods-Palpito_watchOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Palpito_watchOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		1755132AF6EFA882FF875FE8 /* Pods-Palpito_watchOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Palpito_watchOS.release.xcconfig"; path = "Target Support Files/Pods-Palpito_watchOS/Pods-Palpito_watchOS.release.xcconfig"; sourceTree = "<group>"; };
-		5163B31E858EF2C9500E6FC3 /* Pods-Palpito_watchOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Palpito_watchOS.debug.xcconfig"; path = "Target Support Files/Pods-Palpito_watchOS/Pods-Palpito_watchOS.debug.xcconfig"; sourceTree = "<group>"; };
-		5CDDEED2C49EAF9CA8B6FD1F /* Pods_Palpito.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Palpito.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6BA236629A1E4D5D7BDBE475 /* libPods-Palpito_watchOS Extension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Palpito_watchOS Extension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		82B592D26C93D6DD013CABFF /* Pods-Palpito.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Palpito.debug.xcconfig"; path = "Target Support Files/Pods-Palpito/Pods-Palpito.debug.xcconfig"; sourceTree = "<group>"; };
-		98A38EDABB2F0A441C8A32C8 /* Pods-Palpito.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Palpito.release.xcconfig"; path = "Target Support Files/Pods-Palpito/Pods-Palpito.release.xcconfig"; sourceTree = "<group>"; };
-		D4EE1B820DB389F76C629B31 /* Pods-Palpito_watchOS Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Palpito_watchOS Extension.debug.xcconfig"; path = "Target Support Files/Pods-Palpito_watchOS Extension/Pods-Palpito_watchOS Extension.debug.xcconfig"; sourceTree = "<group>"; };
+		2CA2CAB73F927F34DF9FCA6F /* Pods-Palpito.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Palpito.debug.xcconfig"; path = "Target Support Files/Pods-Palpito/Pods-Palpito.debug.xcconfig"; sourceTree = "<group>"; };
+		32132D1FD130DA8EE94E82FF /* Pods-Palpito.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Palpito.release.xcconfig"; path = "Target Support Files/Pods-Palpito/Pods-Palpito.release.xcconfig"; sourceTree = "<group>"; };
+		74604709ABE3DEF0D72D3188 /* Pods_Palpito.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Palpito.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		79309424A392F094463A7D0B /* libPods-Palpito_watchOS Extension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Palpito_watchOS Extension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7F1865616D7ABF5540A90648 /* Pods-Palpito_watchOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Palpito_watchOS.release.xcconfig"; path = "Target Support Files/Pods-Palpito_watchOS/Pods-Palpito_watchOS.release.xcconfig"; sourceTree = "<group>"; };
+		A104FC97EC4E36611B492C35 /* libPods-Palpito_watchOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Palpito_watchOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B93F31D316FC58D9A8FCCD2F /* Pods-Palpito_watchOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Palpito_watchOS.debug.xcconfig"; path = "Target Support Files/Pods-Palpito_watchOS/Pods-Palpito_watchOS.debug.xcconfig"; sourceTree = "<group>"; };
+		C871B5EF3AFF8DFE4095E1D9 /* Pods-Palpito_watchOS Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Palpito_watchOS Extension.debug.xcconfig"; path = "Target Support Files/Pods-Palpito_watchOS Extension/Pods-Palpito_watchOS Extension.debug.xcconfig"; sourceTree = "<group>"; };
+		CC2F3B1F6AE01D4243DFEB33 /* Pods-Palpito_watchOS Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Palpito_watchOS Extension.release.xcconfig"; path = "Target Support Files/Pods-Palpito_watchOS Extension/Pods-Palpito_watchOS Extension.release.xcconfig"; sourceTree = "<group>"; };
 		F6009CA021E82D5A007DF73B /* palpito_Data.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = palpito_Data.xcdatamodel; sourceTree = "<group>"; };
 		F6009CA221E83755007DF73B /* ResultWorkoutInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultWorkoutInterfaceController.swift; sourceTree = "<group>"; };
 		F600BEDD218937C100116455 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
@@ -210,6 +219,14 @@
 		F677EB1B21788B3C000AE332 /* 팔피토 로고.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "팔피토 로고.png"; sourceTree = "<group>"; };
 		F67B2065215DB1CC0092077F /* AgeAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgeAddViewController.swift; sourceTree = "<group>"; };
 		F67B90752227712700B7042D /* ReadyWorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadyWorkoutViewController.swift; sourceTree = "<group>"; };
+		F680E66826DB3466005AB251 /* zone2startEng.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = zone2startEng.mp3; sourceTree = "<group>"; };
+		F680E66926DB3466005AB251 /* zone34RecycleEng.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = zone34RecycleEng.mp3; sourceTree = "<group>"; };
+		F680E66A26DB3466005AB251 /* zone12RecycleEng.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = zone12RecycleEng.mp3; sourceTree = "<group>"; };
+		F680E66B26DB3466005AB251 /* zone5startEng.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = zone5startEng.mp3; sourceTree = "<group>"; };
+		F680E66C26DB3466005AB251 /* zone3startEng.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = zone3startEng.mp3; sourceTree = "<group>"; };
+		F680E66D26DB3466005AB251 /* zone1RecycleEng.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = zone1RecycleEng.mp3; sourceTree = "<group>"; };
+		F680E66E26DB3466005AB251 /* zone45RecycleEng.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = zone45RecycleEng.mp3; sourceTree = "<group>"; };
+		F680E66F26DB3466005AB251 /* zone4startEng.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = zone4startEng.mp3; sourceTree = "<group>"; };
 		F68A787A2161D89400A1C2A6 /* Checkbox@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Checkbox@3x.png"; sourceTree = "<group>"; };
 		F68A787C2161D8B800A1C2A6 /* UnCheckbox@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UnCheckbox@3x.png"; sourceTree = "<group>"; };
 		F68A787E2161DEC300A1C2A6 /* Palpito_v0.01-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Palpito_v0.01-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -218,7 +235,6 @@
 		F68A78822161E87900A1C2A6 /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
 		F68C772226CA9BA7008C14F0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F68C772526CA9BCC008C14F0 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
-		F68C772626CA9BCE008C14F0 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Interface.strings; sourceTree = "<group>"; };
 		F68C772726CA9BCF008C14F0 /* ko */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = ko; path = ko.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F68C772826CA9BD1008C14F0 /* ko */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = ko; path = ko.lproj/SignUp.storyboard; sourceTree = "<group>"; };
 		F68C772926CA9BD3008C14F0 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -238,6 +254,8 @@
 		F6A49CF725B45B8900F492AA /* Palpito_watchOSRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Palpito_watchOSRelease.entitlements; sourceTree = "<group>"; };
 		F6B1861B24CBE1EB003C905D /* PrivateInfomationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateInfomationController.swift; sourceTree = "<group>"; };
 		F6B1861D24CBE35A003C905D /* UserInfoSettingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoSettingController.swift; sourceTree = "<group>"; };
+		F6BAAA9326DBA60300B55815 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		F6BAAA9426DBA60900B55815 /* ko */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = ko; path = ko.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		F6BBA05321C0D81D00C19C27 /* WorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutViewController.swift; sourceTree = "<group>"; };
 		F6BC90AE24C5C5FF00E2283C /* ExtensionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionVC.swift; sourceTree = "<group>"; };
 		F6BD8501225E1B77009CEE3B /* ResultWorkOut+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ResultWorkOut+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -282,7 +300,6 @@
 		F6EF57D82483BD9700C4A5C1 /* RankingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingViewController.swift; sourceTree = "<group>"; };
 		F6F2A3A5221144DF001FEDBC /* Palpito_watchOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Palpito_watchOS.entitlements; sourceTree = "<group>"; };
 		F6FF69F824CC488300FF910C /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
-		F7B40C4B3B33F03F3DABF0FD /* Pods-Palpito_watchOS Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Palpito_watchOS Extension.release.xcconfig"; path = "Target Support Files/Pods-Palpito_watchOS Extension/Pods-Palpito_watchOS Extension.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -290,7 +307,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				28CC5D701FBC840B06540188 /* libPods-Palpito_watchOS.a in Frameworks */,
+				ED081591B1FFD7949E38F123 /* libPods-Palpito_watchOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,7 +316,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F672414A2189A29B00568038 /* HealthKit.framework in Frameworks */,
-				4F192DB2040CD493D4E6DC23 /* libPods-Palpito_watchOS Extension.a in Frameworks */,
+				18443F616024F30248448ECD /* libPods-Palpito_watchOS Extension.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -309,7 +326,7 @@
 			files = (
 				F600BEDE218937C100116455 /* HealthKit.framework in Frameworks */,
 				F6FF69F924CC488400FF910C /* WebKit.framework in Frameworks */,
-				09B8AD818FE53E322BC83037 /* Pods_Palpito.framework in Frameworks */,
+				7D314AC2B53F1F3DAF9CD2A1 /* Pods_Palpito.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -319,12 +336,12 @@
 		C318120A71925BD25042E3A1 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				82B592D26C93D6DD013CABFF /* Pods-Palpito.debug.xcconfig */,
-				98A38EDABB2F0A441C8A32C8 /* Pods-Palpito.release.xcconfig */,
-				5163B31E858EF2C9500E6FC3 /* Pods-Palpito_watchOS.debug.xcconfig */,
-				1755132AF6EFA882FF875FE8 /* Pods-Palpito_watchOS.release.xcconfig */,
-				D4EE1B820DB389F76C629B31 /* Pods-Palpito_watchOS Extension.debug.xcconfig */,
-				F7B40C4B3B33F03F3DABF0FD /* Pods-Palpito_watchOS Extension.release.xcconfig */,
+				2CA2CAB73F927F34DF9FCA6F /* Pods-Palpito.debug.xcconfig */,
+				32132D1FD130DA8EE94E82FF /* Pods-Palpito.release.xcconfig */,
+				B93F31D316FC58D9A8FCCD2F /* Pods-Palpito_watchOS.debug.xcconfig */,
+				7F1865616D7ABF5540A90648 /* Pods-Palpito_watchOS.release.xcconfig */,
+				C871B5EF3AFF8DFE4095E1D9 /* Pods-Palpito_watchOS Extension.debug.xcconfig */,
+				CC2F3B1F6AE01D4243DFEB33 /* Pods-Palpito_watchOS Extension.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -396,9 +413,9 @@
 			children = (
 				F6FF69F824CC488300FF910C /* WebKit.framework */,
 				F600BEDD218937C100116455 /* HealthKit.framework */,
-				5CDDEED2C49EAF9CA8B6FD1F /* Pods_Palpito.framework */,
-				07FAE0C1FF5FB0298171D80E /* libPods-Palpito_watchOS.a */,
-				6BA236629A1E4D5D7BDBE475 /* libPods-Palpito_watchOS Extension.a */,
+				74604709ABE3DEF0D72D3188 /* Pods_Palpito.framework */,
+				A104FC97EC4E36611B492C35 /* libPods-Palpito_watchOS.a */,
+				79309424A392F094463A7D0B /* libPods-Palpito_watchOS Extension.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -406,6 +423,14 @@
 		F69548EB21DD49610083B8D7 /* soundFile */ = {
 			isa = PBXGroup;
 			children = (
+				F680E66D26DB3466005AB251 /* zone1RecycleEng.mp3 */,
+				F680E66826DB3466005AB251 /* zone2startEng.mp3 */,
+				F680E66C26DB3466005AB251 /* zone3startEng.mp3 */,
+				F680E66F26DB3466005AB251 /* zone4startEng.mp3 */,
+				F680E66B26DB3466005AB251 /* zone5startEng.mp3 */,
+				F680E66A26DB3466005AB251 /* zone12RecycleEng.mp3 */,
+				F680E66926DB3466005AB251 /* zone34RecycleEng.mp3 */,
+				F680E66E26DB3466005AB251 /* zone45RecycleEng.mp3 */,
 				F6D69EDD23A62FCD007ECB5C /* zone1Recycle.mp3 */,
 				F6D69EE523A62FCE007ECB5C /* zone2start.mp3 */,
 				F6D69EE623A62FCE007ECB5C /* zone3start.mp3 */,
@@ -540,7 +565,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F600BF042189382E00116455 /* Build configuration list for PBXNativeTarget "Palpito_watchOS" */;
 			buildPhases = (
-				12F7F180B4932D0C56FB697A /* [CP] Check Pods Manifest.lock */,
+				7FFE1A500E0483B4D7C52D85 /* [CP] Check Pods Manifest.lock */,
 				F600BEE02189382B00116455 /* Resources */,
 				F600BF032189382E00116455 /* Embed App Extensions */,
 				21C2E324CAEB2B6D5B0D3AA7 /* Frameworks */,
@@ -559,7 +584,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F600BF002189382E00116455 /* Build configuration list for PBXNativeTarget "Palpito_watchOS Extension" */;
 			buildPhases = (
-				FEA991E6DAC35FE7CC34D898 /* [CP] Check Pods Manifest.lock */,
+				5F847EF5D24E988D7A49E7CA /* [CP] Check Pods Manifest.lock */,
 				F600BEEA2189382D00116455 /* Sources */,
 				F600BEEB2189382D00116455 /* Frameworks */,
 				F600BEEC2189382D00116455 /* Resources */,
@@ -577,16 +602,16 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F695C328215C9F8C00F4DDEB /* Build configuration list for PBXNativeTarget "Palpito" */;
 			buildPhases = (
-				8ECA8526E5B441EB103CB13C /* [CP] Check Pods Manifest.lock */,
+				05F9E0A1E829709E96543E29 /* [CP] Check Pods Manifest.lock */,
 				F695C312215C9F8B00F4DDEB /* Sources */,
 				F695C313215C9F8B00F4DDEB /* Frameworks */,
 				F695C314215C9F8B00F4DDEB /* Resources */,
 				F692BFC02177143E00915E33 /* Embed Watch Content */,
 				F6F2A3B7221147EF001FEDBC /* Embed Frameworks */,
 				F67D12602513858D00E70692 /* ShellScript */,
-				07C5C90A5BAD90883660C6D5 /* [CP] Embed Pods Frameworks */,
-				30FC1CA3321E8E4F21212451 /* [CP] Copy Pods Resources */,
 				F6FE8813266CF0620087EFE2 /* FireBase Crashlytics */,
+				0DFC776B91D9F578EDB1344A /* [CP] Embed Pods Frameworks */,
+				D848917B8DA5C663102AE826 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -699,22 +724,30 @@
 				F6EB19FF24FBDE1500CB75E6 /* abseil.license in Resources */,
 				F6D69EEE23A62FCE007ECB5C /* zone12Recycle.mp3 in Resources */,
 				F6D69EEA23A62FCE007ECB5C /* zone1Recycle.mp3 in Resources */,
+				F680E67626DB3466005AB251 /* zone45RecycleEng.mp3 in Resources */,
+				F680E67026DB3466005AB251 /* zone2startEng.mp3 in Resources */,
 				F695C324215C9F8C00F4DDEB /* LaunchScreen.storyboard in Resources */,
 				F65600CF21789F0700AF9C22 /* 2018-10-18 19.55.34.jpg in Resources */,
+				F680E67426DB3466005AB251 /* zone3startEng.mp3 in Resources */,
+				F680E67526DB3466005AB251 /* zone1RecycleEng.mp3 in Resources */,
 				F6EB1A0124FBDE1500CB75E6 /* FirebaseDatabase.license in Resources */,
 				F695C321215C9F8C00F4DDEB /* Assets.xcassets in Resources */,
 				F68C772126CA9BA7008C14F0 /* Localizable.strings in Resources */,
 				F677EB1C21788B3C000AE332 /* 팔피토 로고.png in Resources */,
+				F680E67726DB3466005AB251 /* zone4startEng.mp3 in Resources */,
+				F680E67326DB3466005AB251 /* zone5startEng.mp3 in Resources */,
 				F6EB1A0524FBDE1500CB75E6 /* FirebaseFirestoreSwift.license in Resources */,
 				F6232506251726FA00EE2C88 /* GoogleService-Info.plist in Resources */,
 				F6EB1A0224FBDE1500CB75E6 /* FirebaseInstanceID.license in Resources */,
 				F6D69EEF23A62FCE007ECB5C /* zone5start.mp3 in Resources */,
 				F695C31F215C9F8B00F4DDEB /* Main.storyboard in Resources */,
+				F680E67226DB3466005AB251 /* zone12RecycleEng.mp3 in Resources */,
 				F6339C052483614C00EACAEE /* BpmInfoController.xib in Resources */,
 				F6EB1A0724FBDE1500CB75E6 /* BoringSSL-GRPC.license in Resources */,
 				F6EB1A0624FBDE1500CB75E6 /* FirebaseCoreDiagnosticsInterop.license in Resources */,
 				F6D69EF523A62FCE007ECB5C /* zone45Recycle.mp3 in Resources */,
 				F6D69EF423A62FCE007ECB5C /* zone34Recycle.mp3 in Resources */,
+				F680E67126DB3466005AB251 /* zone34RecycleEng.mp3 in Resources */,
 				F6EB1A0824FBDE1500CB75E6 /* Firebase.license in Resources */,
 				F6EBA2E12213D07900CCA005 /* SignUp.storyboard in Resources */,
 				F6EB1A0A24FBDE1500CB75E6 /* FirebaseInstallations.license in Resources */,
@@ -732,7 +765,29 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		07C5C90A5BAD90883660C6D5 /* [CP] Embed Pods Frameworks */ = {
+		05F9E0A1E829709E96543E29 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Palpito-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		0DFC776B91D9F578EDB1344A /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -749,7 +804,29 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Palpito/Pods-Palpito-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		12F7F180B4932D0C56FB697A /* [CP] Check Pods Manifest.lock */ = {
+		5F847EF5D24E988D7A49E7CA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Palpito_watchOS Extension-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7FFE1A500E0483B4D7C52D85 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -771,7 +848,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		30FC1CA3321E8E4F21212451 /* [CP] Copy Pods Resources */ = {
+		D848917B8DA5C663102AE826 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -786,28 +863,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Palpito/Pods-Palpito-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		8ECA8526E5B441EB103CB13C /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Palpito-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F67D12602513858D00E70692 /* ShellScript */ = {
@@ -844,28 +899,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "#if [ \"${CONFIGURATION}\" != \"Debug\" ]; then\n #   \"${PODS_ROOT}/FirebaseCrashlytics/run\"\n #   \"${PODS_ROOT}/FirebaseCrashlytics/upload-symbols\" -gsp ${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist -p ios ${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}\n#fi\n";
-		};
-		FEA991E6DAC35FE7CC34D898 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Palpito_watchOS Extension-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -954,7 +987,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				F600BEE52189382B00116455 /* Base */,
-				F68C772626CA9BCE008C14F0 /* ko */,
+				F6BAAA9326DBA60300B55815 /* en */,
+				F6BAAA9426DBA60900B55815 /* ko */,
 			);
 			name = Interface.storyboard;
 			path = Palpito_watchOS;
@@ -1013,9 +1047,10 @@
 /* Begin XCBuildConfiguration section */
 		F600BF012189382E00116455 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D4EE1B820DB389F76C629B31 /* Pods-Palpito_watchOS Extension.debug.xcconfig */;
+			baseConfigurationReference = C871B5EF3AFF8DFE4095E1D9 /* Pods-Palpito_watchOS Extension.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION = YES;
 				CODE_SIGN_ENTITLEMENTS = "Palpito_watchOS Extension/Palpito_watchOS Extension.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
@@ -1030,7 +1065,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.6.9;
+				MARKETING_VERSION = 1.7.1;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = xyz.palpito.dev.app.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
@@ -1045,9 +1080,10 @@
 		};
 		F600BF022189382E00116455 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F7B40C4B3B33F03F3DABF0FD /* Pods-Palpito_watchOS Extension.release.xcconfig */;
+			baseConfigurationReference = CC2F3B1F6AE01D4243DFEB33 /* Pods-Palpito_watchOS Extension.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION = YES;
 				CODE_SIGN_ENTITLEMENTS = "Palpito_watchOS Extension/Palpito_watchOS ExtensionRelease.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
@@ -1061,7 +1097,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.6.9;
+				MARKETING_VERSION = 1.7.1;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = xyz.palpito.dev.app.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
@@ -1076,7 +1112,7 @@
 		};
 		F600BF052189382E00116455 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5163B31E858EF2C9500E6FC3 /* Pods-Palpito_watchOS.debug.xcconfig */;
+			baseConfigurationReference = B93F31D316FC58D9A8FCCD2F /* Pods-Palpito_watchOS.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = WatchAppIcon;
@@ -1087,7 +1123,7 @@
 				IBSC_MODULE = Palpito_watchOS_Extension;
 				INFOPLIST_FILE = Palpito_watchOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 1.6.9;
+				MARKETING_VERSION = 1.7.1;
 				PRODUCT_BUNDLE_IDENTIFIER = xyz.palpito.dev.app.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1101,7 +1137,7 @@
 		};
 		F600BF062189382E00116455 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1755132AF6EFA882FF875FE8 /* Pods-Palpito_watchOS.release.xcconfig */;
+			baseConfigurationReference = 7F1865616D7ABF5540A90648 /* Pods-Palpito_watchOS.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = WatchAppIcon;
@@ -1113,7 +1149,7 @@
 				IBSC_MODULE = Palpito_watchOS_Extension;
 				INFOPLIST_FILE = Palpito_watchOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 1.6.9;
+				MARKETING_VERSION = 1.7.1;
 				PRODUCT_BUNDLE_IDENTIFIER = xyz.palpito.dev.app.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1248,10 +1284,11 @@
 		};
 		F695C329215C9F8C00F4DDEB /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 82B592D26C93D6DD013CABFF /* Pods-Palpito.debug.xcconfig */;
+			baseConfigurationReference = 2CA2CAB73F927F34DF9FCA6F /* Pods-Palpito.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION = YES;
 				CODE_SIGN_ENTITLEMENTS = Palpito.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
@@ -1265,7 +1302,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.6.9;
+				MARKETING_VERSION = 1.7.1;
 				PRODUCT_BUNDLE_IDENTIFIER = xyz.palpito.dev.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = palpito_dev_iphone;
@@ -1279,10 +1316,11 @@
 		};
 		F695C32A215C9F8C00F4DDEB /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 98A38EDABB2F0A441C8A32C8 /* Pods-Palpito.release.xcconfig */;
+			baseConfigurationReference = 32132D1FD130DA8EE94E82FF /* Pods-Palpito.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION = YES;
 				CODE_SIGN_ENTITLEMENTS = PalpitoRelease.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
@@ -1296,7 +1334,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.6.9;
+				MARKETING_VERSION = 1.7.1;
 				PRODUCT_BUNDLE_IDENTIFIER = xyz.palpito.dev.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

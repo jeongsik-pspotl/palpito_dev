@@ -59,6 +59,8 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
     
     var stageLevel:String = ""
     
+    var languageCode = Locale.current.languageCode
+    
     var paiplActiveAnimation: [UIImage] = []
     var palpiActiveAnimationZone2: [UIImage] = []
     var palpiActiveAnimationZone3: [UIImage] = []
@@ -161,17 +163,32 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
             self.stageLevel = "SL2"
         }
         
-        if self.stageLevel == "SL1" {
-            myStageLevelImg.image = UIImage(named: "easyLevelText")
+        if languageCode == "ko" {
+            if self.stageLevel == "SL1" {
+                myStageLevelImg.image = UIImage(named: "easyLevelText")
 
-        } else if self.stageLevel == "SL2" {
-            myStageLevelImg.image = UIImage(named: "middleLevelText")
+            } else if self.stageLevel == "SL2" {
+                myStageLevelImg.image = UIImage(named: "middleLevelText")
 
-        } else if self.stageLevel == "SL3" {
-            myStageLevelImg.image = UIImage(named: "highLevelText")
+            } else if self.stageLevel == "SL3" {
+                myStageLevelImg.image = UIImage(named: "highLevelText")
+
+            }
+
+        } else {
+            if self.stageLevel == "SL1" {
+                myStageLevelImg.image = UIImage(named: "easyLevelTextEng")
+
+            } else if self.stageLevel == "SL2" {
+                myStageLevelImg.image = UIImage(named: "middleLevelTextEng")
+
+            } else if self.stageLevel == "SL3" {
+                myStageLevelImg.image = UIImage(named: "highLevelTextEng!")
+
+            }
 
         }
-        
+                
         // 팔피 애니메이션 컷 세팅
         paiplActiveAnimation = createPalpiImage(total: 2, imagePrefix: "exerciseCharacter")
         palpiActiveAnimationZone2 = createPalpiImage(total: 2, imagePrefix: "exerciseCharacter")
@@ -380,7 +397,7 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
         // print("activationState : \(activationState)")
         // print("session : \(session)")
-        //print("error \(error as Any)")
+        print("error \(error as Any)")
         if(error != nil){
             Crashlytics.crashlytics().record(error: error!)
         }
@@ -572,7 +589,7 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
                 //self.activityIndicator.startAnimating()
                 
                 DispatchQueue.global().async {
-                    DispatchQueue.main.async {
+                    //DispatchQueue.main.async {
                         
                         let ResultWorkOut = NSEntityDescription.entity(forEntityName: "ResultWorkOut", in: PersistenceService.context)
                         let newEntity = NSManagedObject(entity: ResultWorkOut!, insertInto: PersistenceService.context)
@@ -626,9 +643,14 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
                                 print("Error writing document: \(err)")
                                 Crashlytics.crashlytics().record(error: err)
                             } else {
+                                
+                                replyHandler!(["result":"success"])
+                                
                                 // print("Document successfully written!")
                                 self.performSegue(withIdentifier: "resultWorkoutSegue", sender: self)
                                 self.view.removeFromSuperview()
+                                
+                                
 
 
                             }
@@ -655,7 +677,7 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
                         self.resultWorkoutArray.removeAll()
                         self.resultSendToday = ""
                         
-                    }
+                    //}
                     
                 }
                 
@@ -1005,7 +1027,7 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
             if self.resultHeartRate != nil {
                 
                 DispatchQueue.global().async {
-                    DispatchQueue.main.async {
+                    //DispatchQueue.main.async {
                         
                         if self.resultTotalScore == nil || self.resultTotalScore == "" {
                             self.resultTotalScore = "0"
@@ -1095,7 +1117,7 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
                     }
                 
                     
-                }
+                //}
 
             }
             // if resultHeartRate end
@@ -1347,131 +1369,261 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
     }
     
     @objc func zone1SoundAction() {
-        let path = Bundle.main.path(forResource: "zone1Recycle", ofType: "mp3")!
-        let url = URL(fileURLWithPath: path)
         
-        do {
+        if languageCode == "ko" {
+           let path = Bundle.main.path(forResource: "zone1Recycle", ofType: "mp3")!
+           let url = URL(fileURLWithPath: path)
             
-            if self.isSoundChecked == true {
-                self.zoneSoundPlay = try AVAudioPlayer(contentsOf: url)
-                self.zoneSoundPlay?.play()
-//                self.zoneSoundPlay?.setVolume(15.0, fadeDuration: 0)
-                try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [.duckOthers])
+            do {
                 
-            } else {
-                self.zoneSoundPlay = try AVAudioPlayer(contentsOf: url)
-                self.zoneSoundPlay?.pause()
-//                self.zoneSoundPlay?.setVolume(15.0, fadeDuration: 0)
-                try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [.duckOthers])
+                if self.isSoundChecked == true {
+                    self.zoneSoundPlay = try AVAudioPlayer(contentsOf: url)
+                    self.zoneSoundPlay?.play()
+    //                self.zoneSoundPlay?.setVolume(15.0, fadeDuration: 0)
+                    try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [.duckOthers])
+                    
+                } else {
+                    self.zoneSoundPlay = try AVAudioPlayer(contentsOf: url)
+                    self.zoneSoundPlay?.pause()
+    //                self.zoneSoundPlay?.setVolume(15.0, fadeDuration: 0)
+                    try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [.duckOthers])
+                    
+                }
                 
+            } catch {
+                //print("not play...")
             }
+        }else {
+          let path = Bundle.main.path(forResource: "zone1RecycleEng", ofType: "mp3")!
+          let url = URL(fileURLWithPath: path)
             
-        } catch {
-            //print("not play...")
+            do {
+                
+                if self.isSoundChecked == true {
+                    self.zoneSoundPlay = try AVAudioPlayer(contentsOf: url)
+                    self.zoneSoundPlay?.play()
+    //                self.zoneSoundPlay?.setVolume(15.0, fadeDuration: 0)
+                    try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [.duckOthers])
+                    
+                } else {
+                    self.zoneSoundPlay = try AVAudioPlayer(contentsOf: url)
+                    self.zoneSoundPlay?.pause()
+    //                self.zoneSoundPlay?.setVolume(15.0, fadeDuration: 0)
+                    try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [.duckOthers])
+                    
+                }
+                
+            } catch {
+                //print("not play...")
+            }
         }
+        
+        
         
     }
     
     @objc func zone2SoundAction() {
-        let path = Bundle.main.path(forResource: "zone2start", ofType: "mp3")!
-        let url = URL(fileURLWithPath: path)
-        
-        do {
+        if languageCode == "ko" {
+            let path = Bundle.main.path(forResource: "zone2start", ofType: "mp3")!
+            let url = URL(fileURLWithPath: path)
             
-            if self.isSoundChecked == true {
-                self.zoneSoundPlay = try AVAudioPlayer(contentsOf: url)
-                self.zoneSoundPlay?.play()
-//                self.zoneSoundPlay?.setVolume(15.0, fadeDuration: 0)
-                try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [.duckOthers])
+            do {
                 
-            } else {
-                self.zoneSoundPlay = try AVAudioPlayer(contentsOf: url)
-                self.zoneSoundPlay?.pause()
-//                self.zoneSoundPlay?.setVolume(15.0, fadeDuration: 0)
-                try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [.duckOthers])
+                if self.isSoundChecked == true {
+                    self.zoneSoundPlay = try AVAudioPlayer(contentsOf: url)
+                    self.zoneSoundPlay?.play()
+    //                self.zoneSoundPlay?.setVolume(15.0, fadeDuration: 0)
+                    try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [.duckOthers])
+                    
+                } else {
+                    self.zoneSoundPlay = try AVAudioPlayer(contentsOf: url)
+                    self.zoneSoundPlay?.pause()
+    //                self.zoneSoundPlay?.setVolume(15.0, fadeDuration: 0)
+                    try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [.duckOthers])
+                    
+                }
                 
+            } catch {
+                //print("not play...")
             }
+        }else {
+            let path = Bundle.main.path(forResource: "zone2startEng", ofType: "mp3")!
+            let url = URL(fileURLWithPath: path)
             
-        } catch {
-            //print("not play...")
+            do {
+                
+                if self.isSoundChecked == true {
+                    self.zoneSoundPlay = try AVAudioPlayer(contentsOf: url)
+                    self.zoneSoundPlay?.play()
+    //                self.zoneSoundPlay?.setVolume(15.0, fadeDuration: 0)
+                    try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [.duckOthers])
+                    
+                } else {
+                    self.zoneSoundPlay = try AVAudioPlayer(contentsOf: url)
+                    self.zoneSoundPlay?.pause()
+    //                self.zoneSoundPlay?.setVolume(15.0, fadeDuration: 0)
+                    try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [.duckOthers])
+                    
+                }
+                
+            } catch {
+                //print("not play...")
+            }
         }
         
     }
     
     @objc func zone3SoundAction() {
-        let path = Bundle.main.path(forResource: "zone3start", ofType: "mp3")!
-        let url = URL(fileURLWithPath: path)
         
-        do {
+        if languageCode == "ko" {
+            let path = Bundle.main.path(forResource: "zone3start", ofType: "mp3")!
+            let url = URL(fileURLWithPath: path)
             
-            if self.isSoundChecked == true {
-                self.zoneSoundPlay = try AVAudioPlayer(contentsOf: url)
-                self.zoneSoundPlay?.play()
-//                self.zoneSoundPlay?.setVolume(15.0, fadeDuration: 0)
-                try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [.duckOthers])
+            do {
                 
-            } else {
-                self.zoneSoundPlay = try AVAudioPlayer(contentsOf: url)
-                self.zoneSoundPlay?.pause()
-//                self.zoneSoundPlay?.setVolume(15.0, fadeDuration: 0)
-                try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [.duckOthers])
+                if self.isSoundChecked == true {
+                    self.zoneSoundPlay = try AVAudioPlayer(contentsOf: url)
+                    self.zoneSoundPlay?.play()
+    //                self.zoneSoundPlay?.setVolume(15.0, fadeDuration: 0)
+                    try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [.duckOthers])
+                    
+                } else {
+                    self.zoneSoundPlay = try AVAudioPlayer(contentsOf: url)
+                    self.zoneSoundPlay?.pause()
+    //                self.zoneSoundPlay?.setVolume(15.0, fadeDuration: 0)
+                    try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [.duckOthers])
+                    
+                }
                 
+            } catch {
+                //print("not play...")
             }
+        }else {
+            let path = Bundle.main.path(forResource: "zone3startEng", ofType: "mp3")!
+            let url = URL(fileURLWithPath: path)
             
-        } catch {
-            //print("not play...")
+            do {
+                
+                if self.isSoundChecked == true {
+                    self.zoneSoundPlay = try AVAudioPlayer(contentsOf: url)
+                    self.zoneSoundPlay?.play()
+    //                self.zoneSoundPlay?.setVolume(15.0, fadeDuration: 0)
+                    try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [.duckOthers])
+                    
+                } else {
+                    self.zoneSoundPlay = try AVAudioPlayer(contentsOf: url)
+                    self.zoneSoundPlay?.pause()
+    //                self.zoneSoundPlay?.setVolume(15.0, fadeDuration: 0)
+                    try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [.duckOthers])
+                    
+                }
+                
+            } catch {
+                //print("not play...")
+            }
         }
         
     }
     
     @objc func zone4SoundAction() {
-        let path = Bundle.main.path(forResource: "zone4start", ofType: "mp3")!
-        let url = URL(fileURLWithPath: path)
-        
-        do {
+        if languageCode == "ko" {
+            let path = Bundle.main.path(forResource: "zone4start", ofType: "mp3")!
+            let url = URL(fileURLWithPath: path)
             
-            if self.isSoundChecked == true {
-                self.zoneSoundPlay = try AVAudioPlayer(contentsOf: url)
-                self.zoneSoundPlay?.play()
-//                self.zoneSoundPlay?.setVolume(15.0, fadeDuration: 0)
-                try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [.duckOthers])
+            do {
                 
-            } else {
-                self.zoneSoundPlay = try AVAudioPlayer(contentsOf: url)
-                self.zoneSoundPlay?.pause()
-//                self.zoneSoundPlay?.setVolume(15.0, fadeDuration: 0)
-                try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [.duckOthers])
+                if self.isSoundChecked == true {
+                    self.zoneSoundPlay = try AVAudioPlayer(contentsOf: url)
+                    self.zoneSoundPlay?.play()
+    //                self.zoneSoundPlay?.setVolume(15.0, fadeDuration: 0)
+                    try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [.duckOthers])
+                    
+                } else {
+                    self.zoneSoundPlay = try AVAudioPlayer(contentsOf: url)
+                    self.zoneSoundPlay?.pause()
+    //                self.zoneSoundPlay?.setVolume(15.0, fadeDuration: 0)
+                    try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [.duckOthers])
+                    
+                }
                 
+            } catch {
+                //print("not play...")
+            }
+        } else {
+            let path = Bundle.main.path(forResource: "zone4startEng", ofType: "mp3")!
+            let url = URL(fileURLWithPath: path)
+            
+            do {
+                
+                if self.isSoundChecked == true {
+                    self.zoneSoundPlay = try AVAudioPlayer(contentsOf: url)
+                    self.zoneSoundPlay?.play()
+    //                self.zoneSoundPlay?.setVolume(15.0, fadeDuration: 0)
+                    try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [.duckOthers])
+                    
+                } else {
+                    self.zoneSoundPlay = try AVAudioPlayer(contentsOf: url)
+                    self.zoneSoundPlay?.pause()
+    //                self.zoneSoundPlay?.setVolume(15.0, fadeDuration: 0)
+                    try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [.duckOthers])
+                    
+                }
+                
+            } catch {
+                //print("not play...")
             }
             
-        } catch {
-            //print("not play...")
         }
         
     }
     
     @objc func zone5SoundAction() {
-        let path = Bundle.main.path(forResource: "zone5start", ofType: "mp3")!
-        let url = URL(fileURLWithPath: path)
-        
-        do {
+        if languageCode == "ko" {
+            let path = Bundle.main.path(forResource: "zone5start", ofType: "mp3")!
+            let url = URL(fileURLWithPath: path)
             
-            if self.isSoundChecked == true {
-                self.zoneSoundPlay = try AVAudioPlayer(contentsOf: url)
-                self.zoneSoundPlay?.play()
-//                self.zoneSoundPlay?.setVolume(15.0, fadeDuration: 0)
-                try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [.duckOthers])
+            do {
                 
-            } else {
-                self.zoneSoundPlay = try AVAudioPlayer(contentsOf: url)
-                self.zoneSoundPlay?.pause()
-//                self.zoneSoundPlay?.setVolume(15.0, fadeDuration: 0)
-                try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [.duckOthers])
+                if self.isSoundChecked == true {
+                    self.zoneSoundPlay = try AVAudioPlayer(contentsOf: url)
+                    self.zoneSoundPlay?.play()
+    //                self.zoneSoundPlay?.setVolume(15.0, fadeDuration: 0)
+                    try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [.duckOthers])
+                    
+                } else {
+                    self.zoneSoundPlay = try AVAudioPlayer(contentsOf: url)
+                    self.zoneSoundPlay?.pause()
+    //                self.zoneSoundPlay?.setVolume(15.0, fadeDuration: 0)
+                    try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [.duckOthers])
+                    
+                }
                 
+            } catch {
+                //print("not play...")
             }
+        } else {
+            let path = Bundle.main.path(forResource: "zone5startEng", ofType: "mp3")!
+            let url = URL(fileURLWithPath: path)
             
-        } catch {
-            //print("not play...")
+            do {
+                
+                if self.isSoundChecked == true {
+                    self.zoneSoundPlay = try AVAudioPlayer(contentsOf: url)
+                    self.zoneSoundPlay?.play()
+    //                self.zoneSoundPlay?.setVolume(15.0, fadeDuration: 0)
+                    try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [.duckOthers])
+                    
+                } else {
+                    self.zoneSoundPlay = try AVAudioPlayer(contentsOf: url)
+                    self.zoneSoundPlay?.pause()
+    //                self.zoneSoundPlay?.setVolume(15.0, fadeDuration: 0)
+                    try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [.duckOthers])
+                    
+                }
+                
+            } catch {
+                //print("not play...")
+            }
         }
         
     }
@@ -1504,81 +1656,154 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
     }
     
     @objc func zone2RecycleAction() {
-        let path = Bundle.main.path(forResource: "zone12Recycle", ofType: "mp3")!
-        let url = URL(fileURLWithPath: path)
-        
-        do {
+        if languageCode == "ko" {
+            let path = Bundle.main.path(forResource: "zone12Recycle", ofType: "mp3")!
+            let url = URL(fileURLWithPath: path)
             
-            if self.isSoundChecked == true {
-                self.zoneSoundPlay = try AVAudioPlayer(contentsOf: url)
-                self.zoneSoundPlay?.play()
-                //                self.zoneSoundPlay?.setVolume(15.0, fadeDuration: 0)
-                try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [.duckOthers])
+            do {
                 
-            } else {
-                self.zoneSoundPlay = try AVAudioPlayer(contentsOf: url)
-                self.zoneSoundPlay?.pause()
-                //                self.zoneSoundPlay?.setVolume(15.0, fadeDuration: 0)
-                try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [.duckOthers])
+                if self.isSoundChecked == true {
+                    self.zoneSoundPlay = try AVAudioPlayer(contentsOf: url)
+                    self.zoneSoundPlay?.play()
+                    //                self.zoneSoundPlay?.setVolume(15.0, fadeDuration: 0)
+                    try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [.duckOthers])
+                    
+                } else {
+                    self.zoneSoundPlay = try AVAudioPlayer(contentsOf: url)
+                    self.zoneSoundPlay?.pause()
+                    //                self.zoneSoundPlay?.setVolume(15.0, fadeDuration: 0)
+                    try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [.duckOthers])
+                    
+                }
                 
+            } catch {
+                //print("not play...")
             }
+        } else {
+            let path = Bundle.main.path(forResource: "zone12RecycleEng", ofType: "mp3")!
+            let url = URL(fileURLWithPath: path)
             
-        } catch {
-            //print("not play...")
+            do {
+                
+                if self.isSoundChecked == true {
+                    self.zoneSoundPlay = try AVAudioPlayer(contentsOf: url)
+                    self.zoneSoundPlay?.play()
+                    //                self.zoneSoundPlay?.setVolume(15.0, fadeDuration: 0)
+                    try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [.duckOthers])
+                    
+                } else {
+                    self.zoneSoundPlay = try AVAudioPlayer(contentsOf: url)
+                    self.zoneSoundPlay?.pause()
+                    //                self.zoneSoundPlay?.setVolume(15.0, fadeDuration: 0)
+                    try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [.duckOthers])
+                    
+                }
+                
+            } catch {
+                //print("not play...")
+            }
         }
         
     }
     
     @objc func zone3RecycleAction() {
-        let path = Bundle.main.path(forResource: "zone34Recycle", ofType: "mp3")!
-        let url = URL(fileURLWithPath: path)
-        
-        do {
+        if languageCode == "ko" {
+            let path = Bundle.main.path(forResource: "zone34Recycle", ofType: "mp3")!
+            let url = URL(fileURLWithPath: path)
             
-            if self.isSoundChecked == true {
-                self.zoneSoundPlay = try AVAudioPlayer(contentsOf: url)
-                self.zoneSoundPlay?.play()
-                //                self.zoneSoundPlay?.setVolume(15.0, fadeDuration: 0)
-                try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [.duckOthers])
+            do {
                 
-            } else {
-                self.zoneSoundPlay = try AVAudioPlayer(contentsOf: url)
-                self.zoneSoundPlay?.pause()
-                //                self.zoneSoundPlay?.setVolume(15.0, fadeDuration: 0)
-                try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [.duckOthers])
+                if self.isSoundChecked == true {
+                    self.zoneSoundPlay = try AVAudioPlayer(contentsOf: url)
+                    self.zoneSoundPlay?.play()
+                    //                self.zoneSoundPlay?.setVolume(15.0, fadeDuration: 0)
+                    try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [.duckOthers])
+                    
+                } else {
+                    self.zoneSoundPlay = try AVAudioPlayer(contentsOf: url)
+                    self.zoneSoundPlay?.pause()
+                    //                self.zoneSoundPlay?.setVolume(15.0, fadeDuration: 0)
+                    try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [.duckOthers])
+                    
+                }
                 
+            } catch {
+                //print("not play...")
             }
+        } else {
+            let path = Bundle.main.path(forResource: "zone34RecycleEng", ofType: "mp3")!
+            let url = URL(fileURLWithPath: path)
             
-        } catch {
-            //print("not play...")
+            do {
+                
+                if self.isSoundChecked == true {
+                    self.zoneSoundPlay = try AVAudioPlayer(contentsOf: url)
+                    self.zoneSoundPlay?.play()
+                    //                self.zoneSoundPlay?.setVolume(15.0, fadeDuration: 0)
+                    try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [.duckOthers])
+                    
+                } else {
+                    self.zoneSoundPlay = try AVAudioPlayer(contentsOf: url)
+                    self.zoneSoundPlay?.pause()
+                    //                self.zoneSoundPlay?.setVolume(15.0, fadeDuration: 0)
+                    try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [.duckOthers])
+                    
+                }
+                
+            } catch {
+                //print("not play...")
+            }
         }
-        
     }
     
     @objc func zone45RecycleAction() {
-        let path = Bundle.main.path(forResource: "zone45Recycle", ofType: "mp3")!
-        let url = URL(fileURLWithPath: path)
-        
-        do {
+        if languageCode == "ko" {
+            let path = Bundle.main.path(forResource: "zone45Recycle", ofType: "mp3")!
+            let url = URL(fileURLWithPath: path)
             
-            if self.isSoundChecked == true {
-                self.zoneSoundPlay = try AVAudioPlayer(contentsOf: url)
-                self.zoneSoundPlay?.play()
-                //                self.zoneSoundPlay?.setVolume(15.0, fadeDuration: 0)
-                try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [.duckOthers])
+            do {
                 
-            } else {
-                self.zoneSoundPlay = try AVAudioPlayer(contentsOf: url)
-                self.zoneSoundPlay?.pause()
-                //                self.zoneSoundPlay?.setVolume(15.0, fadeDuration: 0)
-                try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [.duckOthers])
+                if self.isSoundChecked == true {
+                    self.zoneSoundPlay = try AVAudioPlayer(contentsOf: url)
+                    self.zoneSoundPlay?.play()
+                    //                self.zoneSoundPlay?.setVolume(15.0, fadeDuration: 0)
+                    try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [.duckOthers])
+                    
+                } else {
+                    self.zoneSoundPlay = try AVAudioPlayer(contentsOf: url)
+                    self.zoneSoundPlay?.pause()
+                    //                self.zoneSoundPlay?.setVolume(15.0, fadeDuration: 0)
+                    try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [.duckOthers])
+                    
+                }
                 
+            } catch {
+                //print("not play...")
             }
+        } else {
+            let path = Bundle.main.path(forResource: "zone45RecycleEng", ofType: "mp3")!
+            let url = URL(fileURLWithPath: path)
             
-        } catch {
-            //print("not play...")
+            do {
+                
+                if self.isSoundChecked == true {
+                    self.zoneSoundPlay = try AVAudioPlayer(contentsOf: url)
+                    self.zoneSoundPlay?.play()
+                    //                self.zoneSoundPlay?.setVolume(15.0, fadeDuration: 0)
+                    try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [.duckOthers])
+                    
+                } else {
+                    self.zoneSoundPlay = try AVAudioPlayer(contentsOf: url)
+                    self.zoneSoundPlay?.pause()
+                    //                self.zoneSoundPlay?.setVolume(15.0, fadeDuration: 0)
+                    try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [.duckOthers])
+                    
+                }
+                
+            } catch {
+                //print("not play...")
+            }
         }
-        
     }
     
     func zone2MusicBGMAction(){

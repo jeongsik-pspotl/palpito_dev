@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="18122" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="7Dg-95-n2k">
+    <device id="watch38"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="18022"/>
+    </dependencies>
+    <scenes>
+        <!--MainInterfaceController-->
+        <scene sceneID="aou-V4-d1y">
+            <objects>
+                <controller identifier="MainInterfaceController" fullScreen="YES" id="AgC-eL-Hgc" customClass="InterfaceController" customModule="Palpito_watchOS" customModuleProvider="target">
+                    <items>
+                        <group width="140" alignment="center" verticalAlignment="bottom" layout="overlap" id="7di-Qi-7IU" userLabel="workoutMain">
+                            <items>
+                                <group width="310" alignment="left" verticalAlignment="center" contentMode="scaleAspectFit" id="iFS-ji-1pz" userLabel="MidGroup">
+                                    <items>
+                                        <group width="136" alignment="left" verticalAlignment="center" contentMode="scaleAspectFit" layout="vertical" id="Caq-l9-2Hm" userLabel="workoutGroup">
+                                            <items>
+                                                <group width="125" height="30" alignment="left" contentMode="scaleAspectFit" layout="vertical" id="XmE-Ga-Mgg" userLabel="time">
+                                                    <items>
+                                                        <label height="70" alignment="left" text="00:00:00" id="RiR-ve-eiI">
+                                                            <color key="textColor" red="0.95294117649999999" green="0.41568627450000001" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <fontDescription key="font" type="system" pointSize="33"/>
+                                                            <variation key="device=watch38mm" height="30">
+                                                                <fontDescription key="font" type="system" pointSize="28"/>
+                                                            </variation>
+                                                            <variation key="device=watch40mm" height="50">
+                                                                <fontDescription key="font" type="system" pointSize="31"/>
+                                                            </variation>
+                                                            <variation key="device=watch42mm" height="50">
+                                                                <fontDescription key="font" type="system" pointSize="31"/>
+                                                            </variation>
+                                                            <variation key="device=watch44mm" height="73">
+                                                                <fontDescription key="font" type="system" pointSize="35"/>
+                                                            </variation>
+                                                        </label>
+                                                    </items>
+                                                    <variation key="device=watch40mm" width="123"/>
+                                                    <variation key="device=watch44mm" width="150"/>
+                                                </group>
+                                                <group width="100" height="1" alignment="left" id="895-c8-cE1" userLabel="Heart Rate">
+                                                    <items>
+                                                        <label height="29" alignment="left" verticalAlignment="bottom" text="---" textAlignment="center" id="ktJ-S4-zRX">
+                                                            <fontDescription key="font" type="system" weight="semibold" pointSize="33"/>
+                                                            <variation key="device=watch38mm">
+                                                                <fontDescription key="font" type="system" weight="semibold" pointSize="26"/>
+                                                            </variation>
+                                                            <variation key="device=watch40mm">
+                                                                <fontDescription key="font" type="system" weight="semibold" pointSize="33"/>
+                                                            </variation>
+                                                            <variation key="device=watch44mm">
+                                                                <fontDescription key="font" type="system" weight="semibold" pointSize="33"/>
+                                                            </variation>
+                                                        </label>
+                                                        <imageView width="100" height="1" alignment="left" verticalAlignment="bottom" image="whiteWatchBpmText" contentMode="scaleAspectFit" id="X3U-KG-7NO">
+                                                            <variation key="device=watch38mm" width="40"/>
+                                                            <variation key="device=watch40mm" width="45"/>
+                                                            <variation key="device=watch42mm" width="45"/>
+                                                            <variation key="device=watch44mm" width="45"/>
+                                                        </imageView>
+                                                    </items>
+                                                </group>
+                                                <group height="17" alignment="left" verticalAlignment="center" id="EAf-71-Sej" userLabel="Calori">
+                                                    <items>
+                                                        <label width="33" height="105" alignment="left" verticalAlignment="bottom" text="----" textAlignment="right" id="aDl-Fw-vfp">
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <fontDescription key="font" type="system" weight="semibold" pointSize="22"/>
+                                                            <variation key="device=watch38mm" width="33"/>
+                                                            <variation key="device=watch40mm" width="45"/>
+                                                            <variation key="device=watch42mm" width="33">
+                                                                <fontDescription key="font" type="system" weight="semibold" pointSize="22"/>
+                                                            </variation>
+                                                            <variation key="device=watch44mm" width="37"/>
+                                                        </label>
+                                                        <imageView width="30" height="20" alignment="left" verticalAlignment="center" image="whiteWatchkcalText" contentMode="scaleAspectFit" id="7cn-zc-Cs4"/>
+                                                    </items>
+                                                    <variation key="device=watch42mm" height="17"/>
+                                                </group>
+                                                <group width="66" height="17" alignment="left" verticalAlignment="bottom" id="kaT-oI-k1s" userLabel="Score">
+                                                    <items>
+                                                        <label height="100" alignment="left" verticalAlignment="bottom" text="---" id="zXU-c8-cyh">
+                                                            <fontDescription key="font" type="system" weight="semibold" pointSize="22"/>
+                                                        </label>
+                                                        <imageView width="20" height="24" alignment="left" verticalAlignment="bottom" image="Po" contentMode="scaleAspectFit" id="2v1-Ts-gwi">
+                                                            <variation key="device=watch38mm" height="20" width="16"/>
+                                                            <variation key="device=watch40mm" height="19" width="20"/>
+                                                            <variation key="device=watch42mm" height="18" width="20"/>
+                                                            <variation key="device=watch44mm" height="19" width="20"/>
+                                                        </imageView>
+                                                    </items>
+                                                </group>
+                                                <group width="100" height="13" alignment="left" verticalAlignment="bottom" id="v5n-bL-Dg0">
+                                                    <variation key="device=watch38mm" height="6"/>
+                                                </group>
+                                                <group width="100" height="1" alignment="left" verticalAlignment="bottom" id="W4i-AQ-xWd" userLabel="button">
+                                                    <items>
+                                                        <button width="45" height="1" alignment="left" verticalAlignment="center" backgroundImage="pause" id="o8B-hV-KDd">
+                                                            <variation key="device=watch38mm" width="35"/>
+                                                            <variation key="device=watch42mm" width="45"/>
+                                                            <variation key="device=watch44mm" width="45"/>
+                                                            <connections>
+                                                                <action selector="pauseAndReseumAction" destination="AgC-eL-Hgc" id="9SC-1u-OKa"/>
+                                                            </connections>
+                                                        </button>
+                                                        <group width="5" height="35" alignment="left" id="syb-je-bad">
+                                                            <variation key="device=watch38mm" height="35"/>
+                                                            <variation key="device=watch40mm" height="45"/>
+                                                            <variation key="device=watch42mm" height="45"/>
+                                                            <variation key="device=watch44mm" height="45"/>
+                                                        </group>
+                                                        <button width="45" height="1" alignment="left" verticalAlignment="center" backgroundImage="exit" id="Hyp-3Y-RSz">
+                                                            <variation key="device=watch38mm" width="35"/>
+                                                            <variation key="device=watch42mm" width="45"/>
+                                                            <variation key="device=watch44mm" width="45"/>
+                                                            <connections>
+                                                                <action selector="endWorkoutAction" destination="AgC-eL-Hgc" id="zUe-KW-Gac"/>
+                                                            </connections>
+                                                        </button>
+                                                    </items>
+                                                    <variation key="device=watch38mm" width="90"/>
+                                                </group>
+                                            </items>
+                                            <variation key="device=watch38mm" width="107"/>
+                                            <variation key="device=watch40mm" width="117"/>
+                                            <variation key="device=watch42mm" width="117"/>
+                                            <variation key="device=watch44mm" width="136"/>
+                                        </group>
+                                        <group width="40" alignment="right" contentMode="scaleAspectFit" layout="vertical" id="N0r-Mi-Pkl">
+                                            <items>
+                                                <imageView width="38" height="185" alignment="left" isAccessibilityElement="YES" image="watchZone1" contentMode="scaleAspectFit" id="rEF-Yf-nyE">
+                                                    <variation key="device=watch38mm" height="149" width="26"/>
+                                                    <variation key="device=watch40mm" width="31"/>
+                                                    <variation key="device=watch42mm" width="25"/>
+                                                    <variation key="device=watch44mm" width="34"/>
+                                                </imageView>
+                                            </items>
+                                            <variation key="device=watch38mm" width="25"/>
+                                            <variation key="device=watch40mm" width="30"/>
+                                        </group>
+                                    </items>
+                                    <variation key="device=watch40mm" width="304"/>
+                                    <variation key="device=watch44mm" width="300"/>
+                                </group>
+                                <group width="100" height="100" alignment="center" verticalAlignment="center" contentMode="scaleAspectFit" layout="vertical" id="Djw-h0-gWu" userLabel="AnimationGorup">
+                                    <items>
+                                        <imageView width="70" height="60" alignment="center" verticalAlignment="center" image="palpiLoadingEng" contentMode="scaleAspectFit" animationDuration="0.69999999999999996" id="iGl-hg-LpR"/>
+                                    </items>
+                                    <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
+                                </group>
+                            </items>
+                            <variation key="device=watch40mm" width="148"/>
+                            <variation key="device=watch42mm" width="180"/>
+                            <variation key="device=watch44mm" width="200"/>
+                        </group>
+                    </items>
+                    <connections>
+                        <outlet property="caloriWorkoutData" destination="aDl-Fw-vfp" id="OmK-KM-MDU"/>
+                        <outlet property="endWorkoutBtn" destination="Hyp-3Y-RSz" id="yNP-VJ-mRh"/>
+                        <outlet property="heartRateLabel" destination="ktJ-S4-zRX" id="qoV-nl-Edk"/>
+                        <outlet property="palpiLoader" destination="iGl-hg-LpR" id="Juz-XR-K6K"/>
+                        <outlet property="pauseAndPlayButton" destination="o8B-hV-KDd" id="hgT-1w-znC"/>
+                        <outlet property="scoreTimeText" destination="zXU-c8-cyh" id="eEl-9D-e8I"/>
+                        <outlet property="timerLabel" destination="RiR-ve-eiI" id="PsZ-Yp-jTL"/>
+                        <outlet property="zoneStatusImage" destination="rEF-Yf-nyE" id="suU-Hj-gn9"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="389.52173913043475" y="345.3125"/>
+        </scene>
+        <!--ResultWorkoutInterfaceController-->
+        <scene sceneID="iLO-Cz-TEp">
+            <objects>
+                <controller identifier="ResultWorkoutInterfaceController" fullScreen="YES" id="UMg-3w-gQh" customClass="ResultWorkoutInterfaceController" customModule="Palpito_watchOS" customModuleProvider="target">
+                    <items>
+                        <group height="190" alignment="center" verticalAlignment="bottom" layout="overlap" id="qMy-NC-QgU" userLabel="ResultWorkoutMain">
+                            <items>
+                                <group height="330" alignment="center" verticalAlignment="bottom" contentMode="scaleAspectFit" layout="vertical" id="c0a-GV-CUI" userLabel="resultWorkoutGroup">
+                                    <items>
+                                        <group width="1" height="10" alignment="left" verticalAlignment="bottom" id="7ZK-Ru-51A"/>
+                                        <group width="1" alignment="center" verticalAlignment="bottom" id="sgG-jc-fOe">
+                                            <items>
+                                                <imageView alignment="center" image="workoutCompliteEng" contentMode="scaleAspectFit" id="XyP-x8-1cm"/>
+                                            </items>
+                                        </group>
+                                        <group height="30" alignment="center" verticalAlignment="bottom" contentMode="scaleAspectFit" id="lKl-zk-FJl">
+                                            <items>
+                                                <label height="100" alignment="center" verticalAlignment="bottom" text="00:00:00" textAlignment="center" id="Rfg-z6-2LN">
+                                                    <color key="textColor" red="0.95294117647058818" green="0.41568627450980389" blue="0.13333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <fontDescription key="font" type="system" pointSize="36"/>
+                                                </label>
+                                            </items>
+                                        </group>
+                                        <group width="1" height="25" alignment="left" verticalAlignment="bottom" contentMode="scaleAspectFit" id="HuC-h2-7Uz">
+                                            <items>
+                                                <label alignment="left" verticalAlignment="bottom" text="---" textAlignment="left" id="uol-dD-8JJ">
+                                                    <fontDescription key="font" type="system" pointSize="26"/>
+                                                </label>
+                                                <imageView height="1" alignment="left" verticalAlignment="bottom" image="whiteWatchBpmText" contentMode="scaleAspectFit" id="hIc-1z-ZhZ"/>
+                                            </items>
+                                        </group>
+                                        <group width="1" alignment="left" verticalAlignment="bottom" contentMode="scaleAspectFit" id="6pC-q5-9JZ">
+                                            <items>
+                                                <label height="20" alignment="left" verticalAlignment="bottom" text="----" textAlignment="right" id="J9H-UO-w1b">
+                                                    <fontDescription key="font" type="system" weight="semibold" pointSize="20"/>
+                                                </label>
+                                                <imageView height="1" alignment="left" verticalAlignment="bottom" image="whiteWatchkcalText" contentMode="scaleAspectFit" id="CXH-Lk-INU"/>
+                                            </items>
+                                        </group>
+                                        <group width="1" height="20" alignment="left" verticalAlignment="bottom" contentMode="scaleAspectFit" id="ry6-c1-CcU">
+                                            <items>
+                                                <label alignment="left" verticalAlignment="bottom" text="---" id="OfK-ag-hGo">
+                                                    <fontDescription key="font" type="system" weight="semibold" pointSize="20"/>
+                                                </label>
+                                                <imageView width="20" height="24" alignment="left" verticalAlignment="bottom" image="Po" contentMode="scaleAspectFit" id="MH8-xE-8sX">
+                                                    <variation key="device=watch38mm" height="24" width="20"/>
+                                                    <variation key="device=watch40mm" height="24" width="20"/>
+                                                    <variation key="device=watch42mm" height="24" width="20"/>
+                                                    <variation key="device=watch44mm" height="24" width="20"/>
+                                                </imageView>
+                                            </items>
+                                            <variation key="device=watch40mm" height="20"/>
+                                        </group>
+                                        <group width="1" height="100" alignment="left" verticalAlignment="bottom" id="98q-P7-Vsm">
+                                            <items>
+                                                <label alignment="left" verticalAlignment="bottom" text="--" id="oiT-3G-H43">
+                                                    <fontDescription key="font" type="boldSystem" pointSize="20"/>
+                                                </label>
+                                                <imageView height="15" alignment="left" verticalAlignment="bottom" image="whiteWatchKmText" contentMode="scaleAspectFit" id="isT-4e-1Z4">
+                                                    <variation key="device=watch40mm" height="17"/>
+                                                </imageView>
+                                            </items>
+                                            <variation key="device=watch38mm" height="17"/>
+                                            <variation key="device=watch40mm" height="20"/>
+                                            <variation key="device=watch42mm" height="20"/>
+                                            <variation key="device=watch44mm" height="20"/>
+                                        </group>
+                                        <group width="1" height="7" alignment="left" verticalAlignment="bottom" id="Ced-b2-CZE"/>
+                                        <group alignment="left" verticalAlignment="bottom" id="3Dz-MR-P8q">
+                                            <items>
+                                                <button alignment="center" backgroundImage="Check" id="VfO-Y7-Xbc">
+                                                    <connections>
+                                                        <action selector="resultWorkoutAction" destination="UMg-3w-gQh" id="82D-Tu-5TD"/>
+                                                    </connections>
+                                                </button>
+                                            </items>
+                                        </group>
+                                    </items>
+                                </group>
+                            </items>
+                            <variation key="device=watch38mm" height="225"/>
+                            <variation key="device=watch40mm" height="230"/>
+                            <variation key="device=watch42mm" height="230"/>
+                            <variation key="device=watch44mm" height="230"/>
+                        </group>
+                    </items>
+                    <connections>
+                        <outlet property="resultCalText" destination="J9H-UO-w1b" id="d5C-Wa-rak"/>
+                        <outlet property="resultEndTimer" destination="Rfg-z6-2LN" id="o2Z-RL-eif"/>
+                        <outlet property="resultHeartRateText" destination="uol-dD-8JJ" id="twe-QC-EC7"/>
+                        <outlet property="resultMeterText" destination="oiT-3G-H43" id="A14-5A-nth"/>
+                        <outlet property="resultScoreCountText" destination="OfK-ag-hGo" id="oYj-bU-zFp"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="390.26086956521738" y="667.09821428571433"/>
+        </scene>
+        <!--StandByWorkoutInterfaceController-->
+        <scene sceneID="uue-Oz-In8">
+            <objects>
+                <controller identifier="StandByWorkoutInterfaceController" contentMode="TopLeft" fullScreen="YES" id="7Dg-95-n2k" customClass="StandByWorkoutInterfaceController" customModule="Palpito_watchOS" customModuleProvider="target">
+                    <items>
+                        <group width="190" alignment="center" verticalAlignment="center" isAccessibilityElement="YES" contentMode="scaleAspectFit" id="NTT-ng-Arb">
+                            <items>
+                                <button width="100" alignment="center" verticalAlignment="center" title="Beginner" id="jMG-Y6-VGf">
+                                    <accessibilityTraits key="accessibilityTraits" button="YES" image="YES"/>
+                                    <color key="backgroundColor" red="0.89024144409999995" green="0.4463836551" blue="0.2195157707" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <fontDescription key="font" type="system" pointSize="30"/>
+                                    <variation key="device=watch38mm" width="150"/>
+                                    <variation key="device=watch40mm" width="200">
+                                        <fontDescription key="font" type="system" pointSize="30"/>
+                                    </variation>
+                                    <variation key="device=watch42mm" width="200"/>
+                                    <variation key="device=watch44mm" width="300"/>
+                                    <connections>
+                                        <action selector="workoutOutdoorLowStart" destination="7Dg-95-n2k" id="tJ0-Vd-3FS"/>
+                                    </connections>
+                                </button>
+                            </items>
+                            <variation key="device=watch38mm" width="150"/>
+                            <variation key="device=watch40mm" width="150"/>
+                            <variation key="device=watch42mm" width="170"/>
+                            <variation key="device=watch44mm" width="160"/>
+                        </group>
+                        <group width="190" alignment="center" verticalAlignment="center" isAccessibilityElement="YES" contentMode="scaleAspectFit" id="Udq-Vp-LLv">
+                            <items>
+                                <button width="100" alignment="center" verticalAlignment="center" title="Intermediate" id="1Ae-xD-CpX">
+                                    <accessibilityTraits key="accessibilityTraits" button="YES" image="YES"/>
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="backgroundColor" red="0.88634526729999996" green="0.45030242199999998" blue="0.223439157" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <fontDescription key="font" type="system" pointSize="14"/>
+                                    <variation key="device=watch38mm" width="150">
+                                        <fontDescription key="font" type="system" pointSize="21"/>
+                                    </variation>
+                                    <variation key="device=watch40mm" width="200">
+                                        <fontDescription key="font" type="system" pointSize="25"/>
+                                    </variation>
+                                    <variation key="device=watch42mm" width="200">
+                                        <fontDescription key="font" type="system" pointSize="24"/>
+                                    </variation>
+                                    <variation key="device=watch44mm" width="300">
+                                        <fontDescription key="font" type="system" pointSize="25"/>
+                                    </variation>
+                                    <connections>
+                                        <action selector="workoutOutdoorMidStart" destination="7Dg-95-n2k" id="bTC-3O-UT4"/>
+                                    </connections>
+                                </button>
+                            </items>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <variation key="device=watch38mm" width="150"/>
+                            <variation key="device=watch40mm" width="150"/>
+                            <variation key="device=watch42mm" width="170"/>
+                            <variation key="device=watch44mm" width="160"/>
+                        </group>
+                        <group width="190" alignment="center" verticalAlignment="center" isAccessibilityElement="YES" contentMode="scaleAspectFit" id="U79-gx-Vz0">
+                            <items>
+                                <button width="100" alignment="center" verticalAlignment="center" title="Advanced" id="XCq-63-qqY">
+                                    <accessibilityTraits key="accessibilityTraits" button="YES" image="YES"/>
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="backgroundColor" red="0.88634526729999996" green="0.45030242199999998" blue="0.223439157" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <fontDescription key="font" type="system" pointSize="27"/>
+                                    <variation key="device=watch38mm" width="150">
+                                        <fontDescription key="font" type="system" pointSize="27"/>
+                                    </variation>
+                                    <variation key="device=watch40mm" width="200">
+                                        <fontDescription key="font" type="system" pointSize="30"/>
+                                    </variation>
+                                    <variation key="device=watch42mm" width="200"/>
+                                    <variation key="device=watch44mm" width="300"/>
+                                    <connections>
+                                        <action selector="workoutOutdoorStart" destination="7Dg-95-n2k" id="1le-Lz-WQB"/>
+                                    </connections>
+                                </button>
+                            </items>
+                            <variation key="device=watch38mm" width="150"/>
+                            <variation key="device=watch40mm" width="150"/>
+                            <variation key="device=watch42mm" width="170"/>
+                            <variation key="device=watch44mm" width="160"/>
+                        </group>
+                    </items>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="121.95652173913042" y="346.83035714285717"/>
+        </scene>
+    </scenes>
+    <color key="tintColor" systemColor="darkTextColor"/>
+    <resources>
+        <image name="Check" width="138" height="37"/>
+        <image name="Po" width="45.5" height="31"/>
+        <image name="exit" width="44" height="44"/>
+        <image name="palpiLoadingEng" width="128" height="128"/>
+        <image name="pause" width="44" height="44"/>
+        <image name="watchZone1" width="41" height="203.5"/>
+        <image name="whiteWatchBpmText" width="57.5" height="20.5"/>
+        <image name="whiteWatchKmText" width="26.5" height="16"/>
+        <image name="whiteWatchkcalText" width="33.5" height="15.5"/>
+        <image name="workoutCompliteEng" width="104" height="17.5"/>
+        <systemColor name="darkTextColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

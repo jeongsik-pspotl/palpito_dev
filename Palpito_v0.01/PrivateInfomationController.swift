@@ -15,10 +15,20 @@ class PrivateInfomationCotroller: UIViewController {
     @IBOutlet weak var privateInfomationView: UIView!
     @IBOutlet weak var wvMain: WKWebView!
     
+    var languageCode = Locale.current.languageCode
+    
     func goWeb(postfix: String) -> () {
-        let url = URL(string: "https://app.palpito.co.kr/")
-        let request = URLRequest(url: url!)
-        wvMain.load(request)
+        
+        if languageCode == "ko" {
+            let url = URL(string: "https://app.palpito.co.kr/")
+            let request = URLRequest(url: url!)
+            wvMain.load(request)
+        } else {
+            let url = URL(string: "https://blog.naver.com/palpito0613/222465762337")
+            let request = URLRequest(url: url!)
+            wvMain.load(request)
+        }
+        
     }
     
     override func viewDidLoad() {

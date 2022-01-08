@@ -26,6 +26,7 @@
                                         <state key="normal" title="I'm going to create an account now" backgroundImage="graybtn">
                                             <color key="titleColor" red="1" green="0.98039215690000003" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
+                                        <state key="selected" title="I'm going to create an account now"/>
                                         <connections>
                                             <action selector="actionAccount:" destination="TJC-zx-DLA" eventType="touchUpInside" id="YqU-TL-sHz"/>
                                             <segue destination="mjH-Lv-Sbi" kind="show" id="6QK-Hd-uug"/>
@@ -39,8 +40,8 @@
                                         <state key="normal" title="Login" backgroundImage="graybtn">
                                             <color key="titleColor" red="1" green="0.98039215690000003" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
-                                        <state key="selected" title="로그인" backgroundImage="orangebtn"/>
-                                        <state key="highlighted" title="이미 계정이 있어요" backgroundImage="orangebtn"/>
+                                        <state key="selected" title="Login" backgroundImage="orangebtn"/>
+                                        <state key="highlighted" title="Login" backgroundImage="orangebtn"/>
                                         <connections>
                                             <action selector="actionMainButton:" destination="TJC-zx-DLA" eventType="touchUpInside" id="P5Y-wE-bJO"/>
                                         </connections>
@@ -87,8 +88,8 @@
                                         <state key="normal" title="I want to change the password" backgroundImage="graybtn">
                                             <color key="titleColor" red="1" green="0.98039215690000003" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
-                                        <state key="selected" title="이미 계정이 있어요" backgroundImage="orangebtn"/>
-                                        <state key="highlighted" title="이미 계정이 있어요" backgroundImage="orangebtn"/>
+                                        <state key="selected" title="I want to change the password" backgroundImage="orangebtn"/>
+                                        <state key="highlighted" title="I want to change the password" backgroundImage="orangebtn"/>
                                         <connections>
                                             <segue destination="gSt-Z6-XIG" kind="show" id="Aiq-ay-r4B"/>
                                         </connections>

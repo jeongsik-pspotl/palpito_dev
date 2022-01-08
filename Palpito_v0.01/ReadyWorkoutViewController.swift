@@ -18,6 +18,8 @@ class ReadyWorkoutViewController: UIViewController, WCSessionDelegate {
     
     var stageLevel = ""
     
+    var languageCode = Locale.current.languageCode
+    
     deinit {
         //print("deinit ReadyWorkout.... ")
     }
@@ -37,7 +39,12 @@ class ReadyWorkoutViewController: UIViewController, WCSessionDelegate {
             
         }
         
-        readyImages = createImageArray(total: 4, imagePrefix: "count")
+        if languageCode == "ko" {
+            readyImages = createImageArray(total: 4, imagePrefix: "count")
+        } else {
+            readyImages = createImageArray(total: 4, imagePrefix: "counteng")
+        }
+        
         // Do any additional setup after loading the view.
     }
     

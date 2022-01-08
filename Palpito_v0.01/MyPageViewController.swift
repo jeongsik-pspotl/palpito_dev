@@ -49,8 +49,8 @@ class MyPageViewController: UIViewController, WCSessionDelegate {
         super.viewDidLoad()
         
         // Locale.current.regionCode
-        print("Locale.current.regionCode")
-        print(Locale.current.regionCode)
+        print("Locale.current.languageCode")
+        print(Locale.current.languageCode)
         
         
         let scale = view.bounds.width / myPageView.bounds.width
@@ -306,7 +306,7 @@ class MyPageViewController: UIViewController, WCSessionDelegate {
             
             if (message["StartWorkoutCall"] as? String) != nil {
                 //print("message StartWorkoutCall : \(msg)")
-
+                replyHandler!(["result":"success"])
                 let storyboard = UIStoryboard(name: "StartApp", bundle: nil).instantiateViewController(withIdentifier: "ReadyWorkoutViewController") as! ReadyWorkoutViewController
                 storyboard.modalPresentationStyle = .fullScreen
                 self.present(storyboard, animated: true, completion: nil)

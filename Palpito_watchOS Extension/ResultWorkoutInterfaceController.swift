@@ -134,25 +134,34 @@ class ResultWorkoutInterfaceController: WKInterfaceController, WCSessionDelegate
     
     func tryWatchSendMessage(message: [String : Any]) {
         // 해당 구간이 에러 일 확률이 크다 추후에 수정해야할 것이다.
-//        if let validSession = self.wcSession {
-//            //let data: [String: Any] = ["logincheck": "No" as Any]
-//            //UserDefaults.standard.set("No" , forKey: "logincheck")
-//            validSession.transferUserInfo(message)
-//
-//        }
-           
-        if self.wcSession != nil && self.wcSession?.activationState == .activated {
-            if self.wcSession?.isReachable == true {
-                self.wcSession?.sendMessage(message, replyHandler: nil) { (error) -> Void in
-                    // If the message failed to send, queue it up for future transfer
-                    //print(" StandByWorkoutInterfaceController error : \(error)")
-                    self.wcSession?.transferUserInfo(message)
+        if WCSession.isSupported() {
+            if self.wcSession != nil && self.wcSession?.activationState == .activated {
+                if self.wcSession?.isReachable == true {
+                    self.wcSession?.sendMessage(message, replyHandler: { (reply: [String : Any]) -> Void in
+                        guard let result = reply["result"] else { return }
+                        // print("ResultWorkoutInterfaceController reply result")
+                        // print(result)
+                        
+                    }) { (error) -> Void in
+                        // If the message failed to send, queue it up for future transfer
+                        print(" ResultWorkoutInterfaceController error : \(error)")
+                        if error == nil {
+                            //print(" ResultWorkoutInterfaceController error : \(error)")
+                            self.wcSession?.transferUserInfo(message)
+                        }else {
+                            print(" ResultWorkoutInterfaceController error : \(error)")
+                        }
+                        
+                    }
                 }
+            } else if self.wcSession != nil && self.wcSession?.activationState == .inactive  {
+                self.wcSession?.transferUserInfo(message)
+            } else {
+                self.wcSession?.transferUserInfo(message)
             }
-        } else if self.wcSession != nil && self.wcSession?.activationState == .inactive  {
-            self.wcSession?.transferUserInfo(message)
-        } else {
-            self.wcSession?.transferUserInfo(message)
+            
+        }else {
+            
         }
               
     }

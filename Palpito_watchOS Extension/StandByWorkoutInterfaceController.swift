@@ -86,16 +86,16 @@ class StandByWorkoutInterfaceController: WKInterfaceController, WCSessionDelegat
     }
     
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
-        print("session \(session) activationDidCompleteWith activationState:\(activationState) error:\(String(describing: error))")
+        print("StandByWorkoutInterfaceController session \(session) activationDidCompleteWith activationState:\(activationState) error:\(String(describing: error))")
         
         if let error = error {
-            print("\(error.localizedDescription)")
+            print("\(error)")
         }
     }
     
     func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String : Any]) {
         if let logincheckInfo = applicationContext["logincheck"] as? String {
-            print("applicationContext logincheck : \(logincheckInfo)")
+            
             loginCheck = "\(logincheckInfo)"
         }
         
@@ -106,7 +106,6 @@ class StandByWorkoutInterfaceController: WKInterfaceController, WCSessionDelegat
     func session(_ session: WCSession, didReceiveUserInfo userInfo: [String : Any] = [:]) {
         DispatchQueue.main.async {
             if let logincheckInfo = userInfo["logincheck"] as? String {
-                print("transferCurrentComplicationUserInfo logincheck : \(logincheckInfo)")
                 loginCheck = "\(logincheckInfo)"
             }
         }
@@ -216,6 +215,10 @@ class StandByWorkoutInterfaceController: WKInterfaceController, WCSessionDelegat
         startRelaxSendData = ["StartRelaxCall":"true"]
         
         tryWatchSendMessage(message: startRelaxSendData! as [String : Any])
+        
+        // 응답 구간을 제대로 구현하고
+        // 
+        
         //wcSession?.sendMessage(startRelaxSendData!, replyHandler: nil, errorHandler: nil)
         //wcSession?.transferUserInfo(startRelaxSendData!)
         
@@ -236,13 +239,24 @@ class StandByWorkoutInterfaceController: WKInterfaceController, WCSessionDelegat
 //                validSession.transferUserInfo(message)
 //
 //            }
-        
+        if WCSession.isSupported() {
              if self.wcSession != nil && self.wcSession?.activationState == .activated {
                     if self.wcSession?.isReachable == true {
-                        self.wcSession?.sendMessage(message, replyHandler: nil) { (error) -> Void in
+                        //replyHandler in 응답이 정상인 구간일 경우 다음 화면으로 넘어가는 기능을 구현해야함.
+                        self.wcSession?.sendMessage(message, replyHandler: { (reply: [String : Any]) -> Void in
+                            guard let result = reply["result"] else { return }
+                            //print("test reply result")
+                            //print(result)
+                            
+                        }) { (error) -> Void in
                             // If the message failed to send, queue it up for future transfer
-                            //print(" StandByWorkoutInterfaceController error : \(error)")
-                            self.wcSession?.transferUserInfo(message)
+                            print(" StandByWorkoutInterfaceController error : \(error)")
+                            if error == nil {
+                                print(" StandByWorkoutInterfaceController error : \(error)")
+                                self.wcSession?.transferUserInfo(message)
+                            }else {
+                                print(" StandByWorkoutInterfaceController error : \(error)")
+                            }
                         }
                     }
              } else if self.wcSession != nil && self.wcSession?.activationState == .inactive  {
@@ -250,6 +264,7 @@ class StandByWorkoutInterfaceController: WKInterfaceController, WCSessionDelegat
              }else {
                 self.wcSession?.transferUserInfo(message)
              }
+        }
            
     }
     

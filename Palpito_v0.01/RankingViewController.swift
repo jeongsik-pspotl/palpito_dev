@@ -18,6 +18,8 @@ class RankingViewController: UIViewController {
     var user_total_score = [Dictionary<String, AnyObject>]()
     var total_user_rangking_list = [Dictionary<String, AnyObject>]()
     
+    var languageCode = Locale.current.languageCode
+    
     var db: Firestore!
     
     var startPoint = 0
@@ -163,7 +165,12 @@ extension RankingViewController: UITableViewDelegate {
         label.textAlignment = .center
         
         let labelsub1 = UILabel(frame: CGRect(x: 10, y: 50, width: 100, height: 25))
-        labelsub1.text = "순위"
+        if languageCode == "ko" {
+            labelsub1.text = "순위"
+        }else {
+            labelsub1.text = "Ranking"
+        }
+        
         labelsub1.textAlignment = .left
         
         let labelsub2 = UILabel(frame: CGRect(x: 140, y: 50, width: 100, height: 25))

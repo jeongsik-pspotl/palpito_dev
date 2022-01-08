@@ -198,7 +198,7 @@ class ResultWorkoutViewController: UIViewController, WCSessionDelegate {
             }
             
             if (message["backToMainTab"] as? String) != nil {
-                
+                replyHandler!(["result":"success"])
                 // db insert 구간
 //                let user_exercise_key:String = self.ref.childByAutoId().key as Any as! String // 수정해야함
 //

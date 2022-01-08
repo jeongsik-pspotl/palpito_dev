@@ -19,8 +19,8 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate, WCSessionDelegate {
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
         //print("=== ExtensionDelegate .. ======")
         //print("session WCSession : \(session)")
-        print("activationState WCSessionActivationState : \(activationState)")
-        print("error Error : \(String(describing: error))")
+        //print("activationState WCSessionActivationState : \(activationState)")
+        //print("error Error : \(String(describing: error))")
     }
     
 
@@ -68,7 +68,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate, WCSessionDelegate {
     func session(_ session: WCSession, didReceiveUserInfo userInfo: [String : Any] = [:]) {
         DispatchQueue.main.async {
             if let logincheckInfo = userInfo["logincheck"] as? String {
-                print("userInfo logincheck : \(logincheckInfo)")
+                //print("userInfo logincheck : \(logincheckInfo)")
                 loginCheck = "\(logincheckInfo)"
             }
 
@@ -78,7 +78,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate, WCSessionDelegate {
     func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String : Any]) {
         
             if let logincheckInfo = applicationContext["logincheck"] as? String {
-                print("applicationContext logincheck : \(logincheckInfo)")
+                //print("applicationContext logincheck : \(logincheckInfo)")
                 loginCheck = "\(logincheckInfo)"
             }
 
@@ -100,7 +100,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate, WCSessionDelegate {
     func handlesSession(_ session: WCSession, didReceiveMessage message: [String: Any], replyHandler: (([String: Any]) -> Void)? = nil) {
         DispatchQueue.main.async {
             if let logincheckInfo = message["logincheck"] as? String {
-                print(" data check : \(logincheckInfo)")
+                //print(" data check : \(logincheckInfo)")
                 loginCheck = logincheckInfo
             }
         }

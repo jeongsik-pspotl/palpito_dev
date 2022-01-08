@@ -92,7 +92,6 @@ public class InterfaceController: WKInterfaceController, WCSessionDelegate {
         
         if let dict: [String:String] = context as? [String:String] {
             startStageLevelData = dict["MyStageLvl"]!
-            // //print("dict check : \(startStageLevelData)")
             
         }
         // //print("awake check : \(startStageLevelData)")
@@ -113,10 +112,9 @@ public class InterfaceController: WKInterfaceController, WCSessionDelegate {
         
         startTimerfunc()
         // change wcsession
-         self.tryWatchSendMessage(message: ["startWorkout":scoreTime as Any])
+         // self.tryWatchSendMessage(message: ["startWorkout":scoreTime as Any])
         //wcSession!.transferUserInfo(["startWorkout":scoreTime as Any])
         healthKitShared?.authorizeHealthKit { [weak self] (success, error) in
-        // //print("Was healthkit successful? \(success)")
             
             self?.healthKitShared?.readMostRecentSample()
             self?.startOrStopworkfunc(startOrEndCheck: true)
@@ -681,12 +679,12 @@ extension InterfaceController: HKWorkoutSessionDelegate {
 //활동 칼로리 출력 
 extension InterfaceController: ActiveEnergyBurnedDelegate {
     func activeEnergyBurnedDelegate(activeEnergyBurned: [HKSample]) {
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [weak self] in
             guard let activeEnergyBurned =  activeEnergyBurned as? [HKQuantitySample] else {
                 return
             }
             
-            self.activiyEnergyBurnDataSamples = activeEnergyBurned
+            self!.activiyEnergyBurnDataSamples = activeEnergyBurned
             guard let sample = activeEnergyBurned.first else {
                 return
             }
@@ -694,14 +692,14 @@ extension InterfaceController: ActiveEnergyBurnedDelegate {
             let activityEnergyBurnValue = sample.quantity.doubleValue(for: HKUnit.kilocalorie())
             
             //print(" activityEnergyBurn data check... :  \(activityEnergyBurnValue)")
-            self.totalSum = self.totalSum + activityEnergyBurnValue
+            self!.totalSum = self!.totalSum + activityEnergyBurnValue
 //            self.resultCalSum = String(format: "%.0f", self.totalSum)
             
-            self.caloriWorkoutData.setText(String(format: "%.01f", self.totalSum))
+            self!.caloriWorkoutData.setText(String(format: "%.01f", self!.totalSum))
             
-            let msg = ["StringValueKcalData" : "\(String(format: "%.01f", self.totalSum))"]
+            let msg = ["StringValueKcalData" : "\(String(format: "%.01f", self!.totalSum))"]
             // change
-            self.tryWatchSendMessage(message: msg as [String : Any])
+            self!.tryWatchSendMessage(message: msg as [String : Any])
         }
         
     }
@@ -712,12 +710,12 @@ extension InterfaceController: MeterDataDelegate {
     
     func meterDataUpdated(meterDataSamples: [HKSample]) {
         
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [weak self] in
             guard let meterDataSamples = meterDataSamples as? [HKQuantitySample] else {
                 return
             }
             
-            self.metersDataSamples = meterDataSamples
+            self!.metersDataSamples = meterDataSamples
             guard let sample = meterDataSamples.first else {
                 return
             }
@@ -725,7 +723,7 @@ extension InterfaceController: MeterDataDelegate {
             let meterDataValue = sample.quantity.doubleValue(for: HKUnit.meter())
             
             //print(" meterData data check... :  \(meterDataValue)")
-            self.secsMeterDbl = meterDataValue
+            self!.secsMeterDbl = meterDataValue
             
         }
         
@@ -745,13 +743,13 @@ extension InterfaceController: HeartRateDelegate {
 //            return
 //        }
         
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [weak self] in
             
             guard let heartRateSamples = heartRateSamples as? [HKQuantitySample] else {
                 return
             }
             
-            self.heartRateSamples = heartRateSamples
+            self!.heartRateSamples = heartRateSamples
             guard let sample = heartRateSamples.first else {
                 return
             }
@@ -760,7 +758,7 @@ extension InterfaceController: HeartRateDelegate {
             
             // ({ (나이 * 0.2017) + (몸무게 * 0.1988) + (heartDataValue * 0.6309) - 55.0969 }* 0.016667) / 4.184
             //print(" heartRate value data check... :  \(heartDataValue)")
-            self.heartRateDataInt = heartDataValue
+            self!.heartRateDataInt = heartDataValue
             //print("mainColWeightInt check... :  \(String(describing: self.healthKitShared?.mainColWeightInt)) ")
             
             // 남자 칼로리 공식
@@ -784,10 +782,10 @@ extension InterfaceController: HeartRateDelegate {
             
             // 심박 구간 알고리즘
             switch heartDataValue {
-            case 0..<self.userHeartRateZ2!:
-                self.zoneStatus = "z1"
-                self.tensionZoneStatus = "zt1"
-                self.zoneStatusImage.setImageNamed("watchZone1")
+            case 0..<self!.userHeartRateZ2!:
+                self!.zoneStatus = "z1"
+                self!.tensionZoneStatus = "zt1"
+                self!.zoneStatusImage.setImageNamed("watchZone1")
 //                self.scoreZone1Cnt += 1
                 
 //                self.zoneStatus1LowTension += 1
@@ -799,10 +797,10 @@ extension InterfaceController: HeartRateDelegate {
 //                //print("zone 1 \(self.scoreZone1Cnt)")
 //                //print("zone 1 LowTension \(self.zoneStatus1LowTension)")
                 
-            case self.userHeartRateZ2!..<self.userHeartRateZ3!:
-                self.zoneStatus = "z2"
-                self.tensionZoneStatus = "zt2"
-                self.zoneStatusImage.setImageNamed("watchZone2")
+            case self!.userHeartRateZ2!..<self!.userHeartRateZ3!:
+                self!.zoneStatus = "z2"
+                self!.tensionZoneStatus = "zt2"
+                self!.zoneStatusImage.setImageNamed("watchZone2")
 //                self.scoreZone2Cnt += 1
                 
 //                self.zoneStatus1LowTension = 0
@@ -814,10 +812,10 @@ extension InterfaceController: HeartRateDelegate {
 //                //print("zone 2 \(self.scoreZone2Cnt)")
 //                //print("zone 2 LowTension \(self.zoneStatus2LowTension)")
                 
-            case self.userHeartRateZ3!..<self.userHeartRateZ4!:
-                self.zoneStatus = "z3"
-                self.tensionZoneStatus = "zt3"
-                self.zoneStatusImage.setImageNamed("watchZone3")
+            case self!.userHeartRateZ3!..<self!.userHeartRateZ4!:
+                self!.zoneStatus = "z3"
+                self!.tensionZoneStatus = "zt3"
+                self!.zoneStatusImage.setImageNamed("watchZone3")
 //                self.scoreZone3Cnt += 1
                 
                 // 햅틱
@@ -834,10 +832,10 @@ extension InterfaceController: HeartRateDelegate {
 //                //print("zone 3 \(self.scoreZone3Cnt)")
 //                //print("zone 3 Goodjob \(self.zoneStatusGoodjob)")
                 
-            case self.userHeartRateZ4!..<self.userHeartRateZ5!:
-                self.zoneStatus = "z4"
-                self.tensionZoneStatus = "zt4"
-                self.zoneStatusImage.setImageNamed("watchZone4")
+            case self!.userHeartRateZ4!..<self!.userHeartRateZ5!:
+                self!.zoneStatus = "z4"
+                self!.tensionZoneStatus = "zt4"
+                self!.zoneStatusImage.setImageNamed("watchZone4")
 //                self.scoreZone4Cnt += 1
                 
 //                self.zoneStatus1LowTension = 0
@@ -849,10 +847,10 @@ extension InterfaceController: HeartRateDelegate {
 //                //print("zone 4 \(self.scoreZone4Cnt)")
 //                //print("zone 4 HighTension \(self.zoneStatus4HighTension)")
                 
-            case self.userHeartRateZ5!..<999.99:
-                self.zoneStatus = "z5"
-                self.tensionZoneStatus = "zt5"
-                self.zoneStatusImage.setImageNamed("watchZone5")
+            case self!.userHeartRateZ5!..<999.99:
+                self!.zoneStatus = "z5"
+                self!.tensionZoneStatus = "zt5"
+                self!.zoneStatusImage.setImageNamed("watchZone5")
 //                self.scoreZone5Cnt += 1
                 
 //                self.zoneStatus1LowTension = 0
@@ -877,24 +875,24 @@ extension InterfaceController: HeartRateDelegate {
             
             //print(" scoreResultZone : \(self.scoreResultZone) ")
             
-            let StringValueScoreResult = "\(self.scoreResultZone)"
+            let StringValueScoreResult = "\(self!.scoreResultZone)"
             
             //            심박수, 시간, 칼로리, 존구간, 점수
 //            let msg = ["StringValueHeartRate" : "\(heartRateString)", "StringValueTimer": "\(self.timeFormatted(self.secsTime))", "StringValueKcalData" : "\(kcalDataSum)", "StringValueZoneStatus" : "\(self.zoneStatus)", "StringValueScoreResult": "\(StringValueScoreResult)"]
-            let msg = ["StringValueHeartRate" : "\(heartRateString)", "StringValueTimer": "\(self.timeFormatted(self.secsTime))", "StringValueZoneStatus" : "\(self.zoneStatus)", "StringValueScoreResult": "\(StringValueScoreResult)"]
+            let msg = ["StringValueHeartRate" : "\(heartRateString)", "StringValueTimer": "\(self!.timeFormatted(self!.secsTime))", "StringValueZoneStatus" : "\(self!.zoneStatus)", "StringValueScoreResult": "\(StringValueScoreResult)"]
             
             // transferUserInfo test...
-            self.tryWatchSendMessage(message: msg as [String : Any])
+            self!.tryWatchSendMessage(message: msg as [String : Any])
             //self.wcSession!.transferUserInfo(msg)
             //self.wcSession!.sendMessage(msg, replyHandler: nil, errorHandler: {error in //print(error.localizedDescription)})
             
-            self.heartRateLabel.setText(heartRateString)
+            self!.heartRateLabel.setText(heartRateString)
 //            self.caloriWorkoutData.setText(kcalDataSum)
-            self.scoreTimeText.setText(StringValueScoreResult)
+            self!.scoreTimeText.setText(StringValueScoreResult)
             
-            self.resultscoreTimer = StringValueScoreResult
+            self!.resultscoreTimer = StringValueScoreResult
 
-            self.resultEndTime = "\(self.timeFormatted(self.secsTime))"
+            self!.resultEndTime = "\(self!.timeFormatted(self!.secsTime))"
         }
         
         
@@ -902,25 +900,42 @@ extension InterfaceController: HeartRateDelegate {
     
     func tryWatchSendMessage(message: [String : Any]) {
         // 해당 구간이 에러 일 확률이 크다 추후에 수정해야할 것이다.
-       if self.wcSession != nil && self.wcSession?.activationState == .activated {
-               if self.wcSession?.isReachable == true {
-                   self.wcSession?.sendMessage(message, replyHandler: nil) { (error) -> Void in
-                       // If the message failed to send, queue it up for future transfer
-                       //print(" StandByWorkoutInterfaceController error : \(error)")
-                       self.wcSession?.transferUserInfo(message)
+        // 해당 구간에 추가 분기 처리가 필요함.
+        if WCSession.isSupported() {
+           if self.wcSession != nil && self.wcSession?.activationState == .activated {
+                   if self.wcSession?.isReachable == true {
+                       self.wcSession?.sendMessage(message, replyHandler: { (reply: [String : Any]) -> Void in
+                           guard let result = reply["result"] else { return }
+                           //print("InterfaceController reply result")
+                           //print(result)
+                           
+                       }) { (error) -> Void in
+                           // If the message failed to send, queue it up for future transfer
+                           
+                           if error == nil {
+                               //print(" InterfaceController error : \(error)")
+                               self.wcSession?.transferUserInfo(message)
+                               //print(" InterfaceController transferUserInfo send \(message)")
+                           }else {
+                               print(" InterfaceController error : \(error)")
+                           }
+                           
+                       }
                    }
-               }
-        } else if let validSession = self.wcSession {
-            //let data: [String: Any] = ["logincheck": "No" as Any]
-            //UserDefaults.standard.set("No" , forKey: "logincheck")
-            validSession.transferUserInfo(message)
+            } else if let validSession = self.wcSession {
+                //let data: [String: Any] = ["logincheck": "No" as Any]
+                //UserDefaults.standard.set("No" , forKey: "logincheck")
+                validSession.transferUserInfo(message)
 
-        } else if self.wcSession != nil && self.wcSession?.activationState == .inactive  {
-            self.wcSession?.transferUserInfo(message)
+            } else if self.wcSession != nil && self.wcSession?.activationState == .inactive  {
+                self.wcSession?.transferUserInfo(message)
+            }else {
+               self.wcSession?.transferUserInfo(message)
+            }
+                  
         }else {
-           self.wcSession?.transferUserInfo(message)
+            
         }
-              
     }
 
     

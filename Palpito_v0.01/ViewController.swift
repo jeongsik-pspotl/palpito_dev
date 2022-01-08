@@ -30,7 +30,7 @@ class ViewController: ExtensionVC {
     @IBOutlet weak var autoLoginCheck: UIButton!
     
     deinit {
-        print("deinit start page")
+        //print("deinit start page")
     }
     
     override func viewDidLoad() {

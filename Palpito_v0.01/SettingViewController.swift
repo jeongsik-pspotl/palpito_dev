@@ -34,6 +34,12 @@ class SettingViewController: UITableViewController, WCSessionDelegate {
         ("계정 정보"),("개인 정보 공개 범위"),("로그아웃")
     ]
     
+    var datasetEng = [
+        ("Account Information"),("Scope of disclosure of personal information"),("Log out")
+    ]
+    
+    var languageCode = Locale.current.languageCode
+    
     weak var session:WCSession?
     
     @IBOutlet weak var myTableView: UITableView!
@@ -72,6 +78,20 @@ class SettingViewController: UITableViewController, WCSessionDelegate {
             datalist.append(mvo)
         }
         return datalist
+    }()
+    
+    // datasetEng
+    
+    lazy var listEng: [MovieVO] = {
+        var datalistEng = [MovieVO]()
+        
+        for (titleEng) in self.datasetEng {
+            let mvoEng = MovieVO()
+            mvoEng.title = titleEng
+            datalistEng.append(mvoEng)
+        }
+        
+        return datalistEng
     }()
 
     override func viewDidLoad() {
@@ -121,77 +141,151 @@ class SettingViewController: UITableViewController, WCSessionDelegate {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //print("선택된 행은 \(indexPath.row) 번째 입니다.")
-        
-        let row = self.list[indexPath.row]
-        
-        if row.title == "로그아웃" {
-            //print("로그아웃")
-            // 팝업 창 준비 로그아웃 하시겠습니까?
-            let alert = UIAlertController(title: "로그아웃", message: "로그아웃 하시겠습니까?", preferredStyle: UIAlertController.Style.alert)
-            let defaultAction = UIAlertAction(title: "OK", style: .destructive) { (alert) in
-                let firebaseAuth = Auth.auth()
-                
-                do {
-                    try firebaseAuth.signOut()
-                    // 로그인 화면 이동..
-                    UserDefaults.standard.set("notSelected", forKey: "isAutoLoginCheck")
+        if languageCode == "ko" {
+            let row = self.list[indexPath.row]
+            
+            if row.title == "로그아웃" {
+                //print("로그아웃")
+                // 팝업 창 준비 로그아웃 하시겠습니까?
+                let alert = UIAlertController(title: "로그아웃", message: "로그아웃 하시겠습니까?", preferredStyle: UIAlertController.Style.alert)
+                let defaultAction = UIAlertAction(title: "OK", style: .destructive) { (alert) in
+                    let firebaseAuth = Auth.auth()
                     
-                    if let validSession = self.session {
-                        let data: [String: Any] = ["logincheck": "No" as Any]
-                        UserDefaults.standard.set("No" , forKey: "logincheck")
-                        validSession.transferUserInfo(data)
+                    do {
+                        try firebaseAuth.signOut()
+                        // 로그인 화면 이동..
+                        UserDefaults.standard.set("notSelected", forKey: "isAutoLoginCheck")
                         
-                    }
-                    
-                    // self.dismiss(animated: true, completion: nil)
-                    let storyboard = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "StartViewSb") as! ViewController
-                    storyboard.modalPresentationStyle = .fullScreen
-                    self.present(storyboard, animated: true, completion: nil)
-                    self.view.removeFromSuperview()
+                        if let validSession = self.session {
+                            let data: [String: Any] = ["logincheck": "No" as Any]
+                            UserDefaults.standard.set("No" , forKey: "logincheck")
+                            validSession.transferUserInfo(data)
+                            
+                        }
+                        
+                        // self.dismiss(animated: true, completion: nil)
+                        let storyboard = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "StartViewSb") as! ViewController
+                        storyboard.modalPresentationStyle = .fullScreen
+                        self.present(storyboard, animated: true, completion: nil)
+                        self.view.removeFromSuperview()
 
-                } catch let signOutError as NSError {
-                  print ("Error signing out: %@", signOutError)
-                }  
+                    } catch let signOutError as NSError {
+                      print ("Error signing out: %@", signOutError)
+                    }
+                }
+                // 예 하면 로그 아웃 하면서
+                
+                // 로그인 화면으로 이동
+                
+                let cancelAction = UIAlertAction(title: "CANCEL", style: .cancel, handler : nil)
+                alert.addAction(cancelAction)
+                alert.addAction(defaultAction)
+                present(alert, animated: false, completion: nil)
+                
             }
-            // 예 하면 로그 아웃 하면서
             
-            // 로그인 화면으로 이동
+            if row.title == "개인 정보 공개 범위" {
+                //print("개인 정보 공개 범위")
+                
+                let storyboard = UIStoryboard(name: "StartApp", bundle: nil).instantiateViewController(withIdentifier: "PrivateInfomationCotroller") as! PrivateInfomationCotroller
+                storyboard.modalPresentationStyle = .fullScreen
+                self.present(storyboard, animated: true, completion: nil)
+            }
             
-            let cancelAction = UIAlertAction(title: "CANCEL", style: .cancel, handler : nil)
-            alert.addAction(cancelAction)
-            alert.addAction(defaultAction)
-            present(alert, animated: false, completion: nil)
+            if row.title == "계정 정보" {
+                let storyboard = UIStoryboard(name: "StartApp", bundle: nil).instantiateViewController(withIdentifier: "UserInfoSettingController") as! UserInfoSettingController
+                storyboard.modalPresentationStyle = .fullScreen
+                self.present(storyboard, animated: true, completion: nil)
+            }
+            
+        } else {
+            let row = self.listEng[indexPath.row]
+            
+            if row.title == "Log out" {
+                //print("로그아웃")
+                // 팝업 창 준비 로그아웃 하시겠습니까?
+                let alert = UIAlertController(title: "Log out", message: "do you want to log out?", preferredStyle: UIAlertController.Style.alert)
+                let defaultAction = UIAlertAction(title: "OK", style: .destructive) { (alert) in
+                    let firebaseAuth = Auth.auth()
+                    
+                    do {
+                        try firebaseAuth.signOut()
+                        // 로그인 화면 이동..
+                        UserDefaults.standard.set("notSelected", forKey: "isAutoLoginCheck")
+                        
+                        if let validSession = self.session {
+                            let data: [String: Any] = ["logincheck": "No" as Any]
+                            UserDefaults.standard.set("No" , forKey: "logincheck")
+                            validSession.transferUserInfo(data)
+                            
+                        }
+                        
+                        // self.dismiss(animated: true, completion: nil)
+                        let storyboard = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "StartViewSb") as! ViewController
+                        storyboard.modalPresentationStyle = .fullScreen
+                        self.present(storyboard, animated: true, completion: nil)
+                        self.view.removeFromSuperview()
+
+                    } catch let signOutError as NSError {
+                      print ("Error signing out: %@", signOutError)
+                    }
+                }
+                // 예 하면 로그 아웃 하면서
+                
+                // 로그인 화면으로 이동
+                
+                let cancelAction = UIAlertAction(title: "CANCEL", style: .cancel, handler : nil)
+                alert.addAction(cancelAction)
+                alert.addAction(defaultAction)
+                present(alert, animated: false, completion: nil)
+                
+            }
+            
+            if row.title == "Scope of disclosure of personal information" {
+                //print("개인 정보 공개 범위")
+                
+                let storyboard = UIStoryboard(name: "StartApp", bundle: nil).instantiateViewController(withIdentifier: "PrivateInfomationCotroller") as! PrivateInfomationCotroller
+                storyboard.modalPresentationStyle = .fullScreen
+                self.present(storyboard, animated: true, completion: nil)
+            }
+            
+            if row.title == "Account Information" {
+                let storyboard = UIStoryboard(name: "StartApp", bundle: nil).instantiateViewController(withIdentifier: "UserInfoSettingController") as! UserInfoSettingController
+                storyboard.modalPresentationStyle = .fullScreen
+                self.present(storyboard, animated: true, completion: nil)
+            }
             
         }
         
-        if row.title == "개인 정보 공개 범위" {
-            //print("개인 정보 공개 범위")
-            
-            let storyboard = UIStoryboard(name: "StartApp", bundle: nil).instantiateViewController(withIdentifier: "PrivateInfomationCotroller") as! PrivateInfomationCotroller
-            storyboard.modalPresentationStyle = .fullScreen
-            self.present(storyboard, animated: true, completion: nil)
-        }
-        
-        if row.title == "계정 정보" {
-            let storyboard = UIStoryboard(name: "StartApp", bundle: nil).instantiateViewController(withIdentifier: "UserInfoSettingController") as! UserInfoSettingController
-            storyboard.modalPresentationStyle = .fullScreen
-            self.present(storyboard, animated: true, completion: nil)
-        }
         
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.list.count
+        if languageCode == "ko" {
+            return self.list.count
+        }else {
+            return self.listEng.count
+        }
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //print(" indexPath : \(indexPath) ")
-        let row = self.list[indexPath.row]
+        if languageCode == "ko" {
+            let row = self.list[indexPath.row]
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ListCell")!
+            cell.textLabel?.text = row.title
+            
+            return cell
+        } else {
+            let row = self.listEng[indexPath.row]
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ListCell")!
+            cell.textLabel?.text = row.title
+            
+            return cell
+        }
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ListCell")!
-        cell.textLabel?.text = row.title
-        
-        return cell
     }
 
 }
