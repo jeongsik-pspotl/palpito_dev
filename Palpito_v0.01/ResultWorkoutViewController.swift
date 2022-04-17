@@ -300,23 +300,23 @@ class ResultWorkoutViewController: UIViewController, WCSessionDelegate {
     }
     
     func session(_ session: WCSession, didReceive file: WCSessionFile) {
-        DispatchQueue.main.async {
-            print(file)
-            
-            do {
-                
-                // 29일에 해당 구간 좀 더 구현할 방법 찾아보기
-                //try fileManager.createDirectory(at: <#T##URL#>, withIntermediateDirectories: <#T##Bool#>, attributes: <#T##[FileAttributeKey : Any]?#>)
-                
-                let strText = try String(contentsOf: file.fileURL, encoding: .utf8)
-                print("test..")
-                print(strText)
-                
-            } catch let e {
-                print(e.localizedDescription)
-            }
-            
-        }
+//        DispatchQueue.main.async {
+//            print(file)
+//
+//            do {
+//
+//                // 29일에 해당 구간 좀 더 구현할 방법 찾아보기
+//                //try fileManager.createDirectory(at: <#T##URL#>, withIntermediateDirectories: <#T##Bool#>, attributes: <#T##[FileAttributeKey : Any]?#>)
+//
+//                let strText = try String(contentsOf: file.fileURL, encoding: .utf8)
+//                print("test..")
+//                print(strText)
+//                
+//            } catch let e {
+//                print(e.localizedDescription)
+//            }
+//
+//        }
     }
     
     /*

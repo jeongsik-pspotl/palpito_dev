@@ -79,6 +79,8 @@ public class InterfaceController: WKInterfaceController, WCSessionDelegate {
     var resultAvgMeters = ""
     var isPlayAndPauseChecked = true
     
+    //let fileManager = FileManager.default
+    
 
     override public func awake(withContext context: Any?) {
         super.awake(withContext: context)
@@ -119,6 +121,39 @@ public class InterfaceController: WKInterfaceController, WCSessionDelegate {
             self?.healthKitShared?.readMostRecentSample()
             self?.startOrStopworkfunc(startOrEndCheck: true)
         }
+        /*
+        let documentURL = fileManager.urls(for: .cachesDirectory, in: .userDomainMask)[0]
+        let directoryURL = documentURL.appendingPathComponent("PALPITODIR")
+        if !fileManager.fileExists(atPath: directoryURL.path) {
+            do {
+                try fileManager.createDirectory(atPath: directoryURL.path, withIntermediateDirectories: true, attributes: nil)
+            } catch {
+                NSLog("ERROR")
+            }
+            
+            // 1. 파일 쓰는 기능 추가
+            let fileURL = directoryURL.appendingPathComponent("palpito_user.txt")
+            
+            let text = NSString(string: "start")
+            
+            try? text.write(to: fileURL, atomically: true, encoding: String.Encoding.utf8.rawValue)
+            
+            // 2. 파일 읽기 기능 추가
+            do {
+                // 파일 이름을 기존의 경로에 추가
+                let helloPath = fileURL.appendingPathComponent("palpito_user.txt")
+
+                // 내용 읽기
+                let text2 = try String(contentsOf: helloPath, encoding: .utf8)
+
+                print(text2)
+            }
+            catch let error as NSError {
+                print("Error Reading File : \(error.localizedDescription)")
+            }
+            
+        }
+         */
         
     }
     
@@ -537,57 +572,62 @@ public class InterfaceController: WKInterfaceController, WCSessionDelegate {
     
     // call resultWorkoutInterfaceController
     func resultWorkoutInterfaceAction (){
+        DispatchQueue.global().sync { [weak self] in
         
-        self.palpiLoader.setHidden(false)
-        self.palpiLoader.startAnimating()
-        self.endWorkoutBtn.setEnabled(false)
-        self.pauseAndPlayButton.setEnabled(false)
-//        //print("End workout")
-//        //print("End workout contextForSegue")
-//        //print("resultEndTime    : \(self.resultEndTime)")
-//        //print("resultCalSum     : \(self.resultCalSum)")
-//        //print("resultscoreTimer : \(self.resultscoreTimer)")
-        var context:[String:String]?
-        var totalAvgMeter: Double?
-        
-        self.resultCalSum = String(format: "%.01f", self.totalSum)
-        //test getAVGHeartRate
-        //        //print("test get AVG hearRate")
-        let msgData = ["stopTimer":"stop"]
-        // chage wcsession
-         self.tryWatchSendMessage(message: msgData as [String : Any])
-        //wcSession!.transferUserInfo(msgData) // 백엔드 통신
-        
-        self.resultAvgHeartRate = (self.healthKitShared?.getAVGHeartRate(workoutStartDate!))!
-        //        self.resultAvgMeters = self.healthKitShared.getAVGWalkingRunning(workoutStartDate)
-        totalAvgMeter = (self.secsMeterDbl * 60 * 60) / 1000
-        //print("resultTotalAvgMeter : \(String(describing: totalAvgMeter))")
-        
-        
-        context = ["resultEndTime": "\(self.resultEndTime)","resultCalSum": "\(self.resultCalSum)", "resultscoreTimer": "\(self.resultscoreTimer)", "resultTotalAvgMeter": String(format: "%.00f", totalAvgMeter!)]
-        
-        self.scoreTime = 0
-        self.resultCalSum = ""
-        self.resultEndTime = ""
-        self.resultscoreTimer = ""
-//        self.workItem?.cancel()
-        self.endWorkoutSession(Date())
-        
-        //print("self.healthKitShared.mainAvgHeartRate : \(String(describing: self.healthKitShared?.mainAvgHeartRate))")
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-            self.pushController(withName: "ResultWorkoutInterfaceController", context: context)
-            self.palpiLoader.stopAnimating()
-            self.palpiLoader.setHidden(true)
+            self!.palpiLoader.setHidden(false)
+            self!.palpiLoader.startAnimating()
+            self!.endWorkoutBtn.setEnabled(false)
+            self!.pauseAndPlayButton.setEnabled(false)
+    //        //print("End workout")
+    //        //print("End workout contextForSegue")
+    //        //print("resultEndTime    : \(self.resultEndTime)")
+    //        //print("resultCalSum     : \(self.resultCalSum)")
+    //        //print("resultscoreTimer : \(self.resultscoreTimer)")
+            var context:[String:String]?
+            var totalAvgMeter: Double?
             
-//            context?.removeAll()
+            self!.resultCalSum = String(format: "%.01f", self!.totalSum)
+            //test getAVGHeartRate
+            //        //print("test get AVG hearRate")
+            let msgData = ["stopTimer":"stop"]
+            // chage wcsession
+            DispatchQueue.global().async {
+                self!.tryWatchSendMessage(message: msgData as [String : Any])
+            }
+            
+            //wcSession!.transferUserInfo(msgData) // 백엔드 통신
+            
+            self!.resultAvgHeartRate = (self!.healthKitShared?.getAVGHeartRate(self!.workoutStartDate!))!
+            //        self.resultAvgMeters = self.healthKitShared.getAVGWalkingRunning(workoutStartDate)
+            totalAvgMeter = (self!.secsMeterDbl * 60 * 60) / 1000
+            //print("resultTotalAvgMeter : \(String(describing: totalAvgMeter))")
+            
+            
+            context = ["resultEndTime": "\(self!.resultEndTime)","resultCalSum": "\(self!.resultCalSum)", "resultscoreTimer": "\(self!.resultscoreTimer)", "resultTotalAvgMeter": String(format: "%.00f", totalAvgMeter!)]
+            
+            self!.scoreTime = 0
+            self!.resultCalSum = ""
+            self!.resultEndTime = ""
+            self!.resultscoreTimer = ""
+    //        self.workItem?.cancel()
+            
+                DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+                    self!.endWorkoutSession(Date())
+                    self!.pushController(withName: "ResultWorkoutInterfaceController", context: context)
+                    self!.palpiLoader.stopAnimating()
+                    self!.palpiLoader.setHidden(true)
+                    
+        //            context?.removeAll()
+                }
+            }
         }
+        //print("self.healthKitShared.mainAvgHeartRate : \(String(describing: self.healthKitShared?.mainAvgHeartRate))")
         
         //        return context
         
         //        dismiss()
         //        endWorkoutSession()
-    }
+    
     
 }
 
@@ -734,6 +774,8 @@ extension InterfaceController: MeterDataDelegate {
 
 extension InterfaceController: HeartRateDelegate {
     
+    
+    
     func heartRateUpdated(heartRateSamples: [HKSample]) {
         
 //        let (age, _) = (self.healthKitShared?.readProfile())!
@@ -745,9 +787,16 @@ extension InterfaceController: HeartRateDelegate {
         
         DispatchQueue.main.async { [weak self] in
             
+            // directory 생성 단계
+            /*
+            let documentURL = self!.fileManager.urls(for: .cachesDirectory, in: .userDomainMask)[0]
+            let directoryURL = documentURL.appendingPathComponent("PALPITODIR")
+             */
+            
             guard let heartRateSamples = heartRateSamples as? [HKQuantitySample] else {
                 return
             }
+             
             
             self!.heartRateSamples = heartRateSamples
             guard let sample = heartRateSamples.first else {
@@ -880,6 +929,37 @@ extension InterfaceController: HeartRateDelegate {
             //            심박수, 시간, 칼로리, 존구간, 점수
 //            let msg = ["StringValueHeartRate" : "\(heartRateString)", "StringValueTimer": "\(self.timeFormatted(self.secsTime))", "StringValueKcalData" : "\(kcalDataSum)", "StringValueZoneStatus" : "\(self.zoneStatus)", "StringValueScoreResult": "\(StringValueScoreResult)"]
             let msg = ["StringValueHeartRate" : "\(heartRateString)", "StringValueTimer": "\(self!.timeFormatted(self!.secsTime))", "StringValueZoneStatus" : "\(self!.zoneStatus)", "StringValueScoreResult": "\(StringValueScoreResult)"]
+            /*
+            if !self!.fileManager.fileExists(atPath: directoryURL.path) {
+                do {
+                    try self!.fileManager.createDirectory(atPath: directoryURL.path, withIntermediateDirectories: true, attributes: nil)
+                } catch {
+                    NSLog("ERROR")
+                }
+                
+                // 1. 파일 쓰는 기능 추가
+                let fileURL = directoryURL.appendingPathComponent("palpito_user.txt")
+                
+                // 2. 파일 읽기 기능 추가
+                do {
+                    // 파일 이름을 기존의 경로에 추가
+                    let helloPath = fileURL.appendingPathComponent("palpito_user.txt")
+
+                    // 내용 읽기
+                    let text2 = try String(contentsOf: helloPath, encoding: .utf8)
+
+                    print(text2)
+                    
+                    let text = NSString(string: text2 + "workout start")
+                    
+                    try? text.write(to: fileURL, atomically: true, encoding: String.Encoding.utf8.rawValue)
+                }
+                catch let error as NSError {
+                    print("Error Reading File : \(error.localizedDescription)")
+                }
+                
+            }
+             */
             
             // transferUserInfo test...
             self!.tryWatchSendMessage(message: msg as [String : Any])
@@ -905,7 +985,7 @@ extension InterfaceController: HeartRateDelegate {
            if self.wcSession != nil && self.wcSession?.activationState == .activated {
                    if self.wcSession?.isReachable == true {
                        self.wcSession?.sendMessage(message, replyHandler: { (reply: [String : Any]) -> Void in
-                           guard let result = reply["result"] else { return }
+                           //guard let result = reply["result"] else { return }
                            //print("InterfaceController reply result")
                            //print(result)
                            
@@ -918,18 +998,19 @@ extension InterfaceController: HeartRateDelegate {
                                //print(" InterfaceController transferUserInfo send \(message)")
                            }else {
                                print(" InterfaceController error : \(error)")
+                               self.wcSession?.transferUserInfo(message)
                            }
                            
                        }
                    }
+            } else if self.wcSession != nil && self.wcSession?.activationState == .inactive  {
+                self.wcSession?.transferUserInfo(message)
             } else if let validSession = self.wcSession {
                 //let data: [String: Any] = ["logincheck": "No" as Any]
                 //UserDefaults.standard.set("No" , forKey: "logincheck")
                 validSession.transferUserInfo(message)
 
-            } else if self.wcSession != nil && self.wcSession?.activationState == .inactive  {
-                self.wcSession?.transferUserInfo(message)
-            }else {
+            } else {
                self.wcSession?.transferUserInfo(message)
             }
                   

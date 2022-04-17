@@ -32,6 +32,8 @@ class ResultWorkoutInterfaceController: WKInterfaceController, WCSessionDelegate
     var resultCalVal:String?
     var resultScoreCountVal:String?
     var resultMetersVal:String?
+    
+    //let fileManager = FileManager.default
 
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
@@ -66,12 +68,50 @@ class ResultWorkoutInterfaceController: WKInterfaceController, WCSessionDelegate
         //print("resultScoreCountVal  : \(String(describing: self.resultScoreCountVal))")
         //print("resultHeartRateVal   : \(String(describing: self.resultHeartRateVal))")
         //print("resultMetersVal      : \(String(describing: self.resultMetersVal))")
+        /*
+        let documentURL = fileManager.urls(for: .cachesDirectory, in: .userDomainMask)[0]
+        let directoryURL = documentURL.appendingPathComponent("PALPITODIR")
+        if !fileManager.fileExists(atPath: directoryURL.path) {
+            do {
+                try fileManager.createDirectory(atPath: directoryURL.path, withIntermediateDirectories: true, attributes: nil)
+            } catch {
+                NSLog("ERROR")
+            }
+            
+            // 1. 파일 쓰는 기능 추가
+            let fileURL = directoryURL.appendingPathComponent("palpito_user.txt")
+            
+            let text = NSString(string: "result")
+            
+            try? text.write(to: fileURL, atomically: true, encoding: String.Encoding.utf8.rawValue)
+            
+            // 2. 파일 읽기 기능 추가
+            do {
+                // 파일 이름을 기존의 경로에 추가
+                let helloPath = fileURL.appendingPathComponent("palpito_user.txt")
+
+                // 내용 읽기
+                let text2 = try String(contentsOf: helloPath, encoding: .utf8)
+
+                print(text2)
+            }
+            catch let error as NSError {
+                print("Error Reading File : \(error.localizedDescription)")
+            }
+            
+        }else {
+            // 기존 파일 경로가 존재하면
+            // 기존에 파일을 쓰고 처리하는 기능을 새로 구현해야함.
+            // 여러가지 조건, 분기처리 경우의 수를 경험으로 감지하며
+            // 구현해야함.
+            
+            
+        }
+         */
         
         let resultMsg = ["resultEndTimeVal":resultEndTimeVal, "resultCalVal":resultCalVal, "resultScoreCountVal":resultScoreCountVal, "resultHeartRateVal": self.resultHeartRateVal, "resultMetersVal": self.resultMetersVal]
         
         self.tryWatchSendMessage(message: resultMsg as [String : Any])
-        //wcSession?.transferUserInfo(resultMsg as [String : Any])
-        //wcSession?.sendMessage(resultMsg as [String : Any], replyHandler: nil, errorHandler: nil)
         
         self.resultEndTimer.setText(self.resultEndTimeVal)
         self.resultCalText.setText(self.resultCalVal)
@@ -115,10 +155,27 @@ class ResultWorkoutInterfaceController: WKInterfaceController, WCSessionDelegate
         backToMainTabSendData = ["backToMainTab":"true"]
         
         self.tryWatchSendMessage(message: backToMainTabSendData! as [String : Any])
-        //wcSession?.sendMessage(backToMainTabSendData!, replyHandler: nil, errorHandler: nil)
-        //wcSession?.transferUserInfo(backToMainTabSendData!)
         
         // backToMainTabSendData?.removeAll()
+        
+        // 파일 내용 전달하는 기능 구현
+        // 상상 코딩하기
+        // 행동 수집 구간 조건을 처리 잘 처리하기
+        /*
+        let documentURL = fileManager.urls(for: .cachesDirectory, in: .userDomainMask)[0]
+        let directoryURL = documentURL.appendingPathComponent("PALPITODIR")
+        
+        // 보낼시에 처리하는 과정은 추후에 고민하면서 구현하기 
+        if fileManager.fileExists(atPath: directoryURL.path) {
+            let fileURL = directoryURL.appendingPathComponent("palpito_user.txt")
+            
+            var transContext:[String:String]?
+            transContext = ["transfile":"test"]
+            
+            wcSession?.transferFile(fileURL, metadata: transContext) // 보내는 구간
+        }
+        
+        */
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.popToRootController()

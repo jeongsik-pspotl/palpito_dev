@@ -23,22 +23,67 @@ class StandByWorkoutInterfaceController: WKInterfaceController, WCSessionDelegat
     var launchWatchAppVal:String?
     
     let healthStore = HKHealthStore()
+    //let fileManager = FileManager.default
     
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
         self.setTitle("1")
         // 여기서 강도 설정 값을 받을지..
         
-        // event | erro log 수집 기능 구현
-        // 11 일에는 수집하는 구간만 소스 코드 작성하고
-        // 12일에는 테스트 해보고
-        // 13일에는 event 구간 완료
-        // 15일에는 유저 기반으로 수정하고
-        // 16일에는 한싸이클 테스트 해보고
-        // 17일에는.. 이전에 해야할 테스크 해보고 정해보기..
-        //let fileManager = FileManager.default
-        //let documentURL = self.fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
-        //let directoryURL = documentURL.appendingPathComponent("NewDirectory")
+        // event | error log 수집 기능 구현
+        // directory 생성 단계
+        /*
+        let documentURL = fileManager.urls(for: .cachesDirectory, in: .userDomainMask)[0]
+        let directoryURL = documentURL.appendingPathComponent("PALPITODIR")
+        if !fileManager.fileExists(atPath: directoryURL.path) {
+            do {
+                try fileManager.createDirectory(atPath: directoryURL.path, withIntermediateDirectories: true, attributes: nil)
+            } catch {
+                NSLog("ERROR")
+            }
+            
+            // 1. 파일 쓰는 기능 추가
+            let fileURL = directoryURL.appendingPathComponent("palpito_user.txt")
+            
+            let text = NSString(string: "green")
+            
+            try? text.write(to: fileURL, atomically: true, encoding: String.Encoding.utf8.rawValue)
+            
+            // 2. 파일 읽기 기능 추가
+            do {
+                // 파일 이름을 기존의 경로에 추가
+                let helloPath = fileURL.appendingPathComponent("palpito_user.txt")
+
+                // 내용 읽기
+                let text2 = try String(contentsOf: helloPath, encoding: .utf8)
+
+                print(text2)
+            }
+            catch let error as NSError {
+                print("Error Reading File : \(error.localizedDescription)")
+            }
+            
+        }
+         */
+        /*
+        기본 기능 구현 하는데 필요한 소스 코드 찾았음
+         해당 기능들 조합해서
+         읽고 쓰고 다시 붙이는 기능을 구현해야함.
+         
+         이번주에 가능할때 붙이는 작업을 진행하고
+         만들면서 디버깅도 하고
+         애플워치에서 작업이 다되고
+         파일 전송하고
+         저장하고
+         파일 다시 읽고
+         파싱한 다음
+         파이어베이스로 전송하고
+         이 기능이 완료하고 나서
+         
+         */
+        // 3. 여러번 반복 그외 기능 ...
+        
+        // 그외 기능 세부 적으로 검토하거나 분석 설계 작업이 필요함..
         
 //        WCSession.deac
         if WCSession.isSupported() {
@@ -104,7 +149,7 @@ class StandByWorkoutInterfaceController: WKInterfaceController, WCSessionDelegat
     
     // 백그라운드 처리 전환 작업 소스 시작 지점
     func session(_ session: WCSession, didReceiveUserInfo userInfo: [String : Any] = [:]) {
-        DispatchQueue.main.async {
+        DispatchQueue.global().async {
             if let logincheckInfo = userInfo["logincheck"] as? String {
                 loginCheck = "\(logincheckInfo)"
             }
@@ -124,11 +169,12 @@ class StandByWorkoutInterfaceController: WKInterfaceController, WCSessionDelegat
     }
 
     func handlesSession(_ session: WCSession, didReceiveMessage message: [String: Any], replyHandler: (([String: Any]) -> Void)? = nil) {
-        
-        if let logincheckInfo = message["logincheck"] as? String {
+        DispatchQueue.global().async {
+            if let logincheckInfo = message["logincheck"] as? String {
                 print(" data check : \(logincheckInfo)")
                 loginCheck = logincheckInfo
             }
+        }
 
         
 
@@ -143,7 +189,11 @@ class StandByWorkoutInterfaceController: WKInterfaceController, WCSessionDelegat
     // 운동 화면으로 이동
     func workoutSendMainInterface(MyStageLvl: String){
         
-        
+        // directory 생성 단계
+        /*
+        let documentURL = fileManager.urls(for: .cachesDirectory, in: .userDomainMask)[0]
+        let directoryURL = documentURL.appendingPathComponent("PALPITODIR")
+        */
         
         var context:[String:String]?
         context = ["MyStageLvl": MyStageLvl]
@@ -165,6 +215,37 @@ class StandByWorkoutInterfaceController: WKInterfaceController, WCSessionDelegat
             presentAlert(withTitle: "팔피토 앱 로그인 필요", message: "팔피토 앱 로그인 해주세요.", preferredStyle: .alert, actions: [action1])
             return
         }
+        /*
+        if !fileManager.fileExists(atPath: directoryURL.path) {
+            do {
+                try fileManager.createDirectory(atPath: directoryURL.path, withIntermediateDirectories: true, attributes: nil)
+            } catch {
+                NSLog("ERROR")
+            }
+            
+            // 1. 파일 쓰는 기능 추가
+            let fileURL = directoryURL.appendingPathComponent("palpito_user.txt")
+            
+            // 2. 파일 읽기 기능 추가
+            do {
+                // 파일 이름을 기존의 경로에 추가
+                let helloPath = fileURL.appendingPathComponent("palpito_user.txt")
+
+                // 내용 읽기
+                let text2 = try String(contentsOf: helloPath, encoding: .utf8)
+
+                print(text2)
+                
+                let text = NSString(string: text2 + "workout start")
+                
+                try? text.write(to: fileURL, atomically: true, encoding: String.Encoding.utf8.rawValue)
+            }
+            catch let error as NSError {
+                print("Error Reading File : \(error.localizedDescription)")
+            }
+            
+        }
+         */
         
         
 //        if(wcSession?.isReachable == true){
@@ -244,7 +325,7 @@ class StandByWorkoutInterfaceController: WKInterfaceController, WCSessionDelegat
                     if self.wcSession?.isReachable == true {
                         //replyHandler in 응답이 정상인 구간일 경우 다음 화면으로 넘어가는 기능을 구현해야함.
                         self.wcSession?.sendMessage(message, replyHandler: { (reply: [String : Any]) -> Void in
-                            guard let result = reply["result"] else { return }
+                            //guard let result = reply["result"] else { return }
                             //print("test reply result")
                             //print(result)
                             

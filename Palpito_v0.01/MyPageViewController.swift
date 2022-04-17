@@ -49,8 +49,8 @@ class MyPageViewController: UIViewController, WCSessionDelegate {
         super.viewDidLoad()
         
         // Locale.current.regionCode
-        print("Locale.current.languageCode")
-        print(Locale.current.languageCode)
+        //print("Locale.current.languageCode")
+        //print(Locale.current.languageCode)
         
         
         let scale = view.bounds.width / myPageView.bounds.width
@@ -160,22 +160,8 @@ class MyPageViewController: UIViewController, WCSessionDelegate {
                 
                 UserDefaults.standard.set("Yes" , forKey: "logincheck")
                 
+                tryWatchSendMessage(message: data)
                 
-//                if self.wcSession != nil && self.wcSession?.isReachable == true {
-//                    self.wcSession?.sendMessage(data, replyHandler: nil) { (error) -> Void in
-//                        print(" StartPopupController error : \(error)")
-//                                   // If the message failed to send, queue it up for future transfer
-//                                   //self.wcSession?.transferUserInfo(message)
-//                        self.wcSession?.transferCurrentComplicationUserInfo(data)
-//                            //self.wcSession?.transferUserInfo(data)
-//                        }
-//                } else if self.wcSession != nil && self.wcSession?.activationState == .inactive {
-//                    self.wcSession?.transferCurrentComplicationUserInfo(data)
-//                    //self.wcSession?.transferUserInfo(data)
-//                    // print("StartPopupController  isReachable \(String(describing: self.wcSession?.isReachable))")
-//                } else {
-//                    self.wcSession?.transferCurrentComplicationUserInfo(data)
-//                }
                                 
             }
         })
@@ -306,7 +292,7 @@ class MyPageViewController: UIViewController, WCSessionDelegate {
             
             if (message["StartWorkoutCall"] as? String) != nil {
                 //print("message StartWorkoutCall : \(msg)")
-                replyHandler!(["result":"success"])
+                // replyHandler!(["result":"success"])
                 let storyboard = UIStoryboard(name: "StartApp", bundle: nil).instantiateViewController(withIdentifier: "ReadyWorkoutViewController") as! ReadyWorkoutViewController
                 storyboard.modalPresentationStyle = .fullScreen
                 self.present(storyboard, animated: true, completion: nil)
@@ -394,45 +380,47 @@ class MyPageViewController: UIViewController, WCSessionDelegate {
     
     func tryWatchSendMessage(message: [String : Any]) {
         
-        if let validSession = self.wcSession {
-            //let data: [String: Any] = ["logincheck": "No" as Any]
-            //UserDefaults.standard.set("No" , forKey: "logincheck")
-            validSession.transferUserInfo(message)
-            
-        }
-        
-        if self.wcSession != nil && self.wcSession?.activationState == .activated {
-            if self.wcSession?.isReachable == true {
-                self.wcSession?.sendMessage(message, replyHandler: nil) { (error) -> Void in
-                             // If the message failed to send, queue it up for future transfer
-                             print(" StandByWorkoutInterfaceController error : \(error)")
-                             self.wcSession?.transferUserInfo(message)
-                }
-            }
-        }
-        
-//        else if self.wcSession != nil && self.wcSession?.activationState == .inactive  {
-//        
-//            self.wcSession?.transferUserInfo(message)
-//            do {
-//                try self.wcSession?.updateApplicationContext(message)
-//            } catch {
-//                
-//            }
-//        
-//        }else if self.wcSession != nil && self.wcSession?.activationState == .none {
-//            self.wcSession?.sendMessage(message, replyHandler: nil) { (error) -> Void in
-//                         // If the message failed to send, queue it up for future transfer
-//                         print(" StandByWorkoutInterfaceController error : \(error)")
-//                         self.wcSession?.transferUserInfo(message)
-//            }
-//        }else {
-//            self.wcSession?.sendMessage(message, replyHandler: nil) { (error) -> Void in
-//                         // If the message failed to send, queue it up for future transfer
-//                         print(" StandByWorkoutInterfaceController error : \(error)")
-//                         self.wcSession?.transferUserInfo(message)
+//        if let validSession = self.wcSession {
+//            //let data: [String: Any] = ["logincheck": "No" as Any]
+//            //UserDefaults.standard.set("No" , forKey: "logincheck")
+//            validSession.transferUserInfo(message)
+//
+//        }
+//
+//        if self.wcSession != nil && self.wcSession?.activationState == .activated {
+//            if self.wcSession?.isReachable == true {
+//                self.wcSession?.sendMessage(message, replyHandler: nil) { (error) -> Void in
+//                             // If the message failed to send, queue it up for future transfer
+//                             print(" StandByWorkoutInterfaceController error : \(error)")
+//                             self.wcSession?.transferUserInfo(message)
+//                }
 //            }
 //        }
+        
+        if WCSession.isSupported() {
+             if self.wcSession != nil && self.wcSession?.activationState == .activated {
+                    if self.wcSession?.isReachable == true {
+                        //replyHandler in 응답이 정상인 구간일 경우 다음 화면으로 넘어가는 기능을 구현해야함.
+                        self.wcSession?.sendMessage(message, replyHandler: { (reply: [String : Any]) -> Void in
+                            //guard let result = reply["result"] else { return }
+                            //print("test reply result")
+                            //print(result)
+                            self.wcSession?.transferUserInfo(message)
+                            
+                        }) { (error) -> Void in
+                            // If the message failed to send, queue it up for future transfer
+                            print(" StandByWorkoutInterfaceController error : \(error)")
+                            self.wcSession?.transferUserInfo(message)
+                            
+                        }
+                    }
+             } else if self.wcSession != nil && self.wcSession?.activationState == .inactive  {
+                 self.wcSession?.transferUserInfo(message)
+             }else {
+                self.wcSession?.transferUserInfo(message)
+             }
+        }
+        
             
     }
     

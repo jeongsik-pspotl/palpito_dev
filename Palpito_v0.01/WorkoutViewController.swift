@@ -29,6 +29,8 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
     let healthStore = HKHealthStore()
     var wcSessionActivationCompletion : ((WCSession)->Void)?
     
+    let workoutQueue = DispatchQueue(label: "workoutQueue", qos: .unspecified, attributes: .concurrent, autoreleaseFrequency: .inherit, target: nil)
+    
     var resultWorkoutArray = [ResultWorkOut]()
 
     let activityIndicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.large)
@@ -453,23 +455,23 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
     }
     
     func session(_ session: WCSession, didReceive file: WCSessionFile) {
-        DispatchQueue.main.async {
-            print(file)
-            
-            do {
-                
-                // 29일에 해당 구간 좀 더 구현할 방법 찾아보기
-                // try fileManager.createDirectory(at: <#T##URL#>, withIntermediateDirectories: <#T##Bool#>, attributes: <#T##[FileAttributeKey : Any]?#>)
-                
-                let strText = try String(contentsOf: file.fileURL, encoding: .utf8)
-                
-                print(strText)
-                
-            } catch let e {
-                print(e.localizedDescription)
-            }
-            
-        }
+//        DispatchQueue.main.async {
+//            print(file)
+//
+//            do {
+//
+//                // 29일에 해당 구간 좀 더 구현할 방법 찾아보기
+//                // try fileManager.createDirectory(at: <#T##URL#>, withIntermediateDirectories: <#T##Bool#>, attributes: <#T##[FileAttributeKey : Any]?#>)
+//
+//                let strText = try String(contentsOf: file.fileURL, encoding: .utf8)
+//
+//                print(strText)
+//
+//            } catch let e {
+//                print(e.localizedDescription)
+//            }
+//
+//        }
     }
     
     
@@ -588,7 +590,7 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
                 // 밖에 나와서 테스트 진행하기..
                 //self.activityIndicator.startAnimating()
                 
-                DispatchQueue.global().async {
+                DispatchQueue.global().sync {
                     //DispatchQueue.main.async {
                         
                         let ResultWorkOut = NSEntityDescription.entity(forEntityName: "ResultWorkOut", in: PersistenceService.context)
@@ -637,14 +639,15 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
                         
                         print("\(data)")
                         
-                        // 테스트 이후에 삭제하기
+                    DispatchQueue.global().async {
+                        
                         self.db.collection("user_exercise").document(user_exercise_key).setData(data) { err in
                             if let err = err {
                                 print("Error writing document: \(err)")
-                                Crashlytics.crashlytics().record(error: err)
+                                
                             } else {
                                 
-                                replyHandler!(["result":"success"])
+                                //replyHandler!(["result":"success"])
                                 
                                 // print("Document successfully written!")
                                 self.performSegue(withIdentifier: "resultWorkoutSegue", sender: self)
@@ -656,6 +659,9 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
                             }
                         }
 
+                        
+                    }
+                        
                         self.zoneMusicPlay?.stop()
                         self.zoneSoundPlay?.stop()
 
@@ -904,7 +910,7 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
         DispatchQueue.main.async {
             
             if let msg = userInfo["StringValueHeartRate"] as? String {
-                print("userInfo StringValueHeartRate : \(msg)")
+                //print("userInfo StringValueHeartRate : \(msg)")
                 self.heartRateText.text = "\(msg)"
             }
 
@@ -955,7 +961,7 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
             if let zoneStatusVoice = userInfo["zoneStatusTensionVoice"] as? String {
                 //print("userInfo zoneStatusTensionVoice : \(zoneStatusVoice)")
                 DispatchQueue.global().async {
-                    DispatchQueue.main.async {
+                    
                         
                         // zone 1 voice test
                         if zoneStatusVoice == "zone1Voice" {
@@ -992,7 +998,7 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
                                 #selector(self.zone45RecycleAction), userInfo: nil, repeats: false)
 
                         }
-                    }
+                    
                 }
 
             }
@@ -1026,7 +1032,8 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
             // if resultHeartRate start
             if self.resultHeartRate != nil {
                 
-                DispatchQueue.global().async {
+                DispatchQueue.global().sync {
+                    
                     //DispatchQueue.main.async {
                         
                         if self.resultTotalScore == nil || self.resultTotalScore == "" {
@@ -1092,9 +1099,10 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
     //                        self.present(storyboard, animated: true, completion: nil)
     //                    })
     //                })
-                        print("\(data)")
+                        //print("\(data)")
                         //Crashlytics.crashlytics().log(" result data \(data)")
                     // 테스트 이후에 삭제하기
+                    DispatchQueue.global().async {
                         self.db.collection("user_exercise").document(user_exercise_key).setData(data) { err in
                             if let err = err {
                                 print("Error writing document: \(err)")
@@ -1106,6 +1114,7 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
 
                             }
                         }
+                    }
                         
                         self.zoneMusicPlay?.stop()
                         self.zoneSoundPlay?.stop()
