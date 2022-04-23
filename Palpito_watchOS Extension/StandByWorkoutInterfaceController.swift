@@ -93,6 +93,12 @@ class StandByWorkoutInterfaceController: WKInterfaceController, WCSessionDelegat
             //wcSession?.finalize()
             //print("session \(String(describing: wcSession?.activationState.rawValue))")
             //print("session activate")
+            guard let session = self.wcSession else { return }
+                for transfer in session.outstandingUserInfoTransfers {
+                    transfer.cancel()
+                    
+                }
+            
         } else {
             //print("session error")
         }
@@ -119,6 +125,12 @@ class StandByWorkoutInterfaceController: WKInterfaceController, WCSessionDelegat
             //wcSession?.finalize()
             //print("session \(String(describing: wcSession?.activationState.rawValue))")
             //print("session activate")
+            guard let session = self.wcSession else { return }
+                for transfer in session.outstandingUserInfoTransfers {
+                    transfer.cancel()
+                    
+                }
+            
         } else {
             //print("session error")
         }
@@ -328,22 +340,30 @@ class StandByWorkoutInterfaceController: WKInterfaceController, WCSessionDelegat
                             //guard let result = reply["result"] else { return }
                             //print("test reply result")
                             //print(result)
+                            guard let session = self.wcSession else { return }
+                                for transfer in session.outstandingUserInfoTransfers {
+                                    transfer.cancel()
+                                    
+                                }
                             
                         }) { (error) -> Void in
                             // If the message failed to send, queue it up for future transfer
+                            
                             print(" StandByWorkoutInterfaceController error : \(error)")
-                            if error == nil {
-                                print(" StandByWorkoutInterfaceController error : \(error)")
-                                self.wcSession?.transferUserInfo(message)
-                            }else {
-                                print(" StandByWorkoutInterfaceController error : \(error)")
-                            }
+                            self.wcSession?.transferUserInfo(message)
+                            
                         }
                     }
              } else if self.wcSession != nil && self.wcSession?.activationState == .inactive  {
+                 guard let session = self.wcSession else { return }
+                     for transfer in session.outstandingUserInfoTransfers {
+                         transfer.cancel()
+                         
+                     }
+                 
                  self.wcSession?.transferUserInfo(message)
              }else {
-                self.wcSession?.transferUserInfo(message)
+                //self.wcSession?.transferUserInfo(message)
              }
         }
            

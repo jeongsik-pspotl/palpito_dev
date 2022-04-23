@@ -611,11 +611,19 @@ public class InterfaceController: WKInterfaceController, WCSessionDelegate {
             self!.resultscoreTimer = ""
     //        self.workItem?.cancel()
             
-                DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 5) { [self] in
                     self!.endWorkoutSession(Date())
+                    // self!.wcSession?.outstandingUserInfoTransfers.
+                    
                     self!.pushController(withName: "ResultWorkoutInterfaceController", context: context)
                     self!.palpiLoader.stopAnimating()
                     self!.palpiLoader.setHidden(true)
+                
+                    guard let session = self!.wcSession else { return }
+                        for transfer in session.outstandingUserInfoTransfers {
+                            transfer.cancel()
+                            
+                        }
                     
         //            context?.removeAll()
                 }
@@ -961,8 +969,10 @@ extension InterfaceController: HeartRateDelegate {
             }
              */
             
-            // transferUserInfo test...
+            
+            //DispatchQueue.global().async {
             self!.tryWatchSendMessage(message: msg as [String : Any])
+            //}
             //self.wcSession!.transferUserInfo(msg)
             //self.wcSession!.sendMessage(msg, replyHandler: nil, errorHandler: {error in //print(error.localizedDescription)})
             
@@ -989,29 +999,52 @@ extension InterfaceController: HeartRateDelegate {
                            //print("InterfaceController reply result")
                            //print(result)
                            
+                           
                        }) { (error) -> Void in
                            // If the message failed to send, queue it up for future transfer
-                           
-                           if error == nil {
-                               //print(" InterfaceController error : \(error)")
-                               self.wcSession?.transferUserInfo(message)
-                               //print(" InterfaceController transferUserInfo send \(message)")
-                           }else {
-                               print(" InterfaceController error : \(error)")
-                               self.wcSession?.transferUserInfo(message)
+                           DispatchQueue.main.async {
+                               guard let session = self.wcSession else { return }
+                                   for transfer in session.outstandingUserInfoTransfers {
+                                       
+                                       print(" workout interface error transfer : \(transfer.userInfo)")
+                                       transfer.cancel()
+                                       
+                                   }
+                               
+                               if error == nil {
+                                   //print(" InterfaceController error : \(error)")
+                                   // self.wcSession?.transferUserInfo(message)
+                                   //print(" InterfaceController transferUserInfo send \(message)")
+                               }else {
+                                   print(" InterfaceController error : \(error)")
+                                   //self.wcSession?.transferUserInfo(message)
+                               }
                            }
+                           
                            
                        }
                    }
             } else if self.wcSession != nil && self.wcSession?.activationState == .inactive  {
-                self.wcSession?.transferUserInfo(message)
-            } else if let validSession = self.wcSession {
+                DispatchQueue.main.async {
+                    guard let session = self.wcSession else { return }
+                        for transfer in session.outstandingUserInfoTransfers {
+                            print(" workout interface inactive transfer : \(transfer.userInfo)")
+                            transfer.cancel()
+                            
+                        }
+                    
+                    self.wcSession?.transferUserInfo(message)
+                }
+                
+            }
+            else if let validSession = self.wcSession {
                 //let data: [String: Any] = ["logincheck": "No" as Any]
                 //UserDefaults.standard.set("No" , forKey: "logincheck")
                 validSession.transferUserInfo(message)
 
-            } else {
-               self.wcSession?.transferUserInfo(message)
+            }
+            else {
+               // self.wcSession?.transferUserInfo(message)
             }
                   
         }else {
