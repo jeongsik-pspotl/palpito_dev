@@ -66,13 +66,13 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate, WCSessionDelegate {
     
     // 백그라운드 처리 전환 작업 소스 시작 지점
     func session(_ session: WCSession, didReceiveUserInfo userInfo: [String : Any] = [:]) {
-        DispatchQueue.main.async {
+//        DispatchQueue.main.async {
             if let logincheckInfo = userInfo["logincheck"] as? String {
-                //print("userInfo logincheck : \(logincheckInfo)")
+                print("userInfo logincheck : \(logincheckInfo)")
                 loginCheck = "\(logincheckInfo)"
             }
 
-        }
+//        }
     }
     
     func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String : Any]) {
@@ -98,12 +98,12 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate, WCSessionDelegate {
     }
 
     func handlesSession(_ session: WCSession, didReceiveMessage message: [String: Any], replyHandler: (([String: Any]) -> Void)? = nil) {
-        DispatchQueue.main.async {
+//        DispatchQueue.main.async {
             if let logincheckInfo = message["logincheck"] as? String {
                 //print(" data check : \(logincheckInfo)")
                 loginCheck = logincheckInfo
             }
-        }
+//        }
 
         
 

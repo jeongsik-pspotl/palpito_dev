@@ -99,6 +99,8 @@ class StandByWorkoutInterfaceController: WKInterfaceController, WCSessionDelegat
                     
                 }
             
+            
+            
         } else {
             //print("session error")
         }
@@ -112,6 +114,11 @@ class StandByWorkoutInterfaceController: WKInterfaceController, WCSessionDelegat
         // 파일을 쓰면서 처리하는 구간은 28일에 하는 걸로 ㅎ
         
         // Configure interface objects here.
+        //print(loginCheck)
+        if loginCheck == "No"{
+            let data: [String: Any] = ["logincheck": loginCheck as String]
+            tryWatchSendMessage(message: data)
+        }
     }
 
     override func willActivate() {
@@ -138,15 +145,18 @@ class StandByWorkoutInterfaceController: WKInterfaceController, WCSessionDelegat
         //let documentURL = self.fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
         //let directoryURL = documentURL.appendingPathComponent("NewDirectory")
         //let fileURL = directoryURL.appendingPathComponent("test.txt")
-        
+        if loginCheck == "No"{
+            let data: [String: Any] = ["logincheck": loginCheck as String]
+            tryWatchSendMessage(message: data)
+        }
         
     }
     
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
-        print("StandByWorkoutInterfaceController session \(session) activationDidCompleteWith activationState:\(activationState) error:\(String(describing: error))")
+        //print("StandByWorkoutInterfaceController session \(session) activationDidCompleteWith activationState:\(activationState) error:\(String(describing: error))")
         
         if let error = error {
-            print("\(error)")
+            //print("\(error)")
         }
     }
     
@@ -154,6 +164,10 @@ class StandByWorkoutInterfaceController: WKInterfaceController, WCSessionDelegat
         if let logincheckInfo = applicationContext["logincheck"] as? String {
             
             loginCheck = "\(logincheckInfo)"
+            if loginCheck == "No"{
+                let data: [String: Any] = ["logincheck": loginCheck as String]
+                tryWatchSendMessage(message: data)
+            }
         }
         
     }
@@ -161,11 +175,15 @@ class StandByWorkoutInterfaceController: WKInterfaceController, WCSessionDelegat
     
     // 백그라운드 처리 전환 작업 소스 시작 지점
     func session(_ session: WCSession, didReceiveUserInfo userInfo: [String : Any] = [:]) {
-        DispatchQueue.global().async {
+//        DispatchQueue.global().async {
             if let logincheckInfo = userInfo["logincheck"] as? String {
                 loginCheck = "\(logincheckInfo)"
+                if loginCheck == "No"{
+                    let data: [String: Any] = ["logincheck": loginCheck as String]
+                    tryWatchSendMessage(message: data)
+                }
             }
-        }
+//        }
     }
 
     func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
@@ -181,12 +199,16 @@ class StandByWorkoutInterfaceController: WKInterfaceController, WCSessionDelegat
     }
 
     func handlesSession(_ session: WCSession, didReceiveMessage message: [String: Any], replyHandler: (([String: Any]) -> Void)? = nil) {
-        DispatchQueue.global().async {
+//        DispatchQueue.global().async {
             if let logincheckInfo = message["logincheck"] as? String {
-                print(" data check : \(logincheckInfo)")
+                // print(" data check : \(logincheckInfo)")
                 loginCheck = logincheckInfo
+                if loginCheck == "No"{
+                    let data: [String: Any] = ["logincheck": loginCheck as String]
+                    tryWatchSendMessage(message: data)
+                }
             }
-        }
+//        }
 
         
 
@@ -349,7 +371,7 @@ class StandByWorkoutInterfaceController: WKInterfaceController, WCSessionDelegat
                         }) { (error) -> Void in
                             // If the message failed to send, queue it up for future transfer
                             
-                            print(" StandByWorkoutInterfaceController error : \(error)")
+                            // print(" StandByWorkoutInterfaceController error : \(error)")
                             self.wcSession?.transferUserInfo(message)
                             
                         }
@@ -363,7 +385,7 @@ class StandByWorkoutInterfaceController: WKInterfaceController, WCSessionDelegat
                  
                  self.wcSession?.transferUserInfo(message)
              }else {
-                //self.wcSession?.transferUserInfo(message)
+                self.wcSession?.transferUserInfo(message)
              }
         }
            

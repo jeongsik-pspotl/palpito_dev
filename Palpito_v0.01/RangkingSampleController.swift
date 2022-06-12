@@ -250,7 +250,7 @@ class RangkingSampleController: UIViewController, UITableViewDataSource, UITable
         // print("getAllUser start ")
         db.collection("user_info").getDocuments { (querySnapshot, err) in
             if let err = err {
-                print("Error getting documents: \(err)")
+                //print("Error getting documents: \(err)")
             } else {
                 //print("\(querySnapshot)")
                 var oneExerciseDic:Dictionary<String, Any> = [:]
@@ -287,7 +287,7 @@ class RangkingSampleController: UIViewController, UITableViewDataSource, UITable
                     var score = [Int]()
                     var oneUserExerciseDic:Dictionary<String, Any> = [:]
                     if let err = err {
-                        print("Error getting documents: \(err)")
+                        //print("Error getting documents: \(err)")
                     } else {
                         
                         for document in querySnapshot!.documents {

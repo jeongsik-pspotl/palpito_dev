@@ -159,9 +159,12 @@ class MyPageViewController: UIViewController, WCSessionDelegate {
                 let data: [String: Any] = ["logincheck": "Yes" as String]
                 
                 UserDefaults.standard.set("Yes" , forKey: "logincheck")
-                
+//                /print("login check data :  \(data)")
                 tryWatchSendMessage(message: data)
                 
+                do {
+                    try wcSession?.updateApplicationContext(data)
+                } catch { }
                                 
             }
         })
@@ -213,9 +216,9 @@ class MyPageViewController: UIViewController, WCSessionDelegate {
         
         tryWatchSendMessage(message: data)
         //tryWatchSendMessage(message: data)
-//        do {
-//            try session!.updateApplicationContext(stageLevelSendMsg)
-//        } catch { }
+        do {
+            try wcSession?.updateApplicationContext(data)
+        } catch { }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -282,12 +285,22 @@ class MyPageViewController: UIViewController, WCSessionDelegate {
     }
     
     func handlesSession(_ session: WCSession, didReceiveMessage message: [String: Any], replyHandler: (([String: Any]) -> Void)? = nil) {
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [self] in
             
             if let msg = message["MyStageLvl"] as? String {
                 //print("userInfo message : \(msg)")
                 UserDefaults.standard.set(msg, forKey: "myStage")
             
+            }
+            
+            if let loginMessage = message["logincheck"] as? String {
+                //print("\(loginMessage)")
+                if loginMessage == "No" {
+                    let loginUserData = UserDefaults.standard.string(forKey: "logincheck")
+                    
+                    let data: [String: Any] = ["logincheck": loginUserData! as String]
+                    self.tryWatchSendMessage(message: data)
+                }
             }
             
             if (message["StartWorkoutCall"] as? String) != nil {
@@ -327,6 +340,16 @@ class MyPageViewController: UIViewController, WCSessionDelegate {
                 
                 UserDefaults.standard.set(msg, forKey: "myStage")
             
+            }
+            
+            if let loginMessage = userInfo["logincheck"] as? String {
+                //print("\(loginMessage)")
+                if loginMessage == "No" {
+                    let loginUserData = UserDefaults.standard.string(forKey: "logincheck")
+                    
+                    let data: [String: Any] = ["logincheck": loginUserData! as String]
+                    self.tryWatchSendMessage(message: data)
+                }
             }
             
             if (userInfo["StartWorkoutCall"] as? String) != nil {
@@ -419,6 +442,8 @@ class MyPageViewController: UIViewController, WCSessionDelegate {
              }else {
                 self.wcSession?.transferUserInfo(message)
              }
+        }else {
+            self.wcSession?.transferUserInfo(message)
         }
         
             

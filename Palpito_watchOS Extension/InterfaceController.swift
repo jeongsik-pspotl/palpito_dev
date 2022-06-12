@@ -1006,7 +1006,7 @@ extension InterfaceController: HeartRateDelegate {
                                guard let session = self.wcSession else { return }
                                    for transfer in session.outstandingUserInfoTransfers {
                                        
-                                       print(" workout interface error transfer : \(transfer.userInfo)")
+                                       //print(" workout interface error transfer : \(transfer.userInfo)")
                                        transfer.cancel()
                                        
                                    }
@@ -1016,7 +1016,7 @@ extension InterfaceController: HeartRateDelegate {
                                    // self.wcSession?.transferUserInfo(message)
                                    //print(" InterfaceController transferUserInfo send \(message)")
                                }else {
-                                   print(" InterfaceController error : \(error)")
+                                   //print(" InterfaceController error : \(error)")
                                    //self.wcSession?.transferUserInfo(message)
                                }
                            }
@@ -1028,7 +1028,7 @@ extension InterfaceController: HeartRateDelegate {
                 DispatchQueue.main.async {
                     guard let session = self.wcSession else { return }
                         for transfer in session.outstandingUserInfoTransfers {
-                            print(" workout interface inactive transfer : \(transfer.userInfo)")
+                            //print(" workout interface inactive transfer : \(transfer.userInfo)")
                             transfer.cancel()
                             
                         }

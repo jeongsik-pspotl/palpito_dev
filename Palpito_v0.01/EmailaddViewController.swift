@@ -144,7 +144,7 @@ class EmailAddViewController: ExtensionVC, UITextFieldDelegate  {
             birthText = birthTextField.text ?? ""
             guard birthTextField.text != nil else {
                 
-                print(birthText)
+                //print(birthText)
                 let alert = UIAlertController(title: "Failed to sign up", message: "Please enter your birth date.", preferredStyle: UIAlertController.Style.alert)
                 let defaultAction = UIAlertAction(title: "OK", style: .destructive, handler : nil)
                 alert.addAction(defaultAction)
@@ -509,7 +509,7 @@ class EmailAddViewController: ExtensionVC, UITextFieldDelegate  {
          (providers, error) in
 
          if let error = error {
-          print(error.localizedDescription)
+          //print(error.localizedDescription)
          } else if providers != nil {
             //print(providers)
             if self.languageCode == "ko" {

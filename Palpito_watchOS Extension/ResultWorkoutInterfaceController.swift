@@ -201,12 +201,12 @@ class ResultWorkoutInterfaceController: WKInterfaceController, WCSessionDelegate
                         
                     }) { (error) -> Void in
                         // If the message failed to send, queue it up for future transfer
-                        print(" ResultWorkoutInterfaceController error : \(error)")
+                        //print(" ResultWorkoutInterfaceController error : \(error)")
                         if error == nil {
                             //print(" ResultWorkoutInterfaceController error : \(error)")
                             self.wcSession?.transferUserInfo(message)
                         }else {
-                            print(" ResultWorkoutInterfaceController error : \(error)")
+                            //print(" ResultWorkoutInterfaceController error : \(error)")
                         }
                         
                     }
