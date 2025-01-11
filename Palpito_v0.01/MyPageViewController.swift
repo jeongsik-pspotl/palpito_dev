@@ -32,6 +32,9 @@ class MyPageViewController: UIViewController, WCSessionDelegate {
     var totalcalBurn = "0"
     var todayScoreVal = "0"
     
+    let now = Date()
+    let formatter = DateFormatter()
+    
     weak var wcSession:WCSession?
     
     @IBOutlet weak var myStageLevelButton: UIButton!
@@ -40,6 +43,7 @@ class MyPageViewController: UIViewController, WCSessionDelegate {
     @IBOutlet weak var toDayActivityEnergyBurnedGoal: UILabel!
     @IBOutlet weak var myPageView: UIView!
     @IBOutlet weak var userNickName: UILabel!
+    @IBOutlet weak var newDateView: UILabel!
     
     deinit {
         //print("deinit mypage")
@@ -52,6 +56,9 @@ class MyPageViewController: UIViewController, WCSessionDelegate {
         //print("Locale.current.languageCode")
         //print(Locale.current.languageCode)
         
+        formatter.dateFormat = "yyyy.MM.dd (E) a h시 mm분"
+        let result = formatter.string(from: now)
+        newDateView.text = result
         
         let scale = view.bounds.width / myPageView.bounds.width
         
@@ -224,10 +231,12 @@ class MyPageViewController: UIViewController, WCSessionDelegate {
     override func viewDidAppear(_ animated: Bool) {
         
         //print("load did appear??")
-        let storyBoard: UIStoryboard = UIStoryboard(name: "StartApp", bundle: nil)
-        let vc = storyBoard.instantiateViewController(withIdentifier: "StartPopup") as! StartPopupController
-        vc.modalPresentationStyle = .overCurrentContext
-        self.present(vc, animated: true, completion: nil)
+        //TODO : 테스트완료 되면 삭제 하기
+        /** let storyBoard: UIStoryboard = UIStoryboard(name: "StartApp", bundle: nil)
+            let vc = storyBoard.instantiateViewController(withIdentifier: "StartPopup") as! StartPopupController
+            vc.modalPresentationStyle = .overCurrentContext
+            self.present(vc, animated: true, completion: nil)
+         */
         
     }
     
@@ -239,6 +248,14 @@ class MyPageViewController: UIViewController, WCSessionDelegate {
     override func viewDidDisappear(_ animated: Bool){
         //session = nil
         //print("load did viewDidDisappear??")
+    }
+    
+    @IBAction func onPalpiStartBtnAction(){
+        print("test start")
+        let storyBoard: UIStoryboard = UIStoryboard(name: "StartApp", bundle: nil)
+        let vc = storyBoard.instantiateViewController(withIdentifier: "StartPopup") as! StartPopupController
+        vc.modalPresentationStyle = .overCurrentContext
+        self.present(vc, animated: true, completion: nil)
     }
     
     @IBAction func onMyStageSettingAction() {

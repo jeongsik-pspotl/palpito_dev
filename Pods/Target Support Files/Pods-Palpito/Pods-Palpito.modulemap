@@ -1,4 +1,4 @@
-framework module Pods_Palpito {
+module Pods_Palpito {
   umbrella header "Pods-Palpito-umbrella.h"
 
   export *

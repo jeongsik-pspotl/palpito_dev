@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseAuth
+import Firebase
 import WatchConnectivity
 
 @available(iOS 13.4, *)
@@ -28,14 +29,15 @@ class SettingViewController: UITableViewController, WCSessionDelegate {
     }
     
     
+    var db: Firestore!
     
     //var list = [MovieVO]()
     var dataset = [
-        ("계정 정보"),("개인 정보 공개 범위"),("로그아웃")
+        ("계정 정보"),("개인 정보 공개 범위"),("로그아웃"),("탈퇴")
     ]
     
     var datasetEng = [
-        ("Account Information"),("Scope of disclosure of personal information"),("Log out")
+        ("Account Information"),("Scope of disclosure of personal information"),("Log out"),("Secession")
     ]
     
     var languageCode = Locale.current.languageCode
@@ -96,6 +98,8 @@ class SettingViewController: UITableViewController, WCSessionDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        db = Firestore.firestore()
         
         if WCSession.isSupported() {
             session = WCSession.default
@@ -198,6 +202,80 @@ class SettingViewController: UITableViewController, WCSessionDelegate {
                 self.present(storyboard, animated: true, completion: nil)
             }
             
+            if row.title == "탈퇴" {
+                let alert = UIAlertController(title: "탈퇴", message: "탈퇴 하시겠습니까?", preferredStyle: UIAlertController.Style.alert)
+                let defaultAction = UIAlertAction(title: "OK", style: .destructive) { (alert) in
+                    
+                    let firebaseAuth = Auth.auth().currentUser
+                    
+                    do {
+                        
+                        let userKey = firebaseAuth?.uid
+                        self.db.collection("user_exercise").document(userKey!).delete(){ err in
+                            if let err = err {
+                                print("Error removing document: \(err)")
+                            } else {
+                                
+                                
+                                
+                            }
+                            
+                        }
+                        
+                        self.db.collection("user_info").document(userKey!).delete(){
+                            err in
+                                if let err = err {
+                                    print("Error removing document: \(err)")
+                                } else {
+                                    
+                                    
+                                    
+                                }
+                        }
+                        
+                        
+                        
+                        firebaseAuth?.delete { error in
+                          if let error = error {
+                            // An error happened.
+                              print(error.localizedDescription)
+                          } else {
+                            // Account deleted.
+                              UserDefaults.standard.set("notSelected", forKey: "isAutoLoginCheck")
+                              
+                              if let validSession = self.session {
+                                  let data: [String: Any] = ["logincheck": "No" as Any]
+                                  UserDefaults.standard.set("No" , forKey: "logincheck")
+                                  validSession.transferUserInfo(data)
+                                  
+                              }
+                              
+                              // self.dismiss(animated: true, completion: nil)
+                              let storyboard = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "StartViewSb") as! ViewController
+                              storyboard.modalPresentationStyle = .fullScreen
+                              self.present(storyboard, animated: true, completion: nil)
+                              self.view.removeFromSuperview()
+                          }
+                        }
+
+                        // 로그인 화면 이동..
+                        
+
+                    } catch let sesscionError as NSError {
+                      print ("Error signing out: %@", sesscionError)
+                    }
+                }
+                // 예 하면 탈퇴 하면서
+                
+                // 로그인 화면으로 이동
+                
+                let cancelAction = UIAlertAction(title: "CANCEL", style: .cancel, handler : nil)
+                alert.addAction(cancelAction)
+                alert.addAction(defaultAction)
+                present(alert, animated: false, completion: nil)
+            }
+            
+            
         } else {
             let row = self.listEng[indexPath.row]
             
@@ -254,6 +332,77 @@ class SettingViewController: UITableViewController, WCSessionDelegate {
                 storyboard.modalPresentationStyle = .fullScreen
                 self.present(storyboard, animated: true, completion: nil)
             }
+            
+            if row.title == "Secession" {
+                let alert = UIAlertController(title: "Secession", message: "do you want to Secession?", preferredStyle: UIAlertController.Style.alert)
+                let defaultAction = UIAlertAction(title: "OK", style: .destructive) { (alert) in
+                    let firebaseAuth = Auth.auth().currentUser
+                    
+                    do {
+                        
+                        let userKey = firebaseAuth?.uid
+                        self.db.collection("user_exercise").document(userKey!).delete(){ err in
+                            if let err = err {
+                                print("Error removing document: \(err)")
+                            } else {
+                                
+                                
+                                
+                            }
+                            
+                        }
+                        
+                        self.db.collection("user_info").document(userKey!).delete(){
+                            err in
+                                if let err = err {
+                                    print("Error removing document: \(err)")
+                                } else {
+                                    
+                                    
+                                    
+                                }
+                        }
+                        
+                        firebaseAuth?.delete { error in
+                          if let error = error {
+                            // An error happened.
+                              print(error.localizedDescription)
+                          } else {
+                            // Account deleted.
+                              UserDefaults.standard.set("notSelected", forKey: "isAutoLoginCheck")
+                              
+                              if let validSession = self.session {
+                                  let data: [String: Any] = ["logincheck": "No" as Any]
+                                  UserDefaults.standard.set("No" , forKey: "logincheck")
+                                  validSession.transferUserInfo(data)
+                                  
+                              }
+                              
+                              // self.dismiss(animated: true, completion: nil)
+                              let storyboard = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "StartViewSb") as! ViewController
+                              storyboard.modalPresentationStyle = .fullScreen
+                              self.present(storyboard, animated: true, completion: nil)
+                              self.view.removeFromSuperview()
+                          }
+                        }
+
+                        // 로그인 화면 이동..
+                        
+
+                    } catch let sesscionError as NSError {
+                      print ("Error signing out: %@", sesscionError)
+                    }
+                }
+                // 예 하면 탈퇴 하면서
+                
+                // 로그인 화면으로 이동
+                
+                let cancelAction = UIAlertAction(title: "CANCEL", style: .cancel, handler : nil)
+                alert.addAction(cancelAction)
+                alert.addAction(defaultAction)
+                present(alert, animated: false, completion: nil)
+            }
+            
             
         }
         

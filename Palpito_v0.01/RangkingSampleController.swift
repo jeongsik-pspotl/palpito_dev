@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 import Firebase
-import FirebaseFirestore
+import FirebaseFirestoreSwift
 
 
 class TableHeader: UITableViewHeaderFooterView {

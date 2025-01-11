@@ -9,7 +9,9 @@
 		<string>health-records</string>
 	</array>
 	<key>com.apple.security.application-groups</key>
-	<array/>
+	<array>
+		<string>group.xyz.palpito.userStatusInfo</string>
+	</array>
 	<key>keychain-access-groups</key>
 	<array>
 		<string>$(AppIdentifierPrefix)xyz.palpito.dev.app</string>

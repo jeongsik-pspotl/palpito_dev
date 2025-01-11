@@ -1,4 +1,4 @@
-framework module Pods_Palpito_watchOS_Extension {
+module Pods_Palpito_watchOS_Extension {
   umbrella header "Pods-Palpito_watchOS Extension-umbrella.h"
 
   export *

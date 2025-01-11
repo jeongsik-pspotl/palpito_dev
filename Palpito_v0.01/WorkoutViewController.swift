@@ -14,7 +14,7 @@ import AVFoundation
 import CoreData
 import Firebase
 import FirebaseDatabase
-import FirebaseFirestore
+import FirebaseFirestoreSwift
 //import FirebaseFirestoreSwift
 
 class WorkoutViewController: UIViewController, WCSessionDelegate {
@@ -1074,7 +1074,7 @@ class WorkoutViewController: UIViewController, WCSessionDelegate {
                                 "today_workout_count" : self.resultWorkoutArray.count + 1,
                                 "result_total_time" : self.resultTotalTime!,
                                 "result_send_today" : self.resultSendToday,
-                                "result_meters" : ""
+                                "result_meters" : self.resultMetersVal
 
                         ]
                         

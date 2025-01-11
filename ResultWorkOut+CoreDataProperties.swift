@@ -26,4 +26,5 @@ extension ResultWorkOut {
     @NSManaged public var totalScore: String?
     @NSManaged public var totalWorkOutTime: String?
 
+
 }

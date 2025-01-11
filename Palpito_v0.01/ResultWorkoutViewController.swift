@@ -11,7 +11,7 @@ import WatchConnectivity
 import CoreData
 import Firebase
 import FirebaseDatabase
-import FirebaseFirestore
+import FirebaseFirestoreSwift
 
 class ResultWorkoutViewController: UIViewController, WCSessionDelegate {
 
@@ -20,6 +20,8 @@ class ResultWorkoutViewController: UIViewController, WCSessionDelegate {
     @IBOutlet weak var resultTotalTimeText: UILabel!
     @IBOutlet weak var resultTotalScoreText: UILabel!
     @IBOutlet weak var resultWorkoutView: UIView!
+    @IBOutlet weak var resultTotalMeterText: UILabel!
+    @IBOutlet weak var resultNowDateTimeText: UILabel!
     
     weak var session:WCSession?
     
@@ -29,12 +31,14 @@ class ResultWorkoutViewController: UIViewController, WCSessionDelegate {
     var db : Firestore!
     
     let today = Date()
+    let formatter = DateFormatter()
     var stageLevel = ""
     var resultSendToday:String = ""
     var avgHeartRate: String?
     var totalWorkOutTime: String?
     var totalcalBurn: String?
     var totalScore: String?
+    var totalMeter: String?
     
     deinit {
         //print("deinit ResultWorkout...")
@@ -74,6 +78,10 @@ class ResultWorkoutViewController: UIViewController, WCSessionDelegate {
         let fetchRequest: NSFetchRequest<ResultWorkOut> = ResultWorkOut.fetchRequest()
         let predicate = NSPredicate(format: "todayDate == %@", self.resultSendToday)
         
+        formatter.dateFormat = "yyyy.MM.dd(E) a h시 mm분"
+        let result = formatter.string(from: today)
+        resultNowDateTimeText.text = result
+        
         request.returnsObjectsAsFaults = false
         fetchRequest.predicate = predicate
         
@@ -89,6 +97,7 @@ class ResultWorkoutViewController: UIViewController, WCSessionDelegate {
                 totalWorkOutTime = data.value(forKey: "totalWorkOutTime") as? String
                 totalcalBurn = data.value(forKey: "totalcalBurn") as? String
                 totalScore = data.value(forKey: "totalScore") as? String
+                totalMeter = data.value(forKey: "avgSpeedHour") as? String
                 
             }
             
@@ -107,6 +116,10 @@ class ResultWorkoutViewController: UIViewController, WCSessionDelegate {
             
             if totalScore != nil {
                 self.resultTotalScoreText.text = totalScore
+            }
+            
+            if totalMeter != nil {
+                self.resultTotalMeterText.text = totalMeter
             }
             
         } catch { }
@@ -197,6 +210,12 @@ class ResultWorkoutViewController: UIViewController, WCSessionDelegate {
                 self.resultTotalScoreText.text = "\(resultTotalScoreMsg)"
             }
             
+            if let resultTotalMeterMsg = message["resultMetersVal"] as? String {
+                self.resultTotalMeterText.text = "\(resultTotalMeterMsg)"
+                
+                
+            }
+            
             if (message["backToMainTab"] as? String) != nil {
                 replyHandler!(["result":"success"])
                 // db insert 구간
@@ -261,6 +280,14 @@ class ResultWorkoutViewController: UIViewController, WCSessionDelegate {
                 ////print("message resultScoreCountVal : \(resultTotalScoreMsg)")
                 self.resultTotalScoreText.text = "\(resultTotalScoreMsg)"
             }
+            
+            
+            if let resultTotalMeterMsg = userInfo["resultMetersVal"] as? String {
+                self.resultTotalMeterText.text = "\(resultTotalMeterMsg)"
+                
+                
+            }
+            // meter 값 추가해야함...
             
             if (userInfo["backToMainTab"] as? String) != nil {
                 

@@ -3,18 +3,38 @@
 
 target 'Palpito' do
   # Comment the next line if you don't want to use dynamic frameworks
-use_frameworks!
-pod 'LicensePlist'
+# use_frameworks!
+use_modular_headers!
+pod 'LicensePlist', :modular_headers => true
 #pod 'Carte'
-pod 'Firebase/Core'
-pod 'Firebase/Crashlytics'
-pod 'Firebase/Analytics'
-pod 'Firebase/Database'
-pod 'Firebase/Auth'
-pod 'GoogleSignIn'
-pod 'FirebaseFirestoreSwift'
-# Pods for Palpito
+pod 'Firebase/Core', :modular_headers => true
+pod 'FirebaseCoreInternal', :modular_headers => true
+pod 'Firebase/Crashlytics', :modular_headers => true
+pod 'Firebase/Analytics', :modular_headers => true
+pod 'Firebase/Database', :modular_headers => true
+pod 'Firebase/Auth', :modular_headers => true
+pod 'GoogleSignIn', :modular_headers => true
+pod 'GoogleUtilities', '~> 7.11'
+pod 'GoogleDataTransport', :modular_headers => true
+pod 'FirebaseFirestoreSwift', :modular_headers => true
+pod 'BoringSSL-GRPC', :modular_headers => false
+pod 'gRPC-Core' , :modular_headers => false
+# pod 'FirebaseFirestore', :git => 'https://github.com/invertase/firestore-ios-sdk-frameworks.git', :tag => '8.15.0'
 
+# Pods for Palpito
+# pod 'Firebase', :modular_headers => true
+# pod 'FirebaseCore', :modular_headers => true
+# pod 'FirebaseCoreInternal', :modular_headers => true  
+# pod 'FirebaseStorageInternal', :modular_headers => true
+# pod 'FirebaseCoreExtension', :modular_headers => true
+# pod 'FirebaseAppCheckInterop', :modular_headers => true
+# pod 'FirebaseAuthInterop', :modular_headers => true
+# pod 'FirebaseMessagingInterop', :modular_headers => true
+# pod 'GTMSessionFetcher', :modular_headers => true
+# pod 'FirebaseAppCheckInterop', :modular_headers => true
+# pod 'FirebaseAuthInterop', :modular_headers => true
+# pod 'GoogleUtilities', :modular_headers => true
+# pod 'FirebaseCoreInternal-library', :modular_headers => true
 
 end
 
@@ -40,9 +60,9 @@ end
 target 'Palpito_watchOS Extension' do
   # Comment the next line if you don't want to use dynamic frameworks
   #use_frameworks!
-
+  use_modular_headers!
+  #platform :watchos, '5.1'
   # Pods for Palpito_watchOS Extension
-
+  # pod 'FirebaseCore/watchOS', :modular_headers => true
+  pod 'Firebase/Crashlytics', :modular_headers => true
 end
-
-

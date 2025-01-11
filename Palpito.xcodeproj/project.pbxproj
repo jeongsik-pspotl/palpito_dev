@@ -3,41 +3,33 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		18443F616024F30248448ECD /* libPods-Palpito_watchOS Extension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 79309424A392F094463A7D0B /* libPods-Palpito_watchOS Extension.a */; };
-		7D314AC2B53F1F3DAF9CD2A1 /* Pods_Palpito.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74604709ABE3DEF0D72D3188 /* Pods_Palpito.framework */; };
-		ED081591B1FFD7949E38F123 /* libPods-Palpito_watchOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A104FC97EC4E36611B492C35 /* libPods-Palpito_watchOS.a */; };
+		22AC9291FF3C5456200E397B /* libPods-Palpito_watchOS Extension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 17A083D21258A3E4D2B4C885 /* libPods-Palpito_watchOS Extension.a */; };
+		3CB95292D7DA015C212FFC00 /* libPods-Palpito.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 024C810448FF8315C6F506F5 /* libPods-Palpito.a */; };
+		E1330FF444FFA47DC61AA54E /* libPods-Palpito_watchOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 982C102CFD024D1F4DD04D92 /* libPods-Palpito_watchOS.a */; };
 		F6009CA121E82D5A007DF73B /* palpito_Data.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F6009C9F21E82D5A007DF73B /* palpito_Data.xcdatamodeld */; };
-		F6009CA321E83755007DF73B /* ResultWorkoutInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6009CA221E83755007DF73B /* ResultWorkoutInterfaceController.swift */; };
 		F600BEDE218937C100116455 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F600BEDD218937C100116455 /* HealthKit.framework */; };
 		F600BEE62189382B00116455 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F600BEE42189382B00116455 /* Interface.storyboard */; };
 		F600BEE82189382D00116455 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F600BEE72189382D00116455 /* Assets.xcassets */; };
 		F600BEEF2189382D00116455 /* Palpito_watchOS Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = F600BEEE2189382D00116455 /* Palpito_watchOS Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		F600BEF42189382D00116455 /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F600BEF32189382D00116455 /* InterfaceController.swift */; };
-		F600BEF62189382D00116455 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F600BEF52189382D00116455 /* ExtensionDelegate.swift */; };
-		F600BEF82189382D00116455 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F600BEF72189382D00116455 /* NotificationController.swift */; };
-		F600BEFA2189382E00116455 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F600BEF92189382E00116455 /* Assets.xcassets */; };
 		F600BEFF2189382E00116455 /* Palpito_watchOS.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = F600BEE22189382B00116455 /* Palpito_watchOS.app */; };
 		F600BF0C2189400700116455 /* HealthKitSharedFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F600BF0B2189400700116455 /* HealthKitSharedFunction.swift */; };
 		F600BF0D2189400700116455 /* HealthKitSharedFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F600BF0B2189400700116455 /* HealthKitSharedFunction.swift */; };
-		F60183BA2296330800380C47 /* ResultRelaxInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60183B92296330800380C47 /* ResultRelaxInterfaceController.swift */; };
 		F60228E6221BE2940012BF46 /* DaliyWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60228E5221BE2940012BF46 /* DaliyWorkoutViewController.swift */; };
 		F60FEFCA21BE36CD00D4029B /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60FEFC921BE36CD00D4029B /* CustomNavigationController.swift */; };
 		F610219821FF0493006D821E /* ResultWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F610219721FF0493006D821E /* ResultWorkoutViewController.swift */; };
 		F6232506251726FA00EE2C88 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F6232505251726F900EE2C88 /* GoogleService-Info.plist */; };
 		F62788462201921D003B3540 /* MyStage+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62788442201921D003B3540 /* MyStage+CoreDataClass.swift */; };
 		F62788472201921D003B3540 /* MyStage+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62788452201921D003B3540 /* MyStage+CoreDataProperties.swift */; };
-		F62790FA21E879F3005E2155 /* StandByWorkoutInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62790F921E879F3005E2155 /* StandByWorkoutInterfaceController.swift */; };
 		F630D8A0222D7CD00062CB80 /* BackgroundWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F630D89F222D7CD00062CB80 /* BackgroundWorkoutViewController.swift */; };
 		F6339C02248360ED00EACAEE /* BpmInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6339C00248360ED00EACAEE /* BpmInfoController.swift */; };
 		F6339C052483614C00EACAEE /* BpmInfoController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6339C042483614C00EACAEE /* BpmInfoController.xib */; };
 		F650C0A0221151AE001823F7 /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69BE3872201887000B9C1CC /* PersistenceService.swift */; };
 		F65600CF21789F0700AF9C22 /* 2018-10-18 19.55.34.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F65600CE21789F0700AF9C22 /* 2018-10-18 19.55.34.jpg */; };
 		F65F87D6215DA7EB00E03BFE /* EmailAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65F87D5215DA7EB00E03BFE /* EmailAddViewController.swift */; };
-		F66C6E732294D94500621A20 /* RelaxInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F66C6E722294D94500621A20 /* RelaxInterfaceController.swift */; };
 		F672414A2189A29B00568038 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F600BEDD218937C100116455 /* HealthKit.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		F677EB1C21788B3C000AE332 /* 팔피토 로고.png in Resources */ = {isa = PBXBuildFile; fileRef = F677EB1B21788B3C000AE332 /* 팔피토 로고.png */; };
 		F67B2066215DB1CC0092077F /* AgeAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67B2065215DB1CC0092077F /* AgeAddViewController.swift */; };
@@ -69,6 +61,13 @@
 		F69F502622963AA800581B49 /* ResultRelaxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69F502522963AA800581B49 /* ResultRelaxViewController.swift */; };
 		F6B1861C24CBE1EB003C905D /* PrivateInfomationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B1861B24CBE1EB003C905D /* PrivateInfomationController.swift */; };
 		F6B1861E24CBE35A003C905D /* UserInfoSettingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B1861D24CBE35A003C905D /* UserInfoSettingController.swift */; };
+		F6B1B6062886F09300F26036 /* ResultRelaxInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B1B5FA2886F06C00F26036 /* ResultRelaxInterfaceController.swift */; };
+		F6B1B6072886F09300F26036 /* StandByWorkoutInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B1B5FB2886F06C00F26036 /* StandByWorkoutInterfaceController.swift */; };
+		F6B1B6082886F09300F26036 /* RelaxInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B1B5FC2886F06C00F26036 /* RelaxInterfaceController.swift */; };
+		F6B1B6092886F09C00F26036 /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B1B5FE2886F06C00F26036 /* InterfaceController.swift */; };
+		F6B1B60A2886F09C00F26036 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B1B6022886F06C00F26036 /* ExtensionDelegate.swift */; };
+		F6B1B60B2886F09C00F26036 /* ResultWorkoutInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B1B6042886F06C00F26036 /* ResultWorkoutInterfaceController.swift */; };
+		F6B1B60C2886F0BC00F26036 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B1B5FF2886F06C00F26036 /* NotificationController.swift */; };
 		F6BBA05421C0D81D00C19C27 /* WorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6BBA05321C0D81D00C19C27 /* WorkoutViewController.swift */; };
 		F6BC90AF24C5C5FF00E2283C /* ExtensionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6BC90AE24C5C5FF00E2283C /* ExtensionVC.swift */; };
 		F6BD8503225E1B77009CEE3B /* ResultWorkOut+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6BD8501225E1B77009CEE3B /* ResultWorkOut+CoreDataClass.swift */; };
@@ -167,17 +166,16 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		2CA2CAB73F927F34DF9FCA6F /* Pods-Palpito.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Palpito.debug.xcconfig"; path = "Target Support Files/Pods-Palpito/Pods-Palpito.debug.xcconfig"; sourceTree = "<group>"; };
-		32132D1FD130DA8EE94E82FF /* Pods-Palpito.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Palpito.release.xcconfig"; path = "Target Support Files/Pods-Palpito/Pods-Palpito.release.xcconfig"; sourceTree = "<group>"; };
-		74604709ABE3DEF0D72D3188 /* Pods_Palpito.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Palpito.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		79309424A392F094463A7D0B /* libPods-Palpito_watchOS Extension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Palpito_watchOS Extension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		7F1865616D7ABF5540A90648 /* Pods-Palpito_watchOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Palpito_watchOS.release.xcconfig"; path = "Target Support Files/Pods-Palpito_watchOS/Pods-Palpito_watchOS.release.xcconfig"; sourceTree = "<group>"; };
-		A104FC97EC4E36611B492C35 /* libPods-Palpito_watchOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Palpito_watchOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B93F31D316FC58D9A8FCCD2F /* Pods-Palpito_watchOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Palpito_watchOS.debug.xcconfig"; path = "Target Support Files/Pods-Palpito_watchOS/Pods-Palpito_watchOS.debug.xcconfig"; sourceTree = "<group>"; };
-		C871B5EF3AFF8DFE4095E1D9 /* Pods-Palpito_watchOS Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Palpito_watchOS Extension.debug.xcconfig"; path = "Target Support Files/Pods-Palpito_watchOS Extension/Pods-Palpito_watchOS Extension.debug.xcconfig"; sourceTree = "<group>"; };
-		CC2F3B1F6AE01D4243DFEB33 /* Pods-Palpito_watchOS Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Palpito_watchOS Extension.release.xcconfig"; path = "Target Support Files/Pods-Palpito_watchOS Extension/Pods-Palpito_watchOS Extension.release.xcconfig"; sourceTree = "<group>"; };
+		024C810448FF8315C6F506F5 /* libPods-Palpito.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Palpito.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A2D9387794B824982111309 /* Pods-Palpito_watchOS Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Palpito_watchOS Extension.release.xcconfig"; path = "Target Support Files/Pods-Palpito_watchOS Extension/Pods-Palpito_watchOS Extension.release.xcconfig"; sourceTree = "<group>"; };
+		17A083D21258A3E4D2B4C885 /* libPods-Palpito_watchOS Extension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Palpito_watchOS Extension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		35AFCB2A8E7D6571D6F55B75 /* Pods-Palpito_watchOS Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Palpito_watchOS Extension.debug.xcconfig"; path = "Target Support Files/Pods-Palpito_watchOS Extension/Pods-Palpito_watchOS Extension.debug.xcconfig"; sourceTree = "<group>"; };
+		4056F27925BB5B89734F21C1 /* Pods-Palpito_watchOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Palpito_watchOS.debug.xcconfig"; path = "Target Support Files/Pods-Palpito_watchOS/Pods-Palpito_watchOS.debug.xcconfig"; sourceTree = "<group>"; };
+		48F3D6DBD4DF000D382CB9E0 /* Pods-Palpito.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Palpito.debug.xcconfig"; path = "Target Support Files/Pods-Palpito/Pods-Palpito.debug.xcconfig"; sourceTree = "<group>"; };
+		582F5559760107BB92C33B69 /* Pods-Palpito_watchOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Palpito_watchOS.release.xcconfig"; path = "Target Support Files/Pods-Palpito_watchOS/Pods-Palpito_watchOS.release.xcconfig"; sourceTree = "<group>"; };
+		982C102CFD024D1F4DD04D92 /* libPods-Palpito_watchOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Palpito_watchOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9D355E53DE4D1947F322B4E5 /* Pods-Palpito.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Palpito.release.xcconfig"; path = "Target Support Files/Pods-Palpito/Pods-Palpito.release.xcconfig"; sourceTree = "<group>"; };
 		F6009CA021E82D5A007DF73B /* palpito_Data.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = palpito_Data.xcdatamodel; sourceTree = "<group>"; };
-		F6009CA221E83755007DF73B /* ResultWorkoutInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultWorkoutInterfaceController.swift; sourceTree = "<group>"; };
 		F600BEDD218937C100116455 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		F600BEDF218937C100116455 /* Palpito.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Palpito.entitlements; sourceTree = "<group>"; };
 		F600BEE22189382B00116455 /* Palpito_watchOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Palpito_watchOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -185,18 +183,9 @@
 		F600BEE72189382D00116455 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F600BEE92189382D00116455 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F600BEEE2189382D00116455 /* Palpito_watchOS Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Palpito_watchOS Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
-		F600BEF32189382D00116455 /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
-		F600BEF52189382D00116455 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
-		F600BEF72189382D00116455 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
-		F600BEF92189382E00116455 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		F600BEFB2189382E00116455 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F600BEFC2189382E00116455 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
-		F600BF092189383D00116455 /* Palpito_watchOS Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Palpito_watchOS Extension.entitlements"; sourceTree = "<group>"; };
 		F600BF0B2189400700116455 /* HealthKitSharedFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitSharedFunction.swift; sourceTree = "<group>"; };
-		F60183B92296330800380C47 /* ResultRelaxInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultRelaxInterfaceController.swift; sourceTree = "<group>"; };
 		F60183BB2296390700380C47 /* RelaxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelaxViewController.swift; sourceTree = "<group>"; };
 		F60223E225B44F5100416570 /* PalpitoRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PalpitoRelease.entitlements; sourceTree = "<group>"; };
-		F60223E525B44F8A00416570 /* Palpito_watchOS ExtensionRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Palpito_watchOS ExtensionRelease.entitlements"; sourceTree = "<group>"; };
 		F60228E5221BE2940012BF46 /* DaliyWorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaliyWorkoutViewController.swift; sourceTree = "<group>"; };
 		F60FEFC921BE36CD00D4029B /* CustomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationController.swift; sourceTree = "<group>"; };
 		F610219721FF0493006D821E /* ResultWorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultWorkoutViewController.swift; sourceTree = "<group>"; };
@@ -209,13 +198,12 @@
 		F6232505251726F900EE2C88 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F62788442201921D003B3540 /* MyStage+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MyStage+CoreDataClass.swift"; sourceTree = "<group>"; };
 		F62788452201921D003B3540 /* MyStage+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MyStage+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		F62790F921E879F3005E2155 /* StandByWorkoutInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandByWorkoutInterfaceController.swift; sourceTree = "<group>"; };
+		F62B54742886EAC200FFA9E9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Palpito_watchOS_Extension/Assets.xcassets; sourceTree = "<group>"; };
 		F630D89F222D7CD00062CB80 /* BackgroundWorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundWorkoutViewController.swift; sourceTree = "<group>"; };
 		F6339C00248360ED00EACAEE /* BpmInfoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BpmInfoController.swift; sourceTree = "<group>"; };
 		F6339C042483614C00EACAEE /* BpmInfoController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BpmInfoController.xib; sourceTree = "<group>"; };
 		F65600CE21789F0700AF9C22 /* 2018-10-18 19.55.34.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "2018-10-18 19.55.34.jpg"; sourceTree = "<group>"; };
 		F65F87D5215DA7EB00E03BFE /* EmailAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EmailAddViewController.swift; path = Palpito_v0.01/EmailAddViewController.swift; sourceTree = SOURCE_ROOT; };
-		F66C6E722294D94500621A20 /* RelaxInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelaxInterfaceController.swift; sourceTree = "<group>"; };
 		F677EB1B21788B3C000AE332 /* 팔피토 로고.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "팔피토 로고.png"; sourceTree = "<group>"; };
 		F67B2065215DB1CC0092077F /* AgeAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgeAddViewController.swift; sourceTree = "<group>"; };
 		F67B90752227712700B7042D /* ReadyWorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadyWorkoutViewController.swift; sourceTree = "<group>"; };
@@ -254,6 +242,19 @@
 		F6A49CF725B45B8900F492AA /* Palpito_watchOSRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Palpito_watchOSRelease.entitlements; sourceTree = "<group>"; };
 		F6B1861B24CBE1EB003C905D /* PrivateInfomationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateInfomationController.swift; sourceTree = "<group>"; };
 		F6B1861D24CBE35A003C905D /* UserInfoSettingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoSettingController.swift; sourceTree = "<group>"; };
+		F6B1B5F92886F06C00F26036 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		F6B1B5FA2886F06C00F26036 /* ResultRelaxInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultRelaxInterfaceController.swift; sourceTree = "<group>"; };
+		F6B1B5FB2886F06C00F26036 /* StandByWorkoutInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandByWorkoutInterfaceController.swift; sourceTree = "<group>"; };
+		F6B1B5FC2886F06C00F26036 /* RelaxInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelaxInterfaceController.swift; sourceTree = "<group>"; };
+		F6B1B5FD2886F06C00F26036 /* Palpito_watchOS_Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Palpito_watchOS_Extension.entitlements; sourceTree = "<group>"; };
+		F6B1B5FE2886F06C00F26036 /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
+		F6B1B5FF2886F06C00F26036 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		F6B1B6002886F06C00F26036 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F6B1B6012886F06C00F26036 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F6B1B6022886F06C00F26036 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		F6B1B6032886F06C00F26036 /* Palpito_watchOS_ExtensionRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Palpito_watchOS_ExtensionRelease.entitlements; sourceTree = "<group>"; };
+		F6B1B6042886F06C00F26036 /* ResultWorkoutInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultWorkoutInterfaceController.swift; sourceTree = "<group>"; };
+		F6B1B6052886F06C00F26036 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F6BAAA9326DBA60300B55815 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		F6BAAA9426DBA60900B55815 /* ko */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = ko; path = ko.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		F6BBA05321C0D81D00C19C27 /* WorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutViewController.swift; sourceTree = "<group>"; };
@@ -264,6 +265,8 @@
 		F6C704DA21B4F9A900CC35A4 /* UserPasswordResetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPasswordResetViewController.swift; sourceTree = "<group>"; };
 		F6D1BC2C229F758200581073 /* ResultRelax+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ResultRelax+CoreDataClass.swift"; sourceTree = "<group>"; };
 		F6D1BC2D229F758200581073 /* ResultRelax+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ResultRelax+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		F6D417DE287DB5DC0059A11E /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F6D417E3287DB9A70059A11E /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = "GoogleService-Info.plist"; path = "Palpito_watchOS_Extension/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		F6D69EDD23A62FCD007ECB5C /* zone1Recycle.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = zone1Recycle.mp3; sourceTree = "<group>"; };
 		F6D69EE023A62FCD007ECB5C /* zone4start.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = zone4start.mp3; sourceTree = "<group>"; };
 		F6D69EE123A62FCD007ECB5C /* zone12Recycle.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = zone12Recycle.mp3; sourceTree = "<group>"; };
@@ -307,7 +310,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ED081591B1FFD7949E38F123 /* libPods-Palpito_watchOS.a in Frameworks */,
+				E1330FF444FFA47DC61AA54E /* libPods-Palpito_watchOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -316,7 +319,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F672414A2189A29B00568038 /* HealthKit.framework in Frameworks */,
-				18443F616024F30248448ECD /* libPods-Palpito_watchOS Extension.a in Frameworks */,
+				22AC9291FF3C5456200E397B /* libPods-Palpito_watchOS Extension.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -326,7 +329,7 @@
 			files = (
 				F600BEDE218937C100116455 /* HealthKit.framework in Frameworks */,
 				F6FF69F924CC488400FF910C /* WebKit.framework in Frameworks */,
-				7D314AC2B53F1F3DAF9CD2A1 /* Pods_Palpito.framework in Frameworks */,
+				3CB95292D7DA015C212FFC00 /* libPods-Palpito.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,12 +339,12 @@
 		C318120A71925BD25042E3A1 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				2CA2CAB73F927F34DF9FCA6F /* Pods-Palpito.debug.xcconfig */,
-				32132D1FD130DA8EE94E82FF /* Pods-Palpito.release.xcconfig */,
-				B93F31D316FC58D9A8FCCD2F /* Pods-Palpito_watchOS.debug.xcconfig */,
-				7F1865616D7ABF5540A90648 /* Pods-Palpito_watchOS.release.xcconfig */,
-				C871B5EF3AFF8DFE4095E1D9 /* Pods-Palpito_watchOS Extension.debug.xcconfig */,
-				CC2F3B1F6AE01D4243DFEB33 /* Pods-Palpito_watchOS Extension.release.xcconfig */,
+				48F3D6DBD4DF000D382CB9E0 /* Pods-Palpito.debug.xcconfig */,
+				9D355E53DE4D1947F322B4E5 /* Pods-Palpito.release.xcconfig */,
+				4056F27925BB5B89734F21C1 /* Pods-Palpito_watchOS.debug.xcconfig */,
+				582F5559760107BB92C33B69 /* Pods-Palpito_watchOS.release.xcconfig */,
+				35AFCB2A8E7D6571D6F55B75 /* Pods-Palpito_watchOS Extension.debug.xcconfig */,
+				0A2D9387794B824982111309 /* Pods-Palpito_watchOS Extension.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -356,25 +359,6 @@
 				F600BEE92189382D00116455 /* Info.plist */,
 			);
 			path = Palpito_watchOS;
-			sourceTree = "<group>";
-		};
-		F600BEF22189382D00116455 /* Palpito_watchOS Extension */ = {
-			isa = PBXGroup;
-			children = (
-				F60223E525B44F8A00416570 /* Palpito_watchOS ExtensionRelease.entitlements */,
-				F600BF092189383D00116455 /* Palpito_watchOS Extension.entitlements */,
-				F600BEF32189382D00116455 /* InterfaceController.swift */,
-				F600BEF52189382D00116455 /* ExtensionDelegate.swift */,
-				F600BEF72189382D00116455 /* NotificationController.swift */,
-				F600BEF92189382E00116455 /* Assets.xcassets */,
-				F600BEFB2189382E00116455 /* Info.plist */,
-				F600BEFC2189382E00116455 /* PushNotificationPayload.apns */,
-				F6009CA221E83755007DF73B /* ResultWorkoutInterfaceController.swift */,
-				F62790F921E879F3005E2155 /* StandByWorkoutInterfaceController.swift */,
-				F66C6E722294D94500621A20 /* RelaxInterfaceController.swift */,
-				F60183B92296330800380C47 /* ResultRelaxInterfaceController.swift */,
-			);
-			path = "Palpito_watchOS Extension";
 			sourceTree = "<group>";
 		};
 		F600BF0A21893FD000116455 /* shared */ = {
@@ -413,9 +397,9 @@
 			children = (
 				F6FF69F824CC488300FF910C /* WebKit.framework */,
 				F600BEDD218937C100116455 /* HealthKit.framework */,
-				74604709ABE3DEF0D72D3188 /* Pods_Palpito.framework */,
-				A104FC97EC4E36611B492C35 /* libPods-Palpito_watchOS.a */,
-				79309424A392F094463A7D0B /* libPods-Palpito_watchOS Extension.a */,
+				024C810448FF8315C6F506F5 /* libPods-Palpito.a */,
+				982C102CFD024D1F4DD04D92 /* libPods-Palpito_watchOS.a */,
+				17A083D21258A3E4D2B4C885 /* libPods-Palpito_watchOS Extension.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -446,13 +430,15 @@
 		F695C30D215C9F8B00F4DDEB = {
 			isa = PBXGroup;
 			children = (
+				F6B1B5F82886F06C00F26036 /* Palpito_watchOS_Extension */,
+				F62B54742886EAC200FFA9E9 /* Assets.xcassets */,
+				F6D417DB287DB53D0059A11E /* Firebase */,
 				F60223E225B44F5100416570 /* PalpitoRelease.entitlements */,
 				F6D78C3B24FBCA5F00C96FB6 /* licenses */,
 				F6D78C3924FBC4C500C96FB6 /* Settings.bundle */,
 				F6BF90C121C1408D000AF396 /* Palpito.entitlements */,
 				F695C318215C9F8B00F4DDEB /* Palpito_v0.01 */,
 				F600BEE32189382B00116455 /* Palpito_watchOS */,
-				F600BEF22189382D00116455 /* Palpito_watchOS Extension */,
 				F695C317215C9F8B00F4DDEB /* Products */,
 				F600BF0A21893FD000116455 /* shared */,
 				F692BFC22177187000915E33 /* Frameworks */,
@@ -524,6 +510,51 @@
 			path = Palpito_v0.01;
 			sourceTree = "<group>";
 		};
+		F6B1B5F82886F06C00F26036 /* Palpito_watchOS_Extension */ = {
+			isa = PBXGroup;
+			children = (
+				F6B1B5F92886F06C00F26036 /* PushNotificationPayload.apns */,
+				F6B1B5FA2886F06C00F26036 /* ResultRelaxInterfaceController.swift */,
+				F6B1B5FB2886F06C00F26036 /* StandByWorkoutInterfaceController.swift */,
+				F6B1B5FC2886F06C00F26036 /* RelaxInterfaceController.swift */,
+				F6B1B5FD2886F06C00F26036 /* Palpito_watchOS_Extension.entitlements */,
+				F6B1B5FE2886F06C00F26036 /* InterfaceController.swift */,
+				F6B1B5FF2886F06C00F26036 /* NotificationController.swift */,
+				F6B1B6002886F06C00F26036 /* Assets.xcassets */,
+				F6B1B6012886F06C00F26036 /* GoogleService-Info.plist */,
+				F6B1B6022886F06C00F26036 /* ExtensionDelegate.swift */,
+				F6B1B6032886F06C00F26036 /* Palpito_watchOS_ExtensionRelease.entitlements */,
+				F6B1B6042886F06C00F26036 /* ResultWorkoutInterfaceController.swift */,
+				F6B1B6052886F06C00F26036 /* Info.plist */,
+			);
+			path = Palpito_watchOS_Extension;
+			sourceTree = "<group>";
+		};
+		F6D417DB287DB53D0059A11E /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				F6D417DD287DB5610059A11E /* ios */,
+				F6D417DC287DB54C0059A11E /* watchos */,
+			);
+			path = Firebase;
+			sourceTree = "<group>";
+		};
+		F6D417DC287DB54C0059A11E /* watchos */ = {
+			isa = PBXGroup;
+			children = (
+				F6D417E3287DB9A70059A11E /* GoogleService-Info.plist */,
+			);
+			path = watchos;
+			sourceTree = "<group>";
+		};
+		F6D417DD287DB5610059A11E /* ios */ = {
+			isa = PBXGroup;
+			children = (
+				F6D417DE287DB5DC0059A11E /* GoogleService-Info.plist */,
+			);
+			path = ios;
+			sourceTree = "<group>";
+		};
 		F6D78C3B24FBCA5F00C96FB6 /* licenses */ = {
 			isa = PBXGroup;
 			children = (
@@ -565,7 +596,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F600BF042189382E00116455 /* Build configuration list for PBXNativeTarget "Palpito_watchOS" */;
 			buildPhases = (
-				7FFE1A500E0483B4D7C52D85 /* [CP] Check Pods Manifest.lock */,
+				A04F06C8C31A0D3F3C81F22B /* [CP] Check Pods Manifest.lock */,
 				F600BEE02189382B00116455 /* Resources */,
 				F600BF032189382E00116455 /* Embed App Extensions */,
 				21C2E324CAEB2B6D5B0D3AA7 /* Frameworks */,
@@ -584,10 +615,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F600BF002189382E00116455 /* Build configuration list for PBXNativeTarget "Palpito_watchOS Extension" */;
 			buildPhases = (
-				5F847EF5D24E988D7A49E7CA /* [CP] Check Pods Manifest.lock */,
+				C33DA3166C989EC8CB8ABF9B /* [CP] Check Pods Manifest.lock */,
 				F600BEEA2189382D00116455 /* Sources */,
 				F600BEEB2189382D00116455 /* Frameworks */,
+				F6D417E1287DB6AC0059A11E /* setup firebase environment googleservice-info.plist */,
 				F600BEEC2189382D00116455 /* Resources */,
+				F6A40471287C17CD00371B2B /* firebase crashlyties */,
 			);
 			buildRules = (
 			);
@@ -602,15 +635,15 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F695C328215C9F8C00F4DDEB /* Build configuration list for PBXNativeTarget "Palpito" */;
 			buildPhases = (
-				05F9E0A1E829709E96543E29 /* [CP] Check Pods Manifest.lock */,
+				FE82599AA0BAE37E7C669B62 /* [CP] Check Pods Manifest.lock */,
 				F695C312215C9F8B00F4DDEB /* Sources */,
 				F695C313215C9F8B00F4DDEB /* Frameworks */,
+				F6D417E0287DB6150059A11E /* setup firebase environment googleservice-info.plist */,
 				F695C314215C9F8B00F4DDEB /* Resources */,
 				F692BFC02177143E00915E33 /* Embed Watch Content */,
 				F6F2A3B7221147EF001FEDBC /* Embed Frameworks */,
-				F67D12602513858D00E70692 /* ShellScript */,
 				F6FE8813266CF0620087EFE2 /* FireBase Crashlytics */,
-				0DFC776B91D9F578EDB1344A /* [CP] Embed Pods Frameworks */,
+				4FFC4179DD331A4DE9A4B8EA /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -629,7 +662,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1000;
-				LastUpgradeCheck = 1200;
+				LastUpgradeCheck = 1340;
 				ORGANIZATIONNAME = "김정식";
 				TargetAttributes = {
 					F600BEE12189382B00116455 = {
@@ -672,7 +705,7 @@
 				};
 			};
 			buildConfigurationList = F695C311215C9F8B00F4DDEB /* Build configuration list for PBXProject "Palpito" */;
-			compatibilityVersion = "Xcode 12.0";
+			compatibilityVersion = "Xcode 15.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -706,7 +739,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F600BEFA2189382E00116455 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -764,68 +796,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		05F9E0A1E829709E96543E29 /* [CP] Check Pods Manifest.lock */ = {
+		4FFC4179DD331A4DE9A4B8EA /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Palpito/Pods-Palpito-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
+			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Palpito-checkManifestLockResult.txt",
+				"${PODS_ROOT}/Target Support Files/Pods-Palpito/Pods-Palpito-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Palpito/Pods-Palpito-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		0DFC776B91D9F578EDB1344A /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Palpito/Pods-Palpito-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Palpito/Pods-Palpito-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Palpito/Pods-Palpito-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		5F847EF5D24E988D7A49E7CA /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Palpito_watchOS Extension-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		7FFE1A500E0483B4D7C52D85 /* [CP] Check Pods Manifest.lock */ = {
+		A04F06C8C31A0D3F3C81F22B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -847,26 +835,85 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		F67D12602513858D00E70692 /* ShellScript */ = {
+		C33DA3166C989EC8CB8ABF9B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 12;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Palpito_watchOS Extension-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F6A40471287C17CD00371B2B /* firebase crashlyties */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
 			);
 			inputPaths = (
 			);
+			name = "firebase crashlyties";
 			outputFileListPaths = (
 			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n";
+			shellScript = "if [ \"${CONFIGURATION}\" != \"Debug\" ]; then\n    \"${PODS_ROOT}/FirebaseCrashlytics/run\"\nfi\n";
+		};
+		F6D417E0287DB6150059A11E /* setup firebase environment googleservice-info.plist */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "setup firebase environment googleservice-info.plist";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\ncase \"${CONFIGURATION}\" in\n  \"Debug\" )\ncp -r \"$SRCROOT/Firebase/ios/GoogleService-Info.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\" ;;\n  \"Release\" )\ncp -r \"$SRCROOT/Firebase/ios/GoogleService-Info.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\" ;;\n*)\n;;\nesac\n";
+		};
+		F6D417E1287DB6AC0059A11E /* setup firebase environment googleservice-info.plist */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "setup firebase environment googleservice-info.plist";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\ncase \"${CONFIGURATION}\" in\n  \"Debug\" )\ncp -r \"$SRCROOT/Firebase/watchos/GoogleService-Info.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.appex/GoogleService-Info.plist\" ;;\n  \"Release\" )\ncp -r \"$SRCROOT/Firebase/watchos/GoogleService-Info.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.appex/GoogleService-Info.plist\" ;;\n*)\n;;\nesac\n";
 		};
 		F6FE8813266CF0620087EFE2 /* FireBase Crashlytics */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			files = (
 			);
 			inputFileListPaths = (
@@ -880,7 +927,29 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#if [ \"${CONFIGURATION}\" != \"Debug\" ]; then\n #   \"${PODS_ROOT}/FirebaseCrashlytics/run\"\n #   \"${PODS_ROOT}/FirebaseCrashlytics/upload-symbols\" -gsp ${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist -p ios ${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}\n#fi\n";
+			shellScript = "if [ \"${CONFIGURATION}\" != \"Debug\" ]; then\n    \"${PODS_ROOT}/FirebaseCrashlytics/run\"\nfi\n";
+		};
+		FE82599AA0BAE37E7C669B62 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Palpito-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -889,14 +958,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F6009CA321E83755007DF73B /* ResultWorkoutInterfaceController.swift in Sources */,
-				F66C6E732294D94500621A20 /* RelaxInterfaceController.swift in Sources */,
-				F62790FA21E879F3005E2155 /* StandByWorkoutInterfaceController.swift in Sources */,
-				F600BEF82189382D00116455 /* NotificationController.swift in Sources */,
+				F6B1B60C2886F0BC00F26036 /* NotificationController.swift in Sources */,
+				F6B1B6092886F09C00F26036 /* InterfaceController.swift in Sources */,
+				F6B1B60A2886F09C00F26036 /* ExtensionDelegate.swift in Sources */,
+				F6B1B60B2886F09C00F26036 /* ResultWorkoutInterfaceController.swift in Sources */,
+				F6B1B6062886F09300F26036 /* ResultRelaxInterfaceController.swift in Sources */,
+				F6B1B6072886F09300F26036 /* StandByWorkoutInterfaceController.swift in Sources */,
+				F6B1B6082886F09300F26036 /* RelaxInterfaceController.swift in Sources */,
 				F600BF0D2189400700116455 /* HealthKitSharedFunction.swift in Sources */,
-				F600BEF62189382D00116455 /* ExtensionDelegate.swift in Sources */,
-				F600BEF42189382D00116455 /* InterfaceController.swift in Sources */,
-				F60183BA2296330800380C47 /* ResultRelaxInterfaceController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1029,117 +1098,127 @@
 /* Begin XCBuildConfiguration section */
 		F600BF012189382E00116455 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C871B5EF3AFF8DFE4095E1D9 /* Pods-Palpito_watchOS Extension.debug.xcconfig */;
+			baseConfigurationReference = 35AFCB2A8E7D6571D6F55B75 /* Pods-Palpito_watchOS Extension.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION = YES;
-				CODE_SIGN_ENTITLEMENTS = "Palpito_watchOS Extension/Palpito_watchOS Extension.entitlements";
+				CODE_SIGN_ENTITLEMENTS = Palpito_watchOS_Extension/Palpito_watchOS_Extension.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 6;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 54B55B6766;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=watchos*]" = 54B55B6766;
 				ENABLE_TESTABILITY = NO;
-				INFOPLIST_FILE = "Palpito_watchOS Extension/Info.plist";
+				INFOPLIST_FILE = Palpito_watchOS_Extension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.7.2;
+				MARKETING_VERSION = 1.7.7;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = xyz.palpito.dev.app.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=watchos*]" = palpito_dev_watch_extension_profile;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 7.4;
+				WATCHOS_DEPLOYMENT_TARGET = 8.4;
 			};
 			name = Debug;
 		};
 		F600BF022189382E00116455 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CC2F3B1F6AE01D4243DFEB33 /* Pods-Palpito_watchOS Extension.release.xcconfig */;
+			baseConfigurationReference = 0A2D9387794B824982111309 /* Pods-Palpito_watchOS Extension.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION = YES;
-				CODE_SIGN_ENTITLEMENTS = "Palpito_watchOS Extension/Palpito_watchOS ExtensionRelease.entitlements";
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_ENTITLEMENTS = Palpito_watchOS_Extension/Palpito_watchOS_ExtensionRelease.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 6;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 54B55B6766;
-				INFOPLIST_FILE = "Palpito_watchOS Extension/Info.plist";
+				"DEVELOPMENT_TEAM[sdk=watchos*]" = 54B55B6766;
+				INFOPLIST_FILE = Palpito_watchOS_Extension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.7.2;
+				MARKETING_VERSION = 1.7.7;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = xyz.palpito.dev.app.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = palpito_appstore_watchos;
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=watchos*]" = palpito_appstore_watch_extension_profile;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 7.4;
+				WATCHOS_DEPLOYMENT_TARGET = 8.4;
 			};
 			name = Release;
 		};
 		F600BF052189382E00116455 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B93F31D316FC58D9A8FCCD2F /* Pods-Palpito_watchOS.debug.xcconfig */;
+			baseConfigurationReference = 4056F27925BB5B89734F21C1 /* Pods-Palpito_watchOS.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = WatchAppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 6;
-				DEVELOPMENT_TEAM = 54B55B6766;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=watchos*]" = 54B55B6766;
 				IBSC_MODULE = Palpito_watchOS_Extension;
 				INFOPLIST_FILE = Palpito_watchOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 1.7.2;
+				MARKETING_VERSION = 1.7.7;
 				PRODUCT_BUNDLE_IDENTIFIER = xyz.palpito.dev.app.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=watchos*]" = palpito_dev_watchos;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 7.4;
+				WATCHOS_DEPLOYMENT_TARGET = 8.4;
 			};
 			name = Debug;
 		};
 		F600BF062189382E00116455 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7F1865616D7ABF5540A90648 /* Pods-Palpito_watchOS.release.xcconfig */;
+			baseConfigurationReference = 582F5559760107BB92C33B69 /* Pods-Palpito_watchOS.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = WatchAppIcon;
 				CODE_SIGN_ENTITLEMENTS = Palpito_watchOS/Palpito_watchOSRelease.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 54B55B6766;
+				"DEVELOPMENT_TEAM[sdk=watchos*]" = 54B55B6766;
 				IBSC_MODULE = Palpito_watchOS_Extension;
 				INFOPLIST_FILE = Palpito_watchOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 1.7.2;
+				MARKETING_VERSION = 1.7.7;
 				PRODUCT_BUNDLE_IDENTIFIER = xyz.palpito.dev.app.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = palpipo_app_WatchOS_real;
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=watchos*]" = palpito_appstore_watch_profile;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 7.4;
+				WATCHOS_DEPLOYMENT_TARGET = 8.4;
 			};
 			name = Release;
 		};
@@ -1181,7 +1260,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1266,63 +1345,83 @@
 		};
 		F695C329215C9F8C00F4DDEB /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2CA2CAB73F927F34DF9FCA6F /* Pods-Palpito.debug.xcconfig */;
+			baseConfigurationReference = 48F3D6DBD4DF000D382CB9E0 /* Pods-Palpito.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION = YES;
 				CODE_SIGN_ENTITLEMENTS = Palpito.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 6;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 54B55B6766;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 54B55B6766;
 				ENABLE_HARDENED_RUNTIME = YES;
+				EXCLUDED_ARCHS = "";
 				INFOPLIST_FILE = Palpito_v0.01/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.7.2;
+				MARKETING_VERSION = 1.7.7;
 				PRODUCT_BUNDLE_IDENTIFIER = xyz.palpito.dev.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = palpito_dev_iphone;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = palpito_dev_ios;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_COMPILATION_MODE = singlefile;
 				SWIFT_OBJC_BRIDGING_HEADER = "Palpito_v0.01/ImgResource/Palpito_v0.01-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
+				VALID_ARCHS = "$(ARCHS_STANDARD)";
 			};
 			name = Debug;
 		};
 		F695C32A215C9F8C00F4DDEB /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 32132D1FD130DA8EE94E82FF /* Pods-Palpito.release.xcconfig */;
+			baseConfigurationReference = 9D355E53DE4D1947F322B4E5 /* Pods-Palpito.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION = YES;
 				CODE_SIGN_ENTITLEMENTS = PalpitoRelease.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 6;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 54B55B6766;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 54B55B6766;
 				ENABLE_HARDENED_RUNTIME = YES;
+				EXCLUDED_ARCHS = "";
 				INFOPLIST_FILE = Palpito_v0.01/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.7.2;
+				MARKETING_VERSION = 1.7.7;
 				PRODUCT_BUNDLE_IDENTIFIER = xyz.palpito.dev.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = palpito_appstore_profile;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "Palpito_v0.01/ImgResource/Palpito_v0.01-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
+				VALID_ARCHS = "$(ARCHS_STANDARD)";
 			};
 			name = Release;
 		};

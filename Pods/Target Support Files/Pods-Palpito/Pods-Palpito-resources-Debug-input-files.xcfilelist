@@ -1,2 +1,3 @@
 ${PODS_ROOT}/Target Support Files/Pods-Palpito/Pods-Palpito-resources.sh
-${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle
+${PODS_CONFIGURATION_BUILD_DIR}/GoogleSignIn/GoogleSignIn.bundle
+${PODS_CONFIGURATION_BUILD_DIR}/gRPC-C++/gRPCCertificates-Cpp.bundle
