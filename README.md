@@ -1,14 +1,14 @@
 # palpito_dev
 팔피토 앱 개발 버전
 
+![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)
 ![Version](https://img.shields.io/badge/version-1.5.6-brightgreen.svg)  
-[![Build Status](https://img.shields.io/badge/build-passing-success.svg)](https://github.com/yourusername/yourproject)
+[![Build Status](https://img.shields.io/badge/build-passing-success.svg)](https://github.com/jeongsik-pspotl/palpito_dev.git)
 
 ### 📖 프로젝트 소개 
 - 해당 레파지토리는 팔피토 앱 iOS/WatchOS 기반으로 구현된 프로젝트 입니다.
 - 포트폴리오로 제공 하고 애플워치와 아이폰간에 통신 하는 과정을 소스 코드로 확인 가능
 - 애플 스토어에 출시 된 모바일앱 프로젝트 입니다.
-- https://apps.apple.com/kr/app/palpito/id1453342326
 
 ---
 
@@ -17,7 +17,8 @@
 2. [국내 특허](#국내-특허)
 3. [미국 특허](#미국-특허)
 4. [설치 방법](#설치-방법) 
-5. [라이선스](#라이선스)
+5. [앱 다운로드](#앱-다운로드)
+6. [라이선스](#라이선스)
 
 ---
 
@@ -37,17 +38,42 @@
 - **등록일**: 2017년 02월 20일
 - **특허번호**: 10-2018-0003112
 - **등록일**: 2018년 01월 10일
-
 ---
+
 ### 🏆 미국 특허
 이 프로젝트는 다음과 같은 미국 특허를 기반으로 개발되었습니다:
 
 - **특허번호**: 17/116,036
 - **등록일**: 2020년 12월 09일
 ---
+
 ### 🛠️ 설치 방법 (소스코드만 제공)
 
 1. 이 저장소를 클론하세요:
    ```bash
    git clone https://github.com/jeongsik-pspotl/palpito_dev.git
    cd yourproject
+---
+
+## 📱 앱 다운로드
+- iOS 사용자는 [팔피토 앱 링크](https://apps.apple.com/kr/app/palpito/id1453342326)를 통해 다운로드할 수 있습니다.
+---
+
+## 📜 라이선스
+
+이 프로젝트는 [Apache 2.0 라이선스]([License])를 따릅니다.  
+Apache 2.0 라이선스는 다음과 같은 권한을 제공합니다:
+
+- ✅ 상업적 사용
+- ✅ 수정 및 배포
+- ✅ 개인 및 단체의 사용
+- ✅ 소스 코드 변경 후 공개 의무 없음
+
+---
+## 📧 문의
+문의 사항이 있으시면 아래로 연락해주세요:
+
+- 이메일: kimjs10122@naver.com
+- GitHub: [jeongsik-pspotl](https://github.com/jeongsik-pspotl)
+
+
