@@ -4,6 +4,7 @@
 ![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)
 ![Version](https://img.shields.io/badge/version-1.5.6-brightgreen.svg)  
 [![Build Status](https://img.shields.io/badge/build-passing-success.svg)](https://github.com/jeongsik-pspotl/palpito_dev.git)
+[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fjeongsik-pspotl%2Fpalpito_dev&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
 
 ### 📖 프로젝트 소개 
 - 해당 레파지토리는 팔피토 앱 iOS/WatchOS 기반으로 구현된 프로젝트 입니다.
